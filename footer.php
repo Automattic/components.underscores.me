@@ -13,11 +13,18 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 
+		<div class="automattic-credit">
+			An <a href="http://automattic.com/" id="automattic-credit-logo">Automattic</a>
+			<?php
+			$words = array( 'Production', 'Joint', 'Medley', 'Experiment', 'Ruckus', 'Invention', 'Creation', 'Thingamajig', 'Opus', 'Brainchild', 'Contraption' );
+			echo $words[ mt_rand( 0, count( $words) -1 ) ];
+			?>
+		</div><!-- .automattic-credit -->
+
 		<div class="site-info">
-	<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'components' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'components' ), 'WordPress' ); ?></a>
-	<span class="sep"> | </span>
-	<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'components' ), 'components', '<a href="http://wordpress.com" rel="designer">Automattic</a>' ); ?>
-</div><!-- .site-info -->
+			<?php do_action( 'components_credits' ); ?>
+			<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'components' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'components' ), 'WordPress' ); ?></a>
+		</div><!-- .site-info -->
 
 	</footer><!-- #colophon -->
 </div><!-- #page -->
