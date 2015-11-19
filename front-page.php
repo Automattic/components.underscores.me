@@ -15,8 +15,6 @@ get_header(); ?>
 
 		<section id="intro" role="main">
 			<div class="wrap">
-				<h1>Components</h1>
-
 				<h2>Want to build a WordPress theme turbo-fast?</h2>
 				<p>Components is a library of shareable, reusable patterns for WordPress themes. Instead of starting from scratch, mix and match to build your own custom starter theme. Think of it as your scaffolding. We build the foundation and wire everything up—you move in and paint the walls.</p>
 
