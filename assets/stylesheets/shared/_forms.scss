@@ -11,9 +11,11 @@ input[type="submit"],
 	@include font-size(0.75);
 	font-family: $font__serif;
 	font-size: $font__size-h6;
+	letter-spacing: 2px;
 	line-height: 1;
 	padding: 1em 2em .8em;
 	position: relative;
+	text-decoration: none;
 	text-transform: uppercase;
 
 	&:hover {
