@@ -11,17 +11,15 @@
   }
 }
 
-@include tablet {
+@include desktop {
   #robot-chute {
     float: left;
-      margin-left: 50px;
-      margin-top: 9px;
+    margin: 9px 0 -140px 50px;
     width: 300px;
   }
 
   #pipe-top {
-    margin-left: -60px;
-    margin-top: -78px;
+    margin: -78px 0 0 -60px;
     width: 825px;
   }
 
@@ -32,7 +30,7 @@
   }
 
   #intro .intro-content {
-    margin: 0 auto;
+    margin: 40px auto 0;
     max-width: 650px;
   }
 }
