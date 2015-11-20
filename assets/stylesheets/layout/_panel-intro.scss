@@ -16,12 +16,19 @@
     margin-left: -10px;
     transform: rotate(90deg);
     transform-origin: top left;
+    position: absolute;
     width: 480px;
     margin-right: 200px;
+    top: 0;
+  }
+
+  .site-description {
+    margin-top: 0;
   }
 
   .intro-content {
     margin-left: 50px;
+    min-height: 400px;
   }
 }
 

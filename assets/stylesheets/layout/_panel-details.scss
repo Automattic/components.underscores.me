@@ -17,3 +17,10 @@
 		float: right;
 	}
 }
+
+@include mobile {
+	#extra-info .wrap .col {
+		float: none;
+		width: 100%;
+	}
+}
