@@ -14,26 +14,26 @@
 @include tablet {
   #robot-chute {
     float: left;
-    position: absolute;
-      left: 50px;
-      top: 40px;
+      margin-left: 50px;
+      margin-top: 9px;
     width: 300px;
   }
 
   #pipe-top {
+    margin-left: -60px;
     margin-top: -78px;
     width: 825px;
   }
 
   /* Move content block to right */
   #intro .wrap {
-    float: right;
-    margin-right: 100px;
-    width: calc(100% - 385px);
+    float: left;
+    width: calc(100% - 300px);
   }
 
   #intro .intro-content {
-    padding-left: 150px;
+    margin: 0 auto;
+    max-width: 650px;
   }
 }
 
