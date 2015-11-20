@@ -35,10 +35,12 @@
 }
 
 .theme-image img {
+	bottom: 5px;
 	height: auto;
 	margin: auto;
 	max-height: 100%;
 	max-width: 100%;
+	position: absolute;
 	width: auto;
 }
 
