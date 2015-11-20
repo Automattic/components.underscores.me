@@ -97,9 +97,11 @@ get_header(); ?>
 				</div><!-- .theme-slider -->
 				<div class="slider-nav"></div>
 
-				<h2>I want it all!</h2>
-				<p>Can't decide? Want to concoct your own starter theme? Here you go!</p>
-				<a href="#" class="button">Download everything</a>
+				<div class="download-all">
+					<h4>I want it all!</h4>
+					<p>Can't decide? Want to concoct your own starter theme? Here you go!</p>
+					<a href="#" class="button">Download everything</a>
+				</div>
 			</div><!-- .wrap -->
 		</section><!-- #types -->
 

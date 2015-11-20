@@ -74,7 +74,6 @@
 	-webkit-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
 	-ms-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
 	animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
-
 }
 
 .slider-nav:before {
@@ -102,23 +101,24 @@
 	cursor: pointer;
 	display: inline-block;
 	font-size: 80%;
-	opacity: 0.2;
-	padding: 0 0.5em;
+	opacity: 0.5;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
 
 	&:hover {
-		opacity: 0.5;
+		opacity: 0.8;
 	}
 }
 
 .next-type {
+	padding-left: 10px;
 	&:before {
 		content: "\003E";
 	}
 }
 
 .prev-type {
+	padding-right: 10px;
 	&:before {
 		content: "\003C";
 	}
@@ -181,5 +181,34 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+@include mobile {
+	.theme-text,
+	.theme-image {
+		width: 100%;
+		float: none;
+	}
+
+	.theme-image {
+		background-color: fade-out( $color__teal, 0.2 );
+		border-radius: 150px;
+		height: 150px;
+		overflow: hidden;
+		margin: auto;
+		position: relative;
+		width: 150px;
+	}
+
+	.theme-image img {
+		height: auto;
+		left: 50%;
+		margin-left: -110px;
+		max-height: 10000px;
+		max-width: 10000px;
+		position: absolute;
+		width: 220px;
+	}
 }
 

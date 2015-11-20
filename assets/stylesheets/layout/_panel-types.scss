@@ -1,13 +1,28 @@
 #types {
 	background-color: $color__navy;
 	color: $color__offwhite;
+
+	a {
+		color: $color__offwhite;
+	}
+
+	h3 {
+		color: $color__teal;
+	}
 }
 
-#types a {
-	color: $color__offwhite;
-}
+.download-all {
+	text-align: center;
 
-#types h3 {
-	color: $color__teal;
-}
+	h4 {
+		margin-bottom: 0;
+	}
 
+	p {
+		margin-top: 0;
+	}
+
+	.button {
+		display: inline-block;
+	}
+}
