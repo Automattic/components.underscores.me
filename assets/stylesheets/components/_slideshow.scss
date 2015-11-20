@@ -6,13 +6,20 @@
 }
 
 .theme-image {
-	background: #ccc;
 	bottom: 100%;
-	height: 100px;
+	height: 100%;
 	position: absolute;
+	text-align: center;
 	-webkit-transition: bottom 0.4s cubic-bezier(.77,.3,.33,.93);
 	transition: bottom 0.4s cubic-bezier(.77,.3,.33,.93)	;
     width: 32%;
+}
+
+.theme-image img {
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
 }
 
 .drop-bot .theme-image {
