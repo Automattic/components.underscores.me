@@ -63,8 +63,13 @@
 			$( '.slider-nav' ).removeClass( 'gears-spinning' );
 
 		} );
+//	}
 
-	//}
+	if( $('.theme-slider').hasClass('slick-initialized') ) {
+		console.log( 'hey' );
+
+	}
+
 
 /*
 	$('.theme.slider').on('init', function(event, slick, currentSlide, nextSlide){

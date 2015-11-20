@@ -6,9 +6,19 @@
 		color: $color__offwhite;
 	}
 
+	h2 {
+		float: right;
+		margin: 0;
+		width: 68%;
+	}
+
 	h3 {
 		color: $color__teal;
 	}
+}
+
+.theme-slider {
+	clear: both;
 }
 
 .download-all {
