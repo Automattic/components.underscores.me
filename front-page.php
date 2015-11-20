@@ -84,6 +84,7 @@ get_header(); ?>
 						</div>
 					</div><!-- .theme-type -->
 				</div><!-- .theme-slider -->
+				<div class="slider-nav"></div>
 
 			</div><!-- .wrap -->
 		</section><!-- #types -->

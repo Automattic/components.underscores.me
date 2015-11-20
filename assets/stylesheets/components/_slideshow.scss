@@ -1,6 +1,10 @@
 
 /* Robots */
 
+.slick-slide:focus {
+	outline: none;
+}
+
 .theme-type {
 	position: relative;
 }
@@ -8,22 +12,21 @@
 .theme-image {
 	height: 100%;
 	position: absolute;
-	text-align: center;
 	transform-origin: 0 0;
 	-webkit-transform-origin: 0 0;
 	-moz-transform-origin: 0 0;
 	-o-transform-origin: 0 0;
 	-ms-transform-origin: 0 0;
     width: 32%;
-    animation: animationFrames ease-in 0.4s;
+    animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
 	animation-iteration-count: 1;
-	-webkit-animation: animationFrames ease-in 0.4s;
+	-webkit-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-webkit-animation-iteration-count: 1;
-	-moz-animation: animationFrames ease-in 0.4s;
+	-moz-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-moz-animation-iteration-count: 1;
-	-o-animation: animationFrames ease-in 0.4s;
+	-o-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-o-animation-iteration-count: 1;
-	-ms-animation: animationFrames ease-in 0.4s;
+	-ms-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-ms-animation-iteration-count: 1;
 }
 
@@ -33,6 +36,7 @@
 
 .theme-image img {
 	height: auto;
+	margin: auto;
 	max-height: 100%;
 	max-width: 100%;
 	width: auto;
@@ -43,48 +47,56 @@
     width: 68%;
 }
 
+.slick-prev {
+	position: absolute;
+}
+
+.slick-next {
+
+}
+
 /* Keyframes */
 @keyframes animationFrames{
 	0% {
-		transform:  translate(0px,-100%)  ;
+		transform:  translate( 0, -100% );
 	}
 	100% {
-		transform:  translate(0px,0px)  ;
+		transform:  translate( 0, 0 );
 	}
 }
 
 @-moz-keyframes animationFrames{
 	0% {
-		-moz-transform:  translate(0px,-100%)  ;
+		-moz-transform:  translate( 0, -100% );
 	}
 	100% {
-		-moz-transform:  translate(0px,0px)  ;
+		-moz-transform:  translate( 0, 0 );
 	}
 }
 
 @-webkit-keyframes animationFrames {
 	0% {
-		-webkit-transform:  translate(0px,-100%)  ;
+		-webkit-transform:  translate( 0, 100% );
 	}
 	100% {
-		-webkit-transform:  translate(0px,0px)  ;
+		-webkit-transform:  translate ( 0, 0 );
 	}
 }
 
 @-o-keyframes animationFrames {
 	0% {
-		-o-transform:  translate(0px,-100%)  ;
+		-o-transform:  translate( 0, -100% );
 	}
 	100% {
-		-o-transform:  translate(0px,0px)  ;
+		-o-transform:  translate( 0, 0);
 	}
 }
 
 @-ms-keyframes animationFrames {
 	0% {
-		-ms-transform:  translate(0px,-100%)  ;
+		-ms-transform:  translate( 0, -100% );
 	}
 	100% {
-		-ms-transform:  translate(0px,0px)  ;
+		-ms-transform:  translate( 0, 0 );
 	}
 }
