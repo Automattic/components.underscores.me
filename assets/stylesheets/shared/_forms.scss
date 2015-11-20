@@ -10,7 +10,7 @@ input[type="submit"],
 	color: $color__offwhite;
 	@include font-size(0.75);
 	font-family: $font__serif;
-	font-size: $font__size-h6;
+	@include font-size(1);
 	letter-spacing: 2px;
 	line-height: 1;
 	padding: 1em 2em .8em;
@@ -25,7 +25,8 @@ input[type="submit"],
 
 	&:active,
 	&:focus {
-		box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+		box-shadow: 0 0 darken($color__pink, 10%);
+		top: 6px;
 	}
 }
 

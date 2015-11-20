@@ -25,6 +25,24 @@
 }
 
 .site-footer {
+	background: $color__teal;
 	clear: both;
+	color: rgba($color__offwhite, .6);
+	font-family: $font__serif;
+	@include font-size(0.8);
+	padding: 1.5em 0;
+	text-align: center;
+	text-transform: uppercase;
 	width: $size__site-main;
+
+	& a {
+		border-bottom: 1px solid rgba($color__offwhite, .2);
+		color: rgba($color__offwhite, .6);
+		text-decoration: none;
+
+		&:hover {
+			border-bottom: 1px solid rgba($color__offwhite, 0);
+			color: rgba($color__offwhite, .9);
+		}
+	}
 }
