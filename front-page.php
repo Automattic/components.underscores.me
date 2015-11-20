@@ -14,7 +14,16 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 
 		<section id="intro" role="main">
+			<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-chute.svg' ); ?>
+
+
 			<div class="wrap">
+
+				<div class="site-branding">
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Components</a></h1>
+					<h2 class="site-description">A WordPress starter theme, turbo charged</h2>
+				</div><!-- .site-branding -->
+				
 				<p>Components is a library of shareable, reusable patterns for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own custom starter theme.</p>
 
 				<h2>Is Components right for me?</h2>
