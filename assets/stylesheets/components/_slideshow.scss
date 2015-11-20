@@ -39,11 +39,13 @@
 .theme-image img,
 .theme-image svg {
 	bottom: 5px;
-	height: 360px;
+	height: 90%;
+	left: 0;
 	margin: auto;
 	max-height: 100%;
 	max-width: 100%;
-	width: auto;
+	position: absolute;
+	width: 100%;
 }
 
 .theme-text {
@@ -216,14 +218,15 @@
 		width: 150px;
 	}
 
-	.theme-image img {
-		height: auto;
+	.theme-image svg {
+		bottom: auto;
+		height: 250px;
 		left: 50%;
-		margin-left: -110px;
+		margin-left: -200px;
 		max-height: 10000px;
 		max-width: 10000px;
 		position: absolute;
-		width: 220px;
+		width: 400px;
 	}
 
 	.next-type,
