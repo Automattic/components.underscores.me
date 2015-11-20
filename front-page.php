@@ -23,7 +23,7 @@ get_header(); ?>
 			<div class="intro-content">
 
 					<div class="site-branding">
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Components</a></h1>
+						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/components.svg' ); ?>
 						<h2 class="site-description">A WordPress starter theme, turbo charged</h2>
 					</div><!-- .site-branding -->
 

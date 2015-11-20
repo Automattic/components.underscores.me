@@ -3,59 +3,59 @@
 <svg version="1.1" id="robot-chute" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 255.6 607" style="enable-background:new 0 0 255.6 607;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#4D9DA3;}
-	.st1{fill:#A0C3C6;}
+	.sr0{fill:#4D9DA3;}
+	.sr1{fill:#A0C3C6;}
 </style>
-<rect y="578" class="st0" width="149" height="29"/>
+<rect y="578" class="sr0" width="149" height="29"/>
 <g>
-	<circle class="st1" cx="18.8" cy="593.5" r="5.1"/>
+	<circle class="sr1" cx="18.8" cy="593.5" r="5.1"/>
 </g>
 <g>
-	<circle class="st1" cx="41.2" cy="593.5" r="5.1"/>
+	<circle class="sr1" cx="41.2" cy="593.5" r="5.1"/>
 </g>
 <g>
-	<circle class="st1" cx="63.7" cy="593.5" r="5.1"/>
+	<circle class="sr1" cx="63.7" cy="593.5" r="5.1"/>
 </g>
 <g>
-	<circle class="st1" cx="86.2" cy="593.5" r="5.1"/>
+	<circle class="sr1" cx="86.2" cy="593.5" r="5.1"/>
 </g>
 <g>
-	<circle class="st1" cx="108.6" cy="593.5" r="5.1"/>
+	<circle class="sr1" cx="108.6" cy="593.5" r="5.1"/>
 </g>
 <g>
-	<circle class="st1" cx="131.1" cy="593.5" r="5.1"/>
+	<circle class="sr1" cx="131.1" cy="593.5" r="5.1"/>
 </g>
-<circle class="st1" cx="74.4" cy="435.4" r="62"/>
-<polygon class="st1" points="47.6,524 7.7,578 74.4,578 141.2,578 101.3,524 "/>
-<path class="st1" d="M198.1,88H196h-1.8c-14.9,0-27.1-12-27.5-27c0.4-15,12.6-27,27.5-27h1.8V4h-1.8c-31.5,0-57.1,25-57.5,57
+<circle class="sr1" cx="74.4" cy="435.4" r="62"/>
+<polygon class="sr1" points="47.6,524 7.7,578 74.4,578 141.2,578 101.3,524 "/>
+<path class="sr1" d="M198.1,88H196h-1.8c-14.9,0-27.1-12-27.5-27c0.4-15,12.6-27,27.5-27h1.8V4h-1.8c-31.5,0-57.1,25-57.5,57
 	c0.4,31,26,57,57.5,57h1.8h2.1c14.9,0,27.1,12,27.5,27c-0.4,15-12.6,27-27.5,27H196h-77h-2.2H116v0c-30.8,0.4-55.8,24.7-56.7,56H59
 	v317h30V229h0.3c0.4-15,12.6-27,27.5-27h2.2h77h2.1c31.5,0,57.1-26,57.5-57C255.2,114,229.5,88,198.1,88z"/>
-<rect x="45" y="512" class="st0" width="59" height="14"/>
+<rect x="45" y="512" class="sr0" width="59" height="14"/>
 <g>
 	<g>
-		<path class="st0" d="M205.2,218.9c-17.5,0-31.7-14.2-31.7-31.7s14.2-31.7,31.7-31.7s31.7,14.2,31.7,31.7S222.7,218.9,205.2,218.9z
+		<path class="sr0" d="M205.2,218.9c-17.5,0-31.7-14.2-31.7-31.7s14.2-31.7,31.7-31.7s31.7,14.2,31.7,31.7S222.7,218.9,205.2,218.9z
 			 M205.2,164.1c-12.8,0-23.2,10.4-23.2,23.2s10.4,23.2,23.2,23.2s23.2-10.4,23.2-23.2S218,164.1,205.2,164.1z"/>
 	</g>
 	<g>
-		<path class="st0" d="M205.5,199.8c-6.9,0-12.5-5.6-12.5-12.5s5.6-12.5,12.5-12.5c6.9,0,12.5,5.6,12.5,12.5
+		<path class="sr0" d="M205.5,199.8c-6.9,0-12.5-5.6-12.5-12.5s5.6-12.5,12.5-12.5c6.9,0,12.5,5.6,12.5,12.5
 			S212.4,199.8,205.5,199.8z M205.5,183.3c-2.2,0-4,1.8-4,4s1.8,4,4,4c2.2,0,4-1.8,4-4S207.7,183.3,205.5,183.3z"/>
 	</g>
 	<g>
-		<rect x="204" y="149" class="st0" width="3" height="76"/>
+		<rect x="204" y="149" class="sr0" width="3" height="76"/>
 	</g>
 	<g>
-		<rect x="168" y="185" class="st0" width="75" height="4"/>
-	</g>
-	<g>
-
-			<rect x="167.7" y="185.5" transform="matrix(0.7071 0.7071 -0.7071 0.7071 192.343 -90.3571)" class="st0" width="75" height="3.1"/>
+		<rect x="168" y="185" class="sr0" width="75" height="4"/>
 	</g>
 	<g>
 
-			<rect x="203.7" y="149.5" transform="matrix(0.7071 0.7071 -0.7071 0.7071 192.343 -90.3571)" class="st0" width="3.1" height="75"/>
+			<rect x="167.7" y="185.5" transform="matrix(0.7071 0.7071 -0.7071 0.7071 192.343 -90.3571)" class="sr0" width="75" height="3.1"/>
+	</g>
+	<g>
+
+			<rect x="203.7" y="149.5" transform="matrix(0.7071 0.7071 -0.7071 0.7071 192.343 -90.3571)" class="sr0" width="3.1" height="75"/>
 	</g>
 </g>
-<rect x="196" y="0" class="st0" width="9" height="36"/>
-<rect x="56" y="229" class="st0" width="36" height="9"/>
-<rect x="56" y="349" class="st0" width="36" height="9"/>
+<rect x="196" y="0" class="sr0" width="9" height="36"/>
+<rect x="56" y="229" class="sr0" width="36" height="9"/>
+<rect x="56" y="349" class="sr0" width="36" height="9"/>
 </svg>
