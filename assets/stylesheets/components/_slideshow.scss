@@ -18,15 +18,15 @@
 	-o-transform-origin: 0 0;
 	-ms-transform-origin: 0 0;
     width: 32%;
-    animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
+    animation: robotDrop cubic-bezier(.46,.06,.97,.34) 0.4s;
 	animation-iteration-count: 1;
-	-webkit-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
+	-webkit-animation: robotDrop cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-webkit-animation-iteration-count: 1;
-	-moz-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
+	-moz-animation: robotDrop cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-moz-animation-iteration-count: 1;
-	-o-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
+	-o-animation: robotDrop cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-o-animation-iteration-count: 1;
-	-ms-animation: animationFrames cubic-bezier(.46,.06,.97,.34) 0.4s;
+	-ms-animation: robotDrop cubic-bezier(.46,.06,.97,.34) 0.4s;
 	-ms-animation-iteration-count: 1;
 }
 
@@ -47,8 +47,57 @@
     width: 68%;
 }
 
+/* conveyor belt */
+
+.slider-nav {
+	background: url(assets/img/conveyor-roller.png) center center repeat-x;
+	border: 5px solid lighten( $color__teal, 10% );
+	border-radius: 80px;
+	height: 52px;
+	position: relative;
+	text-align: center;
+}
+
+.slider-nav:before,
+.slider-nav:after {
+	background: url(assets/img/gear.png) 0 0 no-repeat;
+	background-size: 100% 100%;
+	border-radius: 90px;
+	content: "";
+	display: block;
+	height: 86px;
+	position: absolute;
+	top: -22px;
+	width: 86px;
+	-moz-animation: gearsSpinning 1s infinite;
+	-webkit-animation: gearsSpinning 1s infinite;
+	-ms-animation: gearsSpinning 1s infinite;
+	animation: gearsSpinning 1s infinite;
+
+}
+
+.slider-nav:before {
+	left: -20px;
+}
+
+.slider-nav:after {
+	right: -20px;
+}
+
+/* gears spinning animation */
+
+.slider-nav:not(.gears-spinning):before,
+.slider-nav:not(.gears-spinning):after {
+	-moz-animation-name: none;
+	-webkit-animation-name: none;
+	-ms-animation-name: none;
+	animation-name: none;
+}
+
 /* Keyframes */
-@keyframes animationFrames{
+
+/* robot dropping */
+@keyframes robotDrop{
 	0% {
 		transform:  translate( 0, -100% );
 	}
@@ -57,7 +106,7 @@
 	}
 }
 
-@-moz-keyframes animationFrames{
+@-moz-keyframes robotDrop{
 	0% {
 		-moz-transform:  translate( 0, -100% );
 	}
@@ -66,7 +115,7 @@
 	}
 }
 
-@-webkit-keyframes animationFrames {
+@-webkit-keyframes robotDrop {
 	0% {
 		-webkit-transform:  translate( 0, 100% );
 	}
@@ -75,7 +124,7 @@
 	}
 }
 
-@-o-keyframes animationFrames {
+@-o-keyframes robotDrop {
 	0% {
 		-o-transform:  translate( 0, -100% );
 	}
@@ -84,7 +133,7 @@
 	}
 }
 
-@-ms-keyframes animationFrames {
+@-ms-keyframes robotDrop {
 	0% {
 		-ms-transform:  translate( 0, -100% );
 	}
@@ -92,3 +141,15 @@
 		-ms-transform:  translate( 0, 0 );
 	}
 }
+
+/* gears spinning animation */
+
+@keyframes gearsSpinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

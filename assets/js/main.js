@@ -11,9 +11,9 @@
 		var nextBot = $(".slick-slide[data-slick-index=" + nextSlide + "] .theme-image");
 		$( nextBot ).addClass( 'hide-bot' );
 
-		//console.log( 'next slide: ' + nextSlide );
+		$( ".slick-cloned.slick-slide .theme-image" ).addClass( 'hide-bot' );
 
-		$(".slick-cloned.slick-slide .theme-image").addClass( 'hide-bot' );
+		$( '.slider-nav' ).addClass( 'gears-spinning' );
 
 	} );
 
@@ -29,13 +29,14 @@
 
 		$( newone ).removeClass( 'hide-bot' );
 
-		//console.log( 'current slide: ' + currentSlide );
+		$( '.slider-nav' ).removeClass( 'gears-spinning' );
 
 	} );
 
-	//
+/*
 	$('.theme.slider').on('init', function(event, slick, currentSlide, nextSlide){
 		$(".slick-slide[data-slick-index=0]").addClass('drop-bot');
 	} );
+*/
 
 } )( jQuery );

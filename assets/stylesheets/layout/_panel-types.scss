@@ -11,32 +11,3 @@
 	color: $color__teal;
 }
 
-.slider-nav {
-	background: url(assets/img/conveyor-roller.png) center center repeat-x;
-	border: 5px solid lighten( $color__teal, 10% );
-	border-radius: 80px;
-	height: 52px;
-	position: relative;
-	text-align: center;
-}
-
-.slider-nav:before,
-.slider-nav:after {
-	background: url(assets/img/gear.png) 0 0 no-repeat;
-	background-size: 100% 100%;
-	border-radius: 90px;
-	content: "";
-	display: block;
-	height: 86px;
-	position: absolute;
-	top: -22px;
-	width: 86px;
-}
-
-.slider-nav:before {
-	left: -20px;
-}
-
-.slider-nav:after {
-	right: -20px;
-}
