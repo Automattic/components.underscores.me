@@ -122,7 +122,7 @@ get_header(); ?>
 
 				<div class="col">
 					<h2>Want to contribute?</h2>
-					<p>Components is still a new project, and we're looking for your input! Have a great pattern you'd like to share? Want to add a new feature to your themes? Found a bug in the code? Head over to the [https://github.com/Automattic/theme-pattern-library](GitHub repo)!</p>
+					<p>Components is still a new project, and we're looking for your input! Have a great pattern you'd like to share? Want to add a new feature to your themes? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-pattern-library">GitHub repo</a>!</p>
 				</div>
 			</div><!-- .wrap -->
 		</section><!-- #extra-info -->
