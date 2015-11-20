@@ -1,0 +1,50 @@
+/* Don't show masthead, since we're repeating it in the first panel */
+#masthead {
+  display: none;
+}
+
+/* Hide stuff from mobile devices */
+@include mobile {
+  #pipe-top,
+  #robot-chute {
+    display: none;
+  }
+}
+
+@include tablet {
+  #robot-chute {
+    float: left;
+    position: absolute;
+      left: 10px;
+      top: 40px;
+    width: 350px;
+  }
+
+  #pipe-top {
+    margin-top: -88px;
+    width: 1000px;
+  }
+
+  /* Move content block to right */
+  #intro .wrap {
+    float: right;
+    margin-right: 100px;
+    width: calc(100% - 385px);
+  }
+
+  #intro .intro-content {
+    padding-left: 150px;
+  }
+}
+
+.site-title {
+  font-family: $font__display;
+  font-size: 6em;
+  font-weight: normal;
+  text-shadow:
+       3px 3px 0 $color__teal,
+     -1px -1px 0 $color__teal,
+      1px -1px 0 $color__teal,
+      -1px 1px 0 $color__teal,
+       1px 1px 0 $color__teal;
+}

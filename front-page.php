@@ -16,18 +16,22 @@ get_header(); ?>
 		<section id="intro" role="main">
 			<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-chute.svg' ); ?>
 
-
 			<div class="wrap">
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-top.svg' ); ?>
 
-				<div class="site-branding">
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Components</a></h1>
-					<h2 class="site-description">A WordPress starter theme, turbo charged</h2>
-				</div><!-- .site-branding -->
-				
-				<p>Components is a library of shareable, reusable patterns for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own custom starter theme.</p>
 
-				<h2>Is Components right for me?</h2>
-				<p>If you're just starting out, it'll get you booted up without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you'll find well-organized, easy-to use code that you can remix to your heart's delight!</p>
+			<div class="intro-content">
+
+					<div class="site-branding">
+						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Components</a></h1>
+						<h2 class="site-description">A WordPress starter theme, turbo charged</h2>
+					</div><!-- .site-branding -->
+
+					<p>Components is a library of shareable, reusable patterns for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own custom starter theme.</p>
+
+					<h2>Is Components right for me?</h2>
+					<p>If you're just starting out, it'll get you booted up without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you'll find well-organized, easy-to use code that you can remix to your heart's delight!</p>
+				</div><!-- .intro-content -->
 			</div><!-- .wrap -->
 		</section><!-- #intro -->
 
