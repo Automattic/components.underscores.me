@@ -856,6 +856,9 @@ a {
   float: right;
   width: 68%; }
 
+.slick-prev {
+  position: absolute; }
+
 /* Keyframes */
 @keyframes animationFrames {
   0% {
