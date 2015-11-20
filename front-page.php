@@ -109,23 +109,23 @@ get_header(); ?>
 
 		<section id="extra-info" role="main">
 			<div class="wrap">
-				<h2>What's in the box?</h2>
-				<p>Right now, we're offering five different base themes. A little later, you'll be able to mix up your own custom theme, on the fly. Every Components package comes with:</p>
-				<ul>
-					<li>Design-agnostic layout patterns</li>
-					<li>Well-organised SCSS</li>
-					<li>Mobile-first layouts</li>
-					<li>Mobile and desktop menus</li>
-				</ul>
+				<div class="col">
+					<h2>What's in the box?</h2>
+					<p>Right now, we're offering five different base themes. A little later, you'll be able to mix up your own custom theme, on the fly. Every Components package comes with:</p>
+					<ul>
+						<li>Design-agnostic layout patterns</li>
+						<li>Well-organised SCSS</li>
+						<li>Mobile-first layouts</li>
+						<li>Mobile and desktop menus</li>
+					</ul>
+				</div>
+
+				<div class="col">
+					<h2>Want to contribute?</h2>
+					<p>Components is still a new project, and we're looking for your input! Have a great pattern you'd like to share? Want to add a new feature to your themes? Found a bug in the code? Head over to the [https://github.com/Automattic/theme-pattern-library](GitHub repo)!</p>
+				</div>
 			</div><!-- .wrap -->
 		</section><!-- #extra-info -->
-
-		<section id="contribute" role="main">
-			<div class="wrap">
-				<h2>Want to contribute?</h2>
-				<p>Components is still a new project, and we're looking for your input! Have a great pattern you'd like to share? Want to add a new feature to your themes? Found a bug in the code? Head over to the [https://github.com/Automattic/theme-pattern-library](GitHub repo)!</p>
-			</div><!-- .wrap -->
-		</section><!-- #contribute -->
 
 	</div><!-- #primary -->
 
