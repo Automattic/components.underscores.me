@@ -38,6 +38,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Asides
 	## Comments
 # Infinite scroll
+# Slick slideshow
 # Media
 	## Captions
 	## Galleries
@@ -104,6 +105,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Slick Slideshow
 --------------------------------------------------------------*/
 @import "components/slick";
+
+/*--------------------------------------------------------------
+# Slideshow - Slide Styles
+--------------------------------------------------------------*/
+@import "components/slideshow";
 
 /*--------------------------------------------------------------
 # Media

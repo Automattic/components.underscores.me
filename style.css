@@ -38,6 +38,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Asides
 	## Comments
 # Infinite scroll
+# Slick slideshow
 # Media
 	## Captions
 	## Galleries
@@ -230,13 +231,14 @@ input,
 select,
 textarea {
   color: #666;
-  font-family: sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.5; }
 
 h1, h2, h3, h4, h5, h6 {
-  clear: both; }
+  clear: both;
+  font-family: "Roboto Slab", serif; }
 
 p {
   margin-bottom: 1.5em; }
@@ -809,6 +811,18 @@ a {
 
 .slick-arrow.slick-hidden {
   display: none; }
+
+/*--------------------------------------------------------------
+# Slideshow - Slide Styles
+--------------------------------------------------------------*/
+/* Robots */
+.theme-image {
+  float: left;
+  width: 32%; }
+
+.theme-text {
+  float: right;
+  width: 68%; }
 
 /*--------------------------------------------------------------
 # Media

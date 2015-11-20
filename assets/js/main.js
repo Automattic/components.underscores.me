@@ -1,7 +1,7 @@
 ( function( $ ) {
 
 	$('.theme-slider').slick( {
-		'autoplay': false,
+		'autoplay': true,
 	} );
 
 } )( jQuery );
