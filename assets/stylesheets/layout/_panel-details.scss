@@ -1,0 +1,19 @@
+#extra-info {
+	.wrap:before,
+	.wrap:after {
+		content: "";
+		display: table;
+	}
+	.wrap:after {
+		clear: both;
+	}
+
+	.col {
+		float: left;
+		width: 48%;
+	}
+
+	.col:nth-of-type(even) {
+		float: right;
+	}
+}
