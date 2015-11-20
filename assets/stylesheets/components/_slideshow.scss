@@ -12,13 +12,15 @@
 .theme-image {
 	height: 100%;
 	position: absolute;
+	text-align: center;
 	transform-origin: 0 0;
 	-webkit-transform-origin: 0 0;
 	-moz-transform-origin: 0 0;
 	-o-transform-origin: 0 0;
 	-ms-transform-origin: 0 0;
-    width: 32%;
-    animation: robotDrop cubic-bezier(.68,1.81,.9,.66) 0.4s;
+	width: 32%;
+
+	animation: robotDrop cubic-bezier(.68,1.81,.9,.66) 0.4s;
 	animation-iteration-count: 1;
 	-webkit-animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
 	-webkit-animation-iteration-count: 1;
@@ -37,11 +39,10 @@
 .theme-image img,
 .theme-image svg {
 	bottom: 5px;
-	height: auto;
+	height: 360px;
 	margin: auto;
 	max-height: 100%;
 	max-width: 100%;
-	position: absolute;
 	width: auto;
 }
 
