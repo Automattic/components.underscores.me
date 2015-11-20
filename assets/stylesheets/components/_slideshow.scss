@@ -188,6 +188,14 @@
 
 
 @include mobile {
+	.theme-type {
+		text-align: center;
+
+		p {
+			text-align: left;
+		}
+	}
+
 	.theme-text,
 	.theme-image {
 		width: 100%;
@@ -212,6 +220,12 @@
 		max-width: 10000px;
 		position: absolute;
 		width: 220px;
+	}
+
+	.next-type,
+	.prev-type,
+	.slider-nav {
+		display: none;
 	}
 }
 

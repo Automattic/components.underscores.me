@@ -8,26 +8,50 @@
 	// Initalize Slick Slider
 
 	// only initalize slider if we're on a large enough screen -- this is checked by checking one of the mobile styles
-	//if( 'none' != $( '.theme-text' ).css( 'float' ) ) {
 
-		$( '.theme-slider' ).slick( {
-			arrows: false,
-			speed: 500,
-		} );
+	function slideshowCheck() {
+		if( 'none' == $( '.theme-text' ).css( 'float' ) ) {
+			// don't make a slideshow - we're on mobile
+			if( $('.theme-slider').hasClass('slick-initialized') ) {
+				$( '.theme-slider' ).slick('unslick');
+			}
+			console.log( 'remove slideshow' );
+
+		} else if( $('.theme-slider').hasClass('slick-initialized') ) {
+			// check if it's already initalized
+			console.log( 'already initalized' );
+		} else {
+			console.log( 'add that slideshow' );
+
+			$( '.theme-slider' ).slick( {
+				arrows: false,
+				speed: 500,
+			} );
+		}
+	}
+
+	$( document ).ready( function() {
+		slideshowCheck();
+	} );
+
+	$( window ).resize( function() {
+		slideshowCheck();
+	} );
+
+
+
 
 		// Add prev/next arrows to individual slides
 		$( '.theme-slider .theme-text h3').append('<span class="next-type"><span class="screen-reader-text">Next</span></span>');
 		$( '.theme-slider .theme-text h3').prepend('<span class="prev-type"><span class="screen-reader-text">Previous</span></span>');
 
 		$('body').on('click', '.prev-type', function() {
-				$('.theme-slider').slick('slickNext');
+			$('.theme-slider').slick('slickNext');
 		});
 
 		$('body').on('click', '.next-type', function() {
-				$('.theme-slider').slick('slickPrev');
+			$('.theme-slider').slick('slickPrev');
 		});
-
-
 
 		// toggle navigation for dropping robots
 
@@ -65,16 +89,5 @@
 		} );
 //	}
 
-	if( $('.theme-slider').hasClass('slick-initialized') ) {
-		console.log( 'hey' );
-
-	}
-
-
-/*
-	$('.theme.slider').on('init', function(event, slick, currentSlide, nextSlide){
-		$(".slick-slide[data-slick-index=0]").addClass('drop-bot');
-	} );
-*/
 
 } )( jQuery );
