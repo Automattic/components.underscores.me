@@ -97,6 +97,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "layout/structure";
 
 /*--------------------------------------------------------------
+# Panels
+--------------------------------------------------------------*/
+@import "layout/panel-intro";
+@import "layout/panel-types";
+
+/*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
 @import "shared/infinite-scroll";
