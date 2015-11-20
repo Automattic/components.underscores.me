@@ -24,13 +24,12 @@ get_header(); ?>
 
 					<div class="site-branding">
 						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/components.svg' ); ?>
-						<h2 class="site-description">A WordPress starter theme, turbo charged</h2>
+						<h2 class="site-description">Want to build a WordPress theme turbo-fast?</h2>
 					</div><!-- .site-branding -->
 
-					<p>Components is a library of shareable, reusable patterns for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own custom starter theme.</p>
+					<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
 
-					<h2>Is Components right for me?</h2>
-					<p>If you're just starting out, it'll get you booted up without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you'll find well-organized, easy-to use code that you can remix to your heart's delight!</p>
+					<p>If you&rsquo;re just starting out, it'll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart's delight!</p>
 				</div><!-- .intro-content -->
 			</div><!-- .wrap -->
 		</section><!-- #intro -->

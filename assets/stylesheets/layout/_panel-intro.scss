@@ -3,8 +3,9 @@
   display: none;
 }
 
-/* Hide stuff from mobile devices */
 @include mobile {
+
+  /* Don't display pipes! */
   #pipe-top,
   #robot-chute {
     display: none;
@@ -45,4 +46,8 @@
       1px -1px 0 $color__teal,
       -1px 1px 0 $color__teal,
        1px 1px 0 $color__teal;
+}
+
+.site-description {
+  margin-top: -15px;
 }

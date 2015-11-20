@@ -31,7 +31,7 @@ h1 {
 h2 {
 	font-size: $font__size-h2;
 	color: $color__pink;
-	margin: 2em 0 0;
+	margin: 1em 0 0;
 }
 
 h3 {
@@ -52,6 +52,12 @@ h6 {
 
 p {
 	margin-bottom: 1.5em;
+}
+
+strong {
+	background: transparentize($color__teal, 0.9);
+	color: $color__teal;
+	padding: 0 1px;
 }
 
 dfn, cite, em, i {
