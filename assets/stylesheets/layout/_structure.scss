@@ -1,5 +1,9 @@
-.site{
+.site {
 	margin: 0 auto;
+}
+
+section {
+		clear: both;
 }
 
 .wrap {
@@ -34,7 +38,6 @@
 	text-align: center;
 	text-transform: uppercase;
 	width: $size__site-main;
-
 	& a {
 		border-bottom: 1px solid rgba($color__offwhite, .2);
 		color: rgba($color__offwhite, .6);

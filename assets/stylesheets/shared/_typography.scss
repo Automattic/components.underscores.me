@@ -11,11 +11,21 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
 	font-family: $font__heading;
+
+	a {
+		text-decoration: none;
+	}
 }
 
 h1 {
+	color: $color__grey;
 	font-family: $font__sans;
 	font-size: $font__size-h1;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	a {
+		color: $color__grey;
+	}
 }
 
 h2 {
