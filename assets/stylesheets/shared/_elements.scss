@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	background: $color__background-body; /* Fallback for when there is no custom background color defined. */
+	background: $color__offwhite;
 }
 
 blockquote, q {
@@ -22,7 +22,7 @@ blockquote, q {
 }
 
 hr {
-	background-color: $color__background-hr;
+	background-color: $color__grey;
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;

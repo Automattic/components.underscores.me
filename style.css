@@ -230,7 +230,6 @@ button,
 input,
 select,
 textarea {
-  color: #666;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-size: 1rem;
@@ -253,7 +252,6 @@ address {
   margin: 0 0 1.5em; }
 
 pre {
-  background: #f4f4f4;
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
   font-size: 0.9375rem;
@@ -269,11 +267,10 @@ code, kbd, tt, var {
   font-size: 0.9375rem; }
 
 abbr, acronym {
-  border-bottom: 1px dotted #444;
+  border-bottom: 1px dotted #cbcac8;
   cursor: help; }
 
 mark, ins {
-  background: #f4f4f4;
   text-decoration: none; }
 
 big {
@@ -292,8 +289,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: #fff;
-  /* Fallback for when there is no custom background color defined. */ }
+  background: #f3f2ed; }
 
 blockquote, q {
   quotes: "" ""; }
@@ -301,7 +297,7 @@ blockquote, q {
     content: ""; }
 
 hr {
-  background-color: #f4f4f4;
+  background-color: #cbcac8;
   border: 0;
   height: 1px;
   margin-bottom: 1.5em; }
@@ -344,9 +340,7 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"] {
   border: 1px solid;
-  border-color: #ccc;
   border-radius: 3px;
-  background: #f4f4f4;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;
@@ -358,7 +352,6 @@ input[type="submit"] {
   input[type="button"]:hover,
   input[type="reset"]:hover,
   input[type="submit"]:hover {
-    border-color: #444;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
   button:active, button:focus,
   input[type="button"]:active,
@@ -367,7 +360,6 @@ input[type="submit"] {
   input[type="reset"]:focus,
   input[type="submit"]:active,
   input[type="submit"]:focus {
-    border-color: #444;
     box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15); }
 
 input[type="text"],
@@ -376,16 +368,8 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
-  color: #444;
-  border: 1px solid #ccc;
+  border: 1px solid #cbcac8;
   border-radius: 3px; }
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  input[type="url"]:focus,
-  input[type="password"]:focus,
-  input[type="search"]:focus,
-  textarea:focus {
-    color: #222; }
 
 input[type="text"],
 input[type="email"],
@@ -404,16 +388,10 @@ textarea {
 /*--------------------------------------------------------------
 ## Links
 --------------------------------------------------------------*/
-a {
-  color: #444; }
-  a:visited {
-    color: #444; }
-  a:hover, a:focus, a:active {
-    color: #111; }
-  a:focus {
-    outline: thin dotted; }
-  a:hover, a:active {
-    outline: 0; }
+a:focus {
+  outline: thin dotted; }
+a:hover, a:active {
+  outline: 0; }
 
 /*--------------------------------------------------------------
 ## Menus
@@ -622,11 +600,11 @@ a {
   width: 1px;
   overflow: hidden; }
   .screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
-    background-color: #f4f4f4;
+    background-color: #cbcac8;
     border-radius: 3px;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
     clip: auto !important;
-    color: #111;
+    color: #141f32;
     display: block;
     font-size: 14px;
     font-size: 0.875rem;
