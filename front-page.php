@@ -14,23 +14,30 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 
 		<section id="intro" role="main">
-			<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-chute.svg' ); ?>
-
 			<div class="wrap">
-				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-top.svg' ); ?>
 
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-chute.svg' ); ?>
 
-			<div class="intro-content">
+				<div class="content-wrapper">
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-left.svg' ); ?>
 
-					<div class="site-branding">
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/components.svg' ); ?>
-						<h2 class="site-description">Want to build a WordPress theme turbo-fast?</h2>
-					</div><!-- .site-branding -->
+					<div id="stretchy-pipe">&nbsp;</div>
 
-					<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-rightcrook.svg' ); ?>
 
-					<p>If you&rsquo;re just starting out, it'll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart's delight!</p>
-				</div><!-- .intro-content -->
+					<div class="intro-content">
+
+						<div class="site-branding">
+							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/components.svg' ); ?>
+							<h2 class="site-description">Want to build a WordPress theme turbo-fast?</h2>
+						</div><!-- .site-branding -->
+
+						<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
+
+						<p>If you&rsquo;re just starting out, it'll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart's delight!</p>
+					</div><!-- .intro-content -->
+				</div><!-- .content-wrapper -->
+
 			</div><!-- .wrap -->
 		</section><!-- #intro -->
 

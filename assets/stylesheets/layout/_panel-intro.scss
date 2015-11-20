@@ -7,7 +7,8 @@
 
   /* Don't display pipes! */
   #pipe-top,
-  #robot-chute {
+  #pipe-left,
+  #pipe-chute {
     display: none;
   }
 
@@ -33,19 +34,39 @@
 }
 
 @include desktop {
-  #robot-chute {
-    float: left;
-    margin: 9px 0 -140px 50px;
-    width: 300px;
+  #intro .wrap {
+    padding-top: 0;
+    position: relative;
   }
 
-  #pipe-top {
-    margin: -78px 0 0 -60px;
-    width: 825px;
+  #pipe-chute {
+    float: left;
+    margin: 40px 0 -60px 70px;
+  }
+
+  #pipe-left {
+    margin-left: -40px;
+    margin-top: 36px;
+  }
+
+  #stretchy-pipe {
+    position: absolute;
+    left: 236px;
+    right: 100px;
+    background: $color__teal-light;
+    height: 30px;
+    top: 40px;
+  }
+
+  #pipe-rightcrook {
+    float: right;
+    margin-top: -14px;
+    vertical-align: top;
+    margin-left: -5px;
   }
 
   /* Move content block to right */
-  #intro .wrap {
+  #intro .content-wrapper {
     float: left;
     width: calc(100% - 300px);
   }
@@ -70,4 +91,16 @@
 
 .site-description {
   margin-top: -15px;
+}
+
+.teal {
+  fill: $color__teal;
+}
+
+.teal-light {
+  fill: $color__teal-light;
+}
+
+.grey {
+  fill: $color__grey;
 }
