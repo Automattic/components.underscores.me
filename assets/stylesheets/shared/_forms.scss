@@ -1,19 +1,23 @@
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"] {
-	border: 1px solid;
+input[type="submit"],
+.button {
+	border: none;
 	border-radius: 0;
-	background: rgba(0, 0, 0, 1);
-	box-shadow: 0 6px rgba(0, 0, 0, .6);
-	color: rgba(0, 0, 0, .8);
+	background: $color__pink;
+	box-shadow: 0 6px darken($color__pink, 10%);
+	color: $color__offwhite;
 	@include font-size(0.75);
+	font-family: $font__serif;
+	font-size: $font__size-h6;
 	line-height: 1;
-	padding: .6em 1em .4em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	padding: 1em 2em .8em;
+	position: relative;
+	text-transform: uppercase;
 
 	&:hover {
-		box-shadow: 0 4px rgba(0, 0, 0, .6);
+		box-shadow: 0 4px darken($color__pink, 10%);;
 		top: 2px;
 	}
 
