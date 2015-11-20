@@ -10,6 +10,19 @@
   #robot-chute {
     display: none;
   }
+
+  /* Flip logo */
+  #components-logo {
+    margin-left: -10px;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    width: 480px;
+    margin-right: 200px;
+  }
+
+  .intro-content {
+    margin-left: 50px;
+  }
 }
 
 @include desktop {
