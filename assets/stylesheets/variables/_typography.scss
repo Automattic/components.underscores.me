@@ -1,5 +1,7 @@
-$font__main: 'Open Sans', sans-serif;
-$font__heading: 'Roboto Slab', serif;
+$font__sans: 'Adelle Sans', 'Open Sans', sans-serif;
+$font__serif: 'Factoria', 'Roboto Slab', serif;
+$font__main: $font__sans;
+$font__heading: $font__serif;
 $font__code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 $font__pre: "Courier 10 Pitch", Courier, monospace;
 $font__line-height-body: 1.5;
@@ -7,8 +9,8 @@ $font__line-height-pre: 1.6;;
 $font__line-height-headings: 1.2;
 
 // Font sizes
-$font__size-h1: 3.052em;
-$font__size-h2: 2.441em;
+$font__size-h1: 3.0em;
+$font__size-h2: 2.0em;
 $font__size-h3: 1.953em;
 $font__size-h4: 1.563em;
 $font__size-h5: 1.25em;

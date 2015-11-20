@@ -231,14 +231,33 @@ input,
 select,
 textarea {
   color: #666;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Adelle Sans", "Open Sans", sans-serif;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.5; }
 
 h1, h2, h3, h4, h5, h6 {
   clear: both;
-  font-family: "Roboto Slab", serif; }
+  font-family: "Factoria", "Roboto Slab", serif; }
+
+h1 {
+  font-family: "Adelle Sans", "Open Sans", sans-serif;
+  font-size: 3em; }
+
+h2 {
+  font-size: 2em; }
+
+h3 {
+  font-size: 1.953em; }
+
+h4 {
+  font-size: 1.563em; }
+
+h5 {
+  font-size: 1.25em; }
+
+h6 {
+  font-size: 1em; }
 
 p {
   margin-bottom: 1.5em; }
