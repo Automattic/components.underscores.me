@@ -3,7 +3,7 @@
 }
 
 section {
-		clear: both;
+	clear: both;
 }
 
 .wrap {
@@ -27,6 +27,27 @@ section {
 	overflow: hidden;
 	width: 100%;
 }
+
+.top-robot {
+	position: absolute;
+	left: 5%;
+	transform: translate( 0, -348px ) rotate(180deg) ;
+	animation-iteration-count: 1;
+	animation: .2s 3s 1 forwards TopRobotDrop;
+}
+
+/* Keyframes */
+
+/* Robot dropping from the top */
+@keyframes TopRobotDrop{
+	0% {
+		transform: translate( 0, -348px ) rotate(180deg);
+	}
+	100% {
+		transform: translate( 0, -200px ) rotate(180deg);
+	}
+}
+
 
 .site-footer {
 	background: $color__teal;
