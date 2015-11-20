@@ -65,7 +65,7 @@
 
 .slider-nav:before,
 .slider-nav:after {
-	background: url(assets/img/gear.png) 0 0 no-repeat;
+	background: url(assets/img/gear.png) 0 0 no-repeat $color__navy;
 	background-size: 100% 100%;
 	border-radius: 90px;
 	content: "";
@@ -102,12 +102,16 @@
 
 .next-type,
 .prev-type {
+	background: url(assets/img/arrows.png) 0 0 no-repeat;
+	background-size: 100% auto;
 	cursor: pointer;
 	display: inline-block;
 	font-size: 80%;
+	height: 15px;
 	opacity: 0.5;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;
+	width: 15px;
 
 	&:hover {
 		opacity: 0.8;
@@ -115,17 +119,12 @@
 }
 
 .next-type {
-	padding-left: 10px;
-	&:before {
-		content: "\003E";
-	}
+	margin-left: 10px;
 }
 
 .prev-type {
-	padding-right: 10px;
-	&:before {
-		content: "\003C";
-	}
+	background-position: 0 -18px;
+	margin-right: 10px;
 }
 
 /* Keyframes */
