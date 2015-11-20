@@ -6,13 +6,29 @@
 }
 
 .theme-image {
-	bottom: 100%;
 	height: 100%;
 	position: absolute;
 	text-align: center;
-	-webkit-transition: bottom 0.4s cubic-bezier(.77,.3,.33,.93);
-	transition: bottom 0.4s cubic-bezier(.77,.3,.33,.93)	;
+	transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
     width: 32%;
+    animation: animationFrames ease-in 0.4s;
+	animation-iteration-count: 1;
+	-webkit-animation: animationFrames ease-in 0.4s;
+	-webkit-animation-iteration-count: 1;
+	-moz-animation: animationFrames ease-in 0.4s;
+	-moz-animation-iteration-count: 1;
+	-o-animation: animationFrames ease-in 0.4s;
+	-o-animation-iteration-count: 1;
+	-ms-animation: animationFrames ease-in 0.4s;
+	-ms-animation-iteration-count: 1;
+}
+
+.hide-bot {
+	transform:  translate(0px,-100%);
 }
 
 .theme-image img {
@@ -22,11 +38,53 @@
 	width: auto;
 }
 
-.drop-bot .theme-image {
-	bottom: 0;
-}
-
 .theme-text {
     float: right;
     width: 68%;
+}
+
+/* Keyframes */
+@keyframes animationFrames{
+	0% {
+		transform:  translate(0px,-100%)  ;
+	}
+	100% {
+		transform:  translate(0px,0px)  ;
+	}
+}
+
+@-moz-keyframes animationFrames{
+	0% {
+		-moz-transform:  translate(0px,-100%)  ;
+	}
+	100% {
+		-moz-transform:  translate(0px,0px)  ;
+	}
+}
+
+@-webkit-keyframes animationFrames {
+	0% {
+		-webkit-transform:  translate(0px,-100%)  ;
+	}
+	100% {
+		-webkit-transform:  translate(0px,0px)  ;
+	}
+}
+
+@-o-keyframes animationFrames {
+	0% {
+		-o-transform:  translate(0px,-100%)  ;
+	}
+	100% {
+		-o-transform:  translate(0px,0px)  ;
+	}
+}
+
+@-ms-keyframes animationFrames {
+	0% {
+		-ms-transform:  translate(0px,-100%)  ;
+	}
+	100% {
+		-ms-transform:  translate(0px,0px)  ;
+	}
 }
