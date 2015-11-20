@@ -1,9 +1,22 @@
 
 /* Robots */
 
+.theme-type {
+	position: relative;
+}
+
 .theme-image {
-    float: left;
+	background: #ccc;
+	bottom: 100%;
+	height: 100px;
+	position: absolute;
+	-webkit-transition: bottom 0.4s cubic-bezier(.77,.3,.33,.93);
+	transition: bottom 0.4s cubic-bezier(.77,.3,.33,.93)	;
     width: 32%;
+}
+
+.drop-bot .theme-image {
+	bottom: 0;
 }
 
 .theme-text {
