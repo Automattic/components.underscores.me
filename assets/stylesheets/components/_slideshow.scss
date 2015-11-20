@@ -1,6 +1,5 @@
 
 /* Robots */
-
 .slick-slide:focus {
 	outline: none;
 }
@@ -44,6 +43,7 @@
 
 .theme-text {
     float: right;
+    padding-bottom: 60px;
     width: 68%;
 }
 
@@ -69,10 +69,10 @@
 	position: absolute;
 	top: -22px;
 	width: 86px;
-	-moz-animation: gearsSpinning 1s infinite;
-	-webkit-animation: gearsSpinning 1s infinite;
-	-ms-animation: gearsSpinning 1s infinite;
-	animation: gearsSpinning 1s infinite;
+	-moz-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
+	-webkit-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
+	-ms-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
+	animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
 
 }
 
@@ -92,6 +92,35 @@
 	-webkit-animation-name: none;
 	-ms-animation-name: none;
 	animation-name: none;
+}
+
+/* Navigation buttons */
+
+.next-type,
+.prev-type {
+	cursor: pointer;
+	display: inline-block;
+	font-size: 80%;
+	opacity: 0.2;
+	padding: 0 0.5em;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+.next-type {
+	&:before {
+		content: "\003E";
+	}
+}
+
+.prev-type {
+	&:before {
+		content: "\003C";
+	}
 }
 
 /* Keyframes */
