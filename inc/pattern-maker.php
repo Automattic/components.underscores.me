@@ -353,4 +353,4 @@ function theme_pattern_library_init() {
 	theme_pattern_library_create_type_zips();
 }
 // Let's not fire the function because we're working on the theme locally.
-// add_action( 'wp_footer', 'theme_pattern_library_init' );
+add_action( 'wp_footer', 'theme_pattern_library_init' );
