@@ -42,6 +42,8 @@
   #pipe-chute {
     float: left;
     margin: 40px 0 -60px 70px;
+    position: relative;
+    z-index: 1;
 
     .tap {
       animation-name: spin;
