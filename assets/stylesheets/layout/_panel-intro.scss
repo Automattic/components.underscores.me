@@ -77,7 +77,7 @@
   #stretchy-pipe {
     position: absolute;
     left: 236px;
-    right: 100px;
+    right: 98px;
     background: $color__teal-light;
     height: 30px;
     top: 40px;
@@ -85,6 +85,9 @@
 
   #pipe-rightcrook {
     float: right;
+    position: absolute;
+    top: 0;
+    right: 20px;
     margin-top: -14px;
     vertical-align: top;
     margin-left: -5px;
