@@ -1,7 +1,13 @@
 #download-all {
 	background-color: $color__teal-light;
-	padding: 40px;
-	text-align: center;
+	padding: 20px;
+
+	::after {
+		clear: both;
+		display: block;
+		width: 100%;
+		content: '';
+	}
 
 	.gear {
 		position: absolute;
@@ -13,6 +19,11 @@
 			.cog, .center {
 				fill: $color__offwhite;
 			}
+	}
+
+	.content-wrapper {
+		float: right;
+		max-width: 500px;
 	}
 
 	h4 {
