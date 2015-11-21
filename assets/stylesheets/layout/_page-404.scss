@@ -1,0 +1,29 @@
+.error-404 .wrap {
+	display: table;
+}
+
+.top-robot-container {
+	display: none;
+}
+
+.image-404 {
+	display: table-cell;
+	padding-left: 20px;
+	vertical-align: middle;
+}
+
+.content-404 {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.robot-sad {
+	width: 200px;
+	height: auto;
+}
+
+@include mobile {
+	.robot-sad {
+		width: 100px;
+	}
+}

@@ -1088,6 +1088,31 @@ section {
   #extra-info .col:nth-of-type(even) {
     float: right; } }
 /*--------------------------------------------------------------
+# 404 Page
+--------------------------------------------------------------*/
+.error-404 .wrap {
+  display: table; }
+
+.top-robot-container {
+  display: none; }
+
+.image-404 {
+  display: table-cell;
+  padding-left: 20px;
+  vertical-align: middle; }
+
+.content-404 {
+  display: table-cell;
+  vertical-align: middle; }
+
+.robot-sad {
+  width: 200px;
+  height: auto; }
+
+@media (max-width: 767px) {
+  .robot-sad {
+    width: 100px; } }
+/*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
