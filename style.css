@@ -1281,6 +1281,7 @@ section {
   content: "\2039"; }
 
 .slider-lever .lever {
+  cursor: pointer;
   position: absolute;
   right: 25px;
   bottom: 0;
@@ -1289,6 +1290,10 @@ section {
   -webkit-transition: right 0.2s, transform 0.2s;
   -moz-transition: right 0.2s, transform 0.2s;
   transition: right 0.2s, transform 0.2s; }
+
+.slider-lever:not(.turned):hover .lever {
+  right: 20px;
+  transform: rotate(-25deg); }
 
 .slider-lever.turned .lever {
   -webkit-transform: rotate(30deg);
