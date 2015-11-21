@@ -4,10 +4,10 @@
 	position: absolute;
 	left: 5%;
 	transform: translate( 0, -348px ) rotate(195deg);
-	-webkit-animation: .2s 3s 1 forwards TopRobotDrop;
-	-moz-animation: .2s 3s 1 forwards TopRobotDrop;
-	-o-animation: .2s 3s 1 forwards TopRobotDrop;
-	animation: .2s 3s 1 forwards TopRobotDrop;
+	-webkit-animation: .2s 1.5s 1 forwards TopRobotDrop;
+	-moz-animation: .2s 1.5s 1 forwards TopRobotDrop;
+	-o-animation: .2s 1.5s 1 forwards TopRobotDrop;
+	animation: .2s 1.5s 1 forwards TopRobotDrop;
 	width: 230px;
 	height: auto;
 	z-index: 10;
@@ -21,7 +21,28 @@
 	opacity: 1;
 }
 
+.robot-head {
+	animation: 20s 3s infinite forwards HeadShake;
+	transform-origin: center center;
+}
+
 /* Keyframes */
+
+/* Robot shaky head */
+@keyframes HeadShake {
+	0%, 28% {
+		transform: rotate(0deg);
+	}
+	30% {
+		transform: rotateY(180deg);
+	}
+	70% {
+		transform: rotateY(180deg);
+	}
+	72%, 100% {
+		transform: rotate(0deg);
+	}
+}
 
 /* Robot blinky eyes */
 @-webkit-keyframes EyeBlink {
