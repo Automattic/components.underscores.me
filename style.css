@@ -968,11 +968,41 @@ section {
   opacity: 1; }
 
 .robot-head {
+  -webkit-animation: 20s 3s infinite forwards HeadShake;
+  -moz-animation: 20s 3s infinite forwards HeadShake;
+  -o-animation: 20s 3s infinite forwards HeadShake;
   animation: 20s 3s infinite forwards HeadShake;
   transform-origin: center center; }
 
 /* Keyframes */
 /* Robot shaky head */
+@-webkit-keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
+@-moz-keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
+@-o-keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
 @keyframes HeadShake {
   0%, 28% {
     transform: rotate(0deg); }
