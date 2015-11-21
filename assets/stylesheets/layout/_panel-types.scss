@@ -23,10 +23,11 @@
 
 	#spotlight {
 			position: absolute;
-			top: 60px;
+			top: 0;
 			left: -128px;
-			width: auto;
+			width: 542px;
 			height: 100%;
+			margin-top: 60px;
 
 			path {
 				fill:#1f344c;

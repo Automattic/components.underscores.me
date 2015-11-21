@@ -4,3 +4,19 @@ $color__teal: #509ea3;
 $color__teal-light: #A0C3C6;
 $color__pink: #EB6361;
 $color__grey: #cbcac8;
+
+.teal {
+  fill: $color__teal;
+}
+
+.teal-light {
+  fill: $color__teal-light;
+}
+
+.grey {
+  fill: $color__grey;
+}
+
+.navy {
+  fill: $color__navy;
+}
