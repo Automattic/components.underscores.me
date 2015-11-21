@@ -114,29 +114,34 @@ get_header(); ?>
 		<section id="download-all" role="main">
 			<div class="wrap">
 				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear.svg' ); ?>
-				<h4>I want it all!</h4>
-				<p>Can't decide? Want to concoct your own starter theme? Here you go!</p>
-				<a href="#" class="button">Download everything!</a>
-			</div>
+
+				<div class="content-wrapper">
+					<h4>Just the basics, please</h4>
+					<p>Can&rsquo;t decide? Want to concoct your own starter theme?<br>
+						Don&rsquo;t need any bells or whistles? Download the base.</p>
+					<a href="#" class="button">Download the base!</a>
+				</div><!-- .content-wrapper -->
+			</div><!-- .wrap -->
 		</section>
 
 
 		<section id="extra-info" role="main">
 			<div class="wrap">
 				<div class="col">
-					<h2>What's in the box?</h2>
-					<p>Right now, we're offering five different base themes. A little later, you'll be able to mix up your own custom theme, on the fly. Every Components package comes with:</p>
+					<h2>What&rsquo;s in the box?</h2>
+					<p>Every Components package comes with:</p>
 					<ul>
 						<li>Design-agnostic layout patterns</li>
 						<li>Well-organised SCSS</li>
 						<li>Mobile-first layouts</li>
 						<li>Mobile and desktop menus</li>
+						<li>A simple base</li>
 					</ul>
 				</div>
 
 				<div class="col">
 					<h2>Want to contribute?</h2>
-					<p>Components is still a new project, and we're looking for your input! Have a great pattern you'd like to share? Want to add a new feature to your themes? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-pattern-library">GitHub repo</a>!</p>
+					<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-pattern-library">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-pattern-library/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
 					<div class="octocat-robot">
 						<img width="150" height="150" src="<?php echo get_template_directory_uri() . '/assets/img/robot-octocat.png' ?>">
 					</div>
