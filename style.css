@@ -52,6 +52,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .grey {
   fill: #cbcac8; }
 
+.grey-light {
+  fill: #cbcac8; }
+
+.grey-dark {
+  fill: #999794; }
+
 .navy {
   fill: #141f32; }
 
