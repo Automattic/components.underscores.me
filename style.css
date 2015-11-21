@@ -897,7 +897,7 @@ section {
 
   #stretchy-pipe {
     position: absolute;
-    left: 236px;
+    left: 175px;
     right: 98px;
     background: #A0C3C6;
     height: 30px;
@@ -915,7 +915,9 @@ section {
   /* Move content block to right */
   #intro .content-wrapper {
     float: left;
-    width: calc(100% - 300px); }
+    position: relative;
+    width: calc(100% - 300px);
+    z-index: 1; }
 
   #intro .intro-content {
     margin: 40px auto 0;

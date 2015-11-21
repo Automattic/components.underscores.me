@@ -76,7 +76,7 @@
 
   #stretchy-pipe {
     position: absolute;
-    left: 236px;
+    left: 175px;
     right: 98px;
     background: $color__teal-light;
     height: 30px;
@@ -96,7 +96,9 @@
   /* Move content block to right */
   #intro .content-wrapper {
     float: left;
+    position: relative;
     width: calc(100% - 300px);
+    z-index: 1;
   }
 
   #intro .intro-content {
