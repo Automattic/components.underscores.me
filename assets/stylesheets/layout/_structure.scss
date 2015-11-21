@@ -77,9 +77,9 @@ section {
 }
 
 .site-footer {
-	background: $color__teal;
+	background: darken($color__offwhite, 5%);
 	clear: both;
-	color: rgba($color__offwhite, .6);
+	color: rgba($color__navy, .6);
 	font-family: $font__serif;
 	@include font-size(0.8);
 	padding: 1.5em 0;
@@ -87,13 +87,13 @@ section {
 	text-transform: uppercase;
 	width: $size__site-main;
 	& a {
-		border-bottom: 1px solid rgba($color__offwhite, .2);
-		color: rgba($color__offwhite, .6);
+		border-bottom: 1px solid rgba($color__navy, .2);
+		color: rgba($color__navy, .6);
 		text-decoration: none;
 
 		&:hover {
-			border-bottom: 1px solid rgba($color__offwhite, 0);
-			color: rgba($color__offwhite, .9);
+			border-bottom: 1px solid rgba($color__navy, 0);
+			color: rgba($color__navy, 1);
 		}
 	}
 }
