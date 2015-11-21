@@ -18,7 +18,9 @@ input[type="submit"],
 	text-decoration: none;
 
 	&:hover {
+		border-bottom: none;
 		box-shadow: 0 4px darken($color__pink, 10%);;
+		color: $color__offwhite;
 		top: 2px;
 	}
 
