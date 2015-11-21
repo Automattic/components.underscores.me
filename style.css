@@ -1044,6 +1044,9 @@ section {
     transform: rotate(39deg); }
     #download-all .gear .cog, #download-all .gear .center {
       fill: #f3f2ed; }
+    #download-all .gear .center {
+      stroke: #f3f2ed;
+      stroke-width: 5; }
   #download-all .content-wrapper {
     float: right;
     max-width: 500px; }
