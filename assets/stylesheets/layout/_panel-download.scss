@@ -33,10 +33,14 @@
 
 	h4 {
 		margin: 0;
+		position: relative;
+		z-index: 4;
 	}
 
 	p {
 		margin-top: 0;
+		position: relative;
+		z-index: 4;
 	}
 
 	.button {

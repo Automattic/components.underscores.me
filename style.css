@@ -1051,9 +1051,13 @@ section {
     float: right;
     max-width: 500px; }
   #download-all h4 {
-    margin: 0; }
+    margin: 0;
+    position: relative;
+    z-index: 4; }
   #download-all p {
-    margin-top: 0; }
+    margin-top: 0;
+    position: relative;
+    z-index: 4; }
   #download-all .button {
     display: inline-block; }
 
@@ -1396,7 +1400,7 @@ section {
     float: none; }
 
   .theme-image {
-    background-color: rgba(80, 158, 163, 0.2);
+    background-color: rgba(80, 158, 163, 0.8);
     border-radius: 150px;
     height: 150px;
     overflow: hidden;
