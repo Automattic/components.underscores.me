@@ -360,7 +360,8 @@ hr {
   margin-bottom: 1.5em; }
 
 ul, ol {
-  margin: 0 0 1.5em 3em; }
+  margin: 0 0 1.5em 0;
+  padding: 0; }
 
 ul {
   list-style: disc; }
@@ -372,6 +373,16 @@ li > ul,
 li > ol {
   margin-bottom: 0;
   margin-left: 1.5em; }
+
+li {
+  list-style-type: none; }
+  li::before {
+    content: '';
+    display: inline-block;
+    background: url("assets/img/tiny-gear.svg") no-repeat;
+    margin-right: 2px;
+    height: 16px;
+    width: 16px; }
 
 dt {
   font-weight: bold; }
@@ -798,6 +809,16 @@ section {
 .site-info,
 .automattic-credit {
   display: inline-block; }
+
+.site-info::before {
+  content: '';
+  background: url("assets/img/tiny-gear.svg") no-repeat;
+  background-size: cover;
+  display: inline-block;
+  height: 25px;
+  margin: 0 4px;
+  vertical-align: middle;
+  width: 25px; }
 
 @media (max-width: 767px) {
   .wrap {
