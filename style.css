@@ -1021,6 +1021,9 @@ section {
     color: #509ea3; }
   #types .wrap {
     position: relative; }
+  #types .spotlight-controls {
+    opacity: 0.5;
+    transition: opacity 0.5s; }
   #types #spotlight {
     position: absolute;
     top: 0;
@@ -1028,8 +1031,8 @@ section {
     width: 542px;
     height: 100%;
     margin-top: 60px; }
-    #types #spotlight path {
-      opacity: 0.5; }
+  #types .dim.spotlight-controls {
+    opacity: 0; }
 
 .theme-slider {
   clear: both; }

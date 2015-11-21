@@ -51,7 +51,9 @@ get_header(); ?>
 
 		<section id="types" role="main">
 			<div class="wrap">
-				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/spotlight.svg' ); ?>
+				<div class="spotlight-controls">
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/spotlight.svg' ); ?>
+				</div>
 				<div class="theme-slider">
 					<div class="theme-type">
 						<div class="theme-image">

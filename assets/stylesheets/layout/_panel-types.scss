@@ -21,6 +21,11 @@
 		position: relative;
 	}
 
+	.spotlight-controls {
+		opacity: 0.5;
+		transition: opacity 0.5s;
+	}
+
 	#spotlight {
 		position: absolute;
 		top: 0;
@@ -28,11 +33,12 @@
 		width: 542px;
 		height: 100%;
 		margin-top: 60px;
-
-		path {
-			opacity: 0.5;
-		}
 	}
+
+	.dim.spotlight-controls {
+		opacity: 0;
+	}
+
 }
 
 .theme-slider {

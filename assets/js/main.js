@@ -62,6 +62,9 @@
 		// toggle class to turn on gears
 		$( '.slider-nav' ).addClass( 'gears-spinning' );
 
+		//dim spotlight
+		$( '.spotlight-controls' ).addClass( 'dim' );
+
 	} );
 
 	//Run after slide changes
@@ -79,7 +82,9 @@
 
 		// toggle class to turn off gears
 		$( '.slider-nav' ).removeClass( 'gears-spinning' );
-		$( '.slider-lever').removeClass( 'turned' );
+
+		//increase spotlight
+		$( '.spotlight-controls' ).removeClass( 'dim' );
 
 	} );
 
