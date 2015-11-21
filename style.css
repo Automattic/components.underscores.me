@@ -1222,6 +1222,17 @@ section {
   .theme-text .button {
     display: inline-block; }
 
+.theme-input {
+  float: left;
+  overflow: hidden;
+  transition: width 0.2s;
+  width: 0; }
+  .theme-input input {
+    display: block;
+    width: 90%; }
+  .theme-input.open-input {
+    width: 40%; }
+
 /* conveyor belt */
 .slider-nav {
   border: 5px solid #6eb3b8;
@@ -1295,18 +1306,30 @@ section {
   right: 25px;
   bottom: 0;
   height: 150px;
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
   transform: rotate(-30deg);
   -webkit-transition: right 0.2s, transform 0.2s;
   -moz-transition: right 0.2s, transform 0.2s;
+  -ms-transition: right 0.2s, transform 0.2s;
+  -o-transition: right 0.2s, transform 0.2s;
   transition: right 0.2s, transform 0.2s; }
 
 .slider-lever:not(.turned):hover .lever {
   right: 20px;
+  -webkit-transform: rotate(-25deg);
+  -moz-transform: rotate(-25deg);
+  -ms-transform: rotate(-25deg);
+  -o-transform: rotate(-25deg);
   transform: rotate(-25deg); }
 
 .slider-lever.turned .lever {
   -webkit-transform: rotate(30deg);
   -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
   transform: rotate(30deg);
   right: -25px; }
 
