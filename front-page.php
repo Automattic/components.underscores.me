@@ -43,7 +43,8 @@ get_header(); ?>
 
 		<section id="types" role="main">
 			<div class="wrap">
-				<h2>Let's get you a theme!</h2>
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/spotlight.svg' ); ?>
+				<h2>Let&rsquo;s build a theme!</h2>
 
 				<div class="theme-slider">
 					<div class="theme-type">

@@ -15,8 +15,37 @@
 	h3 {
 		color: $color__teal;
 	}
+
+	.wrap {
+		position: relative;
+	}
+
+	#spotlight {
+			position: absolute;
+			top: 60px;
+			left: -128px;
+			width: auto;
+			height: 100%;
+
+			path {
+				fill:#1f344c;
+				opacity: 0.5;
+			}
+
+			ellipse {
+				fill: #284463;
+				opacity: 0;
+			}
+	}
 }
 
 .theme-slider {
 	clear: both;
+}
+
+/* Hide spotlight on mobiles */
+@include mobile {
+	#spotlight {
+		display: none;
+	}
 }
