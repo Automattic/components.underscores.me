@@ -369,6 +369,9 @@ ul {
 ol {
   list-style: decimal; }
 
+p + ul {
+  margin-top: -1em; }
+
 li > ul,
 li > ol {
   margin-bottom: 0;
@@ -380,9 +383,10 @@ li {
     content: '';
     display: inline-block;
     background: url("assets/img/tiny-gear.svg") no-repeat;
-    margin-right: 2px;
-    height: 16px;
-    width: 16px; }
+    margin: 0 3px 0 0;
+    height: 14px;
+    width: 14px;
+    vertical-align: -1px; }
 
 dt {
   font-weight: bold; }
@@ -810,20 +814,20 @@ section {
 .automattic-credit {
   display: inline-block; }
 
-.site-info::before {
-  content: '';
-  background: url("assets/img/tiny-gear.svg") no-repeat;
-  background-size: cover;
-  display: inline-block;
-  height: 25px;
-  margin: 0 4px;
-  vertical-align: middle;
-  width: 25px; }
-
 @media (max-width: 767px) {
   .wrap {
     padding-left: 20px;
     padding-right: 20px; } }
+@media (min-width: 768px) {
+  .site-info::before {
+    content: '';
+    background: url("assets/img/tiny-gear.svg") no-repeat;
+    background-size: cover;
+    display: inline-block;
+    height: 25px;
+    margin: 0 4px;
+    vertical-align: middle;
+    width: 25px; } }
 /*--------------------------------------------------------------
 # Panels
 --------------------------------------------------------------*/
@@ -939,13 +943,17 @@ section {
 .top-robot {
   position: absolute;
   left: 5%;
+  -webkit-transform: translate(0, -348px) rotate(195deg);
+  -moz-transform: translate(0, -348px) rotate(195deg);
+  -ms-transform: translate(0, -348px) rotate(195deg);
+  -o-transform: translate(0, -348px) rotate(195deg);
   transform: translate(0, -348px) rotate(195deg);
   -webkit-animation: .2s 3s 1 forwards TopRobotDrop;
   -moz-animation: .2s 3s 1 forwards TopRobotDrop;
   -o-animation: .2s 3s 1 forwards TopRobotDrop;
   animation: .2s 3s 1 forwards TopRobotDrop;
   width: 230px;
-  height: auto;
+  height: 340px;
   z-index: 5; }
 
 /* Keyframes */
