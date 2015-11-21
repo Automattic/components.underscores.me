@@ -16,7 +16,10 @@ get_header(); ?>
 		<section id="intro" role="main">
 			<div class="wrap">
 
-				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-chute.svg' ); ?>
+				<div class="chute-wrapper">
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-chute.svg' ); ?>
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/tap.svg' ); ?>
+				</div>
 
 				<div class="content-wrapper">
 					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-left.svg' ); ?>
