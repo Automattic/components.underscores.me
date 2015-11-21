@@ -1,3 +1,5 @@
 style.css.map
 .sass-cache/*
 assets/.sass-cache/*
+downloads/*
+!downloads/README.md
