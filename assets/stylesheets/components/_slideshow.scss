@@ -75,6 +75,7 @@
 
 /* conveyor belt */
 
+/* Conveyor belt */
 .slider-nav {
 	border: 5px solid lighten( $color__teal, 10% );
 	border-radius: 80px;
@@ -128,7 +129,6 @@
 }
 
 /* Navigation buttons */
-
 .next-type,
 .prev-type {
 	cursor: pointer;
@@ -142,17 +142,21 @@
 	}
 }
 
-.next-type {
-	margin-left: 10px;
-	margin-right: 10px;
-	&:before {
-		content: "\203A";
-	}
+.next-type::before,
+.prev-type::before {
+	background: url(assets/img/arrow.svg) 0 0 no-repeat;
+	content: '';
+	display: inline-block;
+	height: 28px;
+	margin: 0 4px 0 0;
+	vertical-align: -3px;
+	width: 30px;
 }
 
-.prev-type {
-	&:before {
-		content: "\2039";
+.next-type {
+	margin-right: 5px;
+	&::before {
+		transform: rotate(180deg);
 	}
 }
 
@@ -309,4 +313,3 @@
 		display: none;
 	}
 }
-

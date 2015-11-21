@@ -1234,6 +1234,7 @@ section {
     width: 40%; }
 
 /* conveyor belt */
+/* Conveyor belt */
 .slider-nav {
   border: 5px solid #6eb3b8;
   border-radius: 80px;
@@ -1291,14 +1292,20 @@ section {
   .prev-type:hover {
     opacity: 0.8; }
 
-.next-type {
-  margin-left: 10px;
-  margin-right: 10px; }
-  .next-type:before {
-    content: "\203A"; }
+.next-type::before,
+.prev-type::before {
+  background: url(assets/img/arrow.svg) 0 0 no-repeat;
+  content: '';
+  display: inline-block;
+  height: 28px;
+  margin: 0 4px 0 0;
+  vertical-align: -3px;
+  width: 30px; }
 
-.prev-type:before {
-  content: "\2039"; }
+.next-type {
+  margin-right: 5px; }
+  .next-type::before {
+    transform: rotate(180deg); }
 
 .slider-lever .lever {
   cursor: pointer;
