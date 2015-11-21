@@ -1029,7 +1029,6 @@ section {
     height: 100%;
     margin-top: 60px; }
     #types #spotlight path {
-      fill: url(#Gradient1);
       opacity: 0.5; }
 
 .theme-slider {
