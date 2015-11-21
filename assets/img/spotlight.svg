@@ -5,5 +5,10 @@
 	        <stop offset="100%" stop-color="#1f344c" stop-opacity="0"/>
 	    </linearGradient>
 	</defs>
+	<style>
+		#spotlight path {
+			fill: url(#Gradient1);
+		}
+	</style>
 	<path class="st0" d="M266.7 0h-98.4L0 385h435z" />
 </svg>

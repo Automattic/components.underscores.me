@@ -140,7 +140,7 @@ get_header(); ?>
 				</div>
 
 				<div class="octocat-robot">
-					<img width="150" height="150" src="<?php echo get_template_directory_uri() . '/assets/img/robot-octocat.png' ?>">
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-octocat.svg' ); ?>
 				</div>
 
 				<div class="col">

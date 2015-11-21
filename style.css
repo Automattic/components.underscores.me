@@ -1031,6 +1031,10 @@ section {
 #extra-info .wrap::after {
   clear: both; }
 
+.octocat-robot svg {
+  height: 150px;
+  width: 150px; }
+
 @media (max-width: 767px) {
   .octocat-robot {
     display: none; } }
