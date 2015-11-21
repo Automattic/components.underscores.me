@@ -56,6 +56,10 @@ ol {
 	list-style: decimal;
 }
 
+p + ul {
+	margin-top: -1em;
+}
+
 li > ul,
 li > ol {
 	margin-bottom: 0;
@@ -69,9 +73,10 @@ li {
 			content: '';
 			display: inline-block;
 			background: url('assets/img/tiny-gear.svg') no-repeat;
-			margin-right: 2px;
-			height: 16px;
-			width: 16px;
+			margin: 0 3px 0 0;
+			height: 14px;
+			width: 14px;
+			vertical-align: -1px;
 		}
 }
 

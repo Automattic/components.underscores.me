@@ -58,20 +58,22 @@ section {
 	display: inline-block;
 }
 
-.site-info::before {
-	content: '';
-	background: url('assets/img/tiny-gear.svg') no-repeat;
-	background-size: cover;
-	display: inline-block;
-	height: 25px;
-	margin: 0 4px;
-	vertical-align: middle;
-	width: 25px;
-}
-
 @include mobile {
 	.wrap {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+}
+
+@include tablet {
+	.site-info::before {
+		content: '';
+		background: url('assets/img/tiny-gear.svg') no-repeat;
+		background-size: cover;
+		display: inline-block;
+		height: 25px;
+		margin: 0 4px;
+		vertical-align: middle;
+		width: 25px;
 	}
 }
