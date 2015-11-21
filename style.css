@@ -388,7 +388,7 @@ li {
     content: '';
     display: inline-block;
     background: url("assets/img/tiny-gear.svg") no-repeat;
-    margin: 0 3px 0 0;
+    margin: 0 5px 0 0;
     height: 14px;
     width: 14px;
     vertical-align: -1px; }
