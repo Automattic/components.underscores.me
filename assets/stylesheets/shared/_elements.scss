@@ -44,7 +44,8 @@ hr {
 }
 
 ul, ol {
-	margin: 0 0 1.5em 3em;
+	margin: 0 0 1.5em 0;
+	padding: 0;
 }
 
 ul {
@@ -59,6 +60,19 @@ li > ul,
 li > ol {
 	margin-bottom: 0;
 	margin-left: 1.5em;
+}
+
+li {
+		list-style-type: none;
+
+		&::before {
+			content: '';
+			display: inline-block;
+			background: url('assets/img/tiny-gear.svg') no-repeat;
+			margin-right: 2px;
+			height: 16px;
+			width: 16px;
+		}
 }
 
 dt {
