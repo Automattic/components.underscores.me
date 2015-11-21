@@ -19,6 +19,11 @@
 			.cog, .center {
 				fill: $color__offwhite;
 			}
+
+			.center {
+				stroke: $color__offwhite;
+				stroke-width: 5;
+			}
 	}
 
 	.content-wrapper {
@@ -28,10 +33,14 @@
 
 	h4 {
 		margin: 0;
+		position: relative;
+		z-index: 4;
 	}
 
 	p {
 		margin-top: 0;
+		position: relative;
+		z-index: 4;
 	}
 
 	.button {
