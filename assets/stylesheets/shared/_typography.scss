@@ -57,8 +57,9 @@ p {
 }
 
 strong {
-	background: transparentize($color__teal, 0.9);
-	color: $color__teal;
+	background: transparentize($color__teal, 0.95);
+	color: darken($color__teal, 10%);
+	font-weight: 600;
 	padding: 0 1px;
 }
 

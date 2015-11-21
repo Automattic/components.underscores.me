@@ -285,8 +285,9 @@ p {
   margin-bottom: 1.5em; }
 
 strong {
-  background: rgba(80, 158, 163, 0.1);
-  color: #509ea3;
+  background: rgba(80, 158, 163, 0.05);
+  color: #3f7d81;
+  font-weight: 600;
   padding: 0 1px; }
 
 dfn, cite, em, i {
