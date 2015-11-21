@@ -16,6 +16,10 @@
 	.col:nth-of-type(even) {
 		float: right;
 	}
+
+	.octocat-robot {
+		text-align: center;
+	}
 }
 
 @include mobile {
