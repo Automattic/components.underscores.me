@@ -118,7 +118,7 @@ get_header(); ?>
 				<div class="content-wrapper">
 					<h4>Just the basics, please</h4>
 					<p>Can&rsquo;t decide? Want to concoct your own starter theme?<br>
-						Don&rsquo;t need any bells or whistles? Download the base.</p>
+						Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
 					<a href="#" class="button">Download the base!</a>
 				</div><!-- .content-wrapper -->
 			</div><!-- .wrap -->
@@ -139,12 +139,14 @@ get_header(); ?>
 					</ul>
 				</div>
 
+				<div class="octocat-robot">
+					<img width="150" height="150" src="<?php echo get_template_directory_uri() . '/assets/img/robot-octocat.png' ?>">
+				</div>
+
 				<div class="col">
 					<h2>Want to contribute?</h2>
 					<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-pattern-library">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-pattern-library/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
-					<div class="octocat-robot">
-						<img width="150" height="150" src="<?php echo get_template_directory_uri() . '/assets/img/robot-octocat.png' ?>">
-					</div>
+
 				</div>
 			</div><!-- .wrap -->
 		</section><!-- #extra-info -->
