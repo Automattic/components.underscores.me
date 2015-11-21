@@ -62,7 +62,7 @@ get_header(); ?>
 						<div class="theme-text">
 							<h3>Modern blog</h3>
 							<p>You think the world could be a little bit less cluttered. You like clean lines, simple shapes, and contemporary design. You want the focus to be on your content, not a lot of other stuff. With a single-column layout, a large featured image, and a slide-out panel for widgets and navigation, a modern blog is the perfect fit.</p>
-							<a href="#" class="button">Build Theme!</a>
+							<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/blog-modern.zip' ?>" class="button">Build Theme!</a>
 						</div>
 					</div><!-- .theme-type -->
 
@@ -73,7 +73,7 @@ get_header(); ?>
 						<div class="theme-text">
 							<h3>Classic blog</h3>
 							<p>Maybe you prefer the classics. Austen. Dickens. AC/DC. A classic blog is your perfect match. Great for food blogs, schools, or anyone else who has a lot of content to display in a sidebar, a classic blog features widgets in sidebar, just like you remember.</p>
-							<a href="#" class="button">Build Theme!</a>
+							<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/blog-traditional.zip' ?>" class="button">Build Theme!</a>
 						</div>
 					</div><!-- .theme-type -->
 
@@ -84,7 +84,7 @@ get_header(); ?>
 						<div class="theme-text">
 							<h3>Magazine</h3>
 							<p>Stop the presses! A magazine theme is ideal for showcasing content and images in a dynamic way. This theme features a front-page template with a grid of featured images, and a two-column blog layout that displays excerpts for added interest.</p>
-							<a href="#" class="button">Build Theme!</a>
+							<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/magazine.zip' ?>" class="button">Build Theme!</a>
 						</div>
 					</div><!-- .theme-type -->
 
@@ -95,7 +95,7 @@ get_header(); ?>
 						<div class="theme-text">
 							<h3>Portfolio</h3>
 							<p>If you're the creative type, this is the theme package for you. Image-focused, the portfolio layout uses a portfolio custom post type to easily keep your portfolio items separate from regular posts. It features a gridded portfolio layout, a simple one-column blog template, and a large featured image header.</p>
-							<a href="#" class="button">Build Theme!</a>
+							<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/portfolio.zip' ?>" class="button">Build Theme!</a>
 						</div>
 					</div><!-- .theme-type -->
 
@@ -106,7 +106,7 @@ get_header(); ?>
 						<div class="theme-text">
 							<h3>Business</h3>
 							<p>You've got a million things to worry about; don't let your theme be another. A business starter theme comes with a front page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to add authenticity to your business.</p>
-							<a href="#" class="button">Build Theme!</a>
+							<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/business.zip' ?>" class="button">Build Theme!</a>
 						</div>
 					</div><!-- .theme-type -->
 				</div><!-- .theme-slider -->
@@ -127,7 +127,7 @@ get_header(); ?>
 					<h4>Just the basics, please</h4>
 					<p>Can&rsquo;t decide? Want to concoct your own starter theme?<br>
 						Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
-					<a href="#" class="button">Download the base!</a>
+					<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/base.zip' ?>" class="button">Download the base!</a>
 				</div><!-- .content-wrapper -->
 			</div><!-- .wrap -->
 		</section>
