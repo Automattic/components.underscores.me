@@ -1,9 +1,21 @@
 #download-all {
 	background-color: $color__teal-light;
+	padding: 40px;
 	text-align: center;
 
+	.gear {
+		position: absolute;
+		left: -100px;
+		bottom: -202px;
+		width: 343px;
+		transform: rotate(39deg);
+
+			.cog, .center {
+				fill: $color__offwhite;
+			}
+	}
+
 	h4 {
-		color: $color__navy;
 		margin: 0;
 	}
 

@@ -110,6 +110,7 @@ get_header(); ?>
 
 		<section id="download-all" role="main">
 			<div class="wrap">
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear.svg' ); ?>
 				<h4>I want it all!</h4>
 				<p>Can't decide? Want to concoct your own starter theme? Here you go!</p>
 				<a href="#" class="button">Download everything!</a>
