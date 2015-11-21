@@ -4,14 +4,14 @@ input[type="reset"],
 input[type="submit"],
 .button {
 	border: none;
-	border-radius: 3px;
+	border-radius: 5px;
 	background: $color__pink;
 	box-shadow: 0 6px darken($color__pink, 10%);
 	color: $color__offwhite;
 	@include font-size(0.75);
 	font-family: $font__serif;
 	@include font-size(1);
-	letter-spacing: 1px;
+	font-weight: 500;
 	line-height: 1;
 	padding: 1em 2em .8em;
 	position: relative;
