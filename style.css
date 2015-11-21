@@ -1031,6 +1031,10 @@ section {
 #extra-info .wrap::after {
   clear: both; }
 
+.octocat-robot svg {
+  height: 150px;
+  width: 150px; }
+
 @media (max-width: 767px) {
   .octocat-robot {
     display: none; } }
@@ -1237,26 +1241,23 @@ section {
 /* Navigation buttons */
 .next-type,
 .prev-type {
-  background: url(assets/img/arrows.png) 0 0 no-repeat;
-  background-size: 100% auto;
   cursor: pointer;
   display: inline-block;
-  font-size: 80%;
-  height: 15px;
   opacity: 0.5;
   -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-  width: 15px; }
+  transition: opacity 0.3s; }
   .next-type:hover,
   .prev-type:hover {
     opacity: 0.8; }
 
 .next-type {
-  margin-left: 10px; }
-
-.prev-type {
-  background-position: 0 -18px;
+  margin-left: 10px;
   margin-right: 10px; }
+  .next-type:before {
+    content: "\203A"; }
+
+.prev-type:before {
+  content: "\2039"; }
 
 /* Keyframes */
 /* robot dropping */

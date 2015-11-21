@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="144.2px" height="144.2px" viewBox="0 0 144.2 144.2" style="enable-background:new 0 0 144.2 144.2;" xml:space="preserve"
+	>
+<style type="text/css">
+	.octocat0{clip-path:url(#SVGID_2_);}
+	.octocat1{fill:#A0C3C6;}
+	.octocat2{fill:#EB6461;}
+	.octocat3{fill:#E5E5E4;}
+	.octocat4{fill:#141E33;}
+	.octocat5{fill:#9CDAF0;}
+	.octocat6{fill:#959595;}
+</style>
+<g>
+	<defs>
+		<circle id="SVGID_1_" cx="72.1" cy="72.1" r="72.1"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g class="octocat0">
+		<circle class="octocat1" cx="72.1" cy="72.1" r="72.1"/>
+		<path class="octocat2" d="M72.1,56.2c0,0-30.6-18.9-15.8-30.8c7.1-5.7,15.9,4.7,15.9,4.7s7.7-10.5,15.9-4.3
+			C102.8,37,72.1,56.2,72.1,56.2z"/>
+		<g>
+			<path class="octocat3" d="M75.4,99.8c6.3,3.6,8.5,11.7,4.9,18c-0.2,0.3-0.4,0.6-0.5,0.8l13,8.9c0.4-0.6,0.8-1.2,1.2-1.8
+				c8-13.9,3.2-31.6-10.7-39.5c-7.8-4.5-16.8-4.9-24.6-2l4.5,15.2C67,97.6,71.5,97.6,75.4,99.8z"/>
+			<g>
+				<path class="octocat3" d="M43.7,96.8c-8,13.9-3.2,31.6,10.7,39.5c1.2,0.7,2.4,1.2,3.6,1.7l5.9-14.6c-0.6-0.2-1.1-0.5-1.7-0.8
+					c-6.3-3.6-8.5-11.7-4.9-18c1.4-2.4,3.5-4.2,5.8-5.4l-4.5-15.2C52.6,86.4,47.2,90.8,43.7,96.8z"/>
+				<g>
+					<path class="octocat4" d="M170.4,79.6c0,0-14-11.6-33.7-8S101.4,88,95.8,100.9c-5.6,12.8-17.7,21.7-28.9,23.3
+						c-11.2,1.6-19.6-0.8-19.6-5.2c0-4.4,18-11.4,25.6-20.9c7.6-9.6,17.7-35.3,39.3-47.7s58.2-3.6,58.2-3.6V79.6z"/>
+
+						<ellipse transform="matrix(0.9316 -0.3635 0.3635 0.9316 -37.0181 34.1485)" class="octocat5" cx="72.2" cy="115.4" rx="3.3" ry="2.4"/>
+					<ellipse transform="matrix(0.7909 -0.6119 0.6119 0.7909 -48.9414 72.7366)" class="octocat5" cx="82" cy="108" rx="4" ry="2.4"/>
+					<ellipse transform="matrix(0.63 -0.7766 0.7766 0.63 -40.5501 106.9793)" class="octocat5" cx="92" cy="96" rx="4.3" ry="3.3"/>
+
+						<ellipse transform="matrix(0.63 -0.7766 0.7766 0.63 -26.0095 110.6125)" class="octocat5" cx="103.1" cy="82.6" rx="4.3" ry="3.3"/>
+
+						<ellipse transform="matrix(0.7217 -0.6922 0.6922 0.7217 -16.5525 99.6822)" class="octocat5" cx="115.7" cy="70.4" rx="5.1" ry="3.3"/>
+
+						<ellipse transform="matrix(0.9827 -0.1852 0.1852 0.9827 -9.705 25.7011)" class="octocat5" cx="132.7" cy="64.8" rx="5.1" ry="3.3"/>
+
+						<ellipse transform="matrix(0.9989 4.688646e-02 -4.688646e-02 0.9989 3.2167 -6.9895)" class="octocat5" cx="150.6" cy="65.1" rx="5.1" ry="3.3"/>
+
+						<ellipse transform="matrix(0.9979 6.464875e-02 -6.464875e-02 0.9979 4.8462 -10.7451)" class="octocat5" cx="168.5" cy="69.5" rx="5.1" ry="3.3"/>
+				</g>
+				<path class="octocat3" d="M-31.6,46.7c11-6,23.7-9.2,37.1-8.6c30,1.5,54.7,21.6,63.3,48.7l-15,4.8C47.2,70.6,28,55,4.7,53.9
+					c-9.2-0.4-18.1,1.5-25.9,5.2L-31.6,46.7z"/>
+				<path class="octocat3" d="M83.3,86.1c-12.3-7-27.5-4.1-36.4,6.3l15.8,7.2c3.9-2.1,8.7-2.2,12.8,0.2c6.3,3.6,8.5,11.7,4.9,18
+					c-0.2,0.3-0.4,0.6-0.5,0.8l13,8.9c0.4-0.6,0.8-1.2,1.2-1.8C101.9,111.8,97.1,94.1,83.3,86.1z"/>
+				<circle class="octocat6" cx="62.4" cy="91.2" r="10.3"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

@@ -10,6 +10,11 @@
 	}
 }
 
+.octocat-robot svg {
+	height: 150px;
+	width: 150px;
+}
+
 @include mobile {
 	.octocat-robot {
 		display: none;
