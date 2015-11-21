@@ -13,15 +13,12 @@
 	height: 100%;
 	position: absolute;
 	text-align: center;
-	transform-origin: 0 0;
 	-webkit-transform-origin: 0 0;
 	-moz-transform-origin: 0 0;
 	-o-transform-origin: 0 0;
 	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
 	width: 32%;
-
-	animation: robotDrop cubic-bezier(.68,1.81,.9,.66) 0.4s;
-	animation-iteration-count: 1;
 	-webkit-animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
 	-webkit-animation-iteration-count: 1;
 	-moz-animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
@@ -30,10 +27,13 @@
 	-o-animation-iteration-count: 1;
 	-ms-animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
 	-ms-animation-iteration-count: 1;
+	animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
+	animation-iteration-count: 1;
 }
 
 .hide-bot {
-	transform:  translate(0px,-100%);
+	-webkit-transform: translate(0px,-100%);
+	transform: translate(0px,-100%);
 }
 
 .theme-image img {
@@ -163,7 +163,7 @@
 
 @-webkit-keyframes robotDrop {
 	0% {
-		-webkit-transform:  translate( 0, 100% );
+		-webkit-transform:  translate( 0, -100% );
 	}
 	100% {
 		-webkit-transform:  translate ( 0, 0 );
