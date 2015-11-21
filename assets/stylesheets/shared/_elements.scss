@@ -17,7 +17,14 @@ p {
 }
 
 a {
-	color: $color__pink;
+	border-bottom: 1px solid rgba($color__pink, .2);
+	color: rgba($color__pink, .8);
+	text-decoration: none;
+
+	&:hover {
+		border-bottom: 1px solid rgba($color__pink, 0);
+		color: rgba($color__pink, 1);
+	}
 }
 
 blockquote, q {

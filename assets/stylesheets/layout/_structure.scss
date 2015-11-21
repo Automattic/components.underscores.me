@@ -77,7 +77,7 @@ section {
 }
 
 .site-footer {
-	background: darken($color__offwhite, 5%);
+	background: darken($color__offwhite, 8%);
 	clear: both;
 	color: rgba($color__navy, .6);
 	font-family: $font__serif;
@@ -96,6 +96,11 @@ section {
 			color: rgba($color__navy, 1);
 		}
 	}
+}
+
+.site-info,
+.automattic-credit {
+	display: inline-block;
 }
 
 @include mobile {
