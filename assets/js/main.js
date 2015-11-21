@@ -88,4 +88,12 @@
 		$('.theme-slider').slick('slickPrev');
 	} );
 
+	// open/close text input for name
+	/*
+	$( '.theme-text .button' ).click( function( e ){
+		e.preventDefault();
+		$( '.theme-input' ).toggleClass( 'open-input' );
+	} );
+	*/
+
 } )( jQuery );
