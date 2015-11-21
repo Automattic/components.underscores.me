@@ -107,6 +107,7 @@ get_header(); ?>
 				</div><!-- .theme-slider -->
 				<div class="slider-nav">
 					<div class="slider-nav-bg"></div>
+					<div class="slider-lever"></div>
 				</div>
 			</div><!-- .wrap -->
 		</section><!-- #types -->
