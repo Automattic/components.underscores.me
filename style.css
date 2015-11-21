@@ -957,15 +957,39 @@ section {
   -o-animation: .2s 3s 1 forwards TopRobotDrop;
   animation: .2s 3s 1 forwards TopRobotDrop;
   width: 230px;
-  height: auto; }
+  height: auto;
+  z-index: 10; }
 
 .eyes {
+  -webkit-animation: 3s 5s infinite forwards EyeBlink;
+  -moz-animation: 3s 5s infinite forwards EyeBlink;
+  -o-animation: 3s 5s infinite forwards EyeBlink;
   animation: 3s 5s infinite forwards EyeBlink;
   opacity: 1; }
 
 /* Keyframes */
-/* Robot dropping from the top */
-/* Robot eyes */
+/* Robot blinky eyes */
+@-webkit-keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
+@-moz-keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
+@-o-keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
 @keyframes EyeBlink {
   0%, 45% {
     opacity: 1; }
@@ -973,6 +997,7 @@ section {
     opacity: 0; }
   50%, 100% {
     opacity: 1; } }
+/* Robot dropping from the top */
 @-webkit-keyframes TopRobotDrop {
   0% {
     transform: translate(0, -348px) rotate(195deg); }
