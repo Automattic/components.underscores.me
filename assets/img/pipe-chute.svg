@@ -1,56 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="pipe-chute" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="197px" height="603px" viewBox="0 0 197 603" style="enable-background:new 0 0 197 603;" xml:space="preserve">
-<rect y="574" class="teal" width="149" height="29"/>
-<g>
+<svg id="pipe-chute" xmlns="http://www.w3.org/2000/svg" width="197" height="603" viewBox="0 0 197 603">
+	<path class="teal" d="M0 574h149v29H0z"/>
 	<circle class="teal-light" cx="18.8" cy="589.5" r="5.1"/>
-</g>
-<g>
 	<circle class="teal-light" cx="41.2" cy="589.5" r="5.1"/>
-</g>
-<g>
 	<circle class="teal-light" cx="63.7" cy="589.5" r="5.1"/>
-</g>
-<g>
 	<circle class="teal-light" cx="86.2" cy="589.5" r="5.1"/>
-</g>
-<g>
 	<circle class="teal-light" cx="108.6" cy="589.5" r="5.1"/>
-</g>
-<g>
 	<circle class="teal-light" cx="131.1" cy="589.5" r="5.1"/>
-</g>
-<circle class="teal-light" cx="74.4" cy="431.4" r="62"/>
-<polygon class="teal-light" points="47.6,520 7.7,574 74.4,574 141.2,574 101.3,520 "/>
-<path class="teal-light" d="M116.5,30h0.5h1h79V0h-79h-1h-0.5C85.1,0,59.4,26,59,57c0.4,31,26,57,57.5,57h1.5h2.4c14.9,0,27.1,12,27.5,27
-	c-0.4,15-12.6,27-27.5,27H119h-1h-1.2c-31.1,0-56.5,24.5-57.5,56H59v317h30V225h0.3c0.4-15,12.6-27,27.5-27h1.2h1h1.4
-	c31.5,0,57.1-25,57.5-57c-0.4-31-26-57-57.5-57H118h-1.5C101.6,84,89.4,72,89,57C89.4,42,101.6,30,116.5,30z"/>
-<rect x="45" y="508" class="teal" width="59" height="14"/>
-<g>
-	<g>
-		<path class="teal" d="M74.4,317.9c-17.5,0-31.7-14.2-31.7-31.7s14.2-31.7,31.7-31.7s31.7,14.2,31.7,31.7S91.9,317.9,74.4,317.9z
-			 M74.4,263.1c-12.8,0-23.2,10.4-23.2,23.2s10.4,23.2,23.2,23.2s23.2-10.4,23.2-23.2S87.2,263.1,74.4,263.1z"/>
+	<circle class="teal-light" cx="74.4" cy="431.4" r="62"/>
+	<path class="teal-light" d="M47.6 520L7.7 574h133.5l-39.9-54z"/>
+	<path class="teal-light" d="M116.5 30H197V0h-80.5C85.1 0 59.4 26 59 57c.4 31 26 57 57.5 57h3.9c14.9 0 27.1 12 27.5 27-.4 15-12.6 27-27.5 27H116.8c-31.1 0-56.5 24.5-57.5 56H59v317h30V225h.3c.4-15 12.6-27 27.5-27h3.6c31.5 0 57.1-25 57.5-57-.4-31-26-57-57.5-57h-3.9C101.6 84 89.4 72 89 57c.4-15 12.6-27 27.5-27z"/>
+	<path class="teal" d="M45 508h59v14H45z"/>
+	<g class="tap">
+		<path class="teal" d="M74.4 317.9c-17.5 0-31.7-14.2-31.7-31.7s14.2-31.7 31.7-31.7 31.7 14.2 31.7 31.7-14.2 31.7-31.7 31.7zm0-54.8c-12.8 0-23.2 10.4-23.2 23.2s10.4 23.2 23.2 23.2 23.2-10.4 23.2-23.2-10.4-23.2-23.2-23.2z"/><path class="teal" d="M74.6 298.8c-6.9 0-12.5-5.6-12.5-12.5s5.6-12.5 12.5-12.5 12.5 5.6 12.5 12.5-5.6 12.5-12.5 12.5zm0-16.5c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/><path class="teal" d="M73 248h3v76h-3z"/><path class="teal" d="M37 284h75v4H37z"/><path class="teal" d="M49.01 258.337l53.033 53.033-2.192 2.192-53.03-53.033z"/><path class="teal" d="M99.85 258.408l2.193 2.192-53.032 53.033-2.19-2.192z"/>
 	</g>
-	<g>
-		<path class="teal" d="M74.6,298.8c-6.9,0-12.5-5.6-12.5-12.5s5.6-12.5,12.5-12.5c6.9,0,12.5,5.6,12.5,12.5S81.5,298.8,74.6,298.8z
-			 M74.6,282.3c-2.2,0-4,1.8-4,4s1.8,4,4,4c2.2,0,4-1.8,4-4S76.8,282.3,74.6,282.3z"/>
-	</g>
-	<g>
-		<rect x="73" y="248" class="teal" width="3" height="76"/>
-	</g>
-	<g>
-		<rect x="37" y="284" class="teal" width="75" height="4"/>
-	</g>
-	<g>
-
-			<rect x="36.9" y="284.4" transform="matrix(0.7071 0.7071 -0.7071 0.7071 224.018 31.1461)" class="teal" width="75" height="3.1"/>
-	</g>
-	<g>
-
-			<rect x="72.9" y="248.5" transform="matrix(0.7071 0.7071 -0.7071 0.7071 224.018 31.1461)" class="teal" width="3.1" height="75"/>
-	</g>
-</g>
-<rect x="56" y="225" class="teal" width="36" height="9"/>
-<rect x="56" y="345" class="teal" width="36" height="9"/>
+	<path class="teal" d="M56 225h36v9H56zM56 345h36v9H56z"/>
 </svg>

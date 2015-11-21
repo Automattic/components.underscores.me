@@ -42,6 +42,18 @@
   #pipe-chute {
     float: left;
     margin: 40px 0 -60px 70px;
+
+    .tap {
+      animation-name: spin;
+      animation-duration: 3s;
+      animation-direction: alternate;
+      animation-delay: 5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(.96, -0.08, .49, 1.58);
+      animation-play-state: running;
+      animation-iteration-count: infinite;
+      transform-origin: 37.5% 47.5% 0px;
+    }
   }
 
   #pipe-left {
@@ -74,6 +86,29 @@
   #intro .intro-content {
     margin: 40px auto 0;
     max-width: 650px;
+  }
+}
+
+/* Rotation animation */
+@keyframes spin {
+  0%, 40% {
+    transform: rotate(36deg);
+  }
+
+  45% {
+    transform: rotate(-360deg);
+  }
+
+  50% {
+    transform: rotate(-600deg)
+  }
+
+  55% {
+    transform: rotate(-360deg)
+  }
+
+  60%, 100% {
+    transform: rotate(36deg);
   }
 }
 
