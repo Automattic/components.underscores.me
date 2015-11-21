@@ -203,6 +203,12 @@
 @include mobile {
 
 	#types {
+		h2 {
+			float: none;
+			text-align: center;
+			width: 100%;
+		}
+
 		h3 {
 			font-size: 1.6em;
 			margin-bottom: 0;
@@ -236,13 +242,13 @@
 
 	.theme-image img {
 		bottom: auto;
-		height: 250px;
+		height: auto;
 		left: 50%;
-		margin-left: -200px;
+		margin-left: -100px;
 		max-height: 10000px;
 		max-width: 10000px;
 		position: absolute;
-		width: 400px;
+		width: 200px;
 	}
 
 	.next-type,
