@@ -352,5 +352,5 @@ function theme_pattern_library_init() {
 	theme_pattern_library_make_portfolio();
 	theme_pattern_library_create_type_zips();
 }
-// Let's not fire the function because we're working on the theme locally.
+// Let's fire the function as late as we can.
 add_action( 'wp_footer', 'theme_pattern_library_init' );
