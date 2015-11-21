@@ -42,7 +42,7 @@ get_header(); ?>
 
 						<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
 
-						<p>If you&rsquo;re just starting out, it'll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you're an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart's delight!</p>
+						<p>If you&rsquo;re just starting out, it&rsquo;ll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you&rsquo;re an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart&rsquo;s delight!</p>
 					</div><!-- .intro-content -->
 				</div><!-- .content-wrapper -->
 
@@ -89,7 +89,7 @@ get_header(); ?>
 						</div>
 						<div class="theme-text">
 							<h3>Magazine</h3>
-							<p>Stop the presses! A magazine theme is ideal for showcasing content and images in a dynamic way. This theme features a front-page template with a grid of featured images, and a two-column blog layout that displays excerpts for added interest.</p>
+							<p>Stop the press! A magazine theme is ideal for showcasing content and images in a dynamic way. This theme features a front-page template with a grid of featured images, and a two-column blog layout that displays excerpts for added interest.</p>
 							<div class="theme-input">
 								<input type="text">
 							</div>
@@ -103,7 +103,7 @@ get_header(); ?>
 						</div>
 						<div class="theme-text">
 							<h3>Portfolio</h3>
-							<p>If you're the creative type, this is the theme package for you. Image-focused, the portfolio layout uses a portfolio custom post type to easily keep your portfolio items separate from regular posts. It features a gridded portfolio layout, a simple one-column blog template, and a large featured image header.</p>
+							<p>If you&rsquo;re the creative type, this is the theme package for you. Image-focused, the portfolio layout uses a portfolio custom post type to easily keep your portfolio items separate from regular posts. It features a gridded portfolio layout, a simple one-column blog template, and a large featured image header.</p>
 							<div class="theme-input">
 								<input type="text">
 							</div>
@@ -117,7 +117,7 @@ get_header(); ?>
 						</div>
 						<div class="theme-text">
 							<h3>Business</h3>
-							<p>You've got a million things to worry about; don't let your theme be another. A business starter theme comes with a front page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to add authenticity to your business.</p>
+							<p>You've got a million things to worry about; don&rsquo;t let your theme be another. A business starter theme comes with a front page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to add authenticity to your business.</p>
 							<div class="theme-input">
 								<input type="text">
 							</div>
