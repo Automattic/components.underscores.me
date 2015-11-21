@@ -85,7 +85,15 @@
 
 	$('.slider-lever').click( function() {
 		$( this ).addClass( 'turned' );
-		$('.theme-slider').slick('slickPrev');
+		function dotheThing() {
+			$( '.slider-lever').removeClass( 'turned' );
+		}
+		function fireTheGuy() {
+			$('.theme-slider').slick('slickPrev');
+		}
+
+		setTimeout( dotheThing, 250 );
+		setTimeout( fireTheGuy, 300 );
 	} );
 
 	// open/close text input for name
