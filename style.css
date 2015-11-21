@@ -947,21 +947,28 @@ section {
 .top-robot {
   position: absolute;
   left: 5%;
-  -webkit-transform: translate(0, -348px) rotate(195deg);
-  -moz-transform: translate(0, -348px) rotate(195deg);
-  -ms-transform: translate(0, -348px) rotate(195deg);
-  -o-transform: translate(0, -348px) rotate(195deg);
   transform: translate(0, -348px) rotate(195deg);
   -webkit-animation: .2s 3s 1 forwards TopRobotDrop;
   -moz-animation: .2s 3s 1 forwards TopRobotDrop;
   -o-animation: .2s 3s 1 forwards TopRobotDrop;
   animation: .2s 3s 1 forwards TopRobotDrop;
   width: 230px;
-  height: 340px;
-  z-index: 5; }
+  height: auto; }
+
+.eyes {
+  animation: 3s 5s infinite forwards EyeBlink;
+  opacity: 1; }
 
 /* Keyframes */
 /* Robot dropping from the top */
+/* Robot eyes */
+@keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
 @-webkit-keyframes TopRobotDrop {
   0% {
     transform: translate(0, -348px) rotate(195deg); }
@@ -978,9 +985,9 @@ section {
   100% {
     transform: translate(0, -190px) rotate(195deg); } }
 @keyframes TopRobotDrop {
-  0% {
+  0%, 10% {
     transform: translate(0, -348px) rotate(195deg); }
-  100% {
+  90%, 100% {
     transform: translate(0, -190px) rotate(195deg); } }
 @media (max-width: 767px) {
   .top-robot {
@@ -993,7 +1000,7 @@ section {
     animation: none; }
 
   .top-robot-container {
-    height: 199px;
+    height: 200px;
     position: absolute;
     overflow: hidden;
     text-align: center;
@@ -1342,16 +1349,21 @@ section {
     transform: rotate(180deg); }
 
 .slider-lever .lever {
+  bottom: 20px;
   cursor: pointer;
   position: absolute;
-  right: 25px;
-  bottom: 0;
+  right: 0px;
   height: 150px;
-  -webkit-transform: rotate(-30deg);
-  -moz-transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg);
-  -o-transform: rotate(-30deg);
-  transform: rotate(-30deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: bottom center;
+  -moz-transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
+  -o-transform-origin: bottom center;
+  transform-origin: bottom center;
   -webkit-transition: right 0.2s, transform 0.2s;
   -moz-transition: right 0.2s, transform 0.2s;
   -ms-transition: right 0.2s, transform 0.2s;
@@ -1359,20 +1371,18 @@ section {
   transition: right 0.2s, transform 0.2s; }
 
 .slider-lever:not(.turned):hover .lever {
-  right: 20px;
-  -webkit-transform: rotate(-25deg);
-  -moz-transform: rotate(-25deg);
-  -ms-transform: rotate(-25deg);
-  -o-transform: rotate(-25deg);
-  transform: rotate(-25deg); }
+  -webkit-transform: rotate(-40deg);
+  -moz-transform: rotate(-40deg);
+  -ms-transform: rotate(-40deg);
+  -o-transform: rotate(-40deg);
+  transform: rotate(-40deg); }
 
 .slider-lever.turned .lever {
   -webkit-transform: rotate(30deg);
   -moz-transform: rotate(30deg);
   -ms-transform: rotate(30deg);
   -o-transform: rotate(30deg);
-  transform: rotate(30deg);
-  right: -25px; }
+  transform: rotate(30deg); }
 
 /* Keyframes */
 /* robot dropping */
