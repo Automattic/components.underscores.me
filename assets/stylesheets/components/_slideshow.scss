@@ -5,7 +5,6 @@
 }
 
 .theme-type {
-	padding-bottom: 10px;
 	position: relative;
 }
 
@@ -49,7 +48,7 @@
 
 .theme-text {
     float: right;
-    padding-bottom: 60px;
+    padding: $size__gutter 0 $size__gutter*2;
     width: 68%;
 
     .button {

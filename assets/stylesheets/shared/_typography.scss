@@ -32,11 +32,12 @@ h1 {
 h2 {
 	font-size: $font__size-h2;
 	color: $color__pink;
-	margin: 1em 0 0;
+	margin: $size__gutter/2 0 $size__gutter/4;
 }
 
 h3 {
 	font-size: $font__size-h3;
+	margin: $size__gutter/4 0;
 }
 
 h4 {

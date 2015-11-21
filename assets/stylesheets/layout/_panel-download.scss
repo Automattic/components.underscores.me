@@ -1,6 +1,6 @@
 #download-all {
 	background-color: $color__teal-light;
-	padding: 20px;
+	padding: $size__gutter/2 0;
 
 	::after {
 		clear: both;
@@ -31,8 +31,8 @@
 		max-width: 500px;
 	}
 
-	h4 {
-		margin: 0;
+	h2 {
+		color: lighten($color__navy, 10%);
 		position: relative;
 		z-index: 4;
 	}

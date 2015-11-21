@@ -137,7 +137,7 @@ get_header(); ?>
 				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear.svg' ); ?>
 
 				<div class="content-wrapper">
-					<h4>Just the basics, please</h4>
+					<h2>Just the basics, please</h2>
 					<p>Can&rsquo;t decide? Want to concoct your own starter theme?<br>
 						Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
 					<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/base.zip' ?>" class="button">Download the base!</a>

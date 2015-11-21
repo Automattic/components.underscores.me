@@ -266,10 +266,11 @@ h1 {
 h2 {
   font-size: 1.6em;
   color: #EB6361;
-  margin: 1em 0 0; }
+  margin: 20px 0 10px; }
 
 h3 {
-  font-size: 1.953em; }
+  font-size: 1.953em;
+  margin: 10px 0; }
 
 h4 {
   font-size: 1.563em; }
@@ -1030,7 +1031,7 @@ section {
     display: none; } }
 #download-all {
   background-color: #A0C3C6;
-  padding: 20px; }
+  padding: 20px 0; }
   #download-all ::after {
     clear: both;
     display: block;
@@ -1050,8 +1051,8 @@ section {
   #download-all .content-wrapper {
     float: right;
     max-width: 500px; }
-  #download-all h4 {
-    margin: 0;
+  #download-all h2 {
+    color: #233656;
     position: relative;
     z-index: 4; }
   #download-all p {
@@ -1184,7 +1185,6 @@ section {
   outline: none; }
 
 .theme-type {
-  padding-bottom: 10px;
   position: relative; }
 
 .theme-image {
@@ -1224,7 +1224,7 @@ section {
 
 .theme-text {
   float: right;
-  padding-bottom: 60px;
+  padding: 40px 0 80px;
   width: 68%; }
   .theme-text .button {
     display: inline-block; }
