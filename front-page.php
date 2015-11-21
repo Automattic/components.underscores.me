@@ -9,6 +9,11 @@
  * @package components
  */
 
+/**
+ * Load pattern maker file.
+ */
+require get_template_directory() . '/inc/pattern-maker.php';
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
