@@ -1,6 +1,4 @@
 ( function( $ ) {
-
-
 	/**
 	 * Slideshow
 	 */
@@ -13,16 +11,14 @@
 		if( 'none' == $( '.theme-text' ).css( 'float' ) ) {
 			// don't make a slideshow - we're on mobile
 			if( $('.theme-slider').hasClass('slick-initialized') ) {
+				// if there is already a slideshow, destroy it
 				$( '.theme-slider' ).slick('unslick');
 			}
-			console.log( 'remove slideshow' );
 
 		} else if( $('.theme-slider').hasClass('slick-initialized') ) {
-			// check if it's already initalized
-			console.log( 'already initalized' );
+			// check if slideshow is already initalized
 		} else {
-			console.log( 'add that slideshow' );
-
+			// not mobile, not initalized -- add that slideshow!
 			$( '.theme-slider' ).slick( {
 				arrows: false,
 				speed: 500,
@@ -39,55 +35,51 @@
 	} );
 
 
+	// Add prev/next arrows to individual slides
+	$( '.theme-slider .theme-text h3').append('<span class="next-type"><span class="screen-reader-text">Next</span></span>');
+	$( '.theme-slider .theme-text h3').prepend('<span class="prev-type"><span class="screen-reader-text">Previous</span></span>');
 
+	$('body').on('click', '.prev-type', function() {
+		$('.theme-slider').slick('slickNext');
+	});
 
-		// Add prev/next arrows to individual slides
-		$( '.theme-slider .theme-text h3').append('<span class="next-type"><span class="screen-reader-text">Next</span></span>');
-		$( '.theme-slider .theme-text h3').prepend('<span class="prev-type"><span class="screen-reader-text">Previous</span></span>');
+	$('body').on('click', '.next-type', function() {
+		$('.theme-slider').slick('slickPrev');
+	});
 
-		$('body').on('click', '.prev-type', function() {
-			$('.theme-slider').slick('slickNext');
-		});
+	// toggle navigation for dropping robots
 
-		$('body').on('click', '.next-type', function() {
-			$('.theme-slider').slick('slickPrev');
-		});
+	// run before slide changes
+	$('.theme-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide ){
 
-		// toggle navigation for dropping robots
+		var nextBot = $(".slick-slide[data-slick-index=" + nextSlide + "] .theme-image");
+		// add class to position next bot prior to animation
+		$( nextBot ).addClass( 'hide-bot' );
 
-		// run before slide changes
-		$('.theme-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide ){
+		// add same to 'cloned' slide bots, since they are kind of out of the regular slide flow
+		$( ".slick-cloned.slick-slide .theme-image" ).addClass( 'hide-bot' );
 
-			var nextBot = $(".slick-slide[data-slick-index=" + nextSlide + "] .theme-image");
-			// add class to position next bot prior to animation
-			$( nextBot ).addClass( 'hide-bot' );
+		// toggle class to turn on gears
+		$( '.slider-nav' ).addClass( 'gears-spinning' );
 
-			// add same to 'cloned' slide bots, since they are kind of out of the regular slide flow
-			$( ".slick-cloned.slick-slide .theme-image" ).addClass( 'hide-bot' );
+	} );
 
-			// toggle class to turn on gears
-			$( '.slider-nav' ).addClass( 'gears-spinning' );
+	//Run after slide changes
+	$('.theme-slider').on('afterChange', function(event, slick, currentSlide){
+		var currentBot = $(".slick-slide[data-slick-index=" + currentSlide + "] .theme-image");
 
-		} );
+		// recreate element to restart CSS3 animation
+		var el = $( currentBot ),
+		newone = el.clone( true );
+		el.before( newone );
+		$(el).remove();
 
-		//Run after slide changes
-		$('.theme-slider').on('afterChange', function(event, slick, currentSlide){
-			var currentBot = $(".slick-slide[data-slick-index=" + currentSlide + "] .theme-image");
+		// remove class that's hiding bot
+		$( newone ).removeClass( 'hide-bot' );
 
-			// recreate element to restart CSS3 animation
-			var el = $( currentBot ),
-			newone = el.clone( true );
-			el.before( newone );
-			$(el).remove();
+		// toggle class to turn off gears
+		$( '.slider-nav' ).removeClass( 'gears-spinning' );
 
-			// remove class that's hiding bot
-			$( newone ).removeClass( 'hide-bot' );
-
-			// toggle class to turn off gears
-			$( '.slider-nav' ).removeClass( 'gears-spinning' );
-
-		} );
-//	}
-
+	} );
 
 } )( jQuery );

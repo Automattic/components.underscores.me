@@ -36,10 +36,9 @@
 	transform:  translate(0px,-100%);
 }
 
-.theme-image img,
-.theme-image svg {
+.theme-image img {
 	bottom: 5px;
-	height: 90%;
+	height: auto;
 	left: 0;
 	margin: auto;
 	max-height: 100%;
@@ -235,7 +234,7 @@
 		width: 150px;
 	}
 
-	.theme-image svg {
+	.theme-image img {
 		bottom: auto;
 		height: 250px;
 		left: 50%;

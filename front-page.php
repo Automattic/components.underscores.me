@@ -49,7 +49,7 @@ get_header(); ?>
 				<div class="theme-slider">
 					<div class="theme-type">
 						<div class="theme-image">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-modern.svg' ); ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-modern.png' ?>"?>
 						</div>
 						<div class="theme-text">
 							<h3>Modern blog</h3>
@@ -60,7 +60,7 @@ get_header(); ?>
 
 					<div class="theme-type">
 						<div class="theme-image">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-classic.svg' ); ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-classic.png' ?>"?>
 						</div>
 						<div class="theme-text">
 							<h3>Classic blog</h3>
@@ -71,7 +71,7 @@ get_header(); ?>
 
 					<div class="theme-type">
 						<div class="theme-image">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-magazine.svg' ); ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-magazine.png' ?>"?>
 						</div>
 						<div class="theme-text">
 							<h3>Magazine</h3>
@@ -82,7 +82,7 @@ get_header(); ?>
 
 					<div class="theme-type">
 						<div class="theme-image">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-portfolio.svg' ); ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-portfolio.png' ?>"?>
 						</div>
 						<div class="theme-text">
 							<h3>Portfolio</h3>
@@ -93,7 +93,7 @@ get_header(); ?>
 
 					<div class="theme-type">
 						<div class="theme-image">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-business.svg' ); ?>
+							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-business.png' ?>"?>
 						</div>
 						<div class="theme-text">
 							<h3>Business</h3>
