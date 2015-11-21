@@ -8,7 +8,8 @@
   /* Don't display pipes! */
   #pipe-left,
   #pipe-chute,
-  #pipe-rightcrook {
+  #pipe-rightcrook,
+  .chute-wrapper {
     display: none;
   }
 
@@ -28,6 +29,7 @@
   }
 
   .intro-content {
+    margin-top: 175px;
     margin-left: 50px;
     min-height: 400px;
   }

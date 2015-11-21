@@ -29,56 +29,6 @@ section {
 	width: 100%;
 }
 
-.top-robot {
-	position: absolute;
-	left: 5%;
-	transform: translate( 0, -348px ) rotate(195deg);
-	-webkit-animation: .2s 3s 1 forwards TopRobotDrop;
-    -moz-animation: .2s 3s 1 forwards TopRobotDrop;
-    -o-animation: .2s 3s 1 forwards TopRobotDrop;
-	animation: .2s 3s 1 forwards TopRobotDrop;
-	width: 230px;
-	height: auto;
-}
-
-/* Keyframes */
-
-/* Robot dropping from the top */
-@-webkit-keyframes TopRobotDrop{
-	0% {
-		transform: translate( 0, -348px ) rotate(195deg);
-	}
-	100% {
-		transform: translate( 0, -190px ) rotate(195deg);
-	}
-}
-
-@-moz-keyframes TopRobotDrop{
-	0% {
-		transform: translate( 0, -348px ) rotate(195deg);
-	}
-	100% {
-		transform: translate( 0, -190px ) rotate(195deg);
-	}
-}
-@-o-keyframes TopRobotDrop{
-	0% {
-		transform: translate( 0, -348px ) rotate(195deg);
-	}
-	100% {
-		transform: translate( 0, -190px ) rotate(195deg);
-	}
-}
-
-@keyframes TopRobotDrop{
-	0% {
-		transform: translate( 0, -348px ) rotate(195deg);
-	}
-	100% {
-		transform: translate( 0, -190px ) rotate(195deg);
-	}
-}
-
 .site-footer {
 	background: darken($color__offwhite, 8%);
 	clear: both;
