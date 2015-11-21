@@ -1,61 +1,76 @@
 /** Robot **/
 
 .top-robot {
-  position: absolute;
-  left: 5%;
-  -webkit-transform: translate( 0, -348px ) rotate(195deg);
-  -moz-transform: translate( 0, -348px ) rotate(195deg);
-  -ms-transform: translate( 0, -348px ) rotate(195deg);
-  -o-transform: translate( 0, -348px ) rotate(195deg);
+	position: absolute;
+	left: 5%;
+	transform: translate( 0, -348px ) rotate(195deg);
+	-webkit-animation: .2s 3s 1 forwards TopRobotDrop;
+	-moz-animation: .2s 3s 1 forwards TopRobotDrop;
+	-o-animation: .2s 3s 1 forwards TopRobotDrop;
+	animation: .2s 3s 1 forwards TopRobotDrop;
+	width: 230px;
+	height: auto;
+}
 
-  transform: translate( 0, -348px ) rotate(195deg);
-  -webkit-animation: .2s 3s 1 forwards TopRobotDrop;
-    -moz-animation: .2s 3s 1 forwards TopRobotDrop;
-    -o-animation: .2s 3s 1 forwards TopRobotDrop;
-  animation: .2s 3s 1 forwards TopRobotDrop;
-  width: 230px;
-  height: 340px;
-  z-index: 5;
+.eyes {
+	// -webkit-animation: .2s 3s 1 forwards TopRobotDrop;
+	// -moz-animation: .2s 3s 1 forwards TopRobotDrop;
+	// -o-animation: .2s 3s 1 forwards TopRobotDrop;
+	animation: 3s 5s infinite forwards EyeBlink;
+	opacity: 1;
 }
 
 /* Keyframes */
 
 /* Robot dropping from the top */
+/* Robot eyes */
+
+@keyframes EyeBlink {
+	0%, 45% {
+		opacity: 1;
+	}
+	45.1% {
+		opacity: 0;
+	}
+	50%, 100% {
+		opacity: 1;
+	}
+}
+
 @-webkit-keyframes TopRobotDrop{
-  0% {
-    transform: translate( 0, -348px ) rotate(195deg);
-  }
-  100% {
-    transform: translate( 0, -190px ) rotate(195deg);
-  }
+	0% {
+		transform: translate( 0, -348px ) rotate(195deg);
+	}
+	100% {
+		transform: translate( 0, -190px ) rotate(195deg);
+	}
 }
 
 @-moz-keyframes TopRobotDrop{
-  0% {
-    transform: translate( 0, -348px ) rotate(195deg);
-  }
-  100% {
-    transform: translate( 0, -190px ) rotate(195deg);
-  }
+	0% {
+		transform: translate( 0, -348px ) rotate(195deg);
+	}
+	100% {
+		transform: translate( 0, -190px ) rotate(195deg);
+	}
 }
 @-o-keyframes TopRobotDrop{
-  0% {
-    transform: translate( 0, -348px ) rotate(195deg);
-  }
-  100% {
-    transform: translate( 0, -190px ) rotate(195deg);
-  }
+	0% {
+		transform: translate( 0, -348px ) rotate(195deg);
+	}
+	100% {
+		transform: translate( 0, -190px ) rotate(195deg);
+	}
 }
 
 @keyframes TopRobotDrop{
-  0% {
-    transform: translate( 0, -348px ) rotate(195deg);
-  }
-  100% {
-    transform: translate( 0, -190px ) rotate(195deg);
-  }
+	0%, 10% {
+		transform: translate( 0, -348px ) rotate(195deg);
+	}
+	90%, 100% {
+		transform: translate( 0, -190px ) rotate(195deg);
+	}
 }
-
 
 @include mobile {
 	.top-robot {
@@ -69,7 +84,7 @@
 	}
 
 	.top-robot-container {
-		height: 199px;
+		height: 200px;
 		position: absolute;
 		overflow: hidden;
 		text-align: center;
