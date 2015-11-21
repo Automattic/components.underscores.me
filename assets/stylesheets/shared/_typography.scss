@@ -1,10 +1,14 @@
+html {
+	font-size: 62.5%;
+}
+
 body,
 button,
 input,
 select,
 textarea {
 	font-family: $font__main;
-	@include font-size(1);
+	@include font-size(1.7);
 	line-height: $font__line-height-body;
 }
 
@@ -21,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	color: $color__grey;
 	font-family: $font__sans;
-	font-size: $font__size-h1;
+	@include font-size(2.8);
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	a {
@@ -30,13 +34,13 @@ h1 {
 }
 
 h2 {
-	font-size: $font__size-h2;
+	@include font-size(2.4);
 	color: $color__pink;
 	margin: $size__gutter/2 0 $size__gutter/4;
 }
 
 h3 {
-	font-size: $font__size-h3;
+	@include font-size(1.9);
 	margin: $size__gutter/4 0;
 }
 

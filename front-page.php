@@ -60,7 +60,7 @@ get_header(); ?>
 							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-modern.png' ?>"?>
 						</div>
 						<div class="theme-text">
-							<h3>Modern blog</h3>
+							<h2 class="theme-type-title">Modern blog</h2>
 							<p>You think the world could be a little bit less cluttered. You like clean lines, simple shapes, and contemporary design. You want the focus to be on your content, not a lot of other stuff. With a single-column layout, a large featured image, and a slide-out panel for widgets and navigation, a modern blog is the perfect fit.</p>
 							<div class="theme-input">
 								<input type="text">
@@ -74,7 +74,7 @@ get_header(); ?>
 							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-classic.png' ?>"?>
 						</div>
 						<div class="theme-text">
-							<h3>Classic blog</h3>
+							<h2 class="theme-type-title">Classic blog</h2>
 							<p>Maybe you prefer the classics. Austen. Dickens. AC/DC. A classic blog is your perfect match. Great for food blogs, schools, or anyone else who has a lot of content to display in a sidebar, a classic blog features widgets in sidebar, just like you remember.</p>
 							<div class="theme-input">
 								<input type="text">
@@ -88,7 +88,7 @@ get_header(); ?>
 							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-magazine.png' ?>"?>
 						</div>
 						<div class="theme-text">
-							<h3>Magazine</h3>
+							<h2 class="theme-type-title">Magazine</h2>
 							<p>Stop the press! A magazine theme is ideal for showcasing content and images in a dynamic way. This theme features a front-page template with a grid of featured images, and a two-column blog layout that displays excerpts for added interest.</p>
 							<div class="theme-input">
 								<input type="text">
@@ -102,7 +102,7 @@ get_header(); ?>
 							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-portfolio.png' ?>"?>
 						</div>
 						<div class="theme-text">
-							<h3>Portfolio</h3>
+							<h2 class="theme-type-title">Portfolio</h2>
 							<p>If you&rsquo;re the creative type, this is the theme package for you. Image-focused, the portfolio layout uses a portfolio custom post type to easily keep your portfolio items separate from regular posts. It features a gridded portfolio layout, a simple one-column blog template, and a large featured image header.</p>
 							<div class="theme-input">
 								<input type="text">
@@ -116,8 +116,8 @@ get_header(); ?>
 							<img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-business.png' ?>"?>
 						</div>
 						<div class="theme-text">
-							<h3>Business</h3>
-							<p>You've got a million things to worry about; don&rsquo;t let your theme be another. A business starter theme comes with a front page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to add authenticity to your business.</p>
+							<h2 class="theme-type-title">Business</h2>
+							<p>You&rsquo;ve got a million things to worry about; don&rsquo;t let your theme be another. A business starter theme comes with a front page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to add authenticity to your business.</p>
 							<div class="theme-input">
 								<input type="text">
 							</div>
