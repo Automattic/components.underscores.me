@@ -6,9 +6,9 @@
 @include mobile {
 
   /* Don't display pipes! */
-  #pipe-top,
   #pipe-left,
-  #pipe-chute {
+  #pipe-chute,
+  #pipe-rightcrook {
     display: none;
   }
 
@@ -33,7 +33,7 @@
   }
 }
 
-@include desktop {
+@include tablet {
   #intro .wrap {
     padding-top: 0;
     position: relative;
