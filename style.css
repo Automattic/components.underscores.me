@@ -990,7 +990,7 @@ section {
     animation: none; }
 
   .top-robot-container {
-    height: 200px;
+    height: 199px;
     position: absolute;
     overflow: hidden;
     text-align: center;
@@ -1220,7 +1220,7 @@ section {
   max-height: 100%;
   max-width: 100%;
   position: absolute;
-  width: 100%; }
+  width: 90%; }
 
 .theme-text {
   float: right;
