@@ -18,7 +18,7 @@ get_header(); ?>
 						</header><!-- .page-header -->
 
 						<div class="page-content">
-							<a href="/"><?php esc_html_e( 'Head back home &raquo;', 'components' ); ?></a>
+							<a href="/"><?php esc_html_e( '&laquo; Head back home', 'components' ); ?></a>
 						</div><!-- .page-content -->
 					</div>
 					<div class="image-404">
