@@ -153,7 +153,7 @@ get_header(); ?>
 					<p>Every Components package comes with:</p>
 					<ul>
 						<li>Design-agnostic layout patterns</li>
-						<li>Well-organised SCSS</li>
+						<li>Well-organized SCSS</li>
 						<li>Mobile-first layouts</li>
 						<li>Mobile and desktop menus</li>
 						<li>A simple base</li>
