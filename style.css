@@ -1259,6 +1259,22 @@ section {
 .prev-type:before {
   content: "\2039"; }
 
+.slider-lever .lever {
+  position: absolute;
+  right: 25px;
+  bottom: 0;
+  height: 150px;
+  transform: rotate(-30deg);
+  -webkit-transition: right 0.2s, transform 0.2s;
+  -moz-transition: right 0.2s, transform 0.2s;
+  transition: right 0.2s, transform 0.2s; }
+
+.slider-lever.turned .lever {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  transform: rotate(30deg);
+  right: -25px; }
+
 /* Keyframes */
 /* robot dropping */
 @keyframes robotDrop {

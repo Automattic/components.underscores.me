@@ -79,7 +79,13 @@
 
 		// toggle class to turn off gears
 		$( '.slider-nav' ).removeClass( 'gears-spinning' );
+		$( '.slider-lever').removeClass( 'turned' );
 
+	} );
+
+	$('.slider-lever').click( function() {
+		$( this ).addClass( 'turned' );
+		$('.theme-slider').slick('slickPrev');
 	} );
 
 } )( jQuery );

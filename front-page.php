@@ -112,7 +112,9 @@ get_header(); ?>
 				</div><!-- .theme-slider -->
 				<div class="slider-nav">
 					<div class="slider-nav-bg"></div>
-					<div class="slider-lever"></div>
+					<div class="slider-lever">
+						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/lever.svg' ); ?>
+					</div>
 				</div>
 			</div><!-- .wrap -->
 		</section><!-- #types -->
