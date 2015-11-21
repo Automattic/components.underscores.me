@@ -22,22 +22,17 @@
 	}
 
 	#spotlight {
-			position: absolute;
-			top: 0;
-			left: -128px;
-			width: 542px;
-			height: 100%;
-			margin-top: 60px;
+		position: absolute;
+		top: 0;
+		left: -128px;
+		width: 542px;
+		height: 100%;
+		margin-top: 60px;
 
-			path {
-				fill:#1f344c;
-				opacity: 0.5;
-			}
-
-			ellipse {
-				fill: #284463;
-				opacity: 0;
-			}
+		path {
+			fill: url(#Gradient1);
+			opacity: 0.5;
+		}
 	}
 }
 

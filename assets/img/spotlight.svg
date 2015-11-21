@@ -1,4 +1,9 @@
 <svg id="spotlight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 435 435.3">
-	<path class="st0" d="M266.7 0h-98.4L0 385h435z"/>
-	<ellipse class="st1" cx="217.5" cy="385.3" rx="217.5" ry="50"/>
+	<defs>
+		<linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#1f344c"/>
+	        <stop offset="100%" stop-color="#1f344c" stop-opacity="0"/>
+	    </linearGradient>
+	</defs>
+	<path class="st0" d="M266.7 0h-98.4L0 385h435z" />
 </svg>
