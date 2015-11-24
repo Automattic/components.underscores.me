@@ -1,4 +1,3 @@
-
 /* Robots */
 .slick-slide:focus {
 	outline: none;
@@ -83,8 +82,6 @@
 	}
 }
 
-/* conveyor belt */
-
 /* Conveyor belt */
 .slider-nav {
 	border: 5px solid lighten( $color__teal, 10% );
@@ -157,10 +154,10 @@
 	background: url(assets/img/arrow.svg) 0 0 no-repeat;
 	content: '';
 	display: inline-block;
-	height: 28px;
+	height: 24px;
 	margin: 0 4px 0 0;
 	vertical-align: -3px;
-	width: 30px;
+	width: 24px;
 }
 
 .next-type {

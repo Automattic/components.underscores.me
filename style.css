@@ -1093,7 +1093,7 @@ section {
   #types a {
     color: #f3f2ed; }
   #types h2 {
-    color: #509ea3; }
+    color: #A0C3C6; }
   #types .wrap {
     position: relative; }
   #types .spotlight-controls {
@@ -1360,7 +1360,6 @@ section {
   .theme-input.open-input {
     width: 40%; }
 
-/* conveyor belt */
 /* Conveyor belt */
 .slider-nav {
   border: 5px solid #6eb3b8;
@@ -1424,10 +1423,10 @@ section {
   background: url(assets/img/arrow.svg) 0 0 no-repeat;
   content: '';
   display: inline-block;
-  height: 28px;
+  height: 24px;
   margin: 0 4px 0 0;
   vertical-align: -3px;
-  width: 30px; }
+  width: 24px; }
 
 .next-type {
   margin-right: 5px; }
