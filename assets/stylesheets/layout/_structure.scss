@@ -35,7 +35,9 @@ section {
 	clear: both;
 	color: rgba($color__navy, .6);
 	font-family: $font__serif;
-	@include font-size(0.8);
+	@include font-size(1.2);
+	font-weight: 500;
+	letter-spacing: 1px;
 	padding: 1.5em 0;
 	text-align: center;
 	text-transform: uppercase;

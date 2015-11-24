@@ -1,31 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="components-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 523.2 85.7" style="enable-background:new 0 0 523.2 85.7;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#CCCAC8;}
-	.st1{font-family:'fatfrank';}
-	.st2{font-size:77.2295px;}
-	.st3{letter-spacing:1;}
-	.st4{fill:none;stroke:#4C9EA4;stroke-miterlimit:10;}
-</style>
-<font horiz-adv-x="1000">
-<!-- Copyright &#xC2;&#xA9; 2014 by Jeff Schreiber. All rights reserved. -->
-<!-- Copyright: Copyright 2015 Adobe System Incorporated. All rights reserved. -->
-<font-face font-family="fatfrank" units-per-em="1000" underline-position="-100" underline-thickness="50"/>
-<missing-glyph horiz-adv-x="500" d="M0,0l500,0l0,700l-500,0M250,395l-170,255l340,0M280,350l170,255l0,-510M80,50l170,255l170,-255M50,605l170,-255l-170,-255z"/>
-<glyph unicode="C" horiz-adv-x="604" d="M517,200C513,209 506,212 498,208C461,187 425,180 382,180C292,180 232,246 232,345C232,444 292,510 382,510C425,510 461,503 498,482C506,478 513,481 517,490l66,139C586,636 582,643 574,647C516,683 438,705 364,705C158,705 20,561 20,345C20,129 158,-15 364,-15C438,-15 516,7 574,43C582,47 586,54 583,61z"/>
-<glyph unicode="E" horiz-adv-x="550" d="M242,180l0,85l194,0C445,265 452,272 453,278l14,140C468,424 463,431 454,431l-212,0l0,79l261,0C512,510 519,516 519,525l0,151C519,683 512,690 503,690l-455,0C39,690 34,685 34,676l0,-661C36,8 43,0 50,0l465,0C523,0 530,7 530,14l0,153C530,174 523,180 515,180z"/>
-<glyph unicode="M" horiz-adv-x="862" d="M603,690C590,690 575,681 569,670l-138,-382l-138,382C287,681 272,690 259,690l-209,0C42,690 36,683 36,675l0,-661C36,7 42,0 50,0l185,0C243,0 250,7 250,14l0,294l101,-293C354,7 367,0 376,0l110,0C495,0 508,7 511,15l101,293l0,-294C612,7 619,0 627,0l185,0C820,0 826,7 826,14l0,661C826,683 820,690 812,690z"/>
-<glyph unicode="N" horiz-adv-x="661" d="M433,690C426,690 419,683 419,675l0,-309l-173,311C242,685 232,690 223,690l-173,0C42,690 36,683 36,675l0,-661C36,7 42,0 50,0l177,0C236,0 242,7 242,14l0,310l174,-311C421,5 430,0 437,0l173,0C619,0 625,7 625,14l0,661C625,683 619,690 610,690z"/>
-<glyph unicode="O" horiz-adv-x="763" d="M381,-14C168,-14 26,130 26,345C26,562 168,706 381,706C594,706 736,562 736,345C736,130 594,-14 381,-14M381,504C299,504 244,440 244,345C244,250 299,186 381,186C463,186 518,250 518,345C518,440 463,504 381,504z"/>
-<glyph unicode="P" horiz-adv-x="572" d="M50,690C43,690 36,683 36,675l0,-661C36,7 43,0 50,0l179,0C238,0 245,7 245,14l0,200l41,0C461,214 566,309 566,452C566,595 461,690 286,690M243,393l0,118l52,0C330,511 354,487 354,452C354,417 330,393 295,393z"/>
-<glyph unicode="S" horiz-adv-x="535" d="M28,69C25,64 28,57 36,51C86,11 174,-15 258,-15C412,-15 515,74 515,207C515,427 232,423 232,482C232,504 252,518 283,518C318,515 375,494 424,466C432,461 439,464 442,474l63,141C508,620 505,628 497,633C434,676 344,705 273,705C121,705 20,616 20,482C20,264 301,267 301,208C301,185 280,170 248,170C210,173 155,192 109,218C101,223 94,220 91,210z"/>
-<glyph unicode="T" horiz-adv-x="566" d="M14,690C7,690 0,683 0,675l0,-151C0,516 7,510 14,510l166,0l0,-496C180,7 187,0 195,0l177,0C380,0 386,7 386,14l0,496l149,0C542,510 550,516 551,524l15,152C567,683 561,690 552,690z"/>
-</font>
-
-	<g id="Logo-mark">
-	<text transform="matrix(1 0 0 1 2.5001 67.7589)" class="st0 st1 st2 st3">COMPONENTS</text>
-	<text transform="matrix(1 0 0 1 0.5 65.7588)" class="st4 st1 st2 st3">COMPONENTS</text>
-</g>
+<svg id="components-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 523.2 85.7">
+	<style>
+		.fill, .stroke {
+			font-family: &apos;fatfrank&apos;;
+			font-size: 77.2295px;
+			letter-spacing: 1;
+		}
+		.stroke {
+			fill: none;
+			stroke: #4c9ea4;
+			stroke-miterlimit: 10;
+		}
+	</style>
+	<defs>
+		<pattern class="line-pattern" id="stripePattern" patternUnits="userSpaceOnUse" width="8" height="8">
+			<path fill="#cbcac8" d="M0 0h8v8H0V0z"/>
+			<path fill="#f3f2ed" d="M7 0v1h1V0H7zM6 1v1h1V1H6zM5 2v1h1V2H5zM4 3v1h1V3H4zM3 4v1h1V4H3zM2 5v1h1V5H2zM1 6v1h1V6H1zM0 7v1h1V7H0z"/>
+		</pattern>
+	</defs>
+	<font horiz-adv-x="1000"><font-face font-family="fatfrank" underline-position="-100" underline-thickness="50"/>
+		<glyph unicode="C" horiz-adv-x="604" d="M517 200c-4 9-11 12-19 8-37-21-73-28-116-28-90 0-150 66-150 165s60 165 150 165c43 0 79-7 116-28 8-4 15-1 19 8l66 139c3 7-1 14-9 18-58 36-136 58-210 58-206 0-344-144-344-360S158-15 364-15c74 0 152 22 210 58 8 4 12 11 9 18z"/>
+		<glyph unicode="E" horiz-adv-x="550" d="M242 180v85h194c9 0 16 7 17 13l14 140c1 6-4 13-13 13H242v79h261c9 0 16 6 16 15v151c0 7-7 14-16 14H48c-9 0-14-5-14-14V15c2-7 9-15 16-15h465c8 0 15 7 15 14v153c0 7-7 13-15 13z"/>
+		<glyph unicode="M" horiz-adv-x="862" d="M603 690c-13 0-28-9-34-20L431 288 293 670c-6 11-21 20-34 20H50c-8 0-14-7-14-15V14c0-7 6-14 14-14h185c8 0 15 7 15 14v294L351 15c3-8 16-15 25-15h110c9 0 22 7 25 15l101 293V14c0-7 7-14 15-14h185c8 0 14 7 14 14v661c0 8-6 15-14 15z"/>
+		<glyph unicode="N" horiz-adv-x="661" d="M433 690c-7 0-14-7-14-15V366L246 677c-4 8-14 13-23 13H50c-8 0-14-7-14-15V14c0-7 6-14 14-14h177c9 0 15 7 15 14v310L416 13c5-8 14-13 21-13h173c9 0 15 7 15 14v661c0 8-6 15-15 15z"/>
+		<glyph unicode="O" horiz-adv-x="763" d="M381-14C168-14 26 130 26 345c0 217 142 361 355 361s355-144 355-361c0-215-142-359-355-359m0 518c-82 0-137-64-137-159s55-159 137-159 137 64 137 159-55 159-137 159z"/>
+		<glyph unicode="P" horiz-adv-x="572" d="M50 690c-7 0-14-7-14-15V14c0-7 7-14 14-14h179c9 0 16 7 16 14v200h41c175 0 280 95 280 238S461 690 286 690m-43-297v118h52c35 0 59-24 59-59s-24-59-59-59z"/>
+		<glyph unicode="S" horiz-adv-x="535" d="M28 69c-3-5 0-12 8-18 50-40 138-66 222-66 154 0 257 89 257 222 0 220-283 216-283 275 0 22 20 36 51 36 35-3 92-24 141-52 8-5 15-2 18 8l63 141c3 5 0 13-8 18-63 43-153 72-224 72-152 0-253-89-253-223 0-218 281-215 281-274 0-23-21-38-53-38-38 3-93 22-139 48-8 5-15 2-18-8z"/>
+		<glyph unicode="T" horiz-adv-x="566" d="M14 690c-7 0-14-7-14-15V524c0-8 7-14 14-14h166V14c0-7 7-14 15-14h177c8 0 14 7 14 14v496h149c7 0 15 6 16 14l15 152c1 7-5 14-14 14z"/>
+	</font>
+	<text transform="translate(2.5 67.76)" class="fill" fill="url(#stripePattern)">COMPONENTS</text>
+	<text transform="translate(.5 65.76)" class="stroke">COMPONENTS</text>
 </svg>

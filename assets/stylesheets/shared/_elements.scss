@@ -12,10 +12,6 @@ body {
 	background: $color__offwhite;
 }
 
-p {
-	font-size: 17px;
-}
-
 a {
 	border-bottom: 1px solid rgba($color__pink, .2);
 	color: rgba($color__pink, .8);
@@ -73,7 +69,7 @@ li {
 			content: '';
 			display: inline-block;
 			background: url('assets/img/tiny-gear.svg') no-repeat;
-			margin: 0 3px 0 0;
+			margin: 0 5px 0 0;
 			height: 14px;
 			width: 14px;
 			vertical-align: -1px;

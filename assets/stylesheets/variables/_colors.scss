@@ -17,6 +17,14 @@ $color__grey: #cbcac8;
   fill: $color__grey;
 }
 
+.grey-light {
+  fill: $color__grey;
+}
+
+.grey-dark {
+  fill: darken($color__grey, 20%);
+}
+
 .navy {
   fill: $color__navy;
 }

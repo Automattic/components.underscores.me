@@ -52,6 +52,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .grey {
   fill: #cbcac8; }
 
+.grey-light {
+  fill: #cbcac8; }
+
+.grey-dark {
+  fill: #999794; }
+
 .navy {
   fill: #141f32; }
 
@@ -237,14 +243,17 @@ th {
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
+html {
+  font-size: 62.5%; }
+
 body,
 button,
 input,
 select,
 textarea {
   font-family: "adelle-sans", "Open Sans", sans-serif;
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 28.9px;
+  font-size: 1.7rem;
   line-height: 1.7; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -257,19 +266,22 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   color: #cbcac8;
   font-family: "adelle-sans", "Open Sans", sans-serif;
-  font-size: 3em;
+  font-size: 47.6px;
+  font-size: 2.8rem;
   letter-spacing: 2px;
   text-transform: uppercase; }
   h1 a {
     color: #cbcac8; }
 
 h2 {
-  font-size: 1.6em;
+  font-size: 40.8px;
+  font-size: 2.4rem;
   color: #EB6361;
   margin: 20px 0 10px; }
 
 h3 {
-  font-size: 1.953em;
+  font-size: 32.3px;
+  font-size: 1.9rem;
   margin: 10px 0; }
 
 h4 {
@@ -301,7 +313,7 @@ address {
 
 pre {
   font-family: "Courier 10 Pitch", Courier, monospace;
-  font-size: 15px;
+  font-size: 15.9375px;
   font-size: 0.9375rem;
   line-height: 1.7;
   margin-bottom: 1.6em;
@@ -311,7 +323,7 @@ pre {
 
 code, kbd, tt, var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-  font-size: 15px;
+  font-size: 15.9375px;
   font-size: 0.9375rem; }
 
 abbr, acronym {
@@ -338,9 +350,6 @@ html {
 
 body {
   background: #f3f2ed; }
-
-p {
-  font-size: 17px; }
 
 a {
   border-bottom: 1px solid rgba(235, 99, 97, 0.2);
@@ -385,7 +394,7 @@ li {
     content: '';
     display: inline-block;
     background: url("assets/img/tiny-gear.svg") no-repeat;
-    margin: 0 3px 0 0;
+    margin: 0 5px 0 0;
     height: 14px;
     width: 14px;
     vertical-align: -1px; }
@@ -419,11 +428,9 @@ input[type="submit"],
   background: #EB6361;
   box-shadow: 0 6px #e53634;
   color: #f3f2ed;
-  font-size: 12px;
-  font-size: 0.75rem;
   font-family: "factoria", "Roboto Slab", serif;
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 28.9px;
+  font-size: 1.7rem;
   font-weight: 500;
   line-height: 1;
   padding: 1em 2em .8em;
@@ -694,7 +701,7 @@ a:hover, a:active {
     clip: auto !important;
     color: #141f32;
     display: block;
-    font-size: 14px;
+    font-size: 14.875px;
     font-size: 0.875rem;
     font-weight: bold;
     height: auto;
@@ -798,8 +805,10 @@ section {
   clear: both;
   color: rgba(20, 31, 50, 0.6);
   font-family: "factoria", "Roboto Slab", serif;
-  font-size: 12.8px;
-  font-size: 0.8rem;
+  font-size: 20.4px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
   padding: 1.5em 0;
   text-align: center;
   text-transform: uppercase;
@@ -949,20 +958,88 @@ section {
   position: absolute;
   left: 5%;
   transform: translate(0, -348px) rotate(195deg);
-  -webkit-animation: .2s 3s 1 forwards TopRobotDrop;
-  -moz-animation: .2s 3s 1 forwards TopRobotDrop;
-  -o-animation: .2s 3s 1 forwards TopRobotDrop;
-  animation: .2s 3s 1 forwards TopRobotDrop;
+  -webkit-animation: .2s 1.5s 1 forwards TopRobotDrop;
+  -moz-animation: .2s 1.5s 1 forwards TopRobotDrop;
+  -o-animation: .2s 1.5s 1 forwards TopRobotDrop;
+  animation: .2s 1.5s 1 forwards TopRobotDrop;
   width: 230px;
-  height: auto; }
+  height: auto;
+  z-index: 10; }
 
 .eyes {
+  -webkit-animation: 3s 5s infinite forwards EyeBlink;
+  -moz-animation: 3s 5s infinite forwards EyeBlink;
+  -o-animation: 3s 5s infinite forwards EyeBlink;
   animation: 3s 5s infinite forwards EyeBlink;
   opacity: 1; }
 
+.robot-head {
+  -webkit-animation: 20s 3s infinite forwards HeadShake;
+  -moz-animation: 20s 3s infinite forwards HeadShake;
+  -o-animation: 20s 3s infinite forwards HeadShake;
+  animation: 20s 3s infinite forwards HeadShake;
+  transform-origin: center center; }
+
 /* Keyframes */
-/* Robot dropping from the top */
-/* Robot eyes */
+/* Robot shaky head */
+@-webkit-keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
+@-moz-keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
+@-o-keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
+@keyframes HeadShake {
+  0%, 28% {
+    transform: rotate(0deg); }
+  30% {
+    transform: rotateY(180deg); }
+  70% {
+    transform: rotateY(180deg); }
+  72%, 100% {
+    transform: rotate(0deg); } }
+/* Robot blinky eyes */
+@-webkit-keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
+@-moz-keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
+@-o-keyframes EyeBlink {
+  0%, 45% {
+    opacity: 1; }
+  45.1% {
+    opacity: 0; }
+  50%, 100% {
+    opacity: 1; } }
 @keyframes EyeBlink {
   0%, 45% {
     opacity: 1; }
@@ -970,6 +1047,7 @@ section {
     opacity: 0; }
   50%, 100% {
     opacity: 1; } }
+/* Robot dropping from the top */
 @-webkit-keyframes TopRobotDrop {
   0% {
     transform: translate(0, -348px) rotate(195deg); }
@@ -1013,11 +1091,6 @@ section {
   #types a {
     color: #f3f2ed; }
   #types h2 {
-    color: #f3f2ed;
-    float: right;
-    margin: 0;
-    width: 68%; }
-  #types h3 {
     color: #509ea3; }
   #types .wrap {
     position: relative; }
@@ -1030,7 +1103,7 @@ section {
     left: -128px;
     width: 542px;
     height: 100%;
-    margin-top: 60px; }
+    margin-top: 45px; }
   #types .dim.spotlight-controls {
     opacity: 0; }
 

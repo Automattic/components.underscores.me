@@ -36,8 +36,8 @@
 
 
 	// Add prev/next arrows to individual slides
-	$( '.theme-slider .theme-text h3').prepend('<span class="next-type"><span class="screen-reader-text">Next</span></span>');
-	$( '.theme-slider .theme-text h3').prepend('<span class="prev-type"><span class="screen-reader-text">Previous</span></span>');
+	$( '.theme-slider .theme-text .theme-type-title').prepend('<span class="next-type"><span class="screen-reader-text">Next</span></span>');
+	$( '.theme-slider .theme-text .theme-type-title').prepend('<span class="prev-type"><span class="screen-reader-text">Previous</span></span>');
 
 	$('body').on('click', '.prev-type', function() {
 		$('.theme-slider').slick('slickNext');
