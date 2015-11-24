@@ -335,7 +335,6 @@ function theme_pattern_library_create_type_zips() {
 	// Portfolio Traditional
 	$portfolio = get_template_directory() . '/downloads/' . PORTFOLIO;
 	theme_pattern_library_create_zip( $portfolio, $downloads, true );
-
 }
 
 /**
