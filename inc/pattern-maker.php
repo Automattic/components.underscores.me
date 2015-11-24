@@ -356,11 +356,12 @@ function theme_pattern_library_init() {
 /**
  * Let's set an expiration on the last generation of the theme types and get current time.
  */
+// We only need to grab the file info of one type zip file since all files are created at once.
 $filename = get_template_directory() . '/downloads/' . BASE . '.zip';
 if ( file_exists( $filename ) ) {
 	$fileTimeStamp = date( filemtime( $filename ) );
 	$time = time();
-	$expired = 60 /* seconds */ * 30 /* minutes = 1800 seconds */;
+	$expired = 1800; /* Equal to 30 minutes. */
 }
 
 /**
@@ -368,13 +369,6 @@ if ( file_exists( $filename ) ) {
  * No need to fetch the pattern library and generate types all the time.
  * If no files exist, let's generate types anyway.
  */
-if ( file_exists( $filename ) && $time - $fileTimeStamp >= $expired ) {
-	add_action( 'wp_footer', 'theme_pattern_library_init' );
-}
-
-/**
- * If no files exist, let's generate types anyway.
- */
-if ( ! file_exists( $filename ) ) {
+if ( file_exists( $filename ) && $expired <= $time - $fileTimeStamp  || ! file_exists( $filename ) ) {
 	add_action( 'wp_footer', 'theme_pattern_library_init' );
 }
