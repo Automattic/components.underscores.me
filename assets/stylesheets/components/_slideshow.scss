@@ -110,22 +110,22 @@
 	border-radius: 90px;
 	content: "";
 	display: block;
-	height: 86px;
+	height: 106px;
 	position: absolute;
-	top: -22px;
-	width: 86px;
-	-moz-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
-	-webkit-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
-	-ms-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
-	animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite;
+	top: -32px;
+	width: 106px;
+	-moz-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite forwards;
+	-webkit-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite forwards;
+	-ms-animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite forwards;
+	animation: gearsSpinning cubic-bezier(0,.99,.58,.98) 0.5s infinite forwards;
 }
 
 .slider-nav:before {
-	left: -20px;
+	left: -30px;
 }
 
 .slider-nav:after {
-	right: -20px;
+	right: -30px;
 }
 
 /* gears spinning animation */
