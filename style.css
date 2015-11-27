@@ -957,6 +957,8 @@ section {
 .top-robot {
   position: absolute;
   left: 5%;
+  -ms-transform: translate(0, -193px) rotate(195deg);
+  /* make sure robot is visible in IE9, since keyframes are not supported */
   transform: translate(0, -400px) rotate(195deg);
   -webkit-animation: .2s 1.5s 1 forwards TopRobotDrop;
   -moz-animation: .2s 1.5s 1 forwards TopRobotDrop;
