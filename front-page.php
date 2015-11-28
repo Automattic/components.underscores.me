@@ -56,8 +56,11 @@ get_header(); ?>
 				</div>
 				<div class="theme-slider">
 
-					<?php // Iterate through each theme type and output formatted text
+					<?php
 					require get_template_directory() . '/components/theme-types.php';
+					// Randomise order of types so as not to favour any in particular
+					shuffle( $types );
+					// Iterate through each theme type and output formatted text
 					foreach ( $types as $type ) : ?>
 						<div class="theme-type">
 							<div class="theme-image">
