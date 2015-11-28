@@ -9,6 +9,7 @@
 }
 
 .theme-image {
+	bottom: 0;
 	height: 100%;
 	position: absolute;
 	text-align: center;
@@ -18,6 +19,9 @@
 	-ms-transform-origin: 0 0;
 	transform-origin: 0 0;
 	width: 32%;
+}
+
+.theme-image.drop-bot {
 	-webkit-animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
 	-webkit-animation-iteration-count: 1;
 	-moz-animation: robotDrop cubic-bezier(.68,1.81,.2,.66) 0.4s;
@@ -31,29 +35,28 @@
 }
 
 .hide-bot {
-	-webkit-transform: translate(0px,-100%);
-	transform: translate(0px,-100%);
+	-webkit-transform: translate(0, -100%);
+	transform: translate(0, -100%);
 }
 
-.theme-image img {
+.theme-image svg {
 	bottom: 5px;
 	height: auto;
 	left: 0;
-	margin: auto;
-	max-height: 100%;
-	max-width: 100%;
+	margin-top: 20%;
+	max-height: 80%;
 	position: absolute;
-	width: 90%;
+	width: 100%;
 }
 
 .theme-text {
-    float: right;
-    padding: $size__gutter 0 $size__gutter*2;
-    width: 68%;
+	float: right;
+	padding: $size__gutter 0 $size__gutter*2;
+	width: 68%;
 
-    .button {
-    	display: inline-block;
-    }
+	.button {
+		display: inline-block;
+	}
 }
 
 .theme-input {
@@ -155,6 +158,7 @@
 .next-type {
 	margin-right: 5px;
 	&::before {
+		-ms-transform: rotate(180deg); // for IE9
 		transform: rotate(180deg);
 	}
 }
@@ -301,11 +305,12 @@
 		width: 150px;
 	}
 
-	.theme-image img {
+	.theme-image svg {
 		bottom: auto;
 		height: auto;
 		left: 50%;
 		margin-left: -100px;
+		margin-top: 0;
 		max-height: 10000px;
 		max-width: 10000px;
 		position: absolute;

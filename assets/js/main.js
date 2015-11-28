@@ -27,13 +27,12 @@
 	}
 
 	$( document ).ready( function() {
-		slideshowCheck();
+		slideshowEven();
 	} );
 
 	$( window ).resize( function() {
 		slideshowCheck();
 	} );
-
 
 	// Add prev/next arrows to individual slides
 	$( '.theme-slider .theme-text .theme-type-title').prepend('<span class="next-type"><span class="screen-reader-text">Next</span></span>');
@@ -54,10 +53,12 @@
 
 		var nextBot = $(".slick-slide[data-slick-index=" + nextSlide + "] .theme-image");
 		// add class to position next bot prior to animation
-		$( nextBot ).addClass( 'hide-bot' );
+		// if exists, remove animation class
+		$( nextBot ).addClass('hide-bot').removeClass( 'drop-bot' );
 
 		// add same to 'cloned' slide bots, since they are kind of out of the regular slide flow
-		$( ".slick-cloned.slick-slide .theme-image" ).addClass( 'hide-bot' );
+		// if exists on cloned slide bots, remove animation class
+		$( ".slick-cloned.slick-slide .theme-image" ).addClass('hide-bot').removeClass( 'drop-bot' );
 
 		// toggle class to turn on gears
 		$( '.slider-nav' ).addClass( 'gears-spinning' );
@@ -71,14 +72,9 @@
 	$('.theme-slider').on('afterChange', function(event, slick, currentSlide){
 		var currentBot = $(".slick-slide[data-slick-index=" + currentSlide + "] .theme-image");
 
-		// recreate element to restart CSS3 animation
-		var el = $( currentBot ),
-		newone = el.clone( true );
-		el.before( newone );
-		$(el).remove();
-
 		// remove class that's hiding bot
-		$( newone ).removeClass( 'hide-bot' );
+		// add class to animate drop
+		$( currentBot ).removeClass('hide-bot').addClass( 'drop-bot' );
 
 		// toggle class to turn off gears
 		$( '.slider-nav' ).removeClass( 'gears-spinning' );

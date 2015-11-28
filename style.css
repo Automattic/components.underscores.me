@@ -1300,6 +1300,7 @@ section {
   position: relative; }
 
 .theme-image {
+  bottom: 0;
   height: 100%;
   position: absolute;
   text-align: center;
@@ -1308,7 +1309,9 @@ section {
   -o-transform-origin: 0 0;
   -ms-transform-origin: 0 0;
   transform-origin: 0 0;
-  width: 32%;
+  width: 32%; }
+
+.theme-image.drop-bot {
   -webkit-animation: robotDrop cubic-bezier(0.68, 1.81, 0.2, 0.66) 0.4s;
   -webkit-animation-iteration-count: 1;
   -moz-animation: robotDrop cubic-bezier(0.68, 1.81, 0.2, 0.66) 0.4s;
@@ -1321,18 +1324,17 @@ section {
   animation-iteration-count: 1; }
 
 .hide-bot {
-  -webkit-transform: translate(0px, -100%);
-  transform: translate(0px, -100%); }
+  -webkit-transform: translate(0, -100%);
+  transform: translate(0, -100%); }
 
-.theme-image img {
+.theme-image svg {
   bottom: 5px;
   height: auto;
   left: 0;
-  margin: auto;
-  max-height: 100%;
-  max-width: 100%;
+  margin-top: 20%;
+  max-height: 80%;
   position: absolute;
-  width: 90%; }
+  width: 100%; }
 
 .theme-text {
   float: right;
@@ -1424,6 +1426,7 @@ section {
 .next-type {
   margin-right: 5px; }
   .next-type::before {
+    -ms-transform: rotate(180deg);
     transform: rotate(180deg); }
 
 .slider-lever .lever {
@@ -1523,11 +1526,12 @@ section {
     position: relative;
     width: 150px; }
 
-  .theme-image img {
+  .theme-image svg {
     bottom: auto;
     height: auto;
     left: 50%;
     margin-left: -100px;
+    margin-top: 0;
     max-height: 10000px;
     max-width: 10000px;
     position: absolute;

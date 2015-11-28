@@ -55,9 +55,9 @@ get_header(); ?>
 					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/spotlight.svg' ); ?>
 				</div>
 				<div class="theme-slider">
-					<div class="theme-type">
+					<div class="theme-type theme-modern">
 						<div class="theme-image">
-							<img alt="" src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-modern.png' ?>"?>
+							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-modern.svg' ); ?>
 						</div>
 						<div class="theme-text">
 							<h2 class="theme-type-title">Modern blog</h2>
@@ -71,9 +71,9 @@ get_header(); ?>
 						</div>
 					</div><!-- .theme-type -->
 
-					<div class="theme-type">
+					<div class="theme-type theme-classic">
 						<div class="theme-image">
-							<img alt="" src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-classic.png' ?>"?>
+							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-classic.svg' ); ?>
 						</div>
 						<div class="theme-text">
 							<h2 class="theme-type-title">Classic blog</h2>
@@ -87,9 +87,9 @@ get_header(); ?>
 						</div>
 					</div><!-- .theme-type -->
 
-					<div class="theme-type">
+					<div class="theme-type theme-magazine">
 						<div class="theme-image">
-							<img alt="" src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-magazine.png' ?>"?>
+							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-magazine.svg' ); ?>
 						</div>
 						<div class="theme-text">
 							<h2 class="theme-type-title">Magazine</h2>
@@ -103,9 +103,9 @@ get_header(); ?>
 						</div>
 					</div><!-- .theme-type -->
 
-					<div class="theme-type">
+					<div class="theme-type theme-portfolio">
 						<div class="theme-image">
-							<img alt="" src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-portfolio.png' ?>"?>
+							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-portfolio.svg' ); ?>
 						</div>
 						<div class="theme-text">
 							<h2 class="theme-type-title">Portfolio</h2>
@@ -119,9 +119,9 @@ get_header(); ?>
 						</div>
 					</div><!-- .theme-type -->
 
-					<div class="theme-type">
+					<div class="theme-type theme-business">
 						<div class="theme-image">
-							<img alt="" src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/img/robot-business.png' ?>"?>
+							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-business.svg' ); ?>
 						</div>
 						<div class="theme-text">
 							<h2 class="theme-type-title">Business</h2>
