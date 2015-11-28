@@ -62,7 +62,7 @@ get_header(); ?>
 					shuffle( $types );
 					// Iterate through each theme type and output formatted text
 					foreach ( $types as $type ) : ?>
-						<div class="theme-type">
+						<div class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
 							<div class="theme-image">
 								<img alt="" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/robot-' . $type['filename'] . '.png' ); ?> ">
 							</div>
@@ -74,7 +74,7 @@ get_header(); ?>
 									<input type="text" placeholder="Author">
 									<input type="text" placeholder="Theme URI">
 								</div>
-								<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads.php/' . $type['filename'] . '.zip' ?>" class="button">Build Theme!</a>
+								<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/' . $type['filename'] . '.zip' ?>" class="download button">Build Theme!</a>
 							</div>
 						</div><!-- .theme-type -->
 					<?php endforeach; ?>
