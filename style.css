@@ -395,9 +395,9 @@ li {
     display: inline-block;
     background: url("assets/img/tiny-gear.svg") no-repeat;
     margin: 0 5px 0 0;
-    height: 14px;
-    width: 14px;
-    vertical-align: -1px; }
+    height: 16px;
+    width: 16px;
+    vertical-align: -2px; }
 
 dt {
   font-weight: bold; }
