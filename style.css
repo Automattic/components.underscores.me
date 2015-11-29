@@ -259,7 +259,8 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   clear: both;
   font-family: "factoria", "Roboto Slab", serif;
-  line-height: 1.3; }
+  line-height: 1.3;
+  font-weight: 600; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     text-decoration: none; }
 
