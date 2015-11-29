@@ -139,6 +139,24 @@ function components_scripts() {
 add_action( 'wp_enqueue_scripts', 'components_scripts' );
 
 /**
+ * Returns an array of contributors from Github.
+ */
+function components_get_contributors() {
+	$transient_key = 'components_contributors';
+	$contributors = get_transient( $transient_key );
+	if ( false !== $contributors )
+		return $contributors;
+	$response = wp_remote_get( 'https://api.github.com/repos/Automattic/theme-pattern-library/contributors?per_page=100' );
+	if ( is_wp_error( $response ) )
+		return array();
+	$contributors = json_decode( wp_remote_retrieve_body( $response ) );
+	if ( ! is_array( $contributors ) )
+		return array();
+	set_transient( $transient_key, $contributors, HOUR_IN_SECONDS );
+	return (array) $contributors;
+}
+
+/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';
