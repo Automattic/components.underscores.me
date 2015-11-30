@@ -62,7 +62,7 @@ get_header(); ?>
 					foreach ( $types as $type ) : ?>
 						<div class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
 							<div class="theme-image">
-								<img alt="" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/robot-' . $type['filename'] . '.png' ); ?> ">
+								<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-' . $type['filename'] . '.svg' ); ?>
 							</div>
 							<div class="theme-text">
 								<h2 class="theme-type-title"><?php echo $type['title']; ?></h2>

@@ -27,7 +27,7 @@
 	}
 
 	$( document ).ready( function() {
-		slideshowEven();
+		slideshowCheck();
 	} );
 
 	$( window ).resize( function() {
