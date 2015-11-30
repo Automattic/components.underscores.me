@@ -98,61 +98,26 @@ function components_widgets_init() {
 add_action( 'widgets_init', 'components_widgets_init' );
 
 /**
- * Register Google Fonts
+ * Enqueue TypeKit fonts.
  */
-function components_fonts_url() {
-    $fonts_url = '';
-
-    /* Translators: If there are characters in your language that are not
-	 * supported by Roboto Slab, translate this to 'off'. Do not translate
-	 * into your own language.
-	 */
-	$roboto_slab = esc_html_x( 'on', 'Roboto Slab font: on or off', 'components' );
-
-	/* Translators: If there are characters in your language that are not
-	 * supported by Open Sans, translate this to 'off'. Do not translate
-	 * into your own language.
-	 */
-	$open_sans = esc_html_x( 'on', 'Open Sans font: on or off', 'components' );
-
-	if ( 'off' !== $roboto_slab || 'off' !== $open_sans ) {
-		$font_families = array();
-
-		if( 'off' !== $roboto_slab ) {
-			$font_families[] = 'Roboto Slab: 400';
-		}
-
-		if( 'off' !== $open_sans ) {
-			$font_families[] = 'Open Sans: 400';
-		}
-
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
-
-		$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-
+function components_typekit() {
+	wp_enqueue_script( 'components_typekit', '//use.typekit.net/adl7prd.js' );
 }
+add_action( 'wp_enqueue_scripts', 'components_typekit' );
 
-/**
- * Enqueue Google Fonts for Editor Styles
- */
-function components_editor_styles() {
-    add_editor_style( array( 'editor-style.css', components_fonts_url() ) );
+// Inject Typekit code into header
+function components_typekit_inline() {
+	if ( wp_script_is( 'components_typekit', 'done' ) ) : ?>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<?php endif;
 }
-add_action( 'after_setup_theme', 'components_editor_styles' );
+add_action( 'wp_head', 'components_typekit_inline' );
 
 /**
  * Enqueue scripts and styles.
  */
 function components_scripts() {
 	wp_enqueue_style( 'components-style', get_stylesheet_uri() );
-
-	wp_enqueue_style( 'components-fonts', components_fonts_url(), array(), null );
 
 	wp_enqueue_script( 'components', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery', 'components-slick'), '20120206', true );
 
@@ -161,12 +126,6 @@ function components_scripts() {
 	wp_enqueue_script( 'components-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	wp_enqueue_script( 'components-slick', get_template_directory_uri() . '/assets/js/slick.js', array(), '20151119', true );
-
-	if ( wp_style_is( 'genericons', 'registered' ) ) {
-		wp_enqueue_style( 'genericons' );
-	} else {
-		wp_enqueue_style( 'genericons', get_template_directory_uri() . '/fonts/genericons.css', array(), null );
-	}
 
 }
 add_action( 'wp_enqueue_scripts', 'components_scripts' );

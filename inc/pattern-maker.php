@@ -351,5 +351,23 @@ function theme_pattern_library_init() {
 	theme_pattern_library_make_portfolio();
 	theme_pattern_library_create_type_zips();
 }
-// Let's fire the function as late as we can.
-add_action( 'wp_footer', 'theme_pattern_library_init' );
+
+/**
+ * Let's set an expiration on the last generation of the theme types and get current time.
+ */
+// We only need to grab the file info of one type zip file since all files are created at once.
+$filename = get_template_directory() . '/downloads/' . BASE . '.zip';
+if ( file_exists( $filename ) ) {
+	$fileTimeStamp = date( filemtime( $filename ) );
+	$time = time();
+	$expired = 1800; /* Equal to 30 minutes. */
+}
+
+/**
+ * Let's fire the function as late as we can, and every 30 minutes.
+ * No need to fetch the pattern library and generate types all the time.
+ * If no files exist, let's generate types anyway.
+ */
+if ( file_exists( $filename ) && $expired <= $time - $fileTimeStamp  || ! file_exists( $filename ) ) {
+	add_action( 'wp_footer', 'theme_pattern_library_init' );
+}
