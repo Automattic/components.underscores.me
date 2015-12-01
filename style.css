@@ -1336,10 +1336,16 @@ section {
   position: absolute;
   width: 95%; }
 
+.theme-image .mobile-robot {
+  display: none; }
+
 .theme-text {
   float: right;
-  padding: 40px 0 80px;
+  padding: 0 0 80px;
   width: 68%; }
+  @media (min-width: 768px) {
+    .theme-text {
+      padding-top: 40px; } }
   .theme-text .button {
     display: inline-block; }
 
@@ -1526,16 +1532,18 @@ section {
     position: relative;
     width: 150px; }
 
-  .theme-image svg {
-    bottom: auto;
-    height: 280px;
-    left: 50%;
-    margin-left: -150px;
-    margin-top: 0;
-    max-height: 10000px;
-    max-width: 10000px;
-    position: absolute;
-    width: 300px; }
+  .theme-image .mobile-robot svg {
+    bottom: 0;
+    height: 150px;
+    margin: 0;
+    max-height: 100%;
+    width: 150px; }
+
+  .theme-image .standard-robot {
+    display: none; }
+
+  .theme-image .mobile-robot {
+    display: block; }
 
   .next-type,
   .prev-type,
