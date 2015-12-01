@@ -1341,8 +1341,11 @@ section {
 
 .theme-text {
   float: right;
-  padding: 40px 0 80px;
+  padding: 0 0 80px;
   width: 68%; }
+  @media (min-width: 768px) {
+    .theme-text {
+      padding-top: 40px; } }
   .theme-text .button {
     display: inline-block; }
 

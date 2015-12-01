@@ -55,8 +55,12 @@
 
 .theme-text {
 	float: right;
-	padding: $size__gutter 0 $size__gutter*2;
+	padding: 0 0 $size__gutter*2;
 	width: 68%;
+
+	@include tablet {
+		padding-top: $size__gutter;
+	}
 
 	.button {
 		display: inline-block;
