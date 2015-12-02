@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" class="lever" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="45px" height="170.1px" viewBox="0 0 45 170.1" style="enable-background:new 0 0 45 170.1;" xml:space="preserve" aria-hidden="true">
-<style type="text/css">
-	.lever0{fill:#F05452;}
-	.lever1{fill:#F06A66;}
-</style>
-<rect x="19.6" y="24" class="lever0" width="6.4" height="146.1"/>
-<circle class="lever1" cx="22.9" cy="22.7" r="21.4"/>
-</svg>
+<svg id="Layer_1" class="lever" xmlns="http://www.w3.org/2000/svg" width="45" height="170.1" viewBox="0 0 45 170.1"><style>.lever0{fill:#f05452}.lever1{fill:#f06a66}</style><path class="lever0" d="M19.6 24H26v146.1h-6.4z"/><circle class="lever1" cx="22.9" cy="22.7" r="21.4"/></svg>
