@@ -1125,17 +1125,27 @@ section {
     display: block;
     width: 100%;
     content: ''; }
-  #download-all .gear {
+  #download-all .gears {
+    position: relative;
+    margin-top: -42px;
+    max-width: calc(100% - 500px); }
+  #download-all #gear-double {
     position: absolute;
-    left: -100px;
-    bottom: -202px;
-    width: 343px;
-    transform: rotate(39deg); }
-    #download-all .gear .cog, #download-all .gear .center {
-      fill: #f3f2ed; }
-    #download-all .gear .center {
-      stroke: #f3f2ed;
-      stroke-width: 5; }
+    left: -218px;
+    transform: rotate(13deg);
+    width: 337px; }
+  #download-all #gear-holey {
+    position: absolute;
+    left: 104px;
+    top: 20px;
+    transform: rotate(-16deg);
+    width: 140px; }
+  #download-all #gear-wheelie {
+    position: absolute;
+    left: 109px;
+    top: 159px;
+    transform: rotate(-17deg);
+    width: 180px; }
   #download-all .content-wrapper {
     float: right;
     max-width: 500px; }
