@@ -43,6 +43,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Captions
 	## Galleries
 --------------------------------------------------------------*/
+.white {
+  fill: #f3f2ed; }
+
 .teal {
   fill: #509ea3; }
 
@@ -1130,17 +1133,20 @@ section {
     margin-top: -42px;
     max-width: calc(100% - 500px); }
   #download-all #gear-double {
+    opacity: 0.3;
     position: absolute;
     left: -218px;
     transform: rotate(13deg);
     width: 337px; }
   #download-all #gear-holey {
+    opacity: 0.5;
     position: absolute;
     left: 104px;
     top: 20px;
     transform: rotate(-16deg);
     width: 140px; }
   #download-all #gear-wheelie {
+    opacity: 0.4;
     position: absolute;
     left: 109px;
     top: 159px;
