@@ -18,15 +18,15 @@ $color__grey: #cbcac8;
 }
 
 .teal-xlight {
-  fill: darken($color__teal-light, 12%);
+  fill: lighten($color__teal-light, 8%);
 }
 
 .teal-xxlight {
-  fill: darken($color__teal-light, 10%);
+  fill: lighten($color__teal-light, 6%);
 }
 
 .teal-xxxlight {
-  fill: darken($color__teal-light, 8%);
+  fill: lighten($color__teal-light, 4%);
 }
 
 .grey {
