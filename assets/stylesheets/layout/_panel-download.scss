@@ -10,9 +10,13 @@
 	}
 
 	.gears {
-		position: relative;
 		margin-top: -42px;
 		max-width: calc(100% - 500px);
+		position: relative;
+
+		@include desktop {
+			margin-left: 100px;
+		}
 	}
 
 	#gear-double {

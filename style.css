@@ -59,7 +59,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   fill: #80afb3; }
 
 .teal-xxxlight {
-  fill: #87b3b7; }
+  fill: #86b3b7; }
 
 .grey {
   fill: #cbcac8; }
@@ -1138,9 +1138,12 @@ section {
     width: 100%;
     content: ''; }
   #download-all .gears {
-    position: relative;
     margin-top: -42px;
-    max-width: calc(100% - 500px); }
+    max-width: calc(100% - 500px);
+    position: relative; }
+    @media (min-width: 1024px) {
+      #download-all .gears {
+        margin-left: 100px; } }
   #download-all #gear-double {
     position: absolute;
     left: -218px;
