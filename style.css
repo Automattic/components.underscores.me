@@ -1129,50 +1129,50 @@ section {
 @media (max-width: 767px) {
   #spotlight {
     display: none; } }
-#download-all {
+#download-base {
   background-color: #A0C3C6;
   padding: 20px 0; }
-  #download-all ::after {
+  #download-base ::after {
     clear: both;
     display: block;
     width: 100%;
     content: ''; }
-  #download-all .gears {
+  #download-base .gears {
     margin-top: -42px;
     max-width: calc(100% - 500px);
     position: relative; }
     @media (min-width: 1024px) {
-      #download-all .gears {
+      #download-base .gears {
         margin-left: 100px; } }
-  #download-all #gear-double {
+  #download-base #gear-double {
     position: absolute;
     left: -218px;
     transform: rotate(13deg);
     width: 337px; }
-  #download-all #gear-holey {
+  #download-base #gear-holey {
     position: absolute;
     left: 104px;
     top: 20px;
     transform: rotate(-16deg);
     width: 140px; }
-  #download-all #gear-wheelie {
+  #download-base #gear-wheelie {
     position: absolute;
     left: 109px;
     top: 159px;
     transform: rotate(-17deg);
     width: 180px; }
-  #download-all .content-wrapper {
+  #download-base .content-wrapper {
     float: right;
     max-width: 500px; }
-  #download-all h2 {
+  #download-base h2 {
     color: #233656;
     position: relative;
     z-index: 4; }
-  #download-all p {
+  #download-base p {
     margin-top: 0;
     position: relative;
     z-index: 4; }
-  #download-all .button {
+  #download-base .button {
     display: inline-block; }
 
 #extra-info .wrap::before,

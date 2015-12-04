@@ -94,7 +94,7 @@ get_header(); ?>
 			</div><!-- .wrap -->
 		</section><!-- #types -->
 
-		<section id="download-all" role="main">
+		<section id="download-base" role="main">
 			<div class="wrap">
 				<div class="gears">
 					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-double.svg' ); ?>
