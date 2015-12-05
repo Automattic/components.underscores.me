@@ -1410,6 +1410,7 @@ section {
   content: "";
   display: block;
   height: 106px;
+  overflow-x: hidden;
   position: absolute;
   top: -32px;
   width: 106px;
