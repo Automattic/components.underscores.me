@@ -94,9 +94,13 @@ get_header(); ?>
 			</div><!-- .wrap -->
 		</section><!-- #types -->
 
-		<section id="download-all" role="main">
+		<section id="download-base" role="main">
 			<div class="wrap">
-				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear.svg' ); ?>
+				<div class="gears">
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-double.svg' ); ?>
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-holey.svg' ); ?>
+					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-wheelie.svg' ); ?>
+				</div>
 
 				<div class="content-wrapper theme-type" data-type="base">
 					<h2>Just the basics, please</h2>

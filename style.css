@@ -43,11 +43,23 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Captions
 	## Galleries
 --------------------------------------------------------------*/
+.white {
+  fill: #f3f2ed; }
+
 .teal {
   fill: #509ea3; }
 
 .teal-light {
   fill: #A0C3C6; }
+
+.teal-xlight {
+  fill: #bad3d5; }
+
+.teal-xxlight {
+  fill: #b3cfd1; }
+
+.teal-xxxlight {
+  fill: #adcbce; }
 
 .grey {
   fill: #cbcac8; }
@@ -259,7 +271,8 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   clear: both;
   font-family: "factoria", "Roboto Slab", serif;
-  line-height: 1.3; }
+  line-height: 1.3;
+  font-weight: 600; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     text-decoration: none; }
 
@@ -395,9 +408,9 @@ li {
     display: inline-block;
     background: url("assets/img/tiny-gear.svg") no-repeat;
     margin: 0 5px 0 0;
-    height: 14px;
-    width: 14px;
-    vertical-align: -1px; }
+    height: 16px;
+    width: 16px;
+    vertical-align: -2px; }
 
 dt {
   font-weight: bold; }
@@ -1093,7 +1106,7 @@ section {
   #types a {
     color: #f3f2ed; }
   #types h2 {
-    color: #509ea3; }
+    color: #A0C3C6; }
   #types .wrap {
     position: relative; }
   #types .spotlight-controls {
@@ -1116,37 +1129,53 @@ section {
 @media (max-width: 767px) {
   #spotlight {
     display: none; } }
-#download-all {
-  background-color: #A0C3C6;
-  padding: 20px 0; }
-  #download-all ::after {
+#download-base {
+  background-color: #A0C3C6; }
+  #download-base ::after {
     clear: both;
     display: block;
     width: 100%;
     content: ''; }
-  #download-all .gear {
+  #download-base .gears {
+    width: calc(100% - 500px);
+    position: relative; }
+    @media (min-width: 1024px) {
+      #download-base .gears {
+        margin-left: 100px; } }
+  #download-base #gear-double {
+    height: 337px;
     position: absolute;
-    left: -100px;
-    bottom: -202px;
-    width: 343px;
-    transform: rotate(39deg); }
-    #download-all .gear .cog, #download-all .gear .center {
-      fill: #f3f2ed; }
-    #download-all .gear .center {
-      stroke: #f3f2ed;
-      stroke-width: 5; }
-  #download-all .content-wrapper {
+    left: -218px;
+    top: -30px;
+    transform: rotate(102deg);
+    width: 337px; }
+  #download-base #gear-holey {
+    height: 140px;
+    position: absolute;
+    left: 104px;
+    top: -10px;
+    transform: rotate(-16deg);
+    width: 140px; }
+  #download-base #gear-wheelie {
+    height: 180px;
+    position: absolute;
+    left: 109px;
+    top: 129px;
+    transform: rotate(-17deg);
+    width: 180px; }
+  #download-base .content-wrapper {
     float: right;
+    padding: 20px 0;
     max-width: 500px; }
-  #download-all h2 {
+  #download-base h2 {
     color: #233656;
     position: relative;
     z-index: 4; }
-  #download-all p {
+  #download-base p {
     margin-top: 0;
     position: relative;
     z-index: 4; }
-  #download-all .button {
+  #download-base .button {
     display: inline-block; }
 
 #extra-info .wrap::before,
@@ -1360,7 +1389,6 @@ section {
   .theme-input.open-input {
     width: 40%; }
 
-/* conveyor belt */
 /* Conveyor belt */
 .slider-nav {
   border: 5px solid #6eb3b8;
@@ -1384,20 +1412,21 @@ section {
   border-radius: 90px;
   content: "";
   display: block;
-  height: 86px;
+  height: 106px;
+  overflow-x: hidden;
   position: absolute;
-  top: -22px;
-  width: 86px;
-  -moz-animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite;
-  -webkit-animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite;
-  -ms-animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite;
-  animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite; }
+  top: -32px;
+  width: 106px;
+  -moz-animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite forwards;
+  -webkit-animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite forwards;
+  -ms-animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite forwards;
+  animation: gearsSpinning cubic-bezier(0, 0.99, 0.58, 0.98) 0.5s infinite forwards; }
 
 .slider-nav:before {
-  left: -20px; }
+  left: -30px; }
 
 .slider-nav:after {
-  right: -20px; }
+  right: -30px; }
 
 /* gears spinning animation */
 .slider-nav:not(.gears-spinning):before,
@@ -1424,10 +1453,10 @@ section {
   background: url(assets/img/arrow.svg) 0 0 no-repeat;
   content: '';
   display: inline-block;
-  height: 28px;
+  height: 24px;
   margin: 0 4px 0 0;
   vertical-align: -3px;
-  width: 30px; }
+  width: 24px; }
 
 .next-type {
   margin-right: 5px; }
