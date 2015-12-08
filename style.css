@@ -1130,16 +1130,14 @@ section {
   #spotlight {
     display: none; } }
 #download-base {
-  background-color: #A0C3C6;
-  padding: 20px 0; }
+  background-color: #A0C3C6; }
   #download-base ::after {
     clear: both;
     display: block;
     width: 100%;
     content: ''; }
   #download-base .gears {
-    margin-top: -42px;
-    max-width: calc(100% - 500px);
+    width: calc(100% - 500px);
     position: relative; }
     @media (min-width: 1024px) {
       #download-base .gears {
@@ -1147,22 +1145,24 @@ section {
   #download-base #gear-double {
     position: absolute;
     left: -218px;
-    transform: rotate(13deg);
+    top: -30px;
+    transform: rotate(102deg);
     width: 337px; }
   #download-base #gear-holey {
     position: absolute;
     left: 104px;
-    top: 20px;
+    top: -10px;
     transform: rotate(-16deg);
     width: 140px; }
   #download-base #gear-wheelie {
     position: absolute;
     left: 109px;
-    top: 159px;
+    top: 129px;
     transform: rotate(-17deg);
     width: 180px; }
   #download-base .content-wrapper {
     float: right;
+    padding: 20px 0;
     max-width: 500px; }
   #download-base h2 {
     color: #233656;
