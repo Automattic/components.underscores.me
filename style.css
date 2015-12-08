@@ -1143,18 +1143,21 @@ section {
       #download-base .gears {
         margin-left: 100px; } }
   #download-base #gear-double {
+    height: 337px;
     position: absolute;
     left: -218px;
     top: -30px;
     transform: rotate(102deg);
     width: 337px; }
   #download-base #gear-holey {
+    height: 140px;
     position: absolute;
     left: 104px;
     top: -10px;
     transform: rotate(-16deg);
     width: 140px; }
   #download-base #gear-wheelie {
+    height: 180px;
     position: absolute;
     left: 109px;
     top: 129px;
