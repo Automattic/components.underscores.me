@@ -1575,6 +1575,30 @@ section {
   .generator-form-secondary .components-input {
     display: block;
     width: 100%; } }
+#contributors {
+  background-color: #141f32;
+  color: #f3f2ed; }
+  #contributors a {
+    color: #f3f2ed; }
+  #contributors h2 {
+    color: #A0C3C6; }
+
+/* Contributors panel */
+#github-contributors li {
+  display: inline-block;
+  margin: 0 -4px 0 0;
+  padding: 10px;
+  width: 50%; }
+  #github-contributors li::before {
+    display: none; }
+  @media (min-width: 768px) {
+    #github-contributors li {
+      width: 16.7%; } }
+#github-contributors a {
+  border-bottom: none; }
+#github-contributors img {
+  border-radius: 50%; }
+
 /*--------------------------------------------------------------
 # 404 Page
 --------------------------------------------------------------*/

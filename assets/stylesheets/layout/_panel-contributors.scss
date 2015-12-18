@@ -1,0 +1,38 @@
+#contributors {
+	background-color: $color__navy;
+	color: $color__offwhite;
+
+	a {
+		color: $color__offwhite;
+	}
+
+	h2 {
+		color: $color__teal-light;
+	}
+}
+
+/* Contributors panel */
+#github-contributors {
+	li {
+		display: inline-block;
+		margin: 0 -4px 0 0; // To account for inline block spacing
+		padding: 10px;
+		width: 50%;
+
+		&::before {
+			display: none;
+		}
+
+		@include tablet {
+			width: 16.7%;
+		}
+	} // li
+
+	a {
+		border-bottom: none;
+	}
+
+	img {
+		border-radius: 50%;
+	}
+}

@@ -134,13 +134,10 @@ get_header(); ?>
 				</div><!-- .wrap -->
 			</section><!-- #extra-info -->
 
-			<section id="contribute">
+			<section id="contributors">
 				<div class="wrap">
-					<h1>Components is brought to you by these fine folks</h1>
-					<div id="github">
-						<a href="https://github.com/automattic/theme-pattern-library" title="Go to the Underscores page on github to contribute to the project">Underscores on github</a>
-					</div><!-- #github -->
-					<ul id="team">
+					<h2>Made with love by</h2>
+					<ul id="github-contributors">
 						<?php foreach ( components_get_contributors() as $contributor ) : ?>
 							<?php
 								$title = sprintf( '@%s with %d %s', $contributor->login, $contributor->contributions, _n( 'contribution', 'contributions', $contributor->contributions ) );
