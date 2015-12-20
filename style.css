@@ -1595,9 +1595,41 @@ section {
     #github-contributors li {
       width: 16.7%; } }
 #github-contributors a {
-  border-bottom: none; }
-#github-contributors img {
-  border-radius: 50%; }
+  border-bottom: none;
+  display: block;
+  position: relative; }
+  #github-contributors a img {
+    border: 4px solid #A0C3C6;
+    border-radius: 50%; }
+  #github-contributors a .contributor {
+    background: #A0C3C6;
+    border: 1px solid #509ea3;
+    color: #141f32;
+    font-family: "factoria", "Roboto Slab", serif;
+    font-size: 16.15px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    outline: 2px solid #A0C3C6;
+    padding: 2px 10px;
+    position: absolute;
+    bottom: 15%;
+    right: 0;
+    left: 0;
+    text-align: center; }
+    #github-contributors a .contributor span {
+      color: #366E6E;
+      display: block; }
+    #github-contributors a .contributor::before, #github-contributors a .contributor::after {
+      color: #509ea3;
+      content: '\2022';
+      display: block;
+      position: absolute;
+      top: 30%; }
+    #github-contributors a .contributor::before {
+      left: 5px; }
+    #github-contributors a .contributor::after {
+      right: 5px; }
 
 /*--------------------------------------------------------------
 # 404 Page
