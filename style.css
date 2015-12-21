@@ -1578,6 +1578,10 @@ section {
 #contributors {
   background-color: #141f32;
   color: #f3f2ed; }
+  #contributors .love-and-labour {
+    height: 32px;
+    margin: 0 0 0 -1px;
+    vertical-align: -5px; }
   #contributors a {
     color: #f3f2ed; }
   #contributors h2 {

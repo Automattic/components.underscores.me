@@ -136,7 +136,7 @@ get_header(); ?>
 
 			<section id="contributors">
 				<div class="wrap">
-					<h2>Made with love by</h2>
+					<h2>Made with <?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/love-and-labour.svg' ); ?> by</h2>
 					<ul id="github-contributors">
 						<?php foreach ( components_get_contributors() as $contributor ) : ?>
 							<?php
