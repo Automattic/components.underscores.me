@@ -154,3 +154,8 @@ require get_template_directory() . '/inc/extras.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load Components Generator pseudo-plugin.
+ */
+require get_template_directory() . '/inc/components-generator.php';
