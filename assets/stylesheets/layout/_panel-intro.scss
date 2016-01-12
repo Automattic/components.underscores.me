@@ -145,3 +145,21 @@
 .site-description {
   margin-top: $size__gutter/2;
 }
+
+.generator-form {
+  padding-bottom: 1.5em;
+}
+
+.theme-input {
+	transition: width 0.2s;
+
+	input {
+		display: block;
+    margin-bottom: 1.5em;
+		width: 90%;
+	}
+
+	&.open-input {
+		width: 40%;
+	}
+}

@@ -66,22 +66,6 @@
 	}
 }
 
-.theme-input {
-	float: left;
-	overflow: hidden;
-	transition: width 0.2s;
-	width: 0;
-
-	input {
-		display: block;
-		width: 90%;
-	}
-
-	&.open-input {
-		width: 40%;
-	}
-}
-
 /* Conveyor belt */
 .slider-nav {
 	border: 5px solid lighten( $color__teal, 10% );
