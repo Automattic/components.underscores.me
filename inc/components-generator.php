@@ -10,6 +10,10 @@
  * This file adds functionality to make the different theme pattern types.
  */
 class Components_Generator_Plugin {
+
+	protected $theme, $theme_types;
+	private $selected_theme, $prototype_dir, $type_branch;
+
 	function __construct() {
 		// All the black magic is happening in these actions.
 		add_action( 'wp_footer', array( $this, 'components_generator_init' ) );
@@ -17,6 +21,18 @@ class Components_Generator_Plugin {
 		add_filter( 'components_generator_file_contents', array( $this, 'components_generator_do_replacements' ), 10, 2 );
 		// Use do_action( 'components_generator_print_form' ); in your theme to render the form.
 		add_action( 'components_generator_print_form', array( $this, 'components_generator_print_form' ) );
+	}
+
+	public function set_theme( $thetheme ) {
+		$this->selected_theme = $thetheme;
+	}
+
+	public function set_prototype_dir( $dir ) {
+		$this->prototype_dir = $dir;
+	}
+
+	public function set_type_branch( $thebranch ) {
+		$this->type_branch = $thebranch;
 	}
 
 	/**
@@ -50,20 +66,24 @@ class Components_Generator_Plugin {
 			$zip->extractTo( $path );
 			$zip->close();
 		} else {
-			exit( "Oh no! I couldn't open the zip." );
+			exit( 'Oh no! I couldn\'t open the zip:' . $zipfile . '.' );
 		}
 	}
 
 	/**
 	 * This gets our zip from the Github repo.
 	 */
-	function components_generator_get_download( $branch, $destination ) {
+	function components_generator_get_download( $branch, $destination, $branchslash ) {
 		// Our repo name.
 		$repo = 'theme-pattern-library';
 		// Our file name.
 		$repofilename = $repo . '-' . $branch . '.zip';
 		// Grab the file.
-		$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, $repofilename );
+		if ( $branchslash == true ) {
+			$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, str_replace( '/', '-', $repofilename ) );
+		} else {
+			$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, $repofilename );
+		}
 		if ( ! file_exists( 'downloads' ) && ! is_dir( 'downloads' ) ) {
 			mkdir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/',  0755 );
 		}
@@ -71,20 +91,64 @@ class Components_Generator_Plugin {
 			mkdir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/',  0755 );
 		}
 		// Copy the file to its new directory.
-		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . $repofilename, $destination . $repofilename );
+		if ( $branchslash == true ) {
+			copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . str_replace( '/', '-', $repofilename ), $destination . str_replace( '/', '-', $repofilename ) );
+		} else {
+			copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . $repofilename, $destination . $repofilename );
+		}
 	}
 
 	/**
 	 * Renders the generator form
 	 */
 	function components_generator_print_form() {
-		?>
+		/*
+		 * This contains all the data for our different types.
+		 *
+		 */
+		 $this->theme_types = array(
+			'base' => array (
+				'title'	=> esc_html__( 'Base', 'components' ),
+				'id' => 'type-base',
+			),
+			'modern' => array (
+				'title'	=> esc_html__( 'Modern Blog', 'components' ),
+				'id' => 'type-blog-modern',
+			),
+
+			'classic' => array (
+				'title'	=> esc_html__( 'Classic Blog', 'components' ),
+				'id' => 'type-classic',
+			),
+
+			'magazine' => array (
+				'title'	=> esc_html__( 'Magazine', 'components' ),
+				'id' => 'type-magazine',
+			),
+
+			'portfolio' => array (
+				'title'	=> esc_html__( 'Portfolio', 'components' ),
+				'id' => 'type-portfolio',
+			),
+
+			'business' => array (
+				'title'	=> esc_html__( 'Business', 'components' ),
+				'id' => 'type-business',
+			),
+		); ?>
 		<div id="generator-form" class="generator-form">
 			<form method="POST">
 				<input type="hidden" name="components_generate" value="1" />
 
 				<div class="theme-input">
 					<div class="generator-form-primary">
+						<fieldset>
+							<legend>Choose a theme type:</legend>
+							<?php foreach ( $this->theme_types as $this->theme_type ) : ?>
+							<input id="<?php echo $this->theme_type['id']; ?>" type="radio" name="theme-type" value="<?php echo $this->theme_type['title']; ?>">
+							<label for="<?php echo $this->theme_type['id']; ?>"><?php echo $this->theme_type['title']; ?></label>
+							<?php endforeach; ?>
+						</fieldset>
 						<label for="components-name">Theme Name</label>
 						<input type="text" id="components-name" name="components_name" placeholder="Awesome Theme" />
 					</div><!-- .generator-form-primary -->
@@ -117,12 +181,53 @@ class Components_Generator_Plugin {
 	 * Let's fire the needed functions to set things up.
 	 */
 	function components_generator_init() {
-		$this->components_generator_get_download( 'master', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/' );
+		// Base
+		$this->components_generator_get_download( 'master', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/', false );
 		// Copy to the prototype directory so we can work with it.
 		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-master.zip', $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-master.zip' );
 		$this->components_generator_unzip( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-master.zip' );
 		// Delete the old file, we don't need it.
 		$this->components_generator_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/theme-pattern-library-master.zip' );
+
+		// Modern Blog
+		$this->components_generator_get_download( 'types/blog-modern', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/', true );
+		// Copy to the prototype directory so we can work with it.
+		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-types-blog-modern.zip', $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-blog-modern.zip' );
+		$this->components_generator_unzip( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-blog-modern.zip' );
+		// Delete the old file, we don't need it.
+		$this->components_generator_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/theme-pattern-library-types-blog-modern.zip' );
+
+		// Traditional Blog
+		$this->components_generator_get_download( 'types/blog-traditional', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/', true );
+		// Copy to the prototype directory so we can work with it.
+		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-types-blog-traditional.zip', $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-blog-traditional.zip' );
+		$this->components_generator_unzip( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-blog-traditional.zip' );
+		// Delete the old file, we don't need it.
+		$this->components_generator_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/theme-pattern-library-types-blog-traditional.zip' );
+
+		// Magazine
+		$this->components_generator_get_download( 'types/magazine', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/', true );
+		// Copy to the prototype directory so we can work with it.
+		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-types-magazine.zip', $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-magazine.zip' );
+		$this->components_generator_unzip( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-magazine.zip' );
+		// Delete the old file, we don't need it.
+		$this->components_generator_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/theme-pattern-library-types-magazine.zip' );
+
+		// Portfolio
+		$this->components_generator_get_download( 'types/portfolio', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/', true );
+		// Copy to the prototype directory so we can work with it.
+		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-types-portfolio.zip', $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-portfolio.zip' );
+		$this->components_generator_unzip( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-portfolio.zip' );
+		// Delete the old file, we don't need it.
+		$this->components_generator_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/theme-pattern-library-types-portfolio.zip' );
+
+		// Business
+		$this->components_generator_get_download( 'types/business', $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/', true );
+		// Copy to the prototype directory so we can work with it.
+		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-types-business.zip', $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-business.zip' );
+		$this->components_generator_unzip( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-business.zip' );
+		// Delete the old file, we don't need it.
+		$this->components_generator_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/theme-pattern-library-types-business.zip' );
 	}
 
 	/**
@@ -135,11 +240,41 @@ class Components_Generator_Plugin {
 		if ( empty( $_REQUEST['components_name'] ) )
 			wp_die( 'Please enter a theme name. Go back and try again.' );
 
+		if ( empty( $_REQUEST['theme-type'] ) ) {
+			wp_die( 'Please select a theme type. Go back and try again.' );
+		} elseif ( ! empty( $_REQUEST['theme-type'] ) ) {
+			if ( $_REQUEST['theme-type'] == 'Base' ) {
+				$this->set_theme( 'Base' );
+				$this->set_prototype_dir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-master/' );
+				$this->set_type_branch( 'master' );
+			} elseif ( $_REQUEST['theme-type'] == 'Modern Blog' ) {
+				$this->set_theme( 'Modern Blog' );
+				$this->set_prototype_dir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-blog-modern/' );
+				$this->set_type_branch( 'types-blog-modern' );
+			} elseif ( $_REQUEST['theme-type'] == 'Classic Blog' ) {
+				$this->set_theme( 'Classic Blog' );
+				$this->set_prototype_dir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-blog-traditional/' );
+				$this->set_type_branch( 'types-blog-traditional' );
+			} elseif ( $_REQUEST['theme-type'] == 'Magazine' ) {
+				$this->set_theme( 'Magazine' );
+				$this->set_prototype_dir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-magazine/' );
+				$this->set_type_branch( 'types-magazine' );
+			} elseif ( $_REQUEST['theme-type'] == 'Portfolio' ) {
+				$this->set_theme( 'Portfolio' );
+				$this->set_prototype_dir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-portfolio/' );
+				$this->set_type_branch( 'types-portfolio' );
+			} elseif ( $_REQUEST['theme-type'] == 'Business' ) {
+				$this->set_theme( 'Business' );
+				$this->set_prototype_dir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-types-business/' );
+				$this->set_type_branch( 'types-business' );
+			}
+		}
+
 		$this->theme = array(
-			'name'        => 'Theme Name',
-			'slug'        => 'theme-name',
-			'uri'         => 'http://components.underscores.me/',
-			'author'      => 'Components.Underscores.me',
+			'name'		  => 'Theme Name',
+			'slug'		  => 'theme-name',
+			'uri'		  => 'http://components.underscores.me/',
+			'author'	  => 'Components.Underscores.me',
 			'author_uri'  => 'http://components.underscores.me/',
 			'description' => 'Description',
 		);
@@ -165,20 +300,19 @@ class Components_Generator_Plugin {
 		}
 
 		$zip = new ZipArchive;
-		$zip_filename = sprintf( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-master-%s.zip', md5( print_r( $this->theme, true ) ) );
+		$zip_filename = sprintf( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/theme-pattern-library-' . $this->type_branch . '-%s.zip', md5( print_r( $this->theme, true ) ) );
 		$res = $zip->open( $zip_filename, ZipArchive::CREATE && ZipArchive::OVERWRITE );
-		$prototype_dir = $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/theme-pattern-library-master/';
 		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
 
-		$iterator = new RecursiveDirectoryIterator( $prototype_dir );
+		$iterator = new RecursiveDirectoryIterator( $this->prototype_dir );
 		foreach ( new RecursiveIteratorIterator( $iterator ) as $filename ) {
 			if ( in_array( basename( $filename ), $exclude_files ) )
 				continue;
 			foreach ( $exclude_directories as $directory )
 				if ( strstr( $filename, "/{$directory}/" ) )
 					continue 2; // continue the parent foreach loop
-			$local_filename = str_replace( trailingslashit( $prototype_dir ), '', $filename );
+			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
 			if ( 'languages/component_s.pot' == $local_filename )
 				$local_filename = sprintf( 'languages/%s.pot', $this->theme['slug'] );
 			$contents = file_get_contents( $filename );
@@ -207,7 +341,7 @@ class Components_Generator_Plugin {
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
 				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
-				'Author'      => $this->theme['author'],
+				'Author'	  => $this->theme['author'],
 				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
 				'Description' => $this->theme['description'],
 				'Text Domain' => $this->theme['slug'],

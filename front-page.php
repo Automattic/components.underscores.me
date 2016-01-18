@@ -40,8 +40,6 @@ get_header(); ?>
 						<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
 
 						<p>If you&rsquo;re just starting out, it&rsquo;ll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you&rsquo;re an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart&rsquo;s delight!</p>
-
-						<?php do_action( 'components_generator_print_form' ); ?>
 					</div><!-- .intro-content -->
 				</div><!-- .content-wrapper -->
 
@@ -110,6 +108,7 @@ get_header(); ?>
 
 		<section id="extra-info" role="main">
 			<div class="wrap">
+				<?php do_action( 'components_generator_print_form' ); ?>
 				<div class="col">
 					<h2>What&rsquo;s in the box?</h2>
 					<p>Every Components package comes with:</p>
