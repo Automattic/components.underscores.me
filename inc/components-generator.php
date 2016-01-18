@@ -23,23 +23,23 @@ class Components_Generator_Plugin {
 		add_action( 'components_generator_print_form', array( $this, 'components_generator_print_form' ) );
 	}
 
-	public function set_theme( $thetheme ) {
-		$this->selected_theme = $thetheme;
+	public function set_theme( $the_theme ) {
+		$this->selected_theme = $the_theme;
 	}
 
 	public function set_prototype_dir( $dir ) {
 		$this->prototype_dir = $dir;
 	}
 
-	public function set_type_branch( $thebranch ) {
-		$this->type_branch = $thebranch;
+	public function set_type_branch( $the_branch ) {
+		$this->type_branch = $the_branch;
 	}
 
 	/**
 	 * This downloads a file at a URL.
 	 */
-	function components_generator_download_file( $URI, $filename ) {
-		$fp = fopen( $filename, 'w' );
+	function components_generator_download_file( $URI, $file_name ) {
+		$fp = fopen( $file_name, 'w' );
 		$ch = curl_init( $URI );
 		curl_setopt( $ch, CURLOPT_FILE, $fp );
 		$data = curl_exec( $ch );
@@ -57,32 +57,33 @@ class Components_Generator_Plugin {
 	/**
 	 * This unzips our zip from the Github repo.
 	 */
-	function components_generator_unzip( $zipfile ) {
-		$path = pathinfo( realpath( $zipfile ), PATHINFO_DIRNAME );
+	function components_generator_unzip( $zip_file ) {
+		$path = pathinfo( realpath( $zip_file ), PATHINFO_DIRNAME );
 		$zip = new ZipArchive;
-		$res = $zip->open( $zipfile );
+		$res = $zip->open( $zip_file );
 		if ( $res === TRUE ) {
 			// Extract it to the path we determined above.
 			$zip->extractTo( $path );
 			$zip->close();
 		} else {
-			exit( 'Oh no! I couldn\'t open the zip:' . $zipfile . '.' );
+			exit( 'Oh no! I couldn\'t open the zip:' . $zip_file . '.' );
 		}
 	}
 
 	/**
 	 * This gets our zip from the Github repo.
 	 */
-	function components_generator_get_download( $branch, $destination, $branchslash ) {
+	function components_generator_get_download( $branch, $destination, $branch_slash ) {
 		// Our repo name.
 		$repo = 'theme-pattern-library';
 		// Our file name.
-		$repofilename = $repo . '-' . $branch . '.zip';
+		$repo_file_name = $repo . '-' . $branch . '.zip';
 		// Grab the file.
-		if ( $branchslash == true ) {
-			$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, str_replace( '/', '-', $repofilename ) );
+		// Github changes forward slashes to dashes to file names, so we account for that.
+		if ( $branch_slash == true ) {
+			$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, str_replace( '/', '-', $repo_file_name ) );
 		} else {
-			$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, $repofilename );
+			$this->components_generator_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, $repo_file_name );
 		}
 		if ( ! file_exists( 'downloads' ) && ! is_dir( 'downloads' ) ) {
 			mkdir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/',  0755 );
@@ -91,10 +92,10 @@ class Components_Generator_Plugin {
 			mkdir( $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/',  0755 );
 		}
 		// Copy the file to its new directory.
-		if ( $branchslash == true ) {
-			copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . str_replace( '/', '-', $repofilename ), $destination . str_replace( '/', '-', $repofilename ) );
+		if ( $branch_slash == true ) {
+			copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . str_replace( '/', '-', $repo_file_name ), $destination . str_replace( '/', '-', $repo_file_name ) );
 		} else {
-			copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . $repofilename, $destination . $repofilename );
+			copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . $repo_file_name, $destination . $repo_file_name );
 		}
 	}
 
