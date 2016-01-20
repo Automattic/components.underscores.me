@@ -105,10 +105,10 @@ get_header(); ?>
 			</div><!-- .wrap -->
 		</section>
 
+		<?php do_action( 'components_generator_print_form' ); ?>
 
 		<section id="extra-info" role="main">
 			<div class="wrap">
-				<?php do_action( 'components_generator_print_form' ); ?>
 				<div class="col">
 					<h2>What&rsquo;s in the box?</h2>
 					<p>Every Components package comes with:</p>

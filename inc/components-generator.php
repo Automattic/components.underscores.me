@@ -191,46 +191,51 @@ class Components_Generator_Plugin {
 	 * Renders the generator form
 	 */
 	function components_generator_print_form() { ?>
-		<div id="generator-form" class="generator-form">
-			<form method="POST">
-				<input type="hidden" name="components_generate" value="1" />
+		<section id="generator">
+			<div class="wrap">
+				<div id="generator-form" class="generator-form">
+					<form method="POST">
+						<input type="hidden" name="components_generate" value="1" />
 
-				<div class="theme-input">
-					<div class="generator-form-primary">
-						<fieldset>
-							<legend>Choose a theme type: <span class="required">(Required)</span></legend>
-							<?php foreach ( self::$theme_types as $theme_type ) : ?>
-							<input id="<?php echo $theme_type['id']; ?>" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
-							<label for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
-							<?php endforeach; ?>
-						</fieldset>
-						<label for="components-name">Theme Name <span class="required">(Required)</span></label>
-						<input type="text" id="components-name" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
-					</div><!-- .generator-form-primary -->
+						<div class="theme-input clear">
+							<div class="generator-form-primary">
+								<fieldset>
+									<legend class="components-label">Choose a theme type: <span class="required">(Required)</span></legend>
+									<?php foreach ( self::$theme_types as $theme_type ) : ?>
+										<div class="components-radio-group">
+											<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
+											<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
+										</div>
+									<?php endforeach; ?>
+								</fieldset>
+							</div><!-- .generator-form-primary -->
 
-					<div class="generator-form-secondary">
-						<label for="components-slug">Theme Slug</label>
-						<input type="text" id="components-slug" name="components_slug" placeholder="awesome-theme">
+							<div class="generator-form-secondary">
+								<label class="components-label" for="components-name">Theme Name <span class="required">(Required)</span></label>
+								<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
 
-						<label for="components-author">Author</label>
-						<input type="text" id="components-author" name="components_author" placeholder="Your Name">
+								<label class="components-label" for="components-slug">Theme Slug</label>
+								<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
 
-						<label for="components-author-uri">Author URI</label>
-						<input type="url" id="components-author-uri" name="components_author_uri" placeholder="https://awesometheme.whatever">
+								<label class="components-label" for="components-author">Author</label>
+								<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
 
-						<label for="components-description">Description</label>
-						<input type="text" id="components-description" name="components_description" placeholder="A brief description of your awesome theme">
-					</div><!-- .generator-form-secondary -->
-				</div><!-- .generator-form-inputs -->
+								<label class="components-label" for="components-author-uri">Author URI</label>
+								<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="https://awesometheme.whatever">
 
-				<div class="generator-form-submit">
-					<input type="submit" name="components_generate_submit" value="Download Theme" />
-					<span class="generator-form-version">Based on <a href="https://github.com/Automattic/theme-pattern-library">The Theme Pattern Library from Github</a></span>
-				</div><!-- .generator-form-submit -->
-			</form>
-		</div><!-- .generator-form -->
-		<?php
-	}
+								<label class="components-label" for="components-description">Description</label>
+								<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
+
+								<div class="generator-form-submit">
+									<input type="submit" name="components_generate_submit" value="Download Theme">
+								</div><!-- .generator-form-submit -->
+							</div><!-- .generator-form-secondary -->
+						</div><!-- .generator-form-inputs -->
+					</form>
+				</div><!-- .generator-form -->
+			</div><!-- .wrap -->
+		</section><!-- #generator -->
+	<?php }
 
 	/**
 	 * Let's fire the needed functions to set things up.
