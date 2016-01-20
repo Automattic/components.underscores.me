@@ -97,7 +97,7 @@ class Components_Generator_Plugin {
 		);
 
 		// All the black magic is happening in these actions.
-		add_action( 'wp_footer', array( $this, 'components_generator_init' ) );
+		add_action( 'init', array( $this, 'components_generator_set_expiration_and_go' ) );
 		add_action( 'init', array( $this, 'components_generator_zippity_zip' ) );
 		add_filter( 'components_generator_file_contents', array( $this, 'components_generator_do_replacements' ), 10, 2 );
 		// Use do_action( 'components_generator_print_form' ); in your theme to render the form.
@@ -405,9 +405,9 @@ class Components_Generator_Plugin {
 	// We only need to grab the file info of one type zip file since all files are created at once.
 	function components_generator_set_expiration_and_go() {
 		// We only need to grab the file info of one type zip file since all files are created at once.
-		$filename = get_template_directory() . '/downloads/' . 'base.zip';
-		if ( file_exists( $filename ) ) {
-			$fileTimeStamp = date( filemtime( $filename ) );
+		$file_name = self::$file_data['server']['download_dir'] . self::$theme_types['base']['prototype_dir'] . '.zip';
+		if ( file_exists( $file_name ) ) {
+			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
 			$expired = 1800; /* Equal to 30 minutes. */
 		}
@@ -417,7 +417,7 @@ class Components_Generator_Plugin {
 		 * No need to fetch the pattern library and generate types all the time.
 		 * If no files exist, let's generate types anyway.
 		 */
-		if ( file_exists( $filename ) && $expired <= $time - $fileTimeStamp  || ! file_exists( $filename ) ) {
+		if ( file_exists( $file_name ) && $expired <= $time - $file_time_stamp  || ! file_exists( $file_name ) ) {
 			add_action( 'wp_footer', array( $this, 'components_generator_init' ) );
 		}
 	}
