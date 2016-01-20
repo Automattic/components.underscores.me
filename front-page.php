@@ -46,22 +46,29 @@ get_header(); ?>
 			</div><!-- .wrap -->
 		</section><!-- #intro -->
 
+		<section id="base" role="main">
+			<div class="wrap">
+				<h2>Just the basics, please</h2>
+    			<p>Can&rsquo;t decide? Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
+
+			</div><!-- .wrap -->
+		</section><!-- #base -->
+
 		<section id="types" role="main">
 			<div class="wrap">
-				<div class="spotlight-controls">
-					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/spotlight.svg' ); ?>
-				</div>
-				<div class="theme-slider">
 
 					<?php
 					require get_template_directory() . '/components/theme-types.php';
 					// Randomise order of types so as not to favour any in particular
 					shuffle( $types );
+					// Prepend the Base type
 					// Iterate through each theme type and output formatted text
 					foreach ( $types as $type ) : ?>
 						<div class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
 							<div class="theme-image">
 								<div class="standard-robot">
+									<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/layout-' . $type['filename'] . '.svg' ); ?>
+
 									<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-' . $type['filename'] . '.svg' ); ?>
 								</div>
 								<div class="mobile-robot">
@@ -76,34 +83,8 @@ get_header(); ?>
 						</div><!-- .theme-type -->
 					<?php endforeach; ?>
 
-				</div><!-- .theme-slider -->
-
-				<div class="slider-nav">
-					<div class="slider-nav-bg"></div>
-					<div class="slider-lever">
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/lever.svg' ); ?>
-					</div>
-				</div><!-- .slider-nav -->
-
 			</div><!-- .wrap -->
 		</section><!-- #types -->
-
-		<section id="download-base" role="main">
-			<div class="wrap">
-				<div class="gears">
-					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-double.svg' ); ?>
-					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-holey.svg' ); ?>
-					<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-wheelie.svg' ); ?>
-				</div>
-
-				<div class="content-wrapper theme-type" data-type="base">
-					<h2>Just the basics, please</h2>
-					<p>Can&rsquo;t decide? Want to concoct your own starter theme?<br>
-						Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
-					<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/base.zip' ?>" class="download button">Download the base!</a>
-				</div><!-- .content-wrapper -->
-			</div><!-- .wrap -->
-		</section>
 
 		<?php do_action( 'components_generator_print_form' ); ?>
 
