@@ -2,23 +2,134 @@
 /**
  * Plugin Name: Components Generator
  * Description: Generates themes based on the theme pattern library by Automattic.
+ * Much of this code is from the original Underscores generator:
+ * https://github.com/Automattic/underscores.me/blob/master/plugins/underscoresme-generator/underscoresme-generator.php
  */
 
 /**
  * This file adds functionality to make the different theme pattern types.
  */
-
 class Components_Generator_Plugin {
+
+	protected $theme;
+	private $selected_theme, $prototype_dir, $type_branch;
+	static protected $theme_types = array(), $file_data = array();
+
 	function __construct() {
+		/*
+		 * This contains all the data for our file structure.
+		 *
+		 */
+		// Server info
+		self::$file_data = array(
+			'server' => array (
+				'root'	=> $_SERVER[ 'DOCUMENT_ROOT' ] . '/',
+				'download_dir' => $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/',
+				'prototype_dir' => $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/',
+			),
+
+			// Github repository info
+			'remote' => array (
+				'repo'	=> 'theme-pattern-library',
+				'download_url' => 'https://codeload.github.com/Automattic/theme-pattern-library/zip/',
+			),
+		);
+
+		/*
+		 * This contains all the data for our different types.
+		 * If a new type is added to Components, add the data here.
+		 * The generator will then work with the new type.
+		 */
+		self::$theme_types = array(
+			'base' => array (
+				'title'	=> esc_html__( 'Base', 'components' ),
+				'id' => esc_attr( 'type-base' ),
+				'zip_file' => 'theme-pattern-library-master.zip',
+				'branch' => 'master',
+				'branch_slash' => false,
+				'prototype_dir' => 'theme-pattern-library-master',
+			),
+
+			'modern' => array (
+				'title'	=> esc_html__( 'Modern Blog', 'components' ),
+				'id' => esc_attr( 'type-blog-modern' ),
+				'zip_file' => 'theme-pattern-library-types-blog-modern.zip',
+				'branch' => 'types/blog-modern',
+				'branch_slash' => true,
+				'prototype_dir' => 'theme-pattern-library-types-blog-modern',
+			),
+
+			'classic' => array (
+				'title'	=> esc_html__( 'Classic Blog', 'components' ),
+				'id' => esc_attr( 'type-classic' ),
+				'zip_file' => 'theme-pattern-library-types-blog-traditional.zip',
+				'branch' => 'types/blog-traditional',
+				'branch_slash' => true,
+				'prototype_dir' => 'theme-pattern-library-types-blog-traditional',
+			),
+
+			'magazine' => array (
+				'title'	=> esc_html__( 'Magazine', 'components' ),
+				'id' => esc_attr__( 'type-magazine', 'components' ),
+				'zip_file' => 'theme-pattern-library-types-magazine.zip',
+				'branch' => 'types/magazine',
+				'branch_slash' => true,
+				'prototype_dir' => 'theme-pattern-library-types-magazine',
+			),
+
+			'portfolio' => array (
+				'title'	=> esc_html__( 'Portfolio', 'components' ),
+				'id' => esc_attr( 'type-portfolio' ),
+				'zip_file' => 'theme-pattern-library-types-portfolio.zip',
+				'branch' => 'types/portfolio',
+				'branch_slash' => true,
+				'prototype_dir' => 'theme-pattern-library-types-portfolio',
+			),
+
+			'business' => array (
+				'title'	=> esc_html__( 'Business', 'components' ),
+				'id' => esc_attr( 'type-business' ),
+				'zip_file' => 'theme-pattern-library-types-business.zip',
+				'branch' => 'types/business',
+				'branch_slash' => true,
+				'prototype_dir' => 'theme-pattern-library-types-business',
+			),
+		);
+
 		// All the black magic is happening in these actions.
-		add_action( 'init', array( $this, 'theme_pattern_library_set_expiration_and_go' ) );
+		add_action( 'init', array( $this, 'components_generator_set_expiration_and_go' ) );
+		add_action( 'init', array( $this, 'components_generator_zippity_zip' ) );
+		add_filter( 'components_generator_file_contents', array( $this, 'components_generator_do_replacements' ), 10, 2 );
+		// Use do_action( 'components_generator_print_form' ); in your theme to render the form.
+		add_action( 'components_generator_print_form', array( $this, 'components_generator_print_form' ) );
+	}
+
+	/*
+	 * Sets theme selected when form is submitted.
+	 */
+	public function set_theme( $the_theme ) {
+		$this->selected_theme = $the_theme;
+	}
+
+	/*
+	 * Sets prototype directory when form is submitted, so proper theme files are generated.
+	 */
+	public function set_prototype_dir( $dir ) {
+		$this->prototype_dir = self::$file_data['server']['prototype_dir'] . $dir;
+	}
+
+	/*
+	 * Sets branch name when form is submitted, so proper theme is downloaded.
+	 */
+	public function set_type_branch( $the_branch ) {
+		$this->type_branch = $the_branch;
 	}
 
 	/**
 	 * This downloads a file at a URL.
 	 */
-	function theme_pattern_library_download_file( $URI, $filename ) {
-		$fp = fopen( $filename, 'w' );
+	function components_generator_download_file( $URI, $file_name ) {
+		$fp = fopen( $file_name, 'w' );
 		$ch = curl_init( $URI );
 		curl_setopt( $ch, CURLOPT_FILE, $fp );
 		$data = curl_exec( $ch );
@@ -29,352 +140,274 @@ class Components_Generator_Plugin {
 	/**
 	 * This deletes a file.
 	 */
-	function theme_pattern_library_delete_file( $URI ) {
+	function components_generator_delete_file( $URI ) {
 		unlink( $URI );
-	}
-
-	/**
-	 * Delete a directory of files.
-	 */
-	function theme_pattern_library_delete_directory( $directory ) {
-		$files = new RecursiveIteratorIterator(
-			new RecursiveDirectoryIterator( $directory, RecursiveDirectoryIterator::SKIP_DOTS ),
-			RecursiveIteratorIterator::CHILD_FIRST
-		);
-		foreach ( $files as $fileinfo ) {
-			$todo = ( $fileinfo->isDir() ? 'rmdir' : 'unlink' );
-			$todo( $fileinfo->getRealPath() );
-		}
-		if ( rmdir( $directory ) ):
-			return true;
-		else:
-			return false;
-		endif;
-	}
-
-	/**
-	 * Copies a directory of files.
-	 */
-	function theme_pattern_library_copy_directory( $src, $dst ) {
-		$dir = opendir( $src );
-		if ( ! file_exists( $dst ) ) {
-			@mkdir( $dst );
-		}
-		while( false !== ( $file = readdir( $dir ) ) ) {
-			if ( ( $file != '.' ) && ( $file != '..' ) ) {
-				if ( is_dir( $src . '/' . $file ) ) {
-					$this->theme_pattern_library_copy_directory( $src . '/' . $file, $dst . '/' . $file );
-				}
-				else {
-					copy( $src . '/' . $file, $dst . '/' . $file );
-				}
-			}
-		}
-		closedir( $dir );
-	}
-
-	/**
-	 * This gets our zip from the Github repo.
-	 */
-	function theme_pattern_library_get_download( $branch, $destination ) {
-		// Our repo name.
-		$repo = 'theme-pattern-library';
-		// Our file name.
-		$repofilename = $repo . '-' . $branch . '.zip';
-		// Grab the file.
-		$this->theme_pattern_library_download_file( 'https://codeload.github.com/Automattic/theme-pattern-library/zip/' . $branch, $repofilename );
-		// Copy the file to its new directory.
-		copy( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . $repofilename, $destination . $repofilename );
-		// Delete the old file, we don't need it.
-		$this->theme_pattern_library_delete_file( $_SERVER[ 'DOCUMENT_ROOT' ] . '/' . $repofilename );
 	}
 
 	/**
 	 * This unzips our zip from the Github repo.
 	 */
-	function theme_pattern_library_unzip( $zipfile ) {
-		$path = pathinfo( realpath( $zipfile ), PATHINFO_DIRNAME );
+	function components_generator_unzip( $zip_file ) {
+		$path = pathinfo( realpath( $zip_file ), PATHINFO_DIRNAME );
 		$zip = new ZipArchive;
-		$res = $zip->open( $zipfile );
+		$res = $zip->open( $zip_file );
 		if ( $res === TRUE ) {
 			// Extract it to the path we determined above.
 			$zip->extractTo( $path );
 			$zip->close();
-			$this->theme_pattern_library_delete_file( $zipfile );
 		} else {
-			exit( "Oh no! I couldn't open the zip." );
+			exit( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
 		}
 	}
 
 	/**
-	 * Creates a compressed zip file
-	 * Reference: https://davidwalsh.name/create-zip-php
-	 *
-	 * @param string $type Type for project starter type..
-	 * @return zip file
+	 * This gets our zip from the Github repo.
 	 */
-	function theme_pattern_library_create_zip( $directory = '', $destination = '', $overwrite = false ) {
-		// If the zip file already exists and overwrite is false, return false
-		if ( file_exists( $directory . '.zip' ) && ! $overwrite ) { return false; }
-		// Get the real path for our folder.
-		$rootPath = realpath( $directory );
-		// Initialize archive object
-		$zip = new ZipArchive();
-		$zip->open( $directory . '.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE );
-		// Create recursive directory iterator to get all the files.
-		$files = new RecursiveIteratorIterator(
-			new RecursiveDirectoryIterator($rootPath),
-			RecursiveIteratorIterator::LEAVES_ONLY
-		);
+	function components_generator_get_download( $branch, $destination, $branch_slash ) {
+		// Our file name.
+		$repo_file_name = self::$file_data['remote']['repo'] . '-' . $branch . '.zip';
+		// Grab the file.
+		// Github changes forward slashes to dashes to file names, so we account for that.
+		if ( $branch_slash == true ) {
+			$this->components_generator_download_file( esc_url_raw( self::$file_data['remote']['download_url'] . $branch ), str_replace( '/', '-', $repo_file_name ) );
+		} else {
+			$this->components_generator_download_file( esc_url_raw( self::$file_data['remote']['download_url'] . $branch ), $repo_file_name );
+		}
+		if ( ! file_exists( 'downloads' ) && ! is_dir( 'downloads' ) ) {
+			mkdir( self::$file_data['server']['root'] . '/downloads/',  0755 );
+		}
+		if ( ! file_exists( 'prototype' ) && ! is_dir( 'prototype' ) ) {
+			mkdir( self::$file_data['server']['root'] . '/prototype/',  0755 );
+		}
+		// Copy the file to its new directory.
+		if ( $branch_slash == true ) {
+			copy( self::$file_data['server']['root'] . str_replace( '/', '-', $repo_file_name ), $destination . str_replace( '/', '-', $repo_file_name ) );
+		} else {
+			copy( self::$file_data['server']['root'] . $repo_file_name, $destination . $repo_file_name );
+		}
+	}
 
-		foreach ( $files as $name => $file ) {
-			// Skip directories (they would be added automatically)
-			if ( ! $file->isDir() ) {
-				// Get real and relative path for current file
-				$filePath = $file->getRealPath();
-				$relativePath = substr( $filePath, strlen( $rootPath ) + 1 );
-				// Add current file to archive
-				$zip->addFile( $filePath, $relativePath );
+	/**
+	 * Renders the generator form
+	 */
+	function components_generator_print_form() { ?>
+		<section id="generator">
+			<div class="wrap">
+				<div id="generator-form" class="generator-form">
+					<form method="POST">
+						<input type="hidden" name="components_generate" value="1" />
+
+						<div class="theme-input clear">
+							<div class="generator-form-primary">
+								<fieldset>
+									<legend class="components-label">Choose a theme type: <span class="required">(Required)</span></legend>
+									<?php foreach ( self::$theme_types as $theme_type ) : ?>
+										<div class="components-radio-group">
+											<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
+											<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
+										</div>
+									<?php endforeach; ?>
+								</fieldset>
+							</div><!-- .generator-form-primary -->
+
+							<div class="generator-form-secondary">
+								<label class="components-label" for="components-name">Theme Name <span class="required">(Required)</span></label>
+								<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
+
+								<label class="components-label" for="components-slug">Theme Slug</label>
+								<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
+
+								<label class="components-label" for="components-author">Author</label>
+								<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
+
+								<label class="components-label" for="components-author-uri">Author URI</label>
+								<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="https://awesometheme.whatever">
+
+								<label class="components-label" for="components-description">Description</label>
+								<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
+
+								<div class="generator-form-submit">
+									<input type="submit" name="components_generate_submit" value="Download Theme">
+								</div><!-- .generator-form-submit -->
+							</div><!-- .generator-form-secondary -->
+						</div><!-- .generator-form-inputs -->
+					</form>
+				</div><!-- .generator-form -->
+			</div><!-- .wrap -->
+		</section><!-- #generator -->
+	<?php }
+
+	/**
+	 * Let's fire the needed functions to set things up.
+	 * Loops through each type, and downloads it, moves the files, unzips it and deletes anything not needed.
+	 */
+	function components_generator_init() {
+		foreach ( self::$theme_types as $theme_type ) :
+			// Download the file
+			$this->components_generator_get_download( $theme_type['branch'], self::$file_data['server']['download_dir'], $theme_type['branch_slash'] );
+			// Copy to the prototype directory so we can work with it.
+			copy( self::$file_data['server']['download_dir'] . $theme_type['zip_file'], self::$file_data['server']['prototype_dir'] . $theme_type['zip_file'] );
+			// Unzip to the prototype directory so we can work with it.
+			$this->components_generator_unzip( self::$file_data['server']['prototype_dir'] . $theme_type['zip_file'] );
+			// Delete the old file, we don't need it.
+			$this->components_generator_delete_file( self::$file_data['server']['root'] . $theme_type['zip_file'] );
+		endforeach;
+	}
+
+	/**
+	 * Let's take the form input, generate and zip of the theme.
+	 */
+	function components_generator_zippity_zip() {
+		if ( ! isset( $_REQUEST['components_generate'], $_REQUEST['components_name'] ) )
+			return;
+
+		if ( empty( $_REQUEST['components_name'] ) )
+			wp_die( 'Please enter a theme name. Go back and try again.' );
+
+		if ( empty( $_REQUEST['theme-type'] ) ) {
+			wp_die( 'Please select a theme type. Go back and try again.' );
+		} elseif ( ! empty( $_REQUEST['theme-type'] ) ) {
+			if ( $_REQUEST['theme-type'] == 'Base' ) {
+				$this->set_theme( self::$theme_types['base']['title'] );
+				$this->set_prototype_dir( self::$theme_types['base']['prototype_dir'] );
+				$this->set_type_branch( self::$theme_types['base']['branch'] );
+			} elseif ( $_REQUEST['theme-type'] == 'Modern Blog' ) {
+				$this->set_theme( self::$theme_types['modern']['title'] );
+				$this->set_prototype_dir( self::$theme_types['modern']['prototype_dir'] );
+				$this->set_type_branch( self::$theme_types['modern']['branch'] );
+			} elseif ( $_REQUEST['theme-type'] == 'Classic Blog' ) {
+				$this->set_theme( self::$theme_types['classic']['title'] );
+				$this->set_prototype_dir( self::$theme_types['classic']['prototype_dir'] );
+				$this->set_type_branch( self::$theme_types['classic']['branch'] );
+			} elseif ( $_REQUEST['theme-type'] == 'Magazine' ) {
+				$this->set_theme( self::$theme_types['magazine']['title'] );
+				$this->set_prototype_dir( self::$theme_types['magazine']['prototype_dir'] );
+				$this->set_type_branch( self::$theme_types['magazine']['branch'] );
+			} elseif ( $_REQUEST['theme-type'] == 'Portfolio' ) {
+				$this->set_theme( self::$theme_types['portfolio']['title'] );
+				$this->set_prototype_dir( self::$theme_types['portfolio']['prototype_dir'] );
+				$this->set_type_branch( self::$theme_types['portfolio']['branch'] );
+			} elseif ( $_REQUEST['theme-type'] == 'Business' ) {
+				$this->set_theme( self::$theme_types['business']['title'] );
+				$this->set_prototype_dir( self::$theme_types['business']['prototype_dir'] );
+				$this->set_type_branch( self::$theme_types['business']['branch'] );
 			}
 		}
-		// Debug
-		// echo 'The zip archive contains ', $zip->numFiles, ' files with a status of ', $zip->status;
-		//echo '<br>';
-		//var_dump( $files );
-		// Close the zip
+
+		$this->theme = array(
+			'name'		  => 'Theme Name',
+			'slug'		  => 'theme-name',
+			'uri'		  => 'http://components.underscores.me/',
+			'author'	  => 'Components.Underscores.me',
+			'author_uri'  => 'http://components.underscores.me/',
+			'description' => 'Description',
+		);
+
+		$this->theme['name']  = trim( $_REQUEST['components_name'] );
+		$this->theme['slug']  = sanitize_title_with_dashes( $this->theme['name'] );
+		if ( ! empty( $_REQUEST['components_slug'] ) ) {
+			$this->theme['slug'] = sanitize_title_with_dashes( $_REQUEST['components_slug'] );
+		}
+
+		// Let's check if the slug can be a valid function name.
+		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) ) {
+			wp_die( 'Theme slug could not be used to generate valid function names. Please go back and try again.' );
+		}
+		if ( ! empty( $_REQUEST['components_description'] ) ) {
+			$this->theme['description'] = trim( $_REQUEST['components_description'] );
+		}
+		if ( ! empty( $_REQUEST['components_author'] ) ) {
+			$this->theme['author'] = trim( $_REQUEST['components_author'] );
+		}
+		if ( ! empty( $_REQUEST['components_author_uri'] ) ) {
+			$this->theme['author_uri'] = trim( $_REQUEST['components_author_uri'] );
+		}
+
+		$zip = new ZipArchive;
+		$zip_filename = sprintf( self::$file_data['server']['download_dir'] . '-' . str_replace( '/', '-', $this->type_branch ) . '-%s.zip', md5( print_r( $this->theme, true ) ) );
+		$res = $zip->open( $zip_filename, ZipArchive::CREATE && ZipArchive::OVERWRITE );
+		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
+		$exclude_directories = array( '.git', '.svn', '.', '..' );
+
+		$iterator = new RecursiveDirectoryIterator( $this->prototype_dir );
+		foreach ( new RecursiveIteratorIterator( $iterator ) as $filename ) {
+			if ( in_array( basename( $filename ), $exclude_files ) )
+				continue;
+			foreach ( $exclude_directories as $directory )
+				if ( strstr( $filename, "/{$directory}/" ) )
+					continue 2; // continue the parent foreach loop
+			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
+			if ( 'languages/component_s.pot' == $local_filename )
+				$local_filename = sprintf( 'languages/%s.pot', $this->theme['slug'] );
+			$contents = file_get_contents( $filename );
+			$contents = apply_filters( 'components_generator_file_contents', $contents, $local_filename );
+			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
+		}
 		$zip->close();
-
-		// Check to make sure the file exists
-		//return file_exists( $destination );
-		if ( file_exists( $destination ) ) {
-			return $destination;
-		} else {
-			echo 'Something went wrong and your zip was not created.';
-		}
+		header( 'Content-type: application/zip' );
+		header( sprintf( 'Content-Disposition: attachment; filename="%s.zip"', $this->theme['slug'] ) );
+		readfile( $zip_filename );
+		unlink( $zip_filename );
+		die();
 	}
 
 	/**
-	 * Let's set our types.
+	 * Runs when looping through files contents, does the replacements fun stuff.
 	 */
-	function theme_pattern_library_define_types() {
- 		define( 'BASE', 'base', true );
- 		define( 'BLOGMODERN', 'blog-modern', true );
- 		define( 'BLOGTRADITIONAL', 'blog-traditional', true );
- 		define( 'BUSINESS', 'business', true );
- 		define( 'MAGAZINE', 'magazine', true );
- 		define( 'PORTFOLIO', 'portfolio', true );
-	}
-
-
-	function theme_pattern_library_make_working_copies() {
-		$parent_directory = get_template_directory() . '/downloads/';
-		// Make a directory and copy the file to its new directory.
-		$this->theme_pattern_library_copy_directory( $parent_directory = get_template_directory() . '/downloads/theme-pattern-library-master', get_template_directory() . '/downloads/' . BASE );
-		// Make a directory and copy the file to its new directory.
-		$this->theme_pattern_library_copy_directory( $parent_directory = get_template_directory() . '/downloads/theme-pattern-library-master', get_template_directory() . '/downloads/' . BLOGMODERN );
-		// Make a directory and copy the file to its new directory.
-		$this->theme_pattern_library_copy_directory( $parent_directory = get_template_directory() . '/downloads/theme-pattern-library-master', get_template_directory() . '/downloads/' . BLOGTRADITIONAL );
-		// Make a directory and copy the file to its new directory.
-		$this->theme_pattern_library_copy_directory( $parent_directory = get_template_directory() . '/downloads/theme-pattern-library-master', get_template_directory() . '/downloads/' . BUSINESS );
-		// Make a directory and copy the file to its new directory.
-		$this->theme_pattern_library_copy_directory( $parent_directory = get_template_directory() . '/downloads/theme-pattern-library-master', get_template_directory() . '/downloads/' . MAGAZINE );
-		// Make a directory and copy the file to its new directory.
-		$this->theme_pattern_library_copy_directory( $parent_directory = get_template_directory() . '/downloads/theme-pattern-library-master', get_template_directory() . '/downloads/' . PORTFOLIO );
-	}
-
-	function theme_pattern_library_make_base() {
-		// Set the current directory.
-		$current_directory = get_template_directory() . '/downloads/base/';
-		// Delete the /types/ directory.
-		$this->theme_pattern_library_delete_directory( $current_directory . 'types' );
-	}
-
-	function theme_pattern_library_make_blogmodern() {
-		// Set the current directory.
-		$current_directory = get_template_directory() . '/downloads/blog-modern/';
-		// Move the main theme files that need moving.
-		copy( $current_directory . 'types/blog-modern/header.php', $current_directory . 'header.php' );
-		copy( $current_directory . 'types/blog-modern/functions.php', $current_directory . 'functions.php' );
-		copy( $current_directory . 'types/blog-modern/inc/custom-header.php', $current_directory . 'inc/custom-header.php' );
-		// And yet, more files, this time the template parts.
-		copy( $current_directory . 'types/blog-modern/components/content-none.php', $current_directory . 'components/content-none/content-none.php' );
-		copy( $current_directory . 'types/blog-modern/components/content-page.php', $current_directory . 'components/content-page/content-page.php' );
-		copy( $current_directory . 'types/blog-modern/components/content-search.php', $current_directory . 'components/content-search/content-search.php' );
-		copy( $current_directory . 'types/blog-modern/components/content-single.php', $current_directory . 'components/content-single/content-single.php' );
-		copy( $current_directory . 'types/blog-modern/components/content.php', $current_directory . 'components/content/content.php' );
-		// Move the JS files.
-		copy( $current_directory . 'types/blog-modern/assets/js/thememodern.js', $current_directory . 'assets/js/thememodern.js' );
-		// And finally, stylesheets.
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'assets/stylesheets/components' ) ) {
-			mkdir( $current_directory . 'assets/stylesheets/components', 0755 );
+	function components_generator_do_replacements( $contents, $filename ) {
+		// Replace only text files, skip png's and other stuff.
+		$valid_extensions = array( 'php', 'css', 'scss', 'js', 'txt' );
+		$valid_extensions_regex = implode( '|', $valid_extensions );
+		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) )
+			return $contents;
+		// Special treatment for style.css
+		if ( in_array( $filename, array( 'style.css', 'assets/stylesheets/style.scss' ), true ) ) {
+			$theme_headers = array(
+				'Theme Name'  => $this->theme['name'],
+				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
+				'Author'	  => $this->theme['author'],
+				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
+				'Description' => $this->theme['description'],
+				'Text Domain' => $this->theme['slug'],
+			);
+			foreach ( $theme_headers as $key => $value ) {
+				$contents = preg_replace( '/(' . preg_quote( $key ) . ':)\s?(.+)/', '\\1 ' . $value, $contents );
+			}
+			$contents = preg_replace( '/\bcomponent_s\b/', $this->theme['name'], $contents );
+			return $contents;
 		}
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/components/_slidepanel.scss', $current_directory . 'assets/stylesheets/components/_slidepanel.scss' );
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/layout/_content.scss', $current_directory . 'assets/stylesheets/layout/_content.scss' );
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/layout/_structure.scss', $current_directory . 'assets/stylesheets/layout/_structure.scss' );
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/shared/_animation.scss', $current_directory . 'assets/stylesheets/shared/_animation.scss' );
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/shared/_navigation.scss', $current_directory . 'assets/stylesheets/shared/_navigation.scss' );
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/shared/_queries.scss', $current_directory . 'assets/stylesheets/shared/_queries.scss' );
-		// Oh, one more! Our main style.scss.
-		copy( $current_directory . 'types/blog-modern/assets/stylesheets/style.scss', $current_directory . 'assets/stylesheets/style.scss' );
-		// Delete the /types/ directory.
-		$this->theme_pattern_library_delete_directory( $current_directory . 'types' );
-	}
-
-	function theme_pattern_library_make_blogtraditional() {
-		// Set the current directory.
-		$current_directory = get_template_directory() . '/downloads/blog-traditional/';
-		// Move the main theme files that need moving.
-		copy( $current_directory . 'types/blog-traditional/header.php', $current_directory . 'header.php' );
-		copy( $current_directory . 'types/blog-traditional/sidebar.php', $current_directory . 'sidebar.php' );
-		// And finally, stylesheets.
-		copy( $current_directory . 'types/blog-traditional/assets/stylesheets/shared/_queries.scss', $current_directory . 'assets/stylesheets/shared/_queries.scss' );
-		copy( $current_directory . 'types/blog-traditional/assets/stylesheets/variables/_structure.scss', $current_directory . 'assets/stylesheets/variables/_structure.scss' );
-		// Delete the /types/ directory.
-		$this->theme_pattern_library_delete_directory( $current_directory . 'types' );
-	}
-
-	function theme_pattern_library_make_business() {
-		// Set the current directory.
-		$current_directory = get_template_directory() . '/downloads/business/';
-		// Move the main theme files that need moving.
-		copy( $current_directory . 'types/business/header.php', $current_directory . 'header.php' );
-		copy( $current_directory . 'types/business/functions.php', $current_directory . 'functions.php' );
-		copy( $current_directory . 'types/business/inc/jetpack.php', $current_directory . 'inc/jetpack.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'page-templates' ) ) {
-			mkdir( $current_directory . 'page-templates', 0755 );
+		// Special treatment for footer.php
+		if ( 'footer.php' == $filename ) {
+			// <?php printf( __( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="http://automattic.com/" rel="designer">Automattic</a>' );
+			$contents = str_replace( 'http://automattic.com/', esc_url( $this->theme['author_uri'] ), $contents );
+			$contents = str_replace( 'Automattic', $this->theme['author'], $contents );
+			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
 		}
-		copy( $current_directory . 'types/business/page-templates/template-front.php', $current_directory . 'page-templates/template-front.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/content-hero' ) ) {
-			mkdir( $current_directory . 'components/content-hero', 0755 );
+		// Function names can not contain hyphens.
+		$slug = str_replace( '-', '_', $this->theme['slug'] );
+		// Regular treatment for all other files.
+		$contents = str_replace( "@package component_s", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
+		$contents = str_replace( "component_s-", sprintf( "%s-",  $this->theme['slug'] ), $contents ); // Script/style handles.
+		$contents = str_replace( "'component_s'", sprintf( "'%s'",  $this->theme['slug'] ), $contents ); // Textdomains.
+		$contents = str_replace( "component_s_", $slug . '_', $contents ); // Function names.
+		$contents = preg_replace( '/\bcomponent_s\b/', $this->theme['name'], $contents );
+		// Special treatment for readme.txt
+		if ( 'readme.txt' == $filename ) {
+			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', "\n\n" . $this->theme['description'] . "\n\n", $contents );
+			$contents = str_replace( 'component_s, or components', $this->theme['name'], $contents );
 		}
-		copy( $current_directory . 'types/business/components/content-hero/content-hero.php', $current_directory . 'components/content-hero/content-hero.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/content-testimonial' ) ) {
-			mkdir( $current_directory . 'components/content-testimonial', 0755 );
-		}
-		copy( $current_directory . 'types/business/components/content-testimonial/content-testimonial.php', $current_directory . 'components/content-testimonial/content-testimonial.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/testimonials' ) ) {
-			mkdir( $current_directory . 'components/testimonials', 0755 );
-		}
-		copy( $current_directory . 'types/business/components/testimonials/testimonials.php', $current_directory . 'components/testimonials/testimonials.php' );
-		// Delete the /types/ directory.
-		$this->theme_pattern_library_delete_directory( $current_directory . 'types' );
-	}
-
-	function theme_pattern_library_make_magazine() {
-		// Set the current directory.
-		$current_directory = get_template_directory() . '/downloads/magazine/';
-		// Move the main theme files that need moving.
-		copy( $current_directory . 'types/magazine/index.php', $current_directory . 'index.php' );
-		copy( $current_directory . 'types/magazine/inc/jetpack.php', $current_directory . 'inc/jetpack.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/featured' ) ) {
-			mkdir( $current_directory . 'components/featured', 0755 );
-		}
-		copy( $current_directory . 'types/magazine/components/featured.php', $current_directory . 'components/featured/featured.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/content-featured' ) ) {
-			mkdir( $current_directory . 'components/content-featured', 0755 );
-		}
-		copy( $current_directory . 'types/magazine/components/content-featured.php', $current_directory . 'components/content-featured/content-featured.php' );
-		// And finally, stylesheets.
-		copy( $current_directory . 'types/magazine/assets/stylesheets/shared/_queries.scss', $current_directory . 'assets/stylesheets/shared/_queries.scss' );
-		copy( $current_directory . 'types/magazine/assets/stylesheets/variables/_structure.scss', $current_directory . 'assets/stylesheets/variables/_structure.scss' );
-		// Delete the /types/ directory.
-		$this->theme_pattern_library_delete_directory( $current_directory . 'types' );
-	}
-
-	function theme_pattern_library_make_portfolio() {
-		// Set the current directory.
-		$current_directory = get_template_directory() . '/downloads/portfolio/';
-		// Move the main theme files that need moving.
-		copy( $current_directory . 'types/portfolio/header.php', $current_directory . 'header.php' );
-		copy( $current_directory . 'types/portfolio/functions.php', $current_directory . 'functions.php' );
-		copy( $current_directory . 'types/portfolio/single-jetpack-portfolio.php', $current_directory . 'single-jetpack-portfolio.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'page-templates' ) ) {
-			mkdir( $current_directory . 'page-templates', 0755 );
-		}
-		copy( $current_directory . 'types/portfolio/template-front.php', $current_directory . 'page-templates/template-front.php' );
-		copy( $current_directory . 'types/portfolio/inc/jetpack.php', $current_directory . 'inc/jetpack.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/content-portfolio-single' ) ) {
-			mkdir( $current_directory . 'components/content-portfolio-single', 0755 );
-		}
-		copy( $current_directory . 'types/portfolio/components/content-portfolio-single.php', $current_directory . 'components/content-portfolio-single/content-portfolio-single.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/content-portfolio' ) ) {
-			mkdir( $current_directory . 'components/content-portfolio', 0755 );
-		}
-		copy( $current_directory . 'types/portfolio/components/content-portfolio.php', $current_directory . 'components/content-portfolio/content-portfolio.php' );
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'components/portfolio' ) ) {
-			mkdir( $current_directory . 'components/portfolio', 0755 );
-		}
-		copy( $current_directory . 'types/portfolio/components/portfolio.php', $current_directory . 'components/portfolio/portfolio.php' );
-		// And finally, stylesheets.
-		// Make the missing directory we need.
-		if ( ! file_exists( $current_directory . 'assets/stylesheets/components' ) ) {
-			mkdir( $current_directory . 'assets/stylesheets/components', 0755 );
-		}
-		copy( $current_directory . 'types/portfolio/assets/stylesheets/components/_portfolio.scss', $current_directory . 'assets/stylesheets/components/_portfolio.scss' );
-		copy( $current_directory . 'types/portfolio/assets/stylesheets/layout/_structure.scss', $current_directory . 'assets/stylesheets/layout/_structure.scss' );
-		copy( $current_directory . 'types/portfolio/assets/stylesheets/shared/_queries.scss', $current_directory . 'assets/stylesheets/shared/_queries.scss' );
-		// Delete the /types/ directory.
-		$this->theme_pattern_library_delete_directory( $current_directory . 'types' );
-	}
-
-	function theme_pattern_library_create_type_zips() {
-		$downloads = get_template_directory() . '/downloads/';
-		// Base
-		$base = get_template_directory() . '/downloads/' . BASE;
-		$this->theme_pattern_library_create_zip( $base, $downloads, true );
-		// Blog Modern
-		$blogModern = get_template_directory() . '/downloads/' . BLOGMODERN;
-		$this->theme_pattern_library_create_zip( $blogModern, $downloads, true );
-		// Blog Traditional
-		$blogTraditional = get_template_directory() . '/downloads/' . BLOGTRADITIONAL;
-		$this->theme_pattern_library_create_zip( $blogTraditional, $downloads, true );
-		// Business Traditional
-		$business = get_template_directory() . '/downloads/' . BUSINESS;
-		$this->theme_pattern_library_create_zip( $business, $downloads, true );
-		// Magazine Traditional
-		$magazine = get_template_directory() . '/downloads/' . MAGAZINE;
-		$this->theme_pattern_library_create_zip( $magazine, $downloads, true );
-		// Portfolio Traditional
-		$portfolio = get_template_directory() . '/downloads/' . PORTFOLIO;
-		$this->theme_pattern_library_create_zip( $portfolio, $downloads, true );
-	}
-
-	/**
-	 * Let's fire the needed functions.
-	 */
-	function theme_pattern_library_init() {
-		$this->theme_pattern_library_get_download( 'master', get_template_directory() . '/downloads/' );
-		$this->theme_pattern_library_unzip( get_template_directory() . '/downloads/' . 'theme-pattern-library-master.zip' );
-		$this->theme_pattern_library_define_types();
-		$this->theme_pattern_library_make_working_copies();
-		$this->theme_pattern_library_make_base();
-		$this->theme_pattern_library_make_blogmodern();
-		$this->theme_pattern_library_make_business();
-		$this->theme_pattern_library_make_magazine();
-		$this->theme_pattern_library_make_portfolio();
-		$this->theme_pattern_library_create_type_zips();
+		return $contents;
 	}
 
 	/**
 	 * Let's set an expiration on the last generation of the theme types and get current time.
 	 */
 	// We only need to grab the file info of one type zip file since all files are created at once.
-	function theme_pattern_library_set_expiration_and_go() {
+	function components_generator_set_expiration_and_go() {
 		// We only need to grab the file info of one type zip file since all files are created at once.
-		$filename = get_template_directory() . '/downloads/' . 'base.zip';
-		if ( file_exists( $filename ) ) {
-			$fileTimeStamp = date( filemtime( $filename ) );
+		$file_name = self::$file_data['server']['download_dir'] . self::$theme_types['base']['prototype_dir'] . '.zip';
+		if ( file_exists( $file_name ) ) {
+			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
 			$expired = 1800; /* Equal to 30 minutes. */
 		}
@@ -384,8 +417,8 @@ class Components_Generator_Plugin {
 		 * No need to fetch the pattern library and generate types all the time.
 		 * If no files exist, let's generate types anyway.
 		 */
-		if ( file_exists( $filename ) && $expired <= $time - $fileTimeStamp  || ! file_exists( $filename ) ) {
-			add_action( 'wp_footer', array( $this, 'theme_pattern_library_init' ) );
+		if ( file_exists( $file_name ) && $expired <= $time - $file_time_stamp  || ! file_exists( $file_name ) ) {
+			add_action( 'wp_footer', array( $this, 'components_generator_init' ) );
 		}
 	}
 }

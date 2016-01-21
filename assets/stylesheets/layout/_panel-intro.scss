@@ -1,147 +1,200 @@
 /* Don't show masthead, since we're repeating it in the first panel */
 #masthead {
-  display: none;
+	display: none;
 }
 
 @include mobile {
 
-  /* Don't display pipes! */
-  #pipe-left,
-  #pipe-chute,
-  #pipe-rightcrook,
-  .chute-wrapper {
-    display: none;
-  }
+	/* Don't display pipes! */
+	#pipe-left,
+	#pipe-chute,
+	#pipe-rightcrook,
+	.chute-wrapper {
+		display: none;
+	}
 
-  /* Flip logo */
-  #components-logo {
-    margin-left: -10px;
-    transform: rotate(90deg);
-    transform-origin: top left;
-    position: absolute;
-    width: 480px;
-    margin-right: 200px;
-    top: 0;
-  }
+	/* Flip logo */
+	#components-logo {
+		margin-left: -10px;
+		transform: rotate(90deg);
+		transform-origin: top left;
+		position: absolute;
+		width: 480px;
+		margin-right: 200px;
+		top: 0;
+	}
 
-  .site-description {
-    margin-top: 0;
-  }
+	.site-description {
+		margin-top: 0;
+	}
 
-  .intro-content {
-    margin-top: 180px;
-    margin-left: 50px;
-  }
+	.intro-content {
+		margin-top: 180px;
+		margin-left: 50px;
+	}
 }
 
 @include tablet {
-  #intro .wrap {
-    padding-top: 0;
-    position: relative;
-  }
+	#intro .wrap {
+		padding-top: 0;
+		position: relative;
+	}
 
-  .chute-wrapper {
-    float: left;
-    margin: 40px 0 -60px 70px;
-    position: relative;
-    z-index: 1;
-  }
+	.chute-wrapper {
+		float: left;
+		margin: 40px 0 -60px 70px;
+		position: relative;
+		z-index: 1;
+	}
 
-  #pipe-chute {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+	#pipe-chute {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 
-  #pipe-tap {
-    animation-name: spin;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    animation-delay: 5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(.96, -0.08, .49, 1.58);
-    animation-play-state: running;
-    animation-iteration-count: infinite;
-    position: absolute;
-      top: 245px;
-      left: 34px;
-    width: 80px;
-    height: 80px
-  }
+	#pipe-tap {
+		animation-name: spin;
+		animation-duration: 3s;
+		animation-direction: alternate;
+		animation-delay: 5s;
+		animation-fill-mode: forwards;
+		animation-timing-function: cubic-bezier(.96, -0.08, .49, 1.58);
+		animation-play-state: running;
+		animation-iteration-count: infinite;
+		position: absolute;
+			top: 245px;
+			left: 34px;
+		width: 80px;
+		height: 80px
+	}
 
-  #pipe-left {
-    margin-left: -40px;
-    margin-top: 36px;
-  }
+	#pipe-left {
+		margin-left: -40px;
+		margin-top: 36px;
+	}
 
-  #stretchy-pipe {
-    position: absolute;
-    left: 175px;
-    right: 98px;
-    background: $color__teal-light;
-    height: 30px;
-    top: 40px;
-  }
+	#stretchy-pipe {
+		position: absolute;
+		left: 175px;
+		right: 98px;
+		background: $color__teal-light;
+		height: 30px;
+		top: 40px;
+	}
 
-  #pipe-rightcrook {
-    float: right;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    margin-top: -14px;
-    vertical-align: top;
-    margin-left: -5px;
-  }
+	#pipe-rightcrook {
+		float: right;
+		position: absolute;
+		top: 0;
+		right: 20px;
+		margin-top: -14px;
+		vertical-align: top;
+		margin-left: -5px;
+	}
 
-  /* Move content block to right */
-  #intro .content-wrapper {
-    float: left;
-    position: relative;
-    width: calc(100% - 300px);
-    z-index: 1;
-  }
+	/* Move content block to right */
+	#intro .content-wrapper {
+		float: left;
+		position: relative;
+		width: calc(100% - 300px);
+		z-index: 1;
+	}
 
-  #intro .intro-content {
-    margin: 40px auto 0;
-    max-width: 650px;
-  }
+	#intro .intro-content {
+		margin: 40px auto 0;
+		max-width: 650px;
+	}
 }
 
 /* Rotation animation */
 @keyframes spin {
-  0%, 40% {
-    transform: rotate(36deg);
-  }
+	0%, 40% {
+		transform: rotate(36deg);
+	}
 
-  45% {
-    transform: rotate(-360deg);
-  }
+	45% {
+		transform: rotate(-360deg);
+	}
 
-  50% {
-    transform: rotate(-600deg)
-  }
+	50% {
+		transform: rotate(-600deg)
+	}
 
-  55% {
-    transform: rotate(-360deg)
-  }
+	55% {
+		transform: rotate(-360deg)
+	}
 
-  60%, 100% {
-    transform: rotate(36deg);
-  }
+	60%, 100% {
+		transform: rotate(36deg);
+	}
 }
 
 .site-title {
-  font-family: $font__display;
-  font-size: 6em;
-  font-weight: normal;
-  text-shadow:
-       3px 3px 0 $color__teal,
-     -1px -1px 0 $color__teal,
-      1px -1px 0 $color__teal,
-      -1px 1px 0 $color__teal,
-       1px 1px 0 $color__teal;
+	font-family: $font__display;
+	font-size: 6em;
+	font-weight: normal;
+	text-shadow:
+			 3px 3px 0 $color__teal,
+		 -1px -1px 0 $color__teal,
+			1px -1px 0 $color__teal,
+			-1px 1px 0 $color__teal,
+			 1px 1px 0 $color__teal;
 }
 
 .site-description {
-  margin-top: $size__gutter/2;
+	margin-top: $size__gutter/2;
+}
+
+.generator-form {
+	padding-bottom: 1.5em;
+}
+
+.theme-input {
+	transition: width 0.2s;
+}
+
+.generator-form-primary {
+	float: left;
+	padding-right: 20px;
+	width: 33.33%;
+
+	fieldset {
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.components-radio-group {
+		display: block;
+		margin-bottom: 1.5em;
+
+		.components-input {
+			margin-right: 4px;
+		}
+	}
+
+	.components-label {
+		display: inline-block;
+	}
+
+	.components-label {
+		display: inline-block;
+	}
+}
+
+.generator-form-secondary {
+	float: left;
+	width: 66.66%;
+
+	.components-label {
+		display: block;
+		width: 90%;
+	}
+
+	.components-input {
+		display: block;
+		margin-bottom: 1.5em;
+		width: 90%;
+	}
 }

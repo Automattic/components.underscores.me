@@ -71,11 +71,6 @@ get_header(); ?>
 							<div class="theme-text">
 								<h2 class="theme-type-title"><?php echo $type['title']; ?></h2>
 								<p><?php echo $type['text']; ?></p>
-								<div class="theme-input">
-									<input type="text" placeholder="Theme Name">
-									<input type="text" placeholder="Author">
-									<input type="text" placeholder="Theme URI">
-								</div>
 								<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/' . $type['filename'] . '.zip' ?>" class="download button">Build Theme!</a>
 							</div>
 						</div><!-- .theme-type -->
@@ -110,6 +105,7 @@ get_header(); ?>
 			</div><!-- .wrap -->
 		</section>
 
+		<?php do_action( 'components_generator_print_form' ); ?>
 
 		<section id="extra-info" role="main">
 			<div class="wrap">
