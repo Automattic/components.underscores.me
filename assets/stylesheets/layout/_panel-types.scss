@@ -1,17 +1,8 @@
-#types {
-	background-color: $color__navy;
+#base {
+	background-color: $color__navy-light;
 	color: $color__offwhite;
 
-	a {
-		color: $color__offwhite;
-	}
-
-	h2 {
-		color: $color__teal-light;
-	}
-
 	.wrap {
-		max-width: 1400px;
 		position: relative;
 
 		&::before,
@@ -26,10 +17,46 @@
 	}
 }
 
+
+#types {
+	background-color: $color__navy;
+	color: $color__offwhite;
+	padding-bottom: 40px;
+	padding-top: 40px;
+
+	a {
+		color: $color__offwhite;
+	}
+
+	h2 {
+		color: $color__teal-light;
+	}
+
+	.wrap {
+		max-width: 1400px;
+		padding-left: 20px;
+		padding-right: 20px;
+		position: relative;
+
+		&::before,
+		&::after {
+			content: "";
+			display: table;
+		}
+
+		&::after {
+			clear: both;
+		}
+	}
+
+	.types-row {
+		padding-bottom: 0;
+		padding-top: 0;
+	}
+}
+
 .theme-type {
-	float: left;
 	position: relative;
-	width: 50%;
 
 	&::before,
 	&::after {
@@ -45,10 +72,12 @@
 .theme-image {
 	float: left;
 	position: relative;
-	width: 50%;
+	width: 46%;
 
 	.type-layout {
+		height: auto;
 		position: relative;
+		width: 100%;
 	}
 
 	.large-robot {
@@ -65,16 +94,105 @@
 .theme-text {
 	float: right;
 	width: 50%;
+
+	p {
+		margin-top: 0;
+	}
 }
 
+/**
+ * Media Queries
+ */
+
+@include desktop {
+	#types .types-row {
+		padding-bottom: 3em;
+
+		.theme-type {
+			width: 48%;
+
+			&:nth-child(1) {
+				float: left;
+			}
+
+			&:nth-child(2) {
+				float: right;
+			}
+		}
+	}
+
+	.types-row:nth-child(even) {
+		.theme-image {
+			float: right;
+		}
+
+		.theme-text {
+			float: left;
+		}
+
+		.large-robot {
+			left: auto;
+			right: -30px;
+		}
+	}
+}
+
+
+@include desktop-max {
+	#types .theme-type {
+		float: none;
+		padding-bottom: 4em;
+		width: 100%;
+
+		&:nth-child(even) {
+			.theme-image {
+				float: right;
+			}
+
+			.theme-text {
+				float: left;
+			}
+
+			.large-robot {
+				left: auto;
+				right: -30px;
+			}
+		}
+
+		.theme-type-title,
+		.theme-text {
+			text-align: center;
+		}
+
+		.theme-text p {
+			text-align: left;
+		}
+	}
+}
 
 
 @include mobile {
 
+	#base {
+		h2,
+		.theme-text {
+			text-align: center;
+		}
+
+		p {
+			text-align: left;
+		}
+	}
+
+	.theme-text {
+		float: none;
+		width: 100%;
+	}
+
 	.theme-image {
 		background-color: rgba(80, 158, 163, 0.8);
 		border-radius: 150px;
-		float: none;
+		float: none !important;
 		height: 150px;
 		overflow: hidden;
 		margin: auto;
