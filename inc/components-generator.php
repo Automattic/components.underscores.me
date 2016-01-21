@@ -40,61 +40,61 @@ class Components_Generator_Plugin {
 		 * If a new type is added to Components, add the data here.
 		 * The generator will then work with the new type.
 		 */
-		self::$theme_types = array(
-			'base' => array (
-				'title'	=> esc_html__( 'Base', 'components' ),
-				'id' => esc_attr( 'type-base' ),
-				'zip_file' => 'theme-pattern-library-master.zip',
-				'branch' => 'master',
-				'branch_slash' => false,
-				'prototype_dir' => 'theme-pattern-library-master',
-			),
+		 self::$theme_types = array(
+ 			'base' => array (
+ 				'title'	=> esc_html__( 'Base', 'components' ),
+ 				'id' => esc_attr( 'type-base' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-master.zip',
+ 				'branch' => 'master',
+ 				'branch_slash' => false,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-master',
+ 			),
 
-			'modern' => array (
-				'title'	=> esc_html__( 'Modern Blog', 'components' ),
-				'id' => esc_attr( 'type-blog-modern' ),
-				'zip_file' => 'theme-pattern-library-types-blog-modern.zip',
-				'branch' => 'types/blog-modern',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-blog-modern',
-			),
+ 			'modern' => array (
+ 				'title'	=> esc_html__( 'Modern Blog', 'components' ),
+ 				'id' => esc_attr( 'type-blog-modern' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-modern.zip',
+ 				'branch' => 'types/blog-modern',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-blog-modern',
+ 			),
 
-			'classic' => array (
-				'title'	=> esc_html__( 'Classic Blog', 'components' ),
-				'id' => esc_attr( 'type-classic' ),
-				'zip_file' => 'theme-pattern-library-types-blog-traditional.zip',
-				'branch' => 'types/blog-traditional',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-blog-traditional',
-			),
+ 			'classic' => array (
+ 				'title'	=> esc_html__( 'Classic Blog', 'components' ),
+ 				'id' => esc_attr( 'type-classic' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-traditional.zip',
+ 				'branch' => 'types/blog-traditional',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-blog-traditional',
+ 			),
 
-			'magazine' => array (
-				'title'	=> esc_html__( 'Magazine', 'components' ),
-				'id' => esc_attr__( 'type-magazine', 'components' ),
-				'zip_file' => 'theme-pattern-library-types-magazine.zip',
-				'branch' => 'types/magazine',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-magazine',
-			),
+ 			'magazine' => array (
+ 				'title'	=> esc_html__( 'Magazine', 'components' ),
+ 				'id' => esc_attr__( 'type-magazine', 'components' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-magazine.zip',
+ 				'branch' => 'types/magazine',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-magazine',
+ 			),
 
-			'portfolio' => array (
-				'title'	=> esc_html__( 'Portfolio', 'components' ),
-				'id' => esc_attr( 'type-portfolio' ),
-				'zip_file' => 'theme-pattern-library-types-portfolio.zip',
-				'branch' => 'types/portfolio',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-portfolio',
-			),
+ 			'portfolio' => array (
+ 				'title'	=> esc_html__( 'Portfolio', 'components' ),
+ 				'id' => esc_attr( 'type-portfolio' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-portfolio.zip',
+ 				'branch' => 'types/portfolio',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-portfolio',
+ 			),
 
-			'business' => array (
-				'title'	=> esc_html__( 'Business', 'components' ),
-				'id' => esc_attr( 'type-business' ),
-				'zip_file' => 'theme-pattern-library-types-business.zip',
-				'branch' => 'types/business',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-business',
-			),
-		);
+ 			'business' => array (
+ 				'title'	=> esc_html__( 'Business', 'components' ),
+ 				'id' => esc_attr( 'type-business' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-business.zip',
+ 				'branch' => 'types/business',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-business',
+ 			),
+ 		);
 
 		// All the black magic is happening in these actions.
 		add_action( 'init', array( $this, 'components_generator_set_expiration_and_go' ) );
