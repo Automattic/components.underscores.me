@@ -1,0 +1,52 @@
+.generator-form {
+	padding-bottom: 1.5em;
+}
+
+.theme-input {
+	transition: width 0.2s;
+}
+
+.generator-form-primary {
+	float: left;
+	padding-right: 20px;
+	width: 33.33%;
+}
+
+.generator-form-primary fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.generator-form-primary .components-radio-group {
+	display: block;
+	margin-bottom: 1.5em;
+}
+
+.generator-form-primary .components-radio-group .components-input {
+	margin-right: 4px;
+}
+
+.generator-form-primary .components-label {
+	display: inline-block;
+}
+
+.generator-form-primary .components-label {
+	display: inline-block;
+}
+
+.generator-form-secondary {
+	float: left;
+	width: 66.66%;
+}
+
+.generator-form-secondary .components-label {
+	display: block;
+	width: 90%;
+}
+
+.generator-form-secondary .components-input {
+	display: block;
+	margin-bottom: 1.5em;
+	width: 90%;
+}
