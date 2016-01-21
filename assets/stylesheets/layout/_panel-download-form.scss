@@ -1,52 +1,195 @@
-.generator-form {
-	padding-bottom: 1.5em;
+#generator {
+	background-color: $color__navy-light;
+	color: $color__offwhite;
+	max-height: 100%;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+
+	&.closed {
+		max-height: 0;
+	}
+
+	.wrap {
+		position: relative;
+
+		&::before,
+		&::after {
+			content: "";
+			display: table;
+		}
+
+		&::after {
+			clear: both;
+		}
+	}
+
+	h2 {
+		color: #fff;
+	}
+
+	p {
+		color: $color__bright-blue;
+	}
 }
 
-.theme-input {
-	transition: width 0.2s;
+.generator-form {
+	padding-bottom: 1.5em;
+	position: relative;
+	text-align: left;
 }
 
 .generator-form-primary {
 	float: left;
 	padding-right: 20px;
-	width: 33.33%;
-}
+	width: 35%;
 
-.generator-form-primary fieldset {
-	border: none;
-	margin: 0;
-	padding: 0;
-}
+	fieldset {
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
 
-.generator-form-primary .components-radio-group {
-	display: block;
-	margin-bottom: 1.5em;
-}
+	.components-radio-group {
+		display: block;
+		margin-bottom: 1em;
 
-.generator-form-primary .components-radio-group .components-input {
-	margin-right: 4px;
-}
+		.components-input {
+			margin-right: 4px;
+		}
+	}
 
-.generator-form-primary .components-label {
-	display: inline-block;
-}
+	.components-label {
+		display: inline-block;
+		font-family: $font__serif;
+	}
 
-.generator-form-primary .components-label {
-	display: inline-block;
+	legend.components-label {
+		display: block;
+		float: left;
+		width: 40%;
+	}
+
+	.components-radio-block {
+		float: right;
+		width: 60%;
+
+		input[type="radio"] {
+			border: 0;
+			clip: rect(0 0 0 0);
+			height: 1px; margin: -1px;
+			overflow: hidden;
+			padding: 0;
+			position: absolute;
+			width: 1px;
+		}
+
+		label {
+			cursor: pointer;
+			font-family: $font__sans;
+		}
+
+		label:before {
+			background-color: $color__navy-light;
+			border: 4px solid $color__navy-light;
+			bottom: -2px;
+ 			box-shadow: 0 0 0 2px $color__bright-blue;
+			border-radius: 17px;
+			content: "";
+			display: inline-block;
+			height: 17px;
+			margin-right: 15px;
+			position: relative;
+			width: 17px;
+		}
+
+		input[type="radio"]:checked + label:before {
+			background-color: $color__pink;
+		}
+	}
 }
 
 .generator-form-secondary {
 	float: left;
-	width: 66.66%;
+	width: 65%;
+
+	.components-label {
+		display: inline-block;
+		width: 20%;
+	}
+
+	.components-input {
+		display: inline-block;
+		margin-bottom: 1.5em;
+		vertical-align: top;
+		width: 78%;
+		width: calc( 80% - 6px );
+	}
 }
 
-.generator-form-secondary .components-label {
-	display: block;
-	width: 90%;
+.components-form-cancel {
+	color: $color__bright-blue;
+	margin-left: 15px;
+
+	&:hover {
+		color: lighten( $color__bright-blue, 10% );
+	}
 }
 
-.generator-form-secondary .components-input {
+.required {
+	color: $color__bright-blue;
 	display: block;
-	margin-bottom: 1.5em;
-	width: 90%;
+	font-family: $font__serif;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+// Gear styles
+
+.gear-set-one,
+.gear-set-two {
+	position: absolute;
+	top: 0;
+}
+
+.gear-set-one {
+	left: -225px;
+	top: -80px;
+
+	svg {
+		height: auto;
+		width: 800px;
+	}
+}
+
+.gear-set-two {
+	bottom: -100px;
+	right: -180px;
+	-ms-transform: rotate(190deg);
+	-webkit-transform: rotate(190deg);
+	transform: rotate(190deg);
+
+	svg {
+		height: auto;
+		width: 600px;
+	}
+}
+
+
+// Media queries
+
+@include mobile {
+	.generator-form-primary,
+	.generator-form-secondary {
+		float: none;
+		width: 100%;
+	}
+
+	.generator-form-secondary {
+		.components-label,
+		.components-input {
+			display: block;
+			width: 100%;
+		}
+	}
 }

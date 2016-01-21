@@ -192,7 +192,18 @@ class Components_Generator_Plugin {
 	 */
 	function components_generator_print_form() { ?>
 		<section id="generator">
+
+			<div class="gear-set-one">
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-set.svg' ); ?>
+			</div><!-- .gear-set-one -->
+
+			<div class="gear-set-two">
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-set.svg' ); ?>
+			</div><!-- .gear-set-two -->
+
 			<div class="wrap">
+				<h2>Download Components</h2>
+				<p>Pick a type to download, and then fill out the information about the theme you're building.</p>
 				<div id="generator-form" class="generator-form">
 					<form method="POST">
 						<input type="hidden" name="components_generate" value="1" />
@@ -200,34 +211,47 @@ class Components_Generator_Plugin {
 						<div class="theme-input clear">
 							<div class="generator-form-primary">
 								<fieldset>
-									<legend class="components-label">Choose a theme type: <span class="required">(Required)</span></legend>
-									<?php foreach ( self::$theme_types as $theme_type ) : ?>
-										<div class="components-radio-group">
-											<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
-											<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
-										</div>
-									<?php endforeach; ?>
+									<legend class="components-label">Select Type: <span class="required">Required</span></legend>
+									<div class="components-radio-block">
+										<?php foreach ( self::$theme_types as $theme_type ) : ?>
+											<div class="components-radio-group">
+												<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
+												<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
+											</div>
+										<?php endforeach; ?>
+									</div>
 								</fieldset>
 							</div><!-- .generator-form-primary -->
 
 							<div class="generator-form-secondary">
-								<label class="components-label" for="components-name">Theme Name <span class="required">(Required)</span></label>
-								<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
+								<div class="components-form-field">
+									<label class="components-label" for="components-name">Theme Name <span class="required">Required</span></label>
+									<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
+								</div>
 
-								<label class="components-label" for="components-slug">Theme Slug</label>
-								<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
+								<div class="components-form-field">
+									<label class="components-label" for="components-slug">Theme Slug</label>
+									<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
+								</div>
 
-								<label class="components-label" for="components-author">Author</label>
-								<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
+								<div class="components-form-field">
+									<label class="components-label" for="components-author">Author</label>
+									<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
+								</div>
 
-								<label class="components-label" for="components-author-uri">Author URI</label>
-								<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="https://awesometheme.whatever">
+								<div class="components-form-field">
+									<label class="components-label" for="components-author-uri">Author URI</label>
+									<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="https://awesometheme.whatever">
+								</div>
 
-								<label class="components-label" for="components-description">Description</label>
-								<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
+								<div class="components-form-field">
+									<label class="components-label" for="components-description">Description</label>
+									<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
+								</div>
 
 								<div class="generator-form-submit">
 									<input type="submit" name="components_generate_submit" value="Download Theme">
+									<a class="components-form-cancel" href="#">Cancel</a>
 								</div><!-- .generator-form-submit -->
 							</div><!-- .generator-form-secondary -->
 						</div><!-- .generator-form-inputs -->
