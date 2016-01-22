@@ -3,6 +3,7 @@
 	color: $color__offwhite;
 
 	.wrap {
+		max-width: 795px;
 		position: relative;
 
 		&::before,
@@ -15,12 +16,39 @@
 			clear: both;
 		}
 	}
+
+	h2 {
+		color: $color__teal-light;
+	}
+
+	.theme-type {
+		padding-top: 85px;
+	}
+
+	.theme-text {
+		width: 45%;
+	}
+
+	.theme-image {
+		width: 50%;
+
+		.large-robot {
+			left: 0;
+		}
+
+		.type-layout {
+			float: right;
+			max-height: 90%;
+			width: auto;
+		}
+	}
 }
 
 
 #types {
 	background-color: $color__navy;
 	color: $color__offwhite;
+	overflow: hidden;
 	padding-bottom: 40px;
 	padding-top: 40px;
 
@@ -32,7 +60,7 @@
 		color: $color__teal-light;
 	}
 
-	.wrap {
+	& > .wrap {
 		max-width: 1400px;
 		padding-left: 20px;
 		padding-right: 20px;
@@ -72,18 +100,20 @@
 .theme-image {
 	float: left;
 	position: relative;
-	width: 46%;
+	width: 44%;
 
 	.type-layout {
-		height: auto;
+		max-height: 90%;
 		position: relative;
 		width: 100%;
 	}
 
 	.large-robot {
 		bottom: -20px;
-		left: -30px;
+		height: 110%;
+		left: -20%;
 		position: absolute;
+		width: 80%;
 	}
 
 	.mobile-robot {
@@ -93,7 +123,7 @@
 
 .theme-text {
 	float: right;
-	width: 50%;
+	width: 52%;
 
 	p {
 		margin-top: 0;
@@ -111,17 +141,17 @@
 		.theme-type {
 			width: 48%;
 
-			&:nth-child(1) {
+			&:nth-of-type(1) {
 				float: left;
 			}
 
-			&:nth-child(2) {
+			&:nth-of-type(2) {
 				float: right;
 			}
 		}
 	}
 
-	.types-row:nth-child(even) {
+	.types-row:nth-of-type(even) {
 		.theme-image {
 			float: right;
 		}
@@ -131,11 +161,46 @@
 		}
 
 		.large-robot {
+			filter: FlipH;
+			-ms-filter: "FlipH";
 			left: auto;
-			right: -30px;
+			right: -20%;
+			-webkit-transform: scaleX(-1);
+			-moz-transform: scaleX(-1);
+			-o-transform: scaleX(-1);
+			transform: scaleX(-1);
+
 		}
 	}
 }
+
+
+@include laptop-max {
+	// things get pretty crowded on 13" screens, so here's some small tweaks for that
+	.theme-image {
+		width: 40%;
+
+		.large-robot {
+			left: -15%;
+		}
+	}
+	.theme-text {
+		width: 56%;
+	}
+
+	.types-row:nth-of-type(even) .large-robot {
+		filter: FlipH;
+		-ms-filter: "FlipH";
+		left: auto;
+		right: -15%;
+		-webkit-transform: scaleX(-1);
+		-moz-transform: scaleX(-1);
+		-o-transform: scaleX(-1);
+		transform: scaleX(-1);
+
+	}
+}
+
 
 
 @include desktop-max {
@@ -144,7 +209,18 @@
 		padding-bottom: 4em;
 		width: 100%;
 
-		&:nth-child(even) {
+		.large-robot {
+			filter: none;
+			-ms-filter: none;
+			left: -15%;
+			max-height: 90%;
+			-webkit-transform: none;
+			-moz-transform: none;
+			-o-transform: none;
+			transform: none;
+		}
+
+		&:nth-of-type(even) {
 			.theme-image {
 				float: right;
 			}
@@ -154,18 +230,15 @@
 			}
 
 			.large-robot {
+				filter: FlipH;
+				-ms-filter: "FlipH";
 				left: auto;
-				right: -30px;
+				right: -15%;
+				-webkit-transform: scaleX(-1);
+				-moz-transform: scaleX(-1);
+				-o-transform: scaleX(-1);
+				transform: scaleX(-1);
 			}
-		}
-
-		.theme-type-title,
-		.theme-text {
-			text-align: center;
-		}
-
-		.theme-text p {
-			text-align: left;
 		}
 	}
 }
@@ -184,18 +257,29 @@
 		}
 	}
 
+	#base .theme-text,
 	.theme-text {
 		float: none;
 		width: 100%;
 	}
 
+	.theme-type-title,
+	.theme-text {
+		text-align: center;
+	}
+
+	.theme-text p {
+		text-align: left;
+	}
+
+	#base .theme-image,
 	.theme-image {
 		background-color: rgba(80, 158, 163, 0.8);
 		border-radius: 150px;
 		float: none !important;
 		height: 150px;
 		overflow: hidden;
-		margin: auto;
+		margin: 0 auto 10px;
 		position: relative;
 		width: 150px;
 

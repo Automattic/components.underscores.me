@@ -1,11 +1,14 @@
+
 ( function( $ ) {
 
 	$( document ).ready( function() {
 		// Close the form on page load
-		//$( '#generator' ).addClass( 'closed' );
+		$( '#generator' ).slideUp( 0 );
 	} );
 
-	var form, triggerElement;
+	// Define some variables
+	 var form = $( '#generator' ).slideUp( 0 ).clone( true ),
+	 	triggerElement;
 
 	// Let's set up our ARIA for the Generator controls.
 	// We need these only if JavaScript fires.
@@ -34,10 +37,21 @@
 			'tabindex': '-1'
 		} );
 
-		// Wait a bit before shifting focus since our generator form moves in the source.
+		// Find out what type we're downloading so's we can count that
+		var type = $( this ).parents( '.theme-type' ).data( 'type' );
+
+		// Which button did we click to open generator form?
+		triggerElement = $( this );
+
+		// Find out if we're on mobile. If yes, it'll change where we add the form.
+		var mobile = false;
+		if ( $( this ).parents( '.theme-type' ).css( 'float' ) == 'none' ) {
+			mobile = true;
+		}
+
 		setTimeout( function() {
-			$( '.js #generator' ).focus();
-		}, 25 );
+				$( '#generator' ).focus();
+			}, 1400 );
 
 		if ( $( this ).is( '[data-type="base"]' ) ) {
 			$( '#type-base' ).attr( 'checked', true );
@@ -69,26 +83,21 @@
 			console.log( 'Business!' );
 		}
 
-		// Find out what type we're downloading so's we can count that
-		var type = $( this ).parents( '.theme-type' ).data( 'type' );
-		var mobile = false;
-		if ( $( this ).parents( '.theme-type' ).css( 'float' ) == 'none' ) {
-			mobile = true;
-		}
 
-		form = $( '#generator' ).detach();
+		// since we've clicked 'download', let's close the generator if it exists
+		$( '#generator' ).slideUp( 500, function() {
 
-		// if we're using the mobile layout, we want to move the form immediately below the current theme
-		if ( true == mobile ) {
-			form.insertAfter( $( this ).parents( '.theme-type' ) );
+			$( '#generator' ).remove();
 
-		} else {
-			// otherwise, we want to move the form under the 'type row'
-			form.insertAfter( $( this ).parents( '.types-row' ) );
-		}
-
-		// Which button did we click to open generator form?
-		triggerElement = $( this );
+			// now that any existing generator is gone, we can re-add to the correct spot
+			// if we're using the mobile layout, we want to move the form immediately below the current theme
+			if( true == mobile ) {
+				form.insertAfter( $( triggerElement ).parents( '.theme-type' ) ).slideDown( 500 );
+			} else {
+				// otherwise, we want to move the form under the 'type row'
+				form.insertAfter( $( triggerElement ).parents( '.types-row' ) ).slideDown( 500 );
+			}
+		} );
 
 		/**
 		 *Load the g.gif image in order to track downloads
@@ -124,6 +133,29 @@
 			$( triggerElement ).focus();
 		}, 25 );
 
+	} );
+
+
+	// The form has to be inserted in different spots depending on layout/resolution.
+	// So let's make sure the form closes if the window's resized and passes over that threshold
+	// Otherwise it could end up sitting in a wacky spot
+	var ww = $(window).width();
+	var timeOut;
+	var tabletWidth = 1024;
+
+	function closeIt() {
+		ww = $(window).width();
+		var w =  ww < tabletWidth ? ( console.log( 'passed it - mobile') ) :  ( ww > tabletWidth ? ( console.log( 'passed it - desktop' ) ) : ww = tabletWidth );
+
+		$( '#generator' ).slideUp( 500 );
+	}
+
+	$( window ).resize( function() {
+		var resW = $( window ).width();
+		clearTimeout( timeOut );
+		if ( ( ww > tabletWidth && resW < tabletWidth ) || ( ww < tabletWidth && resW > tabletWidth ) ) {
+			timeOut = setTimeout( closeIt, 100 );
+		}
 	} );
 
 } )( jQuery );
