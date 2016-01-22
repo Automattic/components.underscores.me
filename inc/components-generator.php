@@ -213,9 +213,19 @@ class Components_Generator_Plugin {
 								<fieldset>
 									<legend class="components-label">Select Type: <span class="required">Required</span></legend>
 									<div class="components-radio-block">
-										<?php foreach ( self::$theme_types as $theme_type ) : ?>
+										<?php
+											$i = 0;
+											foreach ( self::$theme_types as $theme_type ) :
+												// Check our first radio as a default.
+												if ( $i == 0 ) {
+													$checked = 'checked="checked"';
+												} else {
+													$checked = null;
+												}
+												$i++;
+										?>
 											<div class="components-radio-group">
-												<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
+												<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" <?php echo $checked; ?> required aria-required="true">
 												<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
 											</div>
 										<?php endforeach; ?>
@@ -241,7 +251,7 @@ class Components_Generator_Plugin {
 
 								<div class="components-form-field">
 									<label class="components-label" for="components-author-uri">Author URI</label>
-									<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="https://awesometheme.whatever">
+									<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="http://themeshaper.com/">
 								</div>
 
 								<div class="components-form-field">
@@ -251,7 +261,7 @@ class Components_Generator_Plugin {
 
 								<div class="generator-form-submit">
 									<input type="submit" name="components_generate_submit" value="Download Theme">
-									<a class="components-form-cancel" href="#">Cancel</a>
+									<button type="button" class="components-form-cancel">Cancel</button>
 								</div><!-- .generator-form-submit -->
 							</div><!-- .generator-form-secondary -->
 						</div><!-- .generator-form-inputs -->
@@ -388,7 +398,7 @@ class Components_Generator_Plugin {
 		if ( in_array( $filename, array( 'style.css', 'assets/stylesheets/style.scss' ), true ) ) {
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
-				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
+				'Theme URI'	=> esc_url_raw( $this->theme['uri'] ),
 				'Author'	  => $this->theme['author'],
 				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
 				'Description' => $this->theme['description'],

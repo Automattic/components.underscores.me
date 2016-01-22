@@ -60,7 +60,7 @@ get_header(); ?>
 				<div class="theme-text">
 					<h2 class="theme-type-title">Just the basics, please</h2>
 					<p>Can&rsquo;t decide? Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
-					<a href="<?php echo esc_url( get_template_directory_uri() ) . '/downloads/base.zip'; ?>" class="download button">Build Theme!</a>
+					<a href="#generator" class="download button" data-type="base">Build Theme!</a>
 				</div>
 			</div><!-- .theme-type -->
 
@@ -96,7 +96,7 @@ get_header(); ?>
 						</div>
 						<div class="theme-text">
 							<p><?php echo $type['text']; ?></p>
-							<a href="<?php echo '/downloads/theme-pattern-library-types-' . $type['filename'] . '.zip' ?>" class="download button">Build Theme!</a>
+							<a href="#generator" class="download button" data-type="<?php echo esc_attr( $type['filename'] ); ?>">Build Theme!</a>
 						</div>
 					</div><!-- .theme-type -->
 

@@ -128,10 +128,14 @@
 }
 
 .components-form-cancel {
+	background-color: transparent;
+	box-shadow: 0 0 transparent;
 	color: $color__bright-blue;
+	display: none;
 	margin-left: 15px;
 
 	&:hover {
+		box-shadow: 0 0 transparent;
 		color: lighten( $color__bright-blue, 10% );
 	}
 }

@@ -114,6 +114,16 @@ function components_typekit_inline() {
 add_action( 'wp_head', 'components_typekit_inline' );
 
 /**
+ * Handles JavaScript detection.
+ *
+ * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+ */
+function components_javascript_detection() {
+	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
+}
+add_action( 'wp_head', 'components_javascript_detection', 0 );
+
+/**
  * Enqueue scripts and styles.
  */
 function components_scripts() {
