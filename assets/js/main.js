@@ -29,6 +29,14 @@
 	$( '.js .download' ).on( 'click', function( e ) {
 		e.preventDefault();
 
+		// Wait, is this section already opened?
+		// If yes, trigger clicking the cancel button and bail
+		if ( 'true' == $( this ).attr( 'aria-expanded') ) {
+			$( ".js .components-form-cancel" ).trigger( "click" );
+			return;
+		}
+		// Otherwise, get down to business.
+
 		// Find out what type we're downloading so's we can count that
 		var type = $( this ).parents( '.theme-type' ).data( 'type' );
 
@@ -45,8 +53,8 @@
 		var thisRow = $( triggerElement ).parents( '.types-row' ),
 		sameRow = $( thisRow ).next( '#generator' ).length;
 
-		// If we're on desktop, and the form is already open and it's in the same place as we'd be adding it
-		// we don't want to re-add it.
+		// If we're on desktop, and the form is already open, we want to see where it is.
+		// If it's already where we want it, we don't need to re-add it, just change the type that's selected.
 		if ( ! ( false == mobile && 1 == sameRow && 'true' == $( '#generator' ).attr( 'aria-expanded' ) ) ) {
 			// since we've clicked 'download', let's close the generator if it exists
 			$( '#generator' ).slideUp( 500, function() {
