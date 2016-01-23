@@ -107,6 +107,10 @@
 			transition: background-color 0.2s;
 		}
 
+		input[type="radio"]:focus + label:before {
+			box-shadow: 0 0 0 2px lighten( $color__bright-blue, 30% );
+		}
+
 		input[type="radio"]:checked + label:before {
 			background-color: $color__pink;
 		}
@@ -130,6 +134,13 @@
 		vertical-align: top;
 		width: 73%;
 		width: calc( 75% - 6px );
+	}
+}
+
+.generator-form-submit {
+	input:hover,
+	button:hover {
+		cursor: pointer;
 	}
 }
 
@@ -219,6 +230,10 @@
 			padding-left: 20px;
 			padding-right: 20px;
 		}
+	}
+
+	.generator-form-submit {
+		text-align: center;
 	}
 }
 

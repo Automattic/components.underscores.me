@@ -1447,6 +1447,8 @@ section {
       -webkit-transition: background-color 0.2s;
       -moz-transition: background-color 0.2s;
       transition: background-color 0.2s; }
+    .generator-form-primary .components-radio-block input[type="radio"]:focus + label:before {
+      box-shadow: 0 0 0 2px #f2f5f9; }
     .generator-form-primary .components-radio-block input[type="radio"]:checked + label:before {
       background-color: #EB6361; }
 
@@ -1464,6 +1466,10 @@ section {
     vertical-align: top;
     width: 73%;
     width: calc( 75% - 6px ); }
+
+.generator-form-submit input:hover,
+.generator-form-submit button:hover {
+  cursor: pointer; }
 
 .components-form-cancel {
   background-color: transparent;
@@ -1527,7 +1533,10 @@ section {
     width: calc( 100% + 40px ); }
     #types #generator .wrap {
       padding-left: 20px;
-      padding-right: 20px; } }
+      padding-right: 20px; }
+
+  .generator-form-submit {
+    text-align: center; } }
 @media (max-width: 767px) {
   .generator-form-primary,
   .generator-form-secondary {
