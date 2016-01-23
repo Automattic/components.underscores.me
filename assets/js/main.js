@@ -84,9 +84,6 @@
 						updateAria();
 					} );
 				} else {
-					// If on desktop, we want to make sure the form isn't already where we want it to be.
-					// Opening and closing it in the same spot is annoying ಠ_ಠ
-
 					form.insertAfter( $( thisRow ) ).slideDown( 500, function() {
 						updateAria();
 					} );
