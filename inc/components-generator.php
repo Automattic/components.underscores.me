@@ -235,27 +235,27 @@ class Components_Generator_Plugin {
 
 							<div class="generator-form-secondary">
 								<div class="components-form-field">
-									<label class="components-label" for="components-name">Theme Name <span class="required">Required</span></label>
+									<label class="components-label" for="components-name">Theme Name: <span class="required">Required</span></label>
 									<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
 								</div>
 
 								<div class="components-form-field">
-									<label class="components-label" for="components-slug">Theme Slug</label>
+									<label class="components-label" for="components-slug">Theme Slug:</label>
 									<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
 								</div>
 
 								<div class="components-form-field">
-									<label class="components-label" for="components-author">Author</label>
+									<label class="components-label" for="components-author">Author:</label>
 									<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
 								</div>
 
 								<div class="components-form-field">
-									<label class="components-label" for="components-author-uri">Author URI</label>
+									<label class="components-label" for="components-author-uri">Author URI:</label>
 									<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="http://themeshaper.com/">
 								</div>
 
 								<div class="components-form-field">
-									<label class="components-label" for="components-description">Description</label>
+									<label class="components-label" for="components-description">Description:</label>
 									<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
 								</div>
 

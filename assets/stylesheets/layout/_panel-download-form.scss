@@ -6,8 +6,8 @@
 	position: relative;
 	text-align: center;
 
-	&.closed {
-		max-height: 0;
+	&[tabindex="-1"]:focus {
+		outline: 0;
 	}
 
 	.wrap {
@@ -87,6 +87,7 @@
 		label {
 			cursor: pointer;
 			font-family: $font__sans;
+			font-size: 90%;
 		}
 
 		label:before {
@@ -118,7 +119,8 @@
 
 	.components-label {
 		display: inline-block;
-		width: 20%;
+		font-family: $font__serif;
+		width: 25%;
 	}
 
 	.components-input {
@@ -126,8 +128,8 @@
 		display: inline-block;
 		margin-bottom: 1.5em;
 		vertical-align: top;
-		width: 78%;
-		width: calc( 80% - 6px );
+		width: 73%;
+		width: calc( 75% - 6px );
 	}
 }
 
@@ -136,11 +138,30 @@
 	box-shadow: 0 0 transparent;
 	color: $color__bright-blue;
 	display: none;
-	margin-left: 15px;
+	font-size: 90%;
+	margin-left: 20px;
+	padding: 0;
 
+	&:before {
+		content: "\0078";
+		display: inline-block;
+		font-family: helvetica, arial, sans-serif;
+		font-size: 80%;
+		margin-right: 10px;
+		text-transform: uppercase;
+	}
+
+	&:focus,
 	&:hover {
 		box-shadow: 0 0 transparent;
 		color: lighten( $color__bright-blue, 10% );
+		top: auto;
+	}
+
+	&:active,
+	&:focus {
+		color: #fff;
+		outline: 0;
 	}
 }
 
@@ -189,7 +210,7 @@
  */
 
 @include desktop-max {
-	#generator {
+	#types #generator {
 		left: -20px;
 		right: -20px;
 		width: calc( 100% + 40px );
