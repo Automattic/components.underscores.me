@@ -41,69 +41,74 @@
 			mobile = true;
 		}
 
-		// since we've clicked 'download', let's close the generator if it exists
-		$( '#generator' ).slideUp( 500, function() {
-			// ... and get rid of it.
-			$( '#generator' ).remove();
+		// Checking to see where we are on the page, and where the form currently is
+		var thisRow = $( triggerElement ).parents( '.types-row' ),
+		sameRow = $( thisRow ).next( '#generator' ).length;
 
-			// Now let's create a nice little function to update our Aria states
-			function updateAria() {
-				$( '.download' ).not( triggerElement ).attr( {
-					'aria-expanded': 'false'
-				} );
+		// If we're on desktop, and the form is already open and it's in the same place as we'd be adding it
+		// we don't want to re-add it.
+		if ( ! ( false == mobile && 1 == sameRow && 'true' == $( '#generator' ).attr( 'aria-expanded' ) ) ) {
+			// since we've clicked 'download', let's close the generator if it exists
+			$( '#generator' ).slideUp( 500, function() {
+				// ... and get rid of it.
+				$( '#generator' ).remove();
 
-				$( triggerElement ).attr( {
-					'aria-expanded': 'true'
-				} );
+				// Now let's create a nice little function to update our Aria states
+				function updateAria() {
+					$( '.download' ).not( triggerElement ).attr( {
+						'aria-expanded': 'false'
+					} );
 
-				$( '.js #generator' ).attr( {
-					'aria-expanded': 'true',
-					'tabindex': '-1'
-				} ).focus();
-			}
+					$( triggerElement ).attr( {
+						'aria-expanded': 'true'
+					} );
 
-			// And re-add the generator to the correct spot, depending whether we're on mobile or not.
-			if( true == mobile ) {
-				form.insertAfter( $( triggerElement ).parents( '.theme-type' ) ).slideDown( 500, function() {
-					updateAria();
-				} );
-			} else {
-				// otherwise, we want to move the form under the 'type row'
-				form.insertAfter( $( triggerElement ).parents( '.types-row' ) ).slideDown( 500, function() {
-					updateAria();
-				} );
-			}
-		} );
+					$( '.js #generator' ).attr( {
+						'aria-expanded': 'true',
+						'tabindex': '-1'
+					} ).focus();
+				}
+
+				// And re-add the generator to the correct spot, depending whether we're on mobile or not.
+				if( true == mobile ) {
+					// If on mobile, just add that sucka!
+					form.insertAfter( $( triggerElement ).parents( '.theme-type' ) ).slideDown( 500, function() {
+						updateAria();
+					} );
+				} else {
+					// If on desktop, we want to make sure the form isn't already where we want it to be.
+					// Opening and closing it in the same spot is annoying ಠ_ಠ
+
+					form.insertAfter( $( thisRow ) ).slideDown( 500, function() {
+						updateAria();
+					} );
+				}
+			} );
+		}
 
 		// Update the radio buttons to reflect current type
 		if ( $( this ).is( '[data-type="base"]' ) ) {
 			$( '#type-base' ).attr( 'checked', true );
-			console.log( 'Base!' );
 		}
 
 		if ( $( this ).is( '[data-type="blog-modern"]' ) ) {
 			$( '#type-blog-modern' ).attr( 'checked', true );
-			console.log( 'Modern!' );
 		}
 
 		if ( $( this ).is( '[data-type="blog-traditional"]' ) ) {
 			$( '#type-classic' ).attr( 'checked', true );
-			console.log( 'Classic!' );
 		}
 
 		if ( $( this ).is( '[data-type="magazine"]' ) ) {
 			$( '#type-magazine' ).attr( 'checked', true );
-			console.log( 'Magazine!' );
 		}
 
 		if ( $( this ).is( '[data-type="portfolio"]' ) ) {
 			$( '#type-portfolio' ).attr( 'checked', true );
-			console.log( 'Portfolio!' );
 		}
 
 		if ( $( this ).is( '[data-type="business"]' ) ) {
 			$( '#type-business' ).attr( 'checked', true );
-			console.log( 'Business!' );
 		}
 
 		/**
