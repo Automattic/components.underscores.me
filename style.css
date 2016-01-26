@@ -1197,10 +1197,6 @@ section {
         float: left; }
       #types .types-row .theme-type:nth-of-type(2) {
         float: right; }
-      #types .types-row .theme-type:first-child:last-child {
-        float: none;
-        margin-left: auto;
-        margin-right: auto; }
 
   .types-row:nth-of-type(even) .theme-image {
     float: right; }

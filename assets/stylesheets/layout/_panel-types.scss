@@ -151,13 +151,6 @@
 			&:nth-of-type(2) {
 				float: right;
 			}
-
-			// get types that are 'only children'
-			&:first-child:last-child {
-				float: none;
-				margin-left: auto;
-				margin-right: auto;
-			}
 		}
 	}
 
