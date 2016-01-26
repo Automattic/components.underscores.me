@@ -116,18 +116,7 @@
 			$( '#type-business' ).attr( 'checked', true );
 		}
 
-		/**
-		 *Load the g.gif image in order to track downloads
-		 */
-		// Generate the URL for our tracking image, with proper parameters
-		/*
-		var imageURL = document.location.protocol + '//pixel.wp.com/b.gif?v=wpcom-no-pv&amp;x_component_downloads=' + type + '&amp;baba=' + Math.random();
-
-		// Finally, append the image to our body
-		$( 'body' ).append( '<img src="' + imageURL + '">' );
-		*/
 	} );
-
 
 	// Cancel button.
 	$( document ).on( 'click', '.js .components-form-cancel', function( e ) {
