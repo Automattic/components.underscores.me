@@ -22,7 +22,7 @@
 	}
 
 	.theme-type {
-		padding-top: 85px;
+		padding-top: 95px;
 	}
 
 	.theme-text {
@@ -34,6 +34,8 @@
 
 		.large-robot {
 			left: 0;
+			height: 120%;
+			width: 40%;
 		}
 
 		.type-layout {
@@ -48,7 +50,6 @@
 	background-color: $color__navy;
 	color: $color__offwhite;
 	overflow: hidden;
-	padding-bottom: 40px;
 	padding-top: 40px;
 
 	a {
@@ -79,6 +80,10 @@
 	.types-row {
 		padding-bottom: 0;
 		padding-top: 0;
+
+		&:last-of-type {
+			padding-bottom: 60px;
+		}
 	}
 }
 
@@ -103,8 +108,8 @@
 
 	.type-layout {
 		max-height: 90%;
+		max-width: 100%;
 		position: relative;
-		width: 100%;
 	}
 
 	.large-robot {
@@ -145,6 +150,13 @@
 
 			&:nth-of-type(2) {
 				float: right;
+			}
+
+			// get types that are 'only children'
+			&:first-child:last-child {
+				float: none;
+				margin-left: auto;
+				margin-right: auto;
 			}
 		}
 	}
@@ -210,12 +222,16 @@
 		.large-robot {
 			filter: none;
 			-ms-filter: none;
-			left: -15%;
+			left: -5%;
 			max-height: 90%;
 			-webkit-transform: none;
 			-moz-transform: none;
 			-o-transform: none;
 			transform: none;
+		}
+
+		.type-layout {
+			float: right;
 		}
 
 		&:nth-of-type(even) {
@@ -231,11 +247,15 @@
 				filter: FlipH;
 				-ms-filter: "FlipH";
 				left: auto;
-				right: -15%;
+				right: -5%;
 				-webkit-transform: scaleX(-1);
 				-moz-transform: scaleX(-1);
 				-o-transform: scaleX(-1);
 				transform: scaleX(-1);
+			}
+
+			.type-layout {
+				float: left;
 			}
 		}
 	}

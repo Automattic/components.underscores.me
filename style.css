@@ -1116,13 +1116,15 @@ section {
   #base h2 {
     color: #A0C3C6; }
   #base .theme-type {
-    padding-top: 85px; }
+    padding-top: 95px; }
   #base .theme-text {
     width: 45%; }
   #base .theme-image {
     width: 50%; }
     #base .theme-image .large-robot {
-      left: 0; }
+      left: 0;
+      height: 120%;
+      width: 40%; }
     #base .theme-image .type-layout {
       float: right;
       max-height: 90%;
@@ -1132,7 +1134,6 @@ section {
   background-color: #141f32;
   color: #f3f2ed;
   overflow: hidden;
-  padding-bottom: 40px;
   padding-top: 40px; }
   #types a {
     color: #f3f2ed; }
@@ -1151,6 +1152,8 @@ section {
   #types .types-row {
     padding-bottom: 0;
     padding-top: 0; }
+    #types .types-row:last-of-type {
+      padding-bottom: 60px; }
 
 .theme-type {
   position: relative; }
@@ -1166,8 +1169,8 @@ section {
   width: 44%; }
   .theme-image .type-layout {
     max-height: 90%;
-    position: relative;
-    width: 100%; }
+    max-width: 100%;
+    position: relative; }
   .theme-image .large-robot {
     bottom: -20px;
     height: 110%;
@@ -1194,6 +1197,10 @@ section {
         float: left; }
       #types .types-row .theme-type:nth-of-type(2) {
         float: right; }
+      #types .types-row .theme-type:first-child:last-child {
+        float: none;
+        margin-left: auto;
+        margin-right: auto; }
 
   .types-row:nth-of-type(even) .theme-image {
     float: right; }
@@ -1234,12 +1241,14 @@ section {
     #types .theme-type .large-robot {
       filter: none;
       -ms-filter: none;
-      left: -15%;
+      left: -5%;
       max-height: 90%;
       -webkit-transform: none;
       -moz-transform: none;
       -o-transform: none;
       transform: none; }
+    #types .theme-type .type-layout {
+      float: right; }
     #types .theme-type:nth-of-type(even) .theme-image {
       float: right; }
     #types .theme-type:nth-of-type(even) .theme-text {
@@ -1248,11 +1257,13 @@ section {
       filter: FlipH;
       -ms-filter: "FlipH";
       left: auto;
-      right: -15%;
+      right: -5%;
       -webkit-transform: scaleX(-1);
       -moz-transform: scaleX(-1);
       -o-transform: scaleX(-1);
-      transform: scaleX(-1); } }
+      transform: scaleX(-1); }
+    #types .theme-type:nth-of-type(even) .type-layout {
+      float: left; } }
 @media (max-width: 767px) {
   #base h2,
   #base .theme-text {
@@ -1391,6 +1402,9 @@ section {
   #generator p {
     color: #89a1c9; }
 
+#base #generator {
+  background-color: #1f2f49; }
+
 .generator-form {
   padding-bottom: 1.5em;
   position: relative;
@@ -1526,11 +1540,20 @@ section {
 .gear-set0 {
   fill: #23334e; }
 
+#base .gear-set0 {
+  fill: #263855; }
+
 .gear-set1 {
   fill: #293b5a; }
 
+#base .gear-set1 {
+  fill: #2c4061; }
+
 .gear-set2 {
   fill: #202f49; }
+
+#base .gear-set2 {
+  fill: #233450; }
 
 /**
  * Media queries
