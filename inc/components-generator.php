@@ -40,61 +40,61 @@ class Components_Generator_Plugin {
 		 * If a new type is added to Components, add the data here.
 		 * The generator will then work with the new type.
 		 */
-		self::$theme_types = array(
-			'base' => array (
-				'title'	=> esc_html__( 'Base', 'components' ),
-				'id' => esc_attr( 'type-base' ),
-				'zip_file' => 'theme-pattern-library-master.zip',
-				'branch' => 'master',
-				'branch_slash' => false,
-				'prototype_dir' => 'theme-pattern-library-master',
-			),
+		 self::$theme_types = array(
+ 			'base' => array (
+ 				'title'	=> esc_html__( 'Base', 'components' ),
+ 				'id' => esc_attr( 'type-base' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-master.zip',
+ 				'branch' => 'master',
+ 				'branch_slash' => false,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-master',
+ 			),
 
-			'modern' => array (
-				'title'	=> esc_html__( 'Modern Blog', 'components' ),
-				'id' => esc_attr( 'type-blog-modern' ),
-				'zip_file' => 'theme-pattern-library-types-blog-modern.zip',
-				'branch' => 'types/blog-modern',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-blog-modern',
-			),
+ 			'modern' => array (
+ 				'title'	=> esc_html__( 'Modern Blog', 'components' ),
+ 				'id' => esc_attr( 'type-blog-modern' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-modern.zip',
+ 				'branch' => 'types/blog-modern',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-blog-modern',
+ 			),
 
-			'classic' => array (
-				'title'	=> esc_html__( 'Classic Blog', 'components' ),
-				'id' => esc_attr( 'type-classic' ),
-				'zip_file' => 'theme-pattern-library-types-blog-traditional.zip',
-				'branch' => 'types/blog-traditional',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-blog-traditional',
-			),
+ 			'classic' => array (
+ 				'title'	=> esc_html__( 'Classic Blog', 'components' ),
+ 				'id' => esc_attr( 'type-classic' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-traditional.zip',
+ 				'branch' => 'types/blog-traditional',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-blog-traditional',
+ 			),
 
-			'magazine' => array (
-				'title'	=> esc_html__( 'Magazine', 'components' ),
-				'id' => esc_attr__( 'type-magazine', 'components' ),
-				'zip_file' => 'theme-pattern-library-types-magazine.zip',
-				'branch' => 'types/magazine',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-magazine',
-			),
+ 			'magazine' => array (
+ 				'title'	=> esc_html__( 'Magazine', 'components' ),
+ 				'id' => esc_attr__( 'type-magazine', 'components' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-magazine.zip',
+ 				'branch' => 'types/magazine',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-magazine',
+ 			),
 
-			'portfolio' => array (
-				'title'	=> esc_html__( 'Portfolio', 'components' ),
-				'id' => esc_attr( 'type-portfolio' ),
-				'zip_file' => 'theme-pattern-library-types-portfolio.zip',
-				'branch' => 'types/portfolio',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-portfolio',
-			),
+ 			'portfolio' => array (
+ 				'title'	=> esc_html__( 'Portfolio', 'components' ),
+ 				'id' => esc_attr( 'type-portfolio' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-portfolio.zip',
+ 				'branch' => 'types/portfolio',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-portfolio',
+ 			),
 
-			'business' => array (
-				'title'	=> esc_html__( 'Business', 'components' ),
-				'id' => esc_attr( 'type-business' ),
-				'zip_file' => 'theme-pattern-library-types-business.zip',
-				'branch' => 'types/business',
-				'branch_slash' => true,
-				'prototype_dir' => 'theme-pattern-library-types-business',
-			),
-		);
+ 			'business' => array (
+ 				'title'	=> esc_html__( 'Business', 'components' ),
+ 				'id' => esc_attr( 'type-business' ),
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-business.zip',
+ 				'branch' => 'types/business',
+ 				'branch_slash' => true,
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-business',
+ 			),
+ 		);
 
 		// All the black magic is happening in these actions.
 		add_action( 'init', array( $this, 'components_generator_set_expiration_and_go' ) );
@@ -192,7 +192,18 @@ class Components_Generator_Plugin {
 	 */
 	function components_generator_print_form() { ?>
 		<section id="generator">
+
+			<div class="gear-set-one">
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-set.svg' ); ?>
+			</div><!-- .gear-set-one -->
+
+			<div class="gear-set-two">
+				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-set.svg' ); ?>
+			</div><!-- .gear-set-two -->
+
 			<div class="wrap">
+				<h2>Download Components</h2>
+				<p>Pick a type to download, and then fill out the information about the theme you're building.</p>
 				<div id="generator-form" class="generator-form">
 					<form method="POST">
 						<input type="hidden" name="components_generate" value="1" />
@@ -200,34 +211,57 @@ class Components_Generator_Plugin {
 						<div class="theme-input clear">
 							<div class="generator-form-primary">
 								<fieldset>
-									<legend class="components-label">Choose a theme type: <span class="required">(Required)</span></legend>
-									<?php foreach ( self::$theme_types as $theme_type ) : ?>
-										<div class="components-radio-group">
-											<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" required="" aria-required="true">
-											<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
-										</div>
-									<?php endforeach; ?>
+									<legend class="components-label">Select Type: <span class="required">Required</span></legend>
+									<div class="components-radio-block">
+										<?php
+											$i = 0;
+											foreach ( self::$theme_types as $theme_type ) :
+												// Check our first radio as a default.
+												if ( $i == 0 ) {
+													$checked = 'checked="checked"';
+												} else {
+													$checked = null;
+												}
+												$i++;
+										?>
+											<div class="components-radio-group">
+												<input id="<?php echo $theme_type['id']; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $theme_type['title']; ?>" <?php echo $checked; ?> required aria-required="true">
+												<label class="components-label" for="<?php echo $theme_type['id']; ?>"><?php echo $theme_type['title']; ?></label>
+											</div>
+										<?php endforeach; ?>
+									</div>
 								</fieldset>
 							</div><!-- .generator-form-primary -->
 
 							<div class="generator-form-secondary">
-								<label class="components-label" for="components-name">Theme Name <span class="required">(Required)</span></label>
-								<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
+								<div class="components-form-field">
+									<label class="components-label" for="components-name">Theme Name: <span class="required">Required</span></label>
+									<input type="text" id="components-name" class="components-input" name="components_name" placeholder="Awesome Theme" required="" aria-required="true">
+								</div>
 
-								<label class="components-label" for="components-slug">Theme Slug</label>
-								<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
+								<div class="components-form-field">
+									<label class="components-label" for="components-slug">Theme Slug:</label>
+									<input type="text" id="components-slug" class="components-input" name="components_slug" placeholder="awesome-theme">
+								</div>
 
-								<label class="components-label" for="components-author">Author</label>
-								<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
+								<div class="components-form-field">
+									<label class="components-label" for="components-author">Author:</label>
+									<input type="text" id="components-author" class="components-input" name="components_author" placeholder="Your Name">
+								</div>
 
-								<label class="components-label" for="components-author-uri">Author URI</label>
-								<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="https://awesometheme.whatever">
+								<div class="components-form-field">
+									<label class="components-label" for="components-author-uri">Author URI:</label>
+									<input type="url" id="components-author-uri" class="components-input" name="components_author_uri" placeholder="http://themeshaper.com/">
+								</div>
 
-								<label class="components-label" for="components-description">Description</label>
-								<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
+								<div class="components-form-field">
+									<label class="components-label" for="components-description">Description:</label>
+									<input type="text" id="components-description" class="components-input" name="components_description" placeholder="A brief description of your awesome theme">
+								</div>
 
 								<div class="generator-form-submit">
 									<input type="submit" name="components_generate_submit" value="Download Theme">
+									<button type="button" class="components-form-cancel">Cancel</button>
 								</div><!-- .generator-form-submit -->
 							</div><!-- .generator-form-secondary -->
 						</div><!-- .generator-form-inputs -->
@@ -364,7 +398,7 @@ class Components_Generator_Plugin {
 		if ( in_array( $filename, array( 'style.css', 'assets/stylesheets/style.scss' ), true ) ) {
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
-				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
+				'Theme URI'	=> esc_url_raw( $this->theme['uri'] ),
 				'Author'	  => $this->theme['author'],
 				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
 				'Description' => $this->theme['description'],

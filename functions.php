@@ -114,18 +114,26 @@ function components_typekit_inline() {
 add_action( 'wp_head', 'components_typekit_inline' );
 
 /**
+ * Handles JavaScript detection.
+ *
+ * Adds a `js` class to the root `<html>` element when JavaScript is detected.
+ */
+function components_javascript_detection() {
+	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
+}
+add_action( 'wp_head', 'components_javascript_detection', 0 );
+
+/**
  * Enqueue scripts and styles.
  */
 function components_scripts() {
 	wp_enqueue_style( 'components-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'components', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery', 'components-slick'), '20120206', true );
+	wp_enqueue_script( 'components', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '20120206', true );
 
 	// wp_enqueue_script( 'components-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'components-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );
-
-	wp_enqueue_script( 'components-slick', get_template_directory_uri() . '/assets/js/slick.js', array(), '20151119', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'components_scripts' );
