@@ -11,17 +11,7 @@
 	}
 
 	.wrap {
-		position: relative;
-
-		&::before,
-		&::after {
-			content: "";
-			display: table;
-		}
-
-		&::after {
-			clear: both;
-		}
+		max-width: 700px;
 	}
 }
 
@@ -37,9 +27,6 @@
 
 /* Type selection */
 .generator-form-primary {
-	float: left;
-	padding-right: 20px;
-	width: 35%;
 
 	fieldset {
 		border: none;
@@ -105,17 +92,8 @@
 	}
 }
 
-/* Inputs for theme details */
-.generator-form-secondary {
-	float: left;
-	width: 65%;
-}
-
 .generator-form-submit {
-	input:hover,
-	button:hover {
-		cursor: pointer;
-	}
+	margin-top: $size__gutter/4;
 }
 
 .components-form-cancel {
@@ -150,13 +128,7 @@
 	}
 }
 
-.required {
-	color: $color__offwhite;
-	display: inline;
-}
-
 // Gear styles
-
 .gear-set-one,
 .gear-set-two {
 	position: absolute;
@@ -214,7 +186,35 @@
 /**
  * Media queries
  */
+// Stack form on mobile and make sure there's a margin between the two elements
+@include mobile {
+	.generator-form-primary,
+	.generator-form-secondary {
+		margin-bottom: $size__gutter/2;
+		width: 100%;
+	}
 
+	.generator-form-submit {
+		text-align: center;
+	}
+}
+
+// On tablets and larger, show two columns
+@include tablet {
+	.generator-form-primary {
+		display: inline-block;
+		width: 200px;
+		vertical-align: top;
+	}
+
+	.generator-form-secondary {
+		display: inline-block;
+		width: calc(100% - 250px);
+		vertical-align: top;
+	}
+}
+
+// Adjust background elements and padding for smaller screens
 @include desktop-max {
 	#types #generator {
 		left: -20px;
@@ -224,28 +224,6 @@
 		.wrap {
 			padding-left: 20px;
 			padding-right: 20px;
-		}
-	}
-
-	.generator-form-submit {
-		text-align: center;
-	}
-}
-
-
-@include mobile {
-
-	.generator-form-primary,
-	.generator-form-secondary {
-		float: none;
-		width: 100%;
-	}
-
-	.generator-form-secondary {
-		.components-label,
-		.components-input {
-			display: block;
-			width: 100%;
 		}
 	}
 }
