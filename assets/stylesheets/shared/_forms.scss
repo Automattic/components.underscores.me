@@ -37,11 +37,16 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
-	border: 1px solid $color__grey;
-	border-radius: 3px;
+	background: lighten($color__teal-light, 20%);
+	background: $color__offwhite;
+	border: 2px solid $color__navy;
+	border-radius: 5px;
+	color: $color__navy;
 
 	&:focus {
-
+		background: #fff;
+		border-color: $color__teal;
+		color: $color__teal;
 	}
 }
 
@@ -50,10 +55,26 @@ input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"] {
-	padding: 3px;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+	width: 100%;
 }
 
 textarea {
 	padding-left: 3px;
 	width: 100%;
+}
+
+label {
+	color: $color__teal-light;
+	display: block;
+	font-family: $font__serif;
+	@include font-size(1.3);
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.required {
+	color: $color__offwhite;
 }

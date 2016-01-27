@@ -1,0 +1,110 @@
+#contributors {
+	background-color: $color__navy;
+	color: $color__offwhite;
+
+	.love-and-labour {
+		height: 32px;
+		margin: 0 0 0 -1px;
+		vertical-align: -5px;
+		width: 32px;
+	}
+
+	a {
+		color: $color__offwhite;
+	}
+
+	h2 {
+		color: $color__teal-light;
+	}
+}
+
+/* Contributors panel */
+#github-contributors {
+	li {
+		display: inline-block;
+		margin: 0 -4px 0 0; // To account for inline block spacing
+		padding: 10px;
+		width: 50%;
+
+		&::before {
+			display: none;
+		}
+
+		@include tablet {
+			width: 16.7%;
+		}
+	} // li
+
+	a {
+		border-bottom: none;
+		display: block;
+		position: relative;
+
+		img {
+			border: 4px solid $color__teal-light;
+			border-radius: 50%;
+							filter: grayscale(90%) sepia(10%);
+			-webkit-filter: grayscale(90%) sepia(10%);
+			transition: all 50ms ease-in;
+		}
+
+		.contributor {
+			background: $color__teal-light;
+			border: 1px solid $color__teal;
+			color: $color__navy;
+			font-family: $font__serif;
+			@include font-size(1);
+			font-weight: 600;
+			max-height: 0;
+			line-height: 1.4;
+			opacity: 0;
+			outline: 2px solid $color__teal-light;
+			overflow: hidden;
+			padding: 2px 10px;
+			position: absolute;
+				top: 60%;
+				right: -5px;
+				left: -5px;
+			text-align: center;
+			transition: all 400ms ease-in;
+
+			span {
+				color: $color__teal-dark;
+				display: block;
+			}
+
+			&::before,
+			&::after {
+				color: $color__teal;
+				content: '\2022';
+				display: block;
+				font-size: 16px;
+				position: absolute;
+					top: 20%;
+			}
+
+			&::before {
+				left: 5px;
+			}
+
+			&::after {
+				right: 5px;
+			}
+		}
+
+		&:hover {
+
+			img {
+				border: 4px solid $color__teal;
+				        filter: grayscale(50%) sepia(0);
+				-webkit-filter: grayscale(50%) sepia(0);
+				transform: scale(1.05);
+			}
+
+			.contributor {
+				opacity: 1;
+				max-height: 100px;
+			}
+		} // hover
+	} // a
+}
