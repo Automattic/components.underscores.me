@@ -33,7 +33,10 @@
 		$('html, body').stop().animate({
 			'scrollTop': $( '#generator' ).offset().top
 		}, 900, 'swing', function () {
-			window.location.hash = 'generator'
+			window.location.hash = 'generator';
+			$( '.js #generator' ).attr( {
+				'tabindex': '-1'
+			} ).focus();
 		});
 
 		/**
