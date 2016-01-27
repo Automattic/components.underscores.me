@@ -92,7 +92,7 @@
 		}
 
 		input[type="radio"]:focus + label:before {
-			box-shadow: 0 0 0 2px lighten( $color__teal-light, 30% );
+			box-shadow: 0 0 0 2px lighten($color__teal-light, 30%);
 		}
 
 		input[type="radio"]:checked + label:before {

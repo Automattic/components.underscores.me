@@ -477,15 +477,27 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
-  border: 1px solid #cbcac8;
-  border-radius: 5px; }
+  background: #e0ebec;
+  background: #f3f2ed;
+  border: 2px solid #141f32;
+  border-radius: 5px;
+  color: #141f32; }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  input[type="search"]:focus,
+  textarea:focus {
+    background: #fff;
+    border-color: #509ea3;
+    color: #509ea3; }
 
 input[type="text"],
 input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"] {
-  padding: 3px;
+  padding: 5px 10px;
   margin-bottom: 10px;
   width: 100%; }
 
