@@ -478,18 +478,30 @@ input[type="password"],
 input[type="search"],
 textarea {
   border: 1px solid #cbcac8;
-  border-radius: 3px; }
+  border-radius: 5px; }
 
 input[type="text"],
 input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"] {
-  padding: 3px; }
+  padding: 3px;
+  margin-bottom: 10px;
+  width: 100%; }
 
 textarea {
   padding-left: 3px;
   width: 100%; }
+
+label, .generator-form-primary legend.components-label {
+  color: #89a1c9;
+  display: block;
+  font-family: "factoria", "Roboto Slab", serif;
+  font-size: 22.1px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase; }
 
 /*--------------------------------------------------------------
 # Navigation
@@ -1406,6 +1418,7 @@ section {
   position: relative;
   text-align: left; }
 
+/* Type selection */
 .generator-form-primary {
   float: left;
   padding-right: 20px;
@@ -1414,68 +1427,47 @@ section {
     border: none;
     margin: 0;
     padding: 0; }
-  .generator-form-primary .components-radio-group {
-    display: block;
-    margin-bottom: 1em; }
-    .generator-form-primary .components-radio-group .components-input {
-      margin-right: 4px; }
-  .generator-form-primary .components-label {
+  .generator-form-primary .components-radio-block input[type="radio"] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; }
+  .generator-form-primary .components-radio-block label, .generator-form-primary .components-radio-block legend.components-label {
+    cursor: pointer;
+    font-family: "adelle-sans", "Open Sans", sans-serif;
+    font-size: 28.9px;
+    font-size: 1.7rem;
+    letter-spacing: 0;
+    margin: 5px 0;
+    text-transform: none; }
+  .generator-form-primary .components-radio-block label:before, .generator-form-primary .components-radio-block legend.components-label:before {
+    background-color: #1c2a42;
+    border: 4px solid #1c2a42;
+    bottom: -2px;
+    box-shadow: 0 0 0 2px #89a1c9;
+    border-radius: 50%;
+    content: "";
     display: inline-block;
-    font-family: "factoria", "Roboto Slab", serif; }
-  .generator-form-primary legend.components-label {
-    display: block;
-    float: left;
-    width: 40%; }
-  .generator-form-primary .components-radio-block {
-    float: right;
-    width: 60%; }
-    .generator-form-primary .components-radio-block input[type="radio"] {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px; }
-    .generator-form-primary .components-radio-block label {
-      cursor: pointer;
-      font-family: "adelle-sans", "Open Sans", sans-serif;
-      font-size: 90%; }
-    .generator-form-primary .components-radio-block label:before {
-      background-color: #1c2a42;
-      border: 4px solid #1c2a42;
-      bottom: -2px;
-      box-shadow: 0 0 0 2px #89a1c9;
-      border-radius: 17px;
-      content: "";
-      display: inline-block;
-      height: 17px;
-      margin-right: 15px;
-      position: relative;
-      width: 17px;
-      -webkit-transition: background-color 0.2s;
-      -moz-transition: background-color 0.2s;
-      transition: background-color 0.2s; }
-    .generator-form-primary .components-radio-block input[type="radio"]:focus + label:before {
-      box-shadow: 0 0 0 2px #f2f5f9; }
-    .generator-form-primary .components-radio-block input[type="radio"]:checked + label:before {
-      background-color: #EB6361; }
+    height: 17px;
+    margin-right: 10px;
+    position: relative;
+    width: 17px;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s; }
+  .generator-form-primary .components-radio-block input[type="radio"]:focus + label:before, .generator-form-primary .components-radio-block input[type="radio"]:focus + legend.components-label:before {
+    box-shadow: 0 0 0 2px #f2f5f9; }
+  .generator-form-primary .components-radio-block input[type="radio"]:checked + label:before, .generator-form-primary .components-radio-block input[type="radio"]:checked + legend.components-label:before {
+    background-color: #EB6361; }
 
+/* Inputs for theme details */
 .generator-form-secondary {
   float: left;
   width: 65%; }
-  .generator-form-secondary .components-label {
-    display: inline-block;
-    font-family: "factoria", "Roboto Slab", serif;
-    width: 25%; }
-  .generator-form-secondary .components-input {
-    color: #666;
-    display: inline-block;
-    margin-bottom: 1.5em;
-    vertical-align: top;
-    width: 73%;
-    width: calc( 75% - 6px ); }
 
 .generator-form-submit input:hover,
 .generator-form-submit button:hover {
@@ -1505,11 +1497,8 @@ section {
     outline: 0; }
 
 .required {
-  color: #89a1c9;
-  display: block;
-  font-family: "factoria", "Roboto Slab", serif;
-  font-size: 13px;
-  text-transform: uppercase; }
+  color: #f3f2ed;
+  display: inline; }
 
 .gear-set-one,
 .gear-set-two {

@@ -43,6 +43,7 @@
 	text-align: left;
 }
 
+/* Type selection */
 .generator-form-primary {
 	float: left;
 	padding-right: 20px;
@@ -54,34 +55,17 @@
 		padding: 0;
 	}
 
-	.components-radio-group {
-		display: block;
-		margin-bottom: 1em;
-
-		.components-input {
-			margin-right: 4px;
-		}
-	}
-
-	.components-label {
-		display: inline-block;
-		font-family: $font__serif;
-	}
-
 	legend.components-label {
-		display: block;
-		float: left;
-		width: 40%;
+		@extend label;
 	}
 
 	.components-radio-block {
-		float: right;
-		width: 60%;
 
 		input[type="radio"] {
 			border: 0;
 			clip: rect(0 0 0 0);
-			height: 1px; margin: -1px;
+			height: 1px;
+			margin: -1px;
 			overflow: hidden;
 			padding: 0;
 			position: absolute;
@@ -91,7 +75,10 @@
 		label {
 			cursor: pointer;
 			font-family: $font__sans;
-			font-size: 90%;
+			@include font-size(1.7);
+			letter-spacing: 0;
+			margin: 5px 0;
+			text-transform: none;
 		}
 
 		label:before {
@@ -99,11 +86,11 @@
 			border: 4px solid $color__navy-light;
 			bottom: -2px;
  			box-shadow: 0 0 0 2px $color__bright-blue;
-			border-radius: 17px;
+			border-radius: 50%;
 			content: "";
 			display: inline-block;
 			height: 17px;
-			margin-right: 15px;
+			margin-right: 10px;
 			position: relative;
 			width: 17px;
 			-webkit-transition: background-color 0.2s;
@@ -121,24 +108,10 @@
 	}
 }
 
+/* Inputs for theme details */
 .generator-form-secondary {
 	float: left;
 	width: 65%;
-
-	.components-label {
-		display: inline-block;
-		font-family: $font__serif;
-		width: 25%;
-	}
-
-	.components-input {
-		color: #666;
-		display: inline-block;
-		margin-bottom: 1.5em;
-		vertical-align: top;
-		width: 73%;
-		width: calc( 75% - 6px );
-	}
 }
 
 .generator-form-submit {
@@ -181,11 +154,8 @@
 }
 
 .required {
-	color: $color__bright-blue;
-	display: block;
-	font-family: $font__serif;
-	font-size: 13px;
-	text-transform: uppercase;
+	color: $color__offwhite;
+	display: inline;
 }
 
 // Gear styles
