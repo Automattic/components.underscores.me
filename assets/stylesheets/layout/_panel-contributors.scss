@@ -92,7 +92,8 @@
 			}
 		}
 
-		&:hover {
+		&:hover,
+		&:focus {
 
 			img {
 				border: 4px solid $color__teal;
