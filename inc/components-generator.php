@@ -347,6 +347,10 @@ class Components_Generator_Plugin {
 		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) ) {
 			wp_die( 'Theme slug could not be used to generate valid function names. Please go back and try again.' );
 		}
+		// Let's check if the name can be a valid theme name.
+		if ( preg_match( '/[\'^£$%&*()}{@#~?><>,|=+¬"]/', $this->theme['name'] ) ) {
+			wp_die( 'Theme slug could not be used to generate valid theme name. Please go back and try again.' );
+		}
 		if ( ! empty( $_REQUEST['components_description'] ) ) {
 			$this->theme['description'] = trim( $_REQUEST['components_description'] );
 		}
@@ -407,7 +411,7 @@ class Components_Generator_Plugin {
 			foreach ( $theme_headers as $key => $value ) {
 				$contents = preg_replace( '/(' . preg_quote( $key ) . ':)\s?(.+)/', '\\1 ' . $value, $contents );
 			}
-			$contents = preg_replace( '/\bcomponent_s\b/', $this->theme['name'], $contents );
+			$contents = preg_replace( '/\bComponents\b/', $this->theme['name'], $contents );
 			return $contents;
 		}
 		// Special treatment for footer.php
@@ -420,15 +424,15 @@ class Components_Generator_Plugin {
 		// Function names can not contain hyphens.
 		$slug = str_replace( '-', '_', $this->theme['slug'] );
 		// Regular treatment for all other files.
-		$contents = str_replace( "@package component_s", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
-		$contents = str_replace( "component_s-", sprintf( "%s-",  $this->theme['slug'] ), $contents ); // Script/style handles.
-		$contents = str_replace( "'component_s'", sprintf( "'%s'",  $this->theme['slug'] ), $contents ); // Textdomains.
-		$contents = str_replace( "component_s_", $slug . '_', $contents ); // Function names.
-		$contents = preg_replace( '/\bcomponent_s\b/', $this->theme['name'], $contents );
+		$contents = str_replace( "@package Components", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
+		$contents = str_replace( "components-", sprintf( "%s-",  $this->theme['slug'] ), $contents ); // Script/style handles.
+		$contents = str_replace( "'components'", sprintf( "'%s'",  $this->theme['slug'] ), $contents ); // Textdomains.
+		$contents = str_replace( "components_", $slug . '_', $contents ); // Function names.
+		$contents = preg_replace( '/\bComponents\b/', $this->theme['name'], $contents );
 		// Special treatment for readme.txt
 		if ( 'readme.txt' == $filename ) {
 			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', "\n\n" . $this->theme['description'] . "\n\n", $contents );
-			$contents = str_replace( 'component_s, or components', $this->theme['name'], $contents );
+			$contents = str_replace( 'Components, or components', $this->theme['name'], $contents );
 		}
 		return $contents;
 	}
