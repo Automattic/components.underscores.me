@@ -347,6 +347,10 @@ class Components_Generator_Plugin {
 		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) ) {
 			wp_die( 'Theme slug could not be used to generate valid function names. Please go back and try again.' );
 		}
+		// Let's check if the name can be a valid theme name.
+		if ( preg_match( '/[\'^£$%&*()}{@#~?><>,|=+¬"]/', $this->theme['name'] ) ) {
+			wp_die( 'Theme slug could not be used to generate valid theme name. Please go back and try again.' );
+		}
 		if ( ! empty( $_REQUEST['components_description'] ) ) {
 			$this->theme['description'] = trim( $_REQUEST['components_description'] );
 		}
