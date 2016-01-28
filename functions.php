@@ -146,7 +146,7 @@ function components_get_contributors() {
 	$contributors = get_transient( $transient_key );
 	if ( false !== $contributors )
 		return $contributors;
-	$response = wp_remote_get( 'https://api.github.com/repos/Automattic/theme-pattern-library/contributors?per_page=100' );
+	$response = wp_remote_get( 'https://api.github.com/repos/Automattic/theme-components/contributors?per_page=100' );
 	if ( is_wp_error( $response ) )
 		return array();
 	$contributors = json_decode( wp_remote_retrieve_body( $response ) );
