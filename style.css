@@ -1813,8 +1813,8 @@ section {
 	max-width: 700px;
 }
 
-#base #generator {
-	background-color: #1f2f49;
+#generator h2 {
+  color: #A0C3C6;
 }
 
 .generator-form {
@@ -1945,24 +1945,12 @@ section {
 	fill: #23334e;
 }
 
-#base .gear-set0 {
-	fill: #263855;
-}
-
 .gear-set1 {
 	fill: #293b5a;
 }
 
-#base .gear-set1 {
-	fill: #2c4061;
-}
-
 .gear-set2 {
 	fill: #202f49;
-}
-
-#base .gear-set2 {
-	fill: #233450;
 }
 
 /**

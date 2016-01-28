@@ -13,10 +13,10 @@
 	.wrap {
 		max-width: 700px;
 	}
-}
 
-#base #generator {
-	background-color: lighten( $color__navy-light, 2% );
+	h2 {
+		color: $color__teal-light;
+	}
 }
 
 .generator-form {
@@ -162,26 +162,13 @@
 	fill: #23334e;
 }
 
-#base .gear-set0 {
-	fill: lighten( #23334e, 2% );
-}
-
 .gear-set1 {
 	fill: #293b5a;
-}
-
-#base .gear-set1 {
-	fill: lighten( #293b5a, 2% );
 }
 
 .gear-set2 {
 	fill:#202f49;
 }
-
-#base .gear-set2 {
-	fill: lighten( #202f49, 2% );
-}
-
 
 /**
  * Media queries
