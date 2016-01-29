@@ -62,10 +62,10 @@ class Components_Generator_Plugin {
  			'classic' => array (
  				'title'	=> esc_html__( 'Classic Blog', 'components' ),
  				'id' => esc_attr( 'type-classic' ),
- 				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-traditional.zip',
- 				'branch' => 'types/blog-traditional',
+ 				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-classic.zip',
+ 				'branch' => 'types/blog-classic',
  				'branch_slash' => true,
- 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-blog-traditional',
+ 				'prototype_dir' => self::$file_data['remote']['repo'] . '-types-blog-classic',
  			),
 
  			'magazine' => array (

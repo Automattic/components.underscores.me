@@ -12,7 +12,7 @@ $types = array(
 
   'classic' => array (
     'title'    => esc_html__( 'Classic Blog', 'components' ),
-    'filename' => 'blog-traditional',
+    'filename' => 'blog-classic',
     'text'     => esc_html__( 'Maybe you prefer the classics. Austen. Dickens. AC/DC. A classic blog is your perfect match. Great for food blogs, schools, or anyone else who has a lot of content to display in a sidebar, a classic blog features widgets in sidebar, just like you remember.', 'components' ),
   ),
 
