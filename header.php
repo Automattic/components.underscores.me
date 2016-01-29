@@ -22,7 +22,7 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'components' ); ?></a>
 
 	<div class="top-robot-container">
-		<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-plain.svg' ); ?>
+		<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-plain.svg' ); ?>
 	</div>
 
 	<header id="masthead" class="site-header" role="banner">

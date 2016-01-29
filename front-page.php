@@ -20,21 +20,21 @@ get_header(); ?>
 				<div class="wrap">
 
 					<div class="chute-wrapper">
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-chute.svg' ); ?>
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/tap.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-chute.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/tap.svg' ); ?>
 					</div>
 
 					<div class="content-wrapper">
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-left.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-left.svg' ); ?>
 
 						<div id="stretchy-pipe">&nbsp;</div>
 
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/pipe-rightcrook.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-rightcrook.svg' ); ?>
 
 						<div class="intro-content">
 
 							<div class="site-branding">
-								<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/components.svg' ); ?>
+								<?php echo file_get_contents( get_template_directory() . '/assets/img/components.svg' ); ?>
 								<h2 class="site-description">Want to build a WordPress theme turbo-fast?</h2>
 							</div><!-- .site-branding -->
 
@@ -51,11 +51,11 @@ get_header(); ?>
 				<div class="theme-type wrap" data-type="base">
 					<div class="theme-image">
 						<div class="standard-robot">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/layout-base.svg' ); ?>
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-base.svg' ); ?>
+							<?php echo file_get_contents( get_template_directory() . '/assets/img/layout-base.svg' ); ?>
+							<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-base.svg' ); ?>
 						</div>
 						<div class="mobile-robot">
-							<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/mobile-robot-base.svg' ); ?>
+							<?php echo file_get_contents( get_template_directory() . '/assets/img/mobile-robot-base.svg' ); ?>
 						</div>
 					</div>
 					<div class="theme-text">
@@ -85,12 +85,12 @@ get_header(); ?>
 							<h2 class="theme-type-title"><?php echo $type['title']; ?></h2>
 							<div class="theme-image">
 								<div class="standard-robot">
-									<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/layout-' . $type['filename'] . '.svg' ); ?>
+									<?php echo file_get_contents( get_template_directory() . '/assets/img/layout-' . $type['filename'] . '.svg' ); ?>
 
-									<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-' . $type['filename'] . '.svg' ); ?>
+									<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-' . $type['filename'] . '.svg' ); ?>
 								</div>
 								<div class="mobile-robot">
-									<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/mobile-robot-' . $type['filename'] . '.svg' ); ?>
+									<?php echo file_get_contents( get_template_directory() . '/assets/img/mobile-robot-' . $type['filename'] . '.svg' ); ?>
 								</div>
 							</div>
 							<div class="theme-text">
@@ -123,7 +123,7 @@ get_header(); ?>
 					</div>
 
 					<div class="octocat-robot">
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-octocat.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-octocat.svg' ); ?>
 					</div>
 
 					<div class="col">
@@ -136,7 +136,7 @@ get_header(); ?>
 
 			<section id="contributors">
 				<div class="wrap">
-					<h2>Made with <?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/love-and-labour.svg' ); ?> by</h2>
+					<h2>Made with <?php echo file_get_contents( get_template_directory() . '/assets/img/love-and-labour.svg' ); ?> by</h2>
 					<ul id="github-contributors">
 						<?php foreach ( components_get_contributors() as $contributor ) : ?>
 							<?php
