@@ -196,11 +196,11 @@ class Components_Generator_Plugin {
 		<section id="generator">
 
 			<div class="gear-set-one">
-				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-set.svg' ); ?>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
 			</div><!-- .gear-set-one -->
 
 			<div class="gear-set-two">
-				<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/gear-set.svg' ); ?>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
 			</div><!-- .gear-set-two -->
 
 			<div class="wrap">

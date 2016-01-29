@@ -22,7 +22,7 @@ get_header(); ?>
 						</div><!-- .page-content -->
 					</div>
 					<div class="image-404">
-						<?php echo file_get_contents( esc_url( get_template_directory_uri() ) . '/assets/img/robot-sad.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-sad.svg' ); ?>
 					</div>
 				</div>
 			</section><!-- .error-404 -->
