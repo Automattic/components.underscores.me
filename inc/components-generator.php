@@ -23,15 +23,15 @@ class Components_Generator_Plugin {
 		// Server info
 		self::$file_data = array(
 			'server' => array (
-				'root'	=> $_SERVER[ 'DOCUMENT_ROOT' ] . '/',
-				'download_dir' => $_SERVER[ 'DOCUMENT_ROOT' ] . '/downloads/',
-				'prototype_dir' => $_SERVER[ 'DOCUMENT_ROOT' ] . '/prototype/',
+				'root'	=> ABSPATH,
+				'download_dir' => get_stylesheet_directory() . '/downloads/',
+				'prototype_dir' => get_stylesheet_directory() . '/prototype/',
 			),
 
 			// Github repository info
 			'remote' => array (
-				'repo'	=> 'theme-pattern-library',
-				'download_url' => 'https://codeload.github.com/Automattic/theme-pattern-library/zip/',
+				'repo'	=> 'theme-components',
+				'download_url' => 'https://codeload.github.com/Automattic/theme-components/zip/',
 			),
 		);
 
@@ -173,11 +173,13 @@ class Components_Generator_Plugin {
 		} else {
 			$this->components_generator_download_file( esc_url_raw( self::$file_data['remote']['download_url'] . $branch ), $repo_file_name );
 		}
-		if ( ! file_exists( 'downloads' ) && ! is_dir( 'downloads' ) ) {
-			mkdir( self::$file_data['server']['root'] . '/downloads/',  0755 );
+		$downloads_dir = self::$file_data['server']['download_dir'];
+		if ( ! file_exists( $downloads_dir ) && ! is_dir( $downloads_dir ) ) {
+			mkdir( $downloads_dir,  0755 );
 		}
-		if ( ! file_exists( 'prototype' ) && ! is_dir( 'prototype' ) ) {
-			mkdir( self::$file_data['server']['root'] . '/prototype/',  0755 );
+		$prototype_dir = self::$file_data['server']['prototype_dir'];
+		if ( ! file_exists( $prototype_dir ) && ! is_dir( $prototype_dir ) ) {
+			mkdir( $prototype_dir,  0755 );
 		}
 		// Copy the file to its new directory.
 		if ( $branch_slash == true ) {
