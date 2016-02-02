@@ -13,7 +13,7 @@
 			$( '#type-blog-modern' ).attr( 'checked', true );
 		}
 
-		if ( $( this ).is( '[data-type="blog-traditional"]' ) ) {
+		if ( $( this ).is( '[data-type="blog-classic"]' ) ) {
 			$( '#type-classic' ).attr( 'checked', true );
 		}
 
