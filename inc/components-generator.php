@@ -366,7 +366,7 @@ class Components_Generator_Plugin {
 		$zip = new ZipArchive;
 		$zip_filename = sprintf( self::$file_data['server']['download_dir'] . '-' . str_replace( '/', '-', $this->type_branch ) . '-%s.zip', md5( print_r( $this->theme, true ) ) );
 		$res = $zip->open( $zip_filename, ZipArchive::CREATE && ZipArchive::OVERWRITE );
-		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
+		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'README.md', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		$exclude_directories = array( '.git', '.svn', '.', '..' );
 
 		$iterator = new RecursiveDirectoryIterator( $this->prototype_dir );
