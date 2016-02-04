@@ -60,7 +60,7 @@ get_header(); ?>
 					</div>
 					<div class="theme-text">
 						<h2 class="theme-type-title">Just the basics, please</h2>
-						<p>Can&rsquo;t decide? Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
+						<p>Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
 						<a href="#generator" class="download button" data-type="base">Build Theme!</a>
 					</div>
 				</div><!-- .theme-type -->
@@ -128,7 +128,7 @@ get_header(); ?>
 
 					<div class="col">
 						<h2>Want to contribute?</h2>
-						<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-pattern-library">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-pattern-library/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
+						<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-components">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
 
 					</div>
 				</div><!-- .wrap -->
