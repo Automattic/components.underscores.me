@@ -151,12 +151,12 @@ class Components_Generator_Plugin {
 		$path = pathinfo( realpath( $zip_file ), PATHINFO_DIRNAME );
 		$zip = new ZipArchive;
 		$res = $zip->open( $zip_file );
-		if ( $res === TRUE ) {
+		if ( true === $res  ) {
 			// Extract it to the path we determined above.
 			$zip->extractTo( $path );
 			$zip->close();
 		} else {
-			exit( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
+			die( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
 		}
 	}
 
@@ -166,9 +166,8 @@ class Components_Generator_Plugin {
 	function components_generator_get_download( $branch, $destination, $branch_slash ) {
 		// Our file name.
 		$repo_file_name = self::$file_data['remote']['repo'] . '-' . $branch . '.zip';
-		// Grab the file.
-		// Github changes forward slashes to dashes to file names, so we account for that.
-		if ( $branch_slash == true ) {
+		// Grab the file. Github changes forward slashes to dashes to file names, so we account for that.
+		if ( true == $branch_slash ) {
 			$this->components_generator_download_file( esc_url_raw( self::$file_data['remote']['download_url'] . $branch ), str_replace( '/', '-', $repo_file_name ) );
 		} else {
 			$this->components_generator_download_file( esc_url_raw( self::$file_data['remote']['download_url'] . $branch ), $repo_file_name );
@@ -182,7 +181,7 @@ class Components_Generator_Plugin {
 			mkdir( $prototype_dir,  0755 );
 		}
 		// Copy the file to its new directory.
-		if ( $branch_slash == true ) {
+		if ( true == $branch_slash ) {
 			copy( self::$file_data['server']['root'] . str_replace( '/', '-', $repo_file_name ), $destination . str_replace( '/', '-', $repo_file_name ) );
 		} else {
 			copy( self::$file_data['server']['root'] . $repo_file_name, $destination . $repo_file_name );
@@ -219,7 +218,7 @@ class Components_Generator_Plugin {
 											$i = 0;
 											foreach ( self::$theme_types as $theme_type ) :
 												// Check our first radio as a default.
-												if ( $i == 0 ) {
+												if ( 0 == $i ) {
 													$checked = 'checked="checked"';
 												} else {
 													$checked = null;
@@ -294,39 +293,48 @@ class Components_Generator_Plugin {
 	 * Let's take the form input, generate and zip of the theme.
 	 */
 	function components_generator_zippity_zip() {
-		if ( ! isset( $_REQUEST['components_generate'], $_REQUEST['components_name'] ) )
+		if ( ! isset( $_REQUEST['components_generate'], $_REQUEST['components_name'] ) ) {
 			return;
+		}
 
-		if ( empty( $_REQUEST['components_name'] ) )
+		if ( empty( $_REQUEST['components_name'] ) ) {
 			wp_die( 'Please enter a theme name. Go back and try again.' );
+		}
 
 		if ( empty( $_REQUEST['theme-type'] ) ) {
 			wp_die( 'Please select a theme type. Go back and try again.' );
 		} elseif ( ! empty( $_REQUEST['theme-type'] ) ) {
-			if ( $_REQUEST['theme-type'] == 'Base' ) {
-				$this->set_theme( self::$theme_types['base']['title'] );
-				$this->set_prototype_dir( self::$theme_types['base']['prototype_dir'] );
-				$this->set_type_branch( self::$theme_types['base']['branch'] );
-			} elseif ( $_REQUEST['theme-type'] == 'Modern Blog' ) {
-				$this->set_theme( self::$theme_types['modern']['title'] );
-				$this->set_prototype_dir( self::$theme_types['modern']['prototype_dir'] );
-				$this->set_type_branch( self::$theme_types['modern']['branch'] );
-			} elseif ( $_REQUEST['theme-type'] == 'Classic Blog' ) {
-				$this->set_theme( self::$theme_types['classic']['title'] );
-				$this->set_prototype_dir( self::$theme_types['classic']['prototype_dir'] );
-				$this->set_type_branch( self::$theme_types['classic']['branch'] );
-			} elseif ( $_REQUEST['theme-type'] == 'Magazine' ) {
-				$this->set_theme( self::$theme_types['magazine']['title'] );
-				$this->set_prototype_dir( self::$theme_types['magazine']['prototype_dir'] );
-				$this->set_type_branch( self::$theme_types['magazine']['branch'] );
-			} elseif ( $_REQUEST['theme-type'] == 'Portfolio' ) {
-				$this->set_theme( self::$theme_types['portfolio']['title'] );
-				$this->set_prototype_dir( self::$theme_types['portfolio']['prototype_dir'] );
-				$this->set_type_branch( self::$theme_types['portfolio']['branch'] );
-			} elseif ( $_REQUEST['theme-type'] == 'Business' ) {
-				$this->set_theme( self::$theme_types['business']['title'] );
-				$this->set_prototype_dir( self::$theme_types['business']['prototype_dir'] );
-				$this->set_type_branch( self::$theme_types['business']['branch'] );
+			switch ( $_REQUEST['theme-type'] ) {
+				case 'Base':
+					$this->set_theme( self::$theme_types['base']['title'] );
+					$this->set_prototype_dir( self::$theme_types['base']['prototype_dir'] );
+					$this->set_type_branch( self::$theme_types['base']['branch'] );
+					break;
+				case 'Modern Blog':
+					$this->set_theme( self::$theme_types['modern']['title'] );
+					$this->set_prototype_dir( self::$theme_types['modern']['prototype_dir'] );
+					$this->set_type_branch( self::$theme_types['modern']['branch'] );
+					break;
+				case 'Classic Blog':
+					$this->set_theme( self::$theme_types['classic']['title'] );
+					$this->set_prototype_dir( self::$theme_types['classic']['prototype_dir'] );
+					$this->set_type_branch( self::$theme_types['classic']['branch'] );
+					break;
+				case 'Magazine':
+					$this->set_theme( self::$theme_types['magazine']['title'] );
+					$this->set_prototype_dir( self::$theme_types['magazine']['prototype_dir'] );
+					$this->set_type_branch( self::$theme_types['magazine']['branch'] );
+					break;
+				case 'Portfolio':
+					$this->set_theme( self::$theme_types['portfolio']['title'] );
+					$this->set_prototype_dir( self::$theme_types['portfolio']['prototype_dir'] );
+					$this->set_type_branch( self::$theme_types['portfolio']['branch'] );
+					break;
+				case 'Business':
+					$this->set_theme( self::$theme_types['business']['title'] );
+					$this->set_prototype_dir( self::$theme_types['business']['prototype_dir'] );
+					$this->set_type_branch( self::$theme_types['business']['branch'] );
+					break;
 			}
 		}
 
@@ -371,14 +379,17 @@ class Components_Generator_Plugin {
 
 		$iterator = new RecursiveDirectoryIterator( $this->prototype_dir );
 		foreach ( new RecursiveIteratorIterator( $iterator ) as $filename ) {
-			if ( in_array( basename( $filename ), $exclude_files ) )
+			if ( in_array( basename( $filename ), $exclude_files ) ) {
 				continue;
+			}
 			foreach ( $exclude_directories as $directory )
-				if ( strstr( $filename, "/{$directory}/" ) )
+				if ( strstr( $filename, "/{$directory}/" ) ) {
 					continue 2; // continue the parent foreach loop
+				}
 			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
-			if ( 'languages/component_s.pot' == $local_filename )
+			if ( 'languages/component_s.pot' == $local_filename ) {
 				$local_filename = sprintf( 'languages/%s.pot', $this->theme['slug'] );
+			}
 			$contents = file_get_contents( $filename );
 			$contents = apply_filters( 'components_generator_file_contents', $contents, $local_filename );
 			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
@@ -388,7 +399,7 @@ class Components_Generator_Plugin {
 		header( sprintf( 'Content-Disposition: attachment; filename="%s.zip"', $this->theme['slug'] ) );
 		readfile( $zip_filename );
 		unlink( $zip_filename );
-		die();
+		exit();
 	}
 
 	/**
@@ -398,14 +409,16 @@ class Components_Generator_Plugin {
 		// Replace only text files, skip png's and other stuff.
 		$valid_extensions = array( 'php', 'css', 'scss', 'js', 'txt' );
 		$valid_extensions_regex = implode( '|', $valid_extensions );
-		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) )
+		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) ) {
 			return $contents;
+		}
+			
 		// Special treatment for style.css
 		if ( in_array( $filename, array( 'style.css', 'assets/stylesheets/style.scss' ), true ) ) {
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
-				'Theme URI'	=> esc_url_raw( $this->theme['uri'] ),
-				'Author'	  => $this->theme['author'],
+				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
+				'Author'      => $this->theme['author'],
 				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
 				'Description' => $this->theme['description'],
 				'Text Domain' => $this->theme['slug'],
@@ -457,7 +470,7 @@ class Components_Generator_Plugin {
 		 * No need to fetch the pattern library and generate types all the time.
 		 * If no files exist, let's generate types anyway.
 		 */
-		if ( file_exists( $file_name ) && $expired <= $time - $file_time_stamp  || ! file_exists( $file_name ) ) {
+		if ( ( file_exists( $file_name ) && $expired <= ( $time - $file_time_stamp ) )  || ! file_exists( $file_name ) ) {
 			add_action( 'wp_footer', array( $this, 'components_generator_init' ) );
 		}
 	}
