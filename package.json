@@ -1,0 +1,34 @@
+{
+  "name": "components.underscores.me",
+  "version": "1.0.0",
+  "description": "components.underscores.me website",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run gulp build",
+    "gulp": "gulp",
+    "start": "npm run gulp watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automattic/components.underscores.me.git"
+  },
+  "keywords": [
+    "wordpress",
+    "themes",
+    "theme"
+  ],
+  "author": "Automattic",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/Automattic/components.underscores.me/issues"
+  },
+  "homepage": "https://github.com/Automattic/components.underscores.me#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-csscomb": "^3.0.6",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0"
+  }
+}
