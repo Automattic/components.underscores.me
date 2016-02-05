@@ -61,7 +61,7 @@ class Components_Generator_Plugin {
 
  			'classic' => array (
  				'title'	=> esc_html__( 'Classic Blog', 'components' ),
- 				'id' => esc_attr( 'type-classic' ),
+ 				'id' => esc_attr( 'type-blog-classic' ),
  				'zip_file' => self::$file_data['remote']['repo'] . '-types-blog-classic.zip',
  				'branch' => 'types/blog-classic',
  				'branch_slash' => true,

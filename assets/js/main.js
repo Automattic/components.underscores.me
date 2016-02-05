@@ -14,7 +14,7 @@
 		}
 
 		if ( $( this ).is( '[data-type="blog-classic"]' ) ) {
-			$( '#type-classic' ).attr( 'checked', true );
+			$( '#type-blog-classic' ).attr( 'checked', true );
 		}
 
 		if ( $( this ).is( '[data-type="magazine"]' ) ) {
