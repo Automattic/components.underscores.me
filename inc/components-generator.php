@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Components Generator
- * Description: Generates themes based on the theme pattern library by Automattic.
+ * Description: Generates themes based on the theme components library by Automattic.
  * Much of this code is from the original Underscores generator:
  * https://github.com/Automattic/underscores.me/blob/master/plugins/underscoresme-generator/underscoresme-generator.php
  */
@@ -395,6 +395,7 @@ class Components_Generator_Plugin {
 			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
 		}
 		$zip->close();
+		$this->components_generator_do_tracking();
 		header( 'Content-type: application/zip' );
 		header( sprintf( 'Content-Disposition: attachment; filename="%s.zip"', $this->theme['slug'] ) );
 		readfile( $zip_filename );
@@ -412,13 +413,13 @@ class Components_Generator_Plugin {
 		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) ) {
 			return $contents;
 		}
-			
+
 		// Special treatment for style.css
 		if ( in_array( $filename, array( 'style.css', 'assets/stylesheets/style.scss' ), true ) ) {
 			$theme_headers = array(
 				'Theme Name'  => $this->theme['name'],
-				'Theme URI'   => esc_url_raw( $this->theme['uri'] ),
-				'Author'      => $this->theme['author'],
+				'Theme URI'	=> esc_url_raw( $this->theme['uri'] ),
+				'Author'		=> $this->theme['author'],
 				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
 				'Description' => $this->theme['description'],
 				'Text Domain' => $this->theme['slug'],
@@ -450,6 +451,39 @@ class Components_Generator_Plugin {
 			$contents = str_replace( 'Components, or components', $this->theme['name'], $contents );
 		}
 		return $contents;
+	}
+
+	function components_generator_do_tracking() {
+		// Let's not fire stats on localhost.
+		if ( 'components.underscores.me' !== $_SERVER['HTTP_HOST'] ) {
+			return;
+		}
+
+		// Track total downloads.
+		$user_agent = 'regular';
+		if ( '_sh' == $_SERVER['HTTP_USER_AGENT'] ) {
+			$user_agent = '_sh';
+		}
+
+		// Track downloads of certain types.
+		switch ( $this->selected_theme ) {
+			case self::$theme_types['base']['title']: $type = 'Base'; break;
+			case self::$theme_types['modern']['title']: $type = 'Modern Blog'; break;
+			case self::$theme_types['classic']['title']: $type = 'Classic Blog'; break;
+			case self::$theme_types['magazine']['title']: $type = 'Magazine'; break;
+			case self::$theme_types['portfolio']['title']: $type = 'Portfolio'; break;
+			case self::$theme_types['business']['title']: $type = 'Business'; break;
+			default: $type = null; break;
+		}
+
+		if ( isset( $type ) ) {
+			wp_remote_get( add_query_arg( array(
+				'v'									=> 'wpcom-no-pv',
+				'x_component_total_downloads' => $user_agent,
+				'x_component_downloads'		 => $type,
+			), 'http://stats.wordpress.com/g.gif' ),
+			array( 'blocking' => false ) );
+		}
 	}
 
 	/**
