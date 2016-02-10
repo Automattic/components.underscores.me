@@ -1058,11 +1058,6 @@ section {
 /*--------------------------------------------------------------
 # Panels
 --------------------------------------------------------------*/
-/* Don't show masthead, since we're repeating it in the first panel */
-#masthead {
-  display: none;
-}
-
 @media (max-width: 767px) {
   /* Don't display pipes! */
 #pipe-left,
@@ -1096,7 +1091,7 @@ section {
 }
 
 @media (min-width: 768px) {
-	#intro .wrap {
+	#masthead .wrap {
 		padding-top: 0;
 		position: relative;
 	}
@@ -1163,14 +1158,14 @@ section {
 	}
 
   /* Move content block to right */
-	#intro .content-wrapper {
+	#masthead .content-wrapper {
 		float: left;
 		position: relative;
 		width: calc(100% - 300px);
 		z-index: 1;
 	}
 
-	#intro .intro-content {
+	#masthead .intro-content {
 		margin: 40px auto 0;
 		max-width: 650px;
 	}
@@ -1814,7 +1809,7 @@ section {
 }
 
 #generator h2 {
-  color: #A0C3C6;
+	color: #A0C3C6;
 }
 
 .generator-form {

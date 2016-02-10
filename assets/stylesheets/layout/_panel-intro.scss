@@ -1,8 +1,3 @@
-/* Don't show masthead, since we're repeating it in the first panel */
-#masthead {
-	display: none;
-}
-
 @include mobile {
 
 	/* Don't display pipes! */
@@ -35,7 +30,7 @@
 }
 
 @include tablet {
-	#intro .wrap {
+	#masthead .wrap {
 		padding-top: 0;
 		position: relative;
 	}
@@ -94,14 +89,14 @@
 	}
 
 	/* Move content block to right */
-	#intro .content-wrapper {
+	#masthead .content-wrapper {
 		float: left;
 		position: relative;
 		width: calc(100% - 300px);
 		z-index: 1;
 	}
 
-	#intro .intro-content {
+	#masthead .intro-content {
 		margin: 40px auto 0;
 		max-width: 650px;
 	}

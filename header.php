@@ -26,11 +26,6 @@
 	</div>
 
 	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Components</a></h1>
-			<h2 class="site-description">A WordPress starter theme, turbo charged</h2>
-		</div><!-- .site-branding -->
-
 		<?php
 		/* Commenting out the menu, since it's not gonna be used in initial version of the site.
 
@@ -40,6 +35,38 @@
 		</nav><!-- #site-navigation -->
 		*/
 		?>
+
+		<div class="wrap">
+			<div class="chute-wrapper">
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-chute.svg' ); ?>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/tap.svg' ); ?>
+			</div>
+
+			<div class="content-wrapper">
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-left.svg' ); ?>
+
+				<div id="stretchy-pipe">&nbsp;</div>
+
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-rightcrook.svg' ); ?>
+
+				<div class="intro-content">
+					<div class="site-branding">
+						<!-- Logo acts as an image -->
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/components.svg' ); ?>
+						<!-- Hidden h1 for screen readers -->
+						<h1 class="site-title screen-reader-text"><?php bloginfo( 'name' ); ?></h1>
+						<?php $description = get_bloginfo( 'description', 'display' );
+						if ( $description || is_customize_preview() ) : ?>
+							<h2 class="site-description"><?php echo $description; ?></h2>
+						<?php endif; ?>
+					</div><!-- .site-branding -->
+					<div id="intro">
+						<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
+						<p>If you&rsquo;re just starting out, it&rsquo;ll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you&rsquo;re an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart&rsquo;s delight!</p>
+					</div><!-- #intro -->
+				</div><!-- .intro-content -->
+			</div><!-- .content-wrapper -->
+		</div><!-- .wrap -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
