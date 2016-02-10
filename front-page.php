@@ -15,38 +15,6 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
-			<section id="intro">
-				<div class="wrap">
-
-					<div class="chute-wrapper">
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-chute.svg' ); ?>
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/tap.svg' ); ?>
-					</div>
-
-					<div class="content-wrapper">
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-left.svg' ); ?>
-
-						<div id="stretchy-pipe">&nbsp;</div>
-
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-rightcrook.svg' ); ?>
-
-						<div class="intro-content">
-
-							<div class="site-branding">
-								<?php echo file_get_contents( get_template_directory() . '/assets/img/components.svg' ); ?>
-								<h2 class="site-description">Want to build a WordPress theme turbo-fast?</h2>
-							</div><!-- .site-branding -->
-
-							<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
-
-							<p>If you&rsquo;re just starting out, it&rsquo;ll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you&rsquo;re an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart&rsquo;s delight!</p>
-						</div><!-- .intro-content -->
-					</div><!-- .content-wrapper -->
-
-				</div><!-- .wrap -->
-			</section><!-- #intro -->
-
 			<section id="base">
 				<div class="theme-type wrap" data-type="base">
 					<div class="theme-image">
