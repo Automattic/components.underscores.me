@@ -157,6 +157,48 @@ function components_get_contributors() {
 }
 
 /**
+ * Creates Custom Post Type for theme types
+ */
+function components_create_post_type() {
+	register_post_type( 'themetype',
+	array(
+		'labels' => array(
+			'name' => __( 'Types' ),
+			'singular_name' => __( 'Type' ),
+			'add_new' => __( 'Add New' ),
+			'add_new_item' => __( 'Add New Type' ),
+			'edit_item' => __( 'Edit Type' ),
+			),
+		'public' => true,
+		'has_archive' => true,
+		'supports' => array( 'title', 'editor', 'custom-fields' ),
+		)
+	);
+}
+add_action( 'init', 'components_create_post_type' );
+
+/**
+ * Adds two default fields to Custom Fields - one for the robot SVG path and one for the mockup SVG path
+ */
+function components_set_default_custom_fields( $post_id ) {
+	if ( get_post_type( $post_id ) == 'themetype' ) {
+		add_post_meta( $post_id, 'robot_svg', '', true );
+		add_post_meta( $post_id, 'mockup_svg', '', true );
+	}
+	return true;
+}
+add_action('wp_insert_post', 'components_set_default_custom_fields', 1 );
+
+/**
+ * Allow SVGs in Media Uploader
+ */
+function components_mime_types($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'components_mime_types' );
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
