@@ -18,6 +18,12 @@ function components_jetpack_setup() {
 		'render'    => 'components_infinite_scroll_render',
 		'footer'    => 'page',
 	) );
+
+	/**
+	 * Add theme support for Jetpack portfolio
+	 */
+	add_theme_support( 'jetpack-portfolio' );
+
 } // end function components_jetpack_setup
 add_action( 'after_setup_theme', 'components_jetpack_setup' );
 
