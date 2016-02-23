@@ -57,12 +57,6 @@ function components_setup() {
 		'gallery',
 		'caption',
 	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'components_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
 }
 endif; // components_setup
 add_action( 'after_setup_theme', 'components_setup' );
