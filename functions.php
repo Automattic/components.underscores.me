@@ -80,24 +80,6 @@ function components_content_width() {
 add_action( 'after_setup_theme', 'components_content_width', 0 );
 
 /**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function components_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'components' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
-}
-add_action( 'widgets_init', 'components_widgets_init' );
-
-/**
  * Enqueue TypeKit fonts.
  */
 function components_typekit() {
