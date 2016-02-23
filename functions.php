@@ -34,19 +34,6 @@ function components_setup() {
 	add_theme_support( 'title-tag' );
 
 	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	//add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'top' => esc_html__( 'Top Menu', 'components' ),
-		'social'  => esc_html__( 'Social Links Menu', 'components' ),
-	) );
-
-	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
@@ -57,12 +44,6 @@ function components_setup() {
 		'gallery',
 		'caption',
 	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'components_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
 }
 endif; // components_setup
 add_action( 'after_setup_theme', 'components_setup' );
@@ -113,8 +94,6 @@ function components_scripts() {
 
 	wp_enqueue_script( 'components', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), '20120206', true );
 
-	// wp_enqueue_script( 'components-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20120206', true );
-
 	wp_enqueue_script( 'components-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 }
@@ -137,11 +116,6 @@ function components_get_contributors() {
 	set_transient( $transient_key, $contributors, HOUR_IN_SECONDS );
 	return (array) $contributors;
 }
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
