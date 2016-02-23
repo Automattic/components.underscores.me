@@ -80,24 +80,6 @@ function components_content_width() {
 add_action( 'after_setup_theme', 'components_content_width', 0 );
 
 /**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function components_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'components' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
-}
-add_action( 'widgets_init', 'components_widgets_init' );
-
-/**
  * Enqueue TypeKit fonts.
  */
 function components_typekit() {
@@ -155,16 +137,6 @@ function components_get_contributors() {
 	set_transient( $transient_key, $contributors, HOUR_IN_SECONDS );
 	return (array) $contributors;
 }
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
