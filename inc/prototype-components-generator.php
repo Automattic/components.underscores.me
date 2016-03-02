@@ -28,6 +28,22 @@ class Components_Generator_Plugin {
 	}
 
 	/**
+	 * This unzips our zip from the Github repo.
+	 */
+	public function unzip_file( $zip_file ) {
+		$path = pathinfo( realpath( $zip_file ), PATHINFO_DIRNAME );
+		$zip = new ZipArchive;
+		$res = $zip->open( $zip_file );
+		if ( true === $res  ) {
+			// Extract it to the path we determined above.
+			$zip->extractTo( $path );
+			$zip->close();
+		} else {
+			die( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
+		}
+	}
+
+	/**
 	 * This deletes a file.
 	 */
 	public function delete_file( $URI ) {
