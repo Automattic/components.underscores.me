@@ -26,5 +26,12 @@ class Components_Generator_Plugin {
 		curl_close( $ch );
 		fclose( $fp );
 	}
+
+	/**
+	 * This deletes a file.
+	 */
+	public function delete_file( $URI ) {
+		unlink( $URI );
+	}
 }
 new Components_Generator_Plugin;
