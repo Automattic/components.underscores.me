@@ -13,5 +13,18 @@ class Components_Generator_Plugin {
 		$json = file_get_contents( $file );
 		return json_decode( $json, TRUE );
 	}
+
+	// Utility functions: These help the generator do its work.
+	/**
+	 * This downloads a file at a URL.
+	 */
+	public function download_file( $URI, $file_name ) {
+		$fp = fopen( $file_name, 'w' );
+		$ch = curl_init( $URI );
+		curl_setopt( $ch, CURLOPT_FILE, $fp );
+		$data = curl_exec( $ch );
+		curl_close( $ch );
+		fclose( $fp );
+	}
 }
 new Components_Generator_Plugin;
