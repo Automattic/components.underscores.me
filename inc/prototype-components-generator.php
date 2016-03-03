@@ -6,6 +6,11 @@
 
 class Components_Generator_Plugin {
 
+	function __construct() {
+		// Let's run a few init functions to set things up.
+		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
+	}
+
 	/**
 	 * Places data in JSON files in an array for later use.
 	 */
@@ -35,7 +40,14 @@ class Components_Generator_Plugin {
 		$this->unzip_file( $destination . $repo_file_name );
 		// Delete the unneeded files.
 		$this->delete_file( ABSPATH . $repo_file_name ); // Original download in root.
-		$this->delete_file( $destination . $repo_file_name ); // Zip file, after it's moved and unzipped.
+	}
+
+	/**
+	 * This is an init function to grab theme components so we can control when it's called by the generator.
+	 */
+	public function get_theme_components_init() {
+		// Grab theme components from its Github repo.
+		$this->get_theme_components( get_stylesheet_directory() . '/build/' );
 	}
 
 	// Utility functions: These help the generator do its work.
@@ -72,6 +84,28 @@ class Components_Generator_Plugin {
 	 */
 	public function delete_file( $URI ) {
 		unlink( $URI );
+	}
+
+	/**
+	 * Let's set an expiration on the last download and get current time.
+	 */
+	function set_expiration_and_go() {
+		// We only need to grab the file info of one type zip file since all files are created at once.
+		$file_name = get_stylesheet_directory() . '/build/' . 'theme-components-master.zip';
+		if ( file_exists( $file_name ) ) {
+			$file_time_stamp = date( filemtime( $file_name ) );
+			$time = time();
+			$expired = 1800; /* Equal to 30 minutes. */
+		}
+
+		/**
+		 * Let's fire the function as late as we can, and every 30 minutes.
+		 * No need to fetch theme components all the time.
+		 * If no files exist, let's run the init function anyway.
+		 */
+		if ( ( file_exists( $file_name ) && $expired <= ( $time - $file_time_stamp ) )  || ! file_exists( $file_name ) ) {
+			add_action( 'wp_footer', array( $this, 'get_theme_components_init' ) );
+		}
 	}
 }
 new Components_Generator_Plugin;
