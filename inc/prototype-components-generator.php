@@ -43,11 +43,27 @@ class Components_Generator_Plugin {
 	}
 
 	/**
+	 * Read files to process from base. Stores files on array for processing.
+	 */
+	public function read_base_dir( $dir ) {
+		$files = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
+		$filelist = array();
+		$exclude = array( '.travis.yml', 'codesniffer.ruleset.xml', 'README.md', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..', '.git', '.svn' );
+		foreach( $files as $file ) {
+			if ( ! in_array( basename( $file ), $exclude )  ) {
+				$filelist[] = $file;
+			}
+		}
+		return $filelist;
+	}
+
+	/**
 	 * This is an init function to grab theme components so we can control when it's called by the generator.
 	 */
 	public function get_theme_components_init() {
 		// Grab theme components from its Github repo.
 		$this->get_theme_components( get_stylesheet_directory() . '/build/' );
+		$this->read_base_dir( get_stylesheet_directory() . '/build/theme-components-master/' );
 	}
 
 	// Utility functions: These help the generator do its work.
