@@ -48,7 +48,7 @@ class Components_Generator_Plugin {
 	public function read_base_dir( $dir ) {
 		$files = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
 		$filelist = array();
-		$exclude = array( '.travis.yml', 'codesniffer.ruleset.xml', 'README.md', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..', '.git', '.svn' );
+		$exclude = array( '.travis.yml', 'codesniffer.ruleset.xml', 'README.md', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		foreach( $files as $file ) {
 			if ( ! in_array( basename( $file ), $exclude )  ) {
 				$filelist[] = $file;
