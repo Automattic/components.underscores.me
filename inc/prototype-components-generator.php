@@ -53,8 +53,14 @@ class Components_Generator_Plugin {
 			mkdir( $target_dir,  0755 );
 		}
 
+		// Make needed directories.
+		$templates = $target_dir . '/templates/';
+		if ( ! file_exists( $templates ) && ! is_dir( $templates ) ) {
+			mkdir( $templates,  0755 );
+		}
+
 		// Copy the build files so we can work with them.
-		$this->copy_build_files( $this->components_dir, $target_dir );
+		// $this->copy_build_files( $this->components_dir, $target_dir );
 
 		// Get type config
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
@@ -146,7 +152,10 @@ class Components_Generator_Plugin {
 	 * Adds templates to the build.
 	 */
 	public function add_templates( $files, $target_dir ) {
-
+		$templates = '/templates/';
+		foreach( $files as $file ) {
+			copy( $this->components_dir . $templates . $file, $target_dir . $templates . $file );
+		}
 	}
 
 	/**
