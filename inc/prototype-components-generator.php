@@ -28,13 +28,35 @@ class Components_Generator_Plugin {
 	}
 
 	/**
+	 * This is an init function to grab theme components so we can control when it's called by the generator.
+	 */
+	public function get_theme_components_init() {
+		// Grab theme components from its Github repo.
+		$this->get_theme_components( $this->build_dir );
+	}
+
+	/**
 	 * Places data in JSON files in an array for later use.
 	 */
 	public function parse_config( $file ) {
 		$json = file_get_contents( $file );
 		return json_decode( $json, TRUE );
 	}
+	
+	/**
+	 * Builds a given type from theme components.
+	 */
+	public function build_type( $type ) {
+		$target_dir = $this->build_dir . $type;
+		
+		// Get type config
+		$config_path = sprintf( '%s/config/type-%s.json', $this->components_dir, $type );
+		$config = $this->parse_config( $config_path );
 
+		// Handle config
+		$this->handle_config( $config, $target_dir );
+	}
+	
 	/**
 	 * This gets our zip from the Github repo.
 	 */
@@ -66,16 +88,81 @@ class Components_Generator_Plugin {
 		}
 		return $filelist;
 	}
-
+	
 	/**
-	 * This is an init function to grab theme components so we can control when it's called by the generator.
+	 * Handles the configuration and coordinates everything.
 	 */
-	public function get_theme_components_init() {
-		// Grab theme components from its Github repo.
-		$this->get_theme_components( $this->build_dir );
-		$this->read_base_dir( $this->components_dir );
+	public function handle_config( $config, $target_dir ) {
+		foreach ( $config as $section => $args ) {
+			switch ( $section ) {
+				case 'replacement_files';
+					$this->add_replacement_files( $args, $target_dir );
+					break;
+				case 'sass_replace';
+					$this->add_sass_includes( $args, $target_dir );
+					break;
+				case 'components';
+					$this->add_component_files( $args, $target_dir );
+					break;
+				case 'templates';
+					$this->add_templates( $args, $target_dir );
+					break;
+				case 'js';
+					$this->add_javascript( $args, $target_dir );
+					break;
+			}
+		}
 	}
 
+	/**
+	 * Adds component files needed for the build.
+	 */
+	public function add_component_files( $files, $target_dir ) {
+
+	}
+	
+	/**
+	 * Replaces files in the build from those specified by type.
+	 */
+	public function add_replacement_files( $files, $target_dir ) {
+
+	}
+
+	/**
+	 * Adds sass includes to the build and takes care of file overrides.
+	 */
+	public function add_sass_includes( $files, $target_dir ) {
+
+	}
+	
+	/**
+	 * Adds templates to the build.
+	 */
+	public function add_templates( $files, $target_dir ) {
+
+	}
+	
+	/**
+	 * Removes component insertion comments from source.
+	 */
+	public function add_javascript( $files, $target_dir ) {
+
+	}
+	
+	/**
+	 * Replaces component insertion comments with the actual component code.
+	 */
+	public function insert_components( $components, $target_dir ) {
+
+	}
+	
+	/**
+	 * Removes component insertion comments from source.
+	 */
+	public function cleanup_template_source( $source ) {
+
+	}
+	
 	// Utility functions: These help the generator do its work.
 
 	/**
