@@ -5,8 +5,16 @@
  */
 
 class Components_Generator_Plugin {
-
+	
+	var $build_dir = 'build/';
+	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
+	var $repo_file_name = 'theme-components-master.zip';
+	
 	function __construct() {
+		// Initialize class properties
+		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
+		$this->repo_url = esc_url_raw( $this->repo_url );
+		
 		// Let's run a few init functions to set things up.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
 	}
@@ -23,23 +31,17 @@ class Components_Generator_Plugin {
 	 * This gets our zip from the Github repo.
 	 */
 	public function get_theme_components( $destination ) {
-		// Our Github repo zip URL.
-		$repo_url = esc_url_raw( 'https://codeload.github.com/Automattic/theme-components/zip/master' );
-		// Repo file name.
-		$repo_file_name = 'theme-components-master.zip';
-		// Our build directory.
-		$build_dir = get_stylesheet_directory() . '/build/';
-		if ( ! file_exists( $build_dir ) && ! is_dir( $build_dir ) ) {
-			mkdir( $build_dir,  0755 );
+		if ( ! file_exists( $this->build_dir ) && ! is_dir( $this->build_dir ) ) {
+			mkdir( $this->build_dir,  0755 );
 		}
 		// Get our download.
-		$this->download_file( $repo_url, $repo_file_name );
+		$this->download_file( $this->repo_url, $this->repo_file_name );
 		// Copy the file to its new directory.
-		copy( ABSPATH . $repo_file_name, $destination . $repo_file_name );
+		copy( ABSPATH . $this->repo_file_name, sprintf( '%s/%s', $destination, $this->repo_file_name ) );
 		// Unzip the file.
-		$this->unzip_file( $destination . $repo_file_name );
-		// Delete the unneeded files.
-		$this->delete_file( ABSPATH . $repo_file_name ); // Original download in root.
+		$this->unzip_file( sprintf( '%s/%s', $destination, $this->repo_file_name ) );
+		// Delete the unneeded files. Original download in root.
+		$this->delete_file( ABSPATH . $this->repo_file_name );
 	}
 
 	/**
@@ -62,11 +64,12 @@ class Components_Generator_Plugin {
 	 */
 	public function get_theme_components_init() {
 		// Grab theme components from its Github repo.
-		$this->get_theme_components( get_stylesheet_directory() . '/build/' );
-		$this->read_base_dir( get_stylesheet_directory() . '/build/theme-components-master/' );
+		$this->get_theme_components( $this->build_dir );
+		$this->read_base_dir( sprintf( '%s/theme-components-master', $this->build_dir  ) );
 	}
 
 	// Utility functions: These help the generator do its work.
+
 	/**
 	 * This downloads a file at a URL.
 	 */
@@ -107,7 +110,7 @@ class Components_Generator_Plugin {
 	 */
 	function set_expiration_and_go() {
 		// We only need to grab the file info of one type zip file since all files are created at once.
-		$file_name = get_stylesheet_directory() . '/build/' . 'theme-components-master.zip';
+		$file_name = sprintf( '%s/%s', $this->build_dir, $this->repo_file_name );
 		if ( file_exists( $file_name ) ) {
 			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
