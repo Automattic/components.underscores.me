@@ -49,16 +49,18 @@ class Components_Generator_Plugin {
 	public function build_type( $type ) {
 		// The target directory where we will be working on.
 		$target_dir = $this->build_dir . $type;
+		
+		// Get type config
+		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
+		$config = $this->parse_config( $config_path );
+
+		// Create target directory if it doesn't exist
 		if ( ! file_exists( $target_dir ) && ! is_dir( $target_dir ) ) {
 			mkdir( $target_dir,  0755 );
 		}
 
 		// Copy the build files so we can work with them.
 		$this->copy_build_files( $this->components_dir, $target_dir );
-
-		// Get type config
-		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
-		$config = $this->parse_config( $config_path );
 
 		// Handle config
 		$this->handle_config( $config, $target_dir );
