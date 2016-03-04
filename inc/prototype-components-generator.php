@@ -49,7 +49,7 @@ class Components_Generator_Plugin {
 	public function build_type( $type ) {
 		// The target directory where we will be working on.
 		$target_dir = $this->build_dir . $type;
-		
+
 		// Get type config
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
 		$config = $this->parse_config( $config_path );
@@ -57,12 +57,6 @@ class Components_Generator_Plugin {
 		// Create target directory if it doesn't exist
 		if ( ! file_exists( $target_dir ) && ! is_dir( $target_dir ) ) {
 			mkdir( $target_dir,  0755 );
-		}
-
-		// Make needed directories.
-		$templates = $target_dir . '/templates/';
-		if ( ! file_exists( $templates ) && ! is_dir( $templates ) ) {
-			mkdir( $templates,  0755 );
 		}
 
 		// Copy the build files so we can work with them.
@@ -154,6 +148,11 @@ class Components_Generator_Plugin {
 	 * Adds templates to the build.
 	 */
 	public function add_templates( $files, $target_dir ) {
+		// Make needed directories.
+		$templates = $target_dir . '/templates/';
+		if ( ! file_exists( $templates ) && ! is_dir( $templates ) ) {
+			mkdir( $templates,  0755 );
+		}
 		$templates = '/templates/';
 		foreach( $files as $file ) {
 			copy( $this->components_dir . $templates . $file, $target_dir . $templates . $file );
@@ -238,7 +237,7 @@ class Components_Generator_Plugin {
 	public function delete_file( $URI ) {
 		unlink( $URI );
 	}
-	
+
 	/**
 	 * Delete a directory of files.
 	 */
