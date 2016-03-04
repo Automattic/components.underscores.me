@@ -49,6 +49,12 @@ class Components_Generator_Plugin {
 	public function build_type( $type ) {
 		// The target directory where we will be working on.
 		$target_dir = $this->build_dir . $type;
+		
+		// Get type config
+		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
+		$config = $this->parse_config( $config_path );
+
+		// Create target directory if it doesn't exist
 		if ( ! file_exists( $target_dir ) && ! is_dir( $target_dir ) ) {
 			mkdir( $target_dir,  0755 );
 		}
@@ -61,10 +67,6 @@ class Components_Generator_Plugin {
 
 		// Copy the build files so we can work with them.
 		// $this->copy_build_files( $this->components_dir, $target_dir );
-
-		// Get type config
-		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
-		$config = $this->parse_config( $config_path );
 
 		// Handle config
 		$this->handle_config( $config, $target_dir );
@@ -235,6 +237,20 @@ class Components_Generator_Plugin {
 	 */
 	public function delete_file( $URI ) {
 		unlink( $URI );
+	}
+	
+	/**
+	 * Delete a directory of files.
+	 */
+	 function delete_directory( $directory ) {
+		$files = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator( $directory, RecursiveDirectoryIterator::SKIP_DOTS ),
+			RecursiveIteratorIterator::CHILD_FIRST );
+		foreach ( $files as $fileinfo ) {
+			$fname = $fileinfo->isDir() ? 'rmdir' : 'unlink';
+			call_user_func( $fname, $fileinfo->getRealPath() );
+		}
+		return rmdir( $directory );
 	}
 
 	/**
