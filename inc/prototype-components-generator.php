@@ -47,6 +47,7 @@ class Components_Generator_Plugin {
 	 * Builds a given type from theme components.
 	 */
 	public function build_type( $type ) {
+		// The target directory where we will be working on.
 		$target_dir = $this->build_dir . $type;
 		
 		// Get type config
