@@ -132,4 +132,7 @@ class Components_Generator_Plugin {
 		}
 	}
 }
-new Components_Generator_Plugin;
+
+if ( ! is_admin() ) {
+	new Components_Generator_Plugin;
+}
