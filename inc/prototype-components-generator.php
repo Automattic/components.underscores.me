@@ -9,16 +9,19 @@ class Components_Generator_Plugin {
 	var $build_dir = 'build/';
 	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
 	var $repo_file_name = 'theme-components-master.zip';
+	var $components_dir;
 	
 	function __construct() {
 		// Initialize class properties
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
+		$this->components_dir = $this->build_dir . str_replace( '.zip', '', $this->repo_file_name );
 		
 		// Patch repo url and filename to work with `branchless-merge` branch
 		// TODO: remove this code after the branch is merged.
 		$this->repo_url = preg_replace( '%/master$%', '/branchless-merge', $this->repo_url );
 		$this->repo_file_name = preg_replace( '%-master.zip$%', '-branchless-merge.zip', $this->repo_file_name );
+		$this->components_dir = preg_replace( '%-master$%', '-branchless-merge', $this->components_dir );
 		
 		// Let's run a few init functions to set things up.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
@@ -70,7 +73,7 @@ class Components_Generator_Plugin {
 	public function get_theme_components_init() {
 		// Grab theme components from its Github repo.
 		$this->get_theme_components( $this->build_dir );
-		$this->read_base_dir( sprintf( '%s/%s', $this->build_dir, str_replace( '.zip', '', $this->repo_file_name ) ) );
+		$this->read_base_dir( $this->components_dir );
 	}
 
 	// Utility functions: These help the generator do its work.
@@ -115,7 +118,7 @@ class Components_Generator_Plugin {
 	 */
 	function set_expiration_and_go() {
 		// We only need to grab the file info of one type zip file since all files are created at once.
-		$file_name = sprintf( '%s/%s', $this->build_dir, $this->repo_file_name );
+		$file_name = $this->build_dir . $this->repo_file_name;
 		if ( file_exists( $file_name ) ) {
 			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
