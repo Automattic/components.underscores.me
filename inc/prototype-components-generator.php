@@ -229,6 +229,20 @@ class Components_Generator_Plugin {
 	public function delete_file( $URI ) {
 		unlink( $URI );
 	}
+	
+	/**
+	 * Delete a directory of files.
+	 */
+	 function delete_directory( $directory ) {
+		$files = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator( $directory, RecursiveDirectoryIterator::SKIP_DOTS ),
+			RecursiveIteratorIterator::CHILD_FIRST );
+		foreach ( $files as $fileinfo ) {
+			$fname = $fileinfo->isDir() ? 'rmdir' : 'unlink';
+			call_user_func( $fname, $fileinfo->getRealPath() );
+		}
+		return rmdir( $directory );
+	}
 
 	/**
 	 * Let's set an expiration on the last download and get current time.
