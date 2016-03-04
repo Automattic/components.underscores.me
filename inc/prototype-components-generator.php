@@ -57,7 +57,7 @@ class Components_Generator_Plugin {
 		$this->copy_build_files( $this->components_dir, $target_dir );
 
 		// Get type config
-		$config_path = sprintf( '%s/config/type-%s.json', $this->components_dir, $type );
+		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
 		$config = $this->parse_config( $config_path );
 
 		// Handle config
