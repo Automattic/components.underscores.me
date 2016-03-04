@@ -65,7 +65,7 @@ class Components_Generator_Plugin {
 	public function get_theme_components_init() {
 		// Grab theme components from its Github repo.
 		$this->get_theme_components( $this->build_dir );
-		$this->read_base_dir( sprintf( '%s/theme-components-master', $this->build_dir  ) );
+		$this->read_base_dir( sprintf( '%s/%s', $this->build_dir, str_replace( '.zip', '', $this->repo_file_name ) ) );
 	}
 
 	// Utility functions: These help the generator do its work.
