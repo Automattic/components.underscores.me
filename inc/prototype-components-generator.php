@@ -5,24 +5,24 @@
  */
 
 class Components_Generator_Plugin {
-	
+
 	var $build_dir = 'build/';
 	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
 	var $repo_file_name = 'theme-components-master.zip';
 	var $components_dir;
-	
+
 	function __construct() {
 		// Initialize class properties
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
 		$this->components_dir = $this->build_dir . str_replace( '.zip', '', $this->repo_file_name );
-		
+
 		// Patch repo url and filename to work with `branchless-merge` branch
 		// TODO: remove this code after the branch is merged.
 		$this->repo_url = preg_replace( '%/master$%', '/branchless-merge', $this->repo_url );
 		$this->repo_file_name = preg_replace( '%-master.zip$%', '-branchless-merge.zip', $this->repo_file_name );
 		$this->components_dir = preg_replace( '%-master$%', '-branchless-merge', $this->components_dir );
-		
+
 		// Let's run a few init functions to set things up.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
 	}
@@ -42,14 +42,20 @@ class Components_Generator_Plugin {
 		$json = file_get_contents( $file );
 		return json_decode( $json, TRUE );
 	}
-	
+
 	/**
 	 * Builds a given type from theme components.
 	 */
 	public function build_type( $type ) {
 		// The target directory where we will be working on.
 		$target_dir = $this->build_dir . $type;
-		
+		if ( ! file_exists( $target_dir ) && ! is_dir( $target_dir ) ) {
+			mkdir( $target_dir,  0755 );
+		}
+
+		// Copy the build files so we can work with them.
+		$this->copy_build_files( $this->components_dir, $target_dir );
+
 		// Get type config
 		$config_path = sprintf( '%s/config/type-%s.json', $this->components_dir, $type );
 		$config = $this->parse_config( $config_path );
@@ -57,7 +63,7 @@ class Components_Generator_Plugin {
 		// Handle config
 		$this->handle_config( $config, $target_dir );
 	}
-	
+
 	/**
 	 * This gets our zip from the Github repo.
 	 */
@@ -89,7 +95,7 @@ class Components_Generator_Plugin {
 		}
 		return $filelist;
 	}
-	
+
 	/**
 	 * Handles the configuration and coordinates everything.
 	 */
@@ -121,7 +127,7 @@ class Components_Generator_Plugin {
 	public function add_component_files( $files, $target_dir ) {
 
 	}
-	
+
 	/**
 	 * Replaces files in the build from those specified by type.
 	 */
@@ -135,36 +141,57 @@ class Components_Generator_Plugin {
 	public function add_sass_includes( $files, $target_dir ) {
 
 	}
-	
+
 	/**
 	 * Adds templates to the build.
 	 */
 	public function add_templates( $files, $target_dir ) {
 
 	}
-	
+
 	/**
 	 * Removes component insertion comments from source.
 	 */
 	public function add_javascript( $files, $target_dir ) {
 
 	}
-	
+
 	/**
 	 * Replaces component insertion comments with the actual component code.
 	 */
 	public function insert_components( $components, $source ) {
 
 	}
-	
+
 	/**
 	 * Removes component insertion comments from source.
 	 */
 	public function cleanup_template_source( $source ) {
 
 	}
-	
+
 	// Utility functions: These help the generator do its work.
+
+	/**
+	 * Copy files to temporary build directory.
+	 */
+	public function copy_build_files( $source_dir, $target_dir ) {
+		if ( ! is_dir( $source_dir ) ) {
+			return;
+		}
+		$dir = opendir( $source_dir );
+		@mkdir( $target_dir );
+		while( false !== ( $file = readdir( $dir ) ) ) {
+			if ( ( $file != '.' ) && ( $file != '..' ) ) {
+				if ( is_dir( $source_dir . '/' . $file ) ) {
+					$this->copy_build_files( $source_dir . '/' . $file, $target_dir . '/' . $file );
+				} else {
+					copy( $source_dir . '/' . $file, $target_dir . '/' . $file );
+				}
+			}
+		}
+		closedir( $dir );
+	}
 
 	/**
 	 * This downloads a file at a URL.
