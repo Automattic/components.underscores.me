@@ -153,7 +153,7 @@ class Components_Generator_Plugin {
 	/**
 	 * Replaces component insertion comments with the actual component code.
 	 */
-	public function insert_components( $components, $target_dir ) {
+	public function insert_components( $components, $source ) {
 
 	}
 	
