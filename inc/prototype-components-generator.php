@@ -191,7 +191,7 @@ class Components_Generator_Plugin {
 		}
 		
 		// Make sure target directory exists.
-		$this->ensure_directory( $target_dir );
+		$this->ensure_directory( $target_dir, true );
 		
 		// Add current and previous directory wildcards to excludes.
 		$exclude = array_merge( array( '.', '..' ), $exclude );
@@ -246,9 +246,12 @@ class Components_Generator_Plugin {
 	/**
 	 * Checks if a directory exists, creates it otherwise.
 	 */
-	public function ensure_directory( $directory ) {
+	public function ensure_directory( $directory, $delete_if_exists=false ) {
 		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
 			mkdir( $directory, 0755 );
+		} else if ( $delete_if_exists && is_dir( $directory ) ) {
+			$this->delete_directory( $directory );
+			$this->ensure_directory( $directory );
 		}
 	}
 
