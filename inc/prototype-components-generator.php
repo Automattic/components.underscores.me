@@ -54,10 +54,8 @@ class Components_Generator_Plugin {
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
 		$config = $this->parse_config( $config_path );
 
-		// Create target directory if it doesn't exist
-		if ( ! file_exists( $target_dir ) && ! is_dir( $target_dir ) ) {
-			mkdir( $target_dir,  0755 );
-		}
+		// Make sure target directory exists
+		$this->ensure_directory( $target_dir );
 
 		// Copy just build files we need to start with so we can work with them.
 		$exclude_from_build = array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' );
@@ -71,9 +69,9 @@ class Components_Generator_Plugin {
 	 * This gets our zip from the Github repo.
 	 */
 	public function get_theme_components( $destination ) {
-		if ( ! file_exists( $this->build_dir ) && ! is_dir( $this->build_dir ) ) {
-			mkdir( $this->build_dir,  0755 );
-		}
+		// Make sure the build dir exists
+		$this->ensure_directory( $this->build_dir );
+
 		// Get our download.
 		$this->download_file( $this->repo_url, $this->repo_file_name );
 		// Copy the file to its new directory.
@@ -151,9 +149,9 @@ class Components_Generator_Plugin {
 	public function add_templates( $files, $target_dir ) {
 		// Make needed directories.
 		$templates = $target_dir . '/templates/';
-		if ( ! file_exists( $templates ) && ! is_dir( $templates ) ) {
-			mkdir( $templates,  0755 );
-		}
+		$this->ensure_directory( $templates );
+
+		// Iterate over the files and copy them to destination.
 		$templates = '/templates/';
 		foreach( $files as $file ) {
 			copy( $this->components_dir . $templates . $file, $target_dir . $templates . $file );
@@ -229,6 +227,15 @@ class Components_Generator_Plugin {
 			$zip->close();
 		} else {
 			die( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
+		}
+	}
+	
+	/**
+	 * Checks if a directory exists, creates it otherwise.
+	 */
+	public function ensure_directory( $directory ) {
+		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
+			mkdir( $directory,  0755 );
 		}
 	}
 
