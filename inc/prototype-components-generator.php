@@ -268,19 +268,22 @@ class Components_Generator_Plugin {
 	function set_expiration_and_go() {
 		// We only need to grab the file info of one type zip file since all files are created at once.
 		$file_name = $this->build_dir . $this->repo_file_name;
+
+		// Determine if we need to hook the init method
+		$hook_init = false;
 		if ( file_exists( $file_name ) ) {
 			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
-			$expired = 1800; // Equal to 30 minutes.
+			$expired = 1800; // Expire cache after 30 minutes.
+			$hook_init = $expired <= ( $time - $file_time_stamp ) ? true : false;
+		} else {
+			// If no file exists run the init function anyway.
+			$hook_init = true;
 		}
 
-		/**
-		 * Let's fire the function as late as we can, and every 30 minutes.
-		 * No need to fetch theme components all the time.
-		 * If no files exist, let's run the init function anyway.
-		 */
-		if ( ( file_exists( $file_name ) && $expired <= ( $time - $file_time_stamp ) )  || ! file_exists( $file_name ) ) {
-			add_action( 'wp_footer', array( $this, 'get_theme_components_init' ) );
+		// Only fetch theme components if it's really necessary.
+		if ( $hook_init ) {
+			add_action( 'wp_footer', array( $this, 'get_theme_components_init' ), 99 );
 		}
 	}
 }
