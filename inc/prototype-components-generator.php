@@ -25,8 +25,6 @@ class Components_Generator_Plugin {
 
 		// Let's run a few init functions to set things up.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
-		
-		$this->build_type( 'portfolio' );
 	}
 
 	/**
