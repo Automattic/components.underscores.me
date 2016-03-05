@@ -12,7 +12,7 @@ class Components_Generator_Plugin {
 	var $components_dir;
 
 	function __construct() {
-		// Initialize class properties
+		// Initialize class properties.
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
 		$this->components_dir = $this->build_dir . str_replace( '.zip', '', $this->repo_file_name );
@@ -50,18 +50,18 @@ class Components_Generator_Plugin {
 		// The target directory where we will be working on.
 		$target_dir = $this->build_dir . $type;
 
-		// Get type config
+		// Get type config.
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
 		$config = $this->parse_config( $config_path );
 
-		// Make sure target directory exists
+		// Make sure target directory exists.
 		$this->ensure_directory( $target_dir );
 
 		// Copy just build files we need to start with so we can work with them.
 		$exclude_from_build = array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' );
 		$this->copy_build_files( $this->components_dir, $target_dir, $exclude_from_build );
 
-		// Handle config
+		// Handle config.
 		$this->handle_config( $config, $target_dir );
 	}
 
@@ -69,7 +69,7 @@ class Components_Generator_Plugin {
 	 * This gets our zip from the Github repo.
 	 */
 	public function get_theme_components( $destination ) {
-		// Make sure the build dir exists
+		// Make sure the build dir exists.
 		$this->ensure_directory( $this->build_dir );
 
 		// Get our download.
@@ -269,7 +269,7 @@ class Components_Generator_Plugin {
 		if ( file_exists( $file_name ) ) {
 			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
-			$expired = 1800; /* Equal to 30 minutes. */
+			$expired = 1800; // Equal to 30 minutes.
 		}
 
 		/**
