@@ -60,7 +60,8 @@ class Components_Generator_Plugin {
 		}
 
 		// Copy just build files we need to start with so we can work with them.
-		$this->copy_build_files( $this->components_dir, $target_dir, array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' ) );
+		$exclude_from_build = array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' );
+		$this->copy_build_files( $this->components_dir, $target_dir, $exclude_from_build );
 
 		// Handle config
 		$this->handle_config( $config, $target_dir );
