@@ -54,9 +54,6 @@ class Components_Generator_Plugin {
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
 		$config = $this->parse_config( $config_path );
 
-		// Make sure target directory exists.
-		$this->ensure_directory( $target_dir );
-
 		// Copy just build files we need to start with so we can work with them.
 		$exclude_from_build = array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' );
 		$this->copy_build_files( $this->components_dir, $target_dir, $exclude_from_build );
@@ -188,20 +185,34 @@ class Components_Generator_Plugin {
 	 * Copy files to temporary build directory.
 	 */
 	public function copy_build_files( $source_dir, $target_dir, $exclude = array() ) {
+		// Bail if source directory is not a directory.
 		if ( ! is_dir( $source_dir ) ) {
 			return;
 		}
+		
+		// Make sure target directory exists.
+		$this->ensure_directory( $target_dir );
+		
+		// Add current and previous directory wildcards to excludes.
+		$exclude = array_merge( array( '.', '..' ), $exclude );
+		
+		// Open directory handle.
 		$dir = opendir( $source_dir );
-		@mkdir( $target_dir );
-		while( false !== ( $file = readdir( $dir ) ) ) {
-			if ( ( $file != '.' ) && ( $file != '..' ) && ! in_array( $file, $exclude ) ) {
+		
+		// Iterate, as long as we have files.
+		$file = readdir( $dir );
+		while ( false !== $file ) {
+			if ( ! in_array( $file, $exclude ) ) {
 				if ( is_dir( $source_dir . '/' . $file ) ) {
 					$this->copy_build_files( $source_dir . '/' . $file, $target_dir . '/' . $file );
 				} else {
 					copy( $source_dir . '/' . $file, $target_dir . '/' . $file );
 				}
 			}
+			$file = readdir( $dir ); // Set file for next iteration.
 		}
+		
+		// Close directory handle.
 		closedir( $dir );
 	}
 
