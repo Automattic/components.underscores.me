@@ -74,10 +74,13 @@ class Components_Generator_Plugin {
 
 		// Get our download.
 		$this->download_file( $this->repo_url, $this->repo_file_name );
+
 		// Copy the file to its new directory.
 		copy( ABSPATH . $this->repo_file_name, sprintf( '%s/%s', $destination, $this->repo_file_name ) );
+
 		// Unzip the file.
 		$this->unzip_file( sprintf( '%s/%s', $destination, $this->repo_file_name ) );
+
 		// Delete the unneeded files. Original download in root.
 		$this->delete_file( ABSPATH . $this->repo_file_name );
 	}
@@ -222,8 +225,7 @@ class Components_Generator_Plugin {
 		$zip = new ZipArchive;
 		$res = $zip->open( $zip_file );
 		if ( true === $res  ) {
-			// Extract it to the path we determined above.
-			$zip->extractTo( $path );
+			$zip->extractTo( $path ); // Extract it to the path we determined above.
 			$zip->close();
 		} else {
 			die( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
@@ -235,7 +237,7 @@ class Components_Generator_Plugin {
 	 */
 	public function ensure_directory( $directory ) {
 		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
-			mkdir( $directory,  0755 );
+			mkdir( $directory, 0755 );
 		}
 	}
 
