@@ -204,6 +204,8 @@ class Components_Generator_Plugin {
 		while ( false !== $file ) {
 			if ( ! in_array( $file, $exclude ) ) {
 				if ( is_dir( $source_dir . '/' . $file ) ) {
+					// Calling the function recursively, without passing the files to exclude.
+					// This has the side effect of only excluding files in the root, and not the ones in subdirectories.
 					$this->copy_build_files( $source_dir . '/' . $file, $target_dir . '/' . $file );
 				} else {
 					copy( $source_dir . '/' . $file, $target_dir . '/' . $file );
