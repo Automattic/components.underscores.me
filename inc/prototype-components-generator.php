@@ -59,8 +59,8 @@ class Components_Generator_Plugin {
 			mkdir( $target_dir,  0755 );
 		}
 
-		// Copy the build files so we can work with them.
-		// $this->copy_build_files( $this->components_dir, $target_dir );
+		// Copy just build files we need to start with so we can work with them.
+		$this->copy_build_files( $this->components_dir, $target_dir, array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' ) );
 
 		// Handle config
 		$this->handle_config( $config, $target_dir );
@@ -185,14 +185,14 @@ class Components_Generator_Plugin {
 	/**
 	 * Copy files to temporary build directory.
 	 */
-	public function copy_build_files( $source_dir, $target_dir ) {
+	public function copy_build_files( $source_dir, $target_dir, $exclude = array() ) {
 		if ( ! is_dir( $source_dir ) ) {
 			return;
 		}
 		$dir = opendir( $source_dir );
 		@mkdir( $target_dir );
 		while( false !== ( $file = readdir( $dir ) ) ) {
-			if ( ( $file != '.' ) && ( $file != '..' ) ) {
+			if ( ( $file != '.' ) && ( $file != '..' ) && ! in_array( $file, $exclude ) ) {
 				if ( is_dir( $source_dir . '/' . $file ) ) {
 					$this->copy_build_files( $source_dir . '/' . $file, $target_dir . '/' . $file );
 				} else {
