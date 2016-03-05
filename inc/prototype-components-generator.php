@@ -25,6 +25,8 @@ class Components_Generator_Plugin {
 
 		// Let's run a few init functions to set things up.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
+		
+		$this->build_type( 'portfolio' );
 	}
 
 	/**
@@ -204,7 +206,7 @@ class Components_Generator_Plugin {
 		while ( false !== $file ) {
 			if ( ! in_array( $file, $exclude ) ) {
 				if ( is_dir( $source_dir . '/' . $file ) ) {
-					// Calling the function recursively, without passing the files to exclude.
+					// Calling the method recursively, without passing the files to exclude.
 					// This has the side effect of only excluding files in the root, and not the ones in subdirectories.
 					$this->copy_build_files( $source_dir . '/' . $file, $target_dir . '/' . $file );
 				} else {
