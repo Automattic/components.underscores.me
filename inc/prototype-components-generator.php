@@ -147,13 +147,20 @@ class Components_Generator_Plugin {
 	 * Adds templates to the build.
 	 */
 	public function add_templates( $files, $target_dir ) {
-		// Make needed directories.
-		$this->ensure_directory( $target_dir . '/templates/' );
-
-		// Iterate over the files and copy them to destination.
-		$templates = '/templates/';
+		// Copy files to the target directory.
+		$this->copy_files( $this->components_dir . '/templates', $files, $target_dir . '/templates' );
+	}
+	
+	/**
+	 * Copies files to a given directory
+	 */
+	public function copy_files( $src_dir, $files, $target_dir ) {
+		// Make sure target directory exists.
+		$this->ensure_directory( $target_dir );
+		
+		// Copy over the files
 		foreach( $files as $file ) {
-			copy( $this->components_dir . $templates . $file, $target_dir . $templates . $file );
+			copy( $src_dir . '/' . $file, $target_dir . '/' . $file );
 		}
 	}
 
