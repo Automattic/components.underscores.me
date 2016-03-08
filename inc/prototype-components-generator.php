@@ -59,7 +59,7 @@ class Components_Generator_Plugin {
 		$this->copy_build_files( $this->components_dir, $target_dir, $exclude_from_build );
 
 		// Handle config.
-		$this->handle_config( $config, $target_dir );
+		$this->handle_config( $type, $config, $target_dir );
 	}
 
 	/**
@@ -100,14 +100,14 @@ class Components_Generator_Plugin {
 	/**
 	 * Handles the configuration and coordinates everything.
 	 */
-	public function handle_config( $config, $target_dir ) {
+	public function handle_config( $type, $config, $target_dir ) {
 		foreach ( $config as $section => $args ) {
 			switch ( $section ) {
 				case 'replacement_files';
-					$this->add_replacement_files( $args, $target_dir );
+					$this->add_replacement_files( $type, $args, $target_dir );
 					break;
 				case 'sass_replace';
-					$this->add_sass_includes( $args, $target_dir );
+					$this->add_sass_includes( $type, $args, $target_dir );
 					break;
 				case 'components';
 					$this->add_component_files( $args, $target_dir );
@@ -132,14 +132,14 @@ class Components_Generator_Plugin {
 	/**
 	 * Replaces files in the build from those specified by type.
 	 */
-	public function add_replacement_files( $files, $target_dir ) {
-
+	public function add_replacement_files( $type, $files, $target_dir ) {
+		
 	}
 
 	/**
 	 * Adds sass includes to the build and takes care of file overrides.
 	 */
-	public function add_sass_includes( $files, $target_dir ) {
+	public function add_sass_includes( $type, $files, $target_dir ) {
 
 	}
 
