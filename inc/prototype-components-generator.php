@@ -50,14 +50,19 @@ class Components_Generator_Plugin {
 		$configs = $this->components_dir . '/configs/*.json';
 		$files = glob( $configs );
 
-		// Pull out the type names, capitalize them, and use them for data.
-		foreach( $files as $file ) {
-			preg_match( '%/type-([^\.]+)\.json$%', $file, $matches );
-			if ( ! empty( $matches ) ) {
-				$id = $matches[1];
-				$title = join( ' ', array_map( 'ucwords', explode( '-', $matches[1] ) ) );
-				$types[$id] = $title;
+		// Check for valid config files, pull out the type names, capitalize them, and use them for data.
+		// TODO: add error logging to show when the types.json file is not getting built
+		if ( is_array( $files ) && ! empty( $files ) ) {
+			foreach( $files as $file ) {
+				preg_match( '%/type-([^\.]+)\.json$%', $file, $matches );
+				if ( ! empty( $matches ) ) {
+					$id = $matches[1];
+					$title = join( ' ', array_map( 'ucwords', explode( '-', $matches[1] ) ) );
+					$types[$id] = $title;
+				}
 			}
+			// Create a JSON file from our $types array so that we can use it for as a cache for rendering the generator form.
+			file_put_contents( $this->build_dir . 'types.json', json_encode( $types, JSON_PRETTY_PRINT ) );
 		}
 
 		// Create a JSON file from our $types array so that we can use it for as a cache for rendering the generator form.
