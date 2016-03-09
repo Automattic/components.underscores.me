@@ -1126,18 +1126,31 @@ section {
     top: 10px;
     width: 100%; } }
 #selection {
+  background-color: #141f32;
   color: #f3f2ed;
+  overflow: hidden;
   text-align: center; }
   #selection .types,
   #selection .custom {
-    padding: 40px 35px;
+    padding: 40px 3em 3em;
     width: 50%; }
+  #selection .svg-container {
+    display: block;
+    margin: 40px auto 0; }
   #selection .types {
     background-color: #1c2a42;
     float: left; }
+  #selection #crate {
+    width: 150px;
+    height: 150px; }
   #selection .custom {
     background-color: #141f32;
     float: right; }
+    #selection .custom .svg-container {
+      margin-top: 69px; }
+  #selection #toolbox {
+    width: 236px;
+    height: 150px; }
   #selection h2 {
     color: #A0C3C6; }
 

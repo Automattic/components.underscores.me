@@ -1,12 +1,18 @@
 #selection {
-
+	background-color: $color__navy;
 	color: $color__offwhite;
+	overflow: hidden;
 	text-align: center;
 
 	.types,
 	.custom {
-		padding: 40px 35px;
+		padding: 40px 3em 3em;
 		width: 50%;
+	}
+
+	.svg-container {
+		display: block;
+		margin: 40px auto 0;
 	}
 
 	.types {
@@ -14,9 +20,23 @@
 		float: left;
 	}
 
+	#crate {
+		width: 150px;
+		height: 150px;
+	}
+
 	.custom {
 		background-color: $color__navy;
 		float: right;
+
+		.svg-container {
+			margin-top: 69px;
+		}
+	}
+
+	#toolbox {
+		width: 236px;
+		height: 150px;
 	}
 
 	h2 {
