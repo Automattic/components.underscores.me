@@ -33,6 +33,35 @@ class Components_Generator_Plugin {
 	public function get_theme_components_init() {
 		// Grab theme components from its Github repo.
 		$this->get_theme_components( $this->build_dir );
+
+		// Generate our types cache.
+		$this->gen_types_cache();
+	}
+
+	/**
+	 * Creates an array and a JSON file from type configs to cache type data.
+	 * The generator form uses this to render type choices automatically.
+	 */
+	public function gen_types_cache() {
+		// Our array of data that we use to cache the types.
+		$types = array();
+
+		// Scan our config files and grab the file names.
+		$configs = $this->components_dir . '/configs/*.json';
+		$files = glob( $configs );
+
+		// Pull out the type names, capitalize them, and use them for data.
+		foreach( $files as $file ) {
+			preg_match( '%/type-([^\.]+)\.json$%', $file, $matches );
+			if ( ! empty( $matches ) ) {
+				$id = $matches[1];
+				$title = join( ' ', array_map( 'ucwords', explode( '-', $matches[1] ) ) );
+				$types[$id] = $title;
+			}
+		}
+
+		// Create a JSON file from our $types array so that we can use it for as a cache for rendering the generator form.
+		file_put_contents( $this->build_dir . 'types.json', json_encode( $types, JSON_PRETTY_PRINT ) );
 	}
 
 	/**
@@ -152,7 +181,7 @@ class Components_Generator_Plugin {
 		// Copy files to the target directory.
 		$this->copy_files( $this->components_dir . '/templates', $files, $target_dir . '/templates' );
 	}
-	
+
 	/**
 	 * Removes component insertion comments from source.
 	 */
@@ -183,10 +212,10 @@ class Components_Generator_Plugin {
 	public function copy_files( $src_dir, $files, $target_dir ) {
 		// Do nothing if no files to copy
 		if ( empty( $files ) ) return;
-		
+
 		// Make sure target directory exists.
 		$this->ensure_directory( $target_dir );
-		
+
 		// Copy over the files
 		foreach( $files as $file ) {
 			copy( $src_dir . '/' . $file, $target_dir . '/' . $file );
@@ -201,16 +230,16 @@ class Components_Generator_Plugin {
 		if ( ! is_dir( $source_dir ) ) {
 			return;
 		}
-		
+
 		// Make sure target directory exists.
 		$this->ensure_directory( $target_dir, true );
-		
+
 		// Add current and previous directory wildcards to excludes.
 		$exclude = array_merge( array( '.', '..' ), $exclude );
-		
+
 		// Open directory handle.
 		$dir = opendir( $source_dir );
-		
+
 		// Iterate, as long as we have files.
 		$file = readdir( $dir );
 		while ( false !== $file ) {
@@ -225,7 +254,7 @@ class Components_Generator_Plugin {
 			}
 			$file = readdir( $dir ); // Set file for next iteration.
 		}
-		
+
 		// Close directory handle.
 		closedir( $dir );
 	}
@@ -256,7 +285,7 @@ class Components_Generator_Plugin {
 			die( 'Oh no! I couldn\'t open the zip: ' . $zip_file . '.' );
 		}
 	}
-	
+
 	/**
 	 * Checks if a directory exists, creates it otherwise.
 	 */
