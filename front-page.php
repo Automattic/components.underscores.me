@@ -15,6 +15,18 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+			<section id="selection">
+				<div class="types">
+					<h2>Theme Types</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<a href="#generator" class="download button" data-type="base">Choose a Type</a>
+				</div>
+				<div class="custom">
+					<h2>Roll Your Own</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<a href="#generator" class="download button" data-type="base">Configure</a>
+				</div>
+			</section>
 			<section id="base">
 				<div class="theme-type wrap" data-type="base">
 					<div class="theme-image">

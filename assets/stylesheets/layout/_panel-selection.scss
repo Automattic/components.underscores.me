@@ -1,0 +1,25 @@
+#selection {
+
+	color: $color__offwhite;
+	text-align: center;
+
+	.types,
+	.custom {
+		padding: 40px 35px;
+		width: 50%;
+	}
+
+	.types {
+		background-color: $color__navy-light;
+		float: left;
+	}
+
+	.custom {
+		background-color: $color__navy;
+		float: right;
+	}
+
+	h2 {
+		color: $color__teal-light;
+	}
+}
