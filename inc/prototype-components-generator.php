@@ -154,7 +154,7 @@ class Components_Generator_Plugin {
 	/**
 	 * Adds component files needed for the build.
 	 */
-	public function add_component_files( $files, $target_dir ) {
+	public function add_component_files( $components, $target_dir ) {
 		 // Ensure components directory exists.
 		 $this->ensure_directory( $target_dir . '/components' );
 		
