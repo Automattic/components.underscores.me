@@ -189,7 +189,8 @@ class Components_Generator_Plugin {
 			} else if ( is_dir( $path ) ) {
 				$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
 				sort( $files ); // Ensure indexes start from zero.
-				$dest = $target_dir . '/components/' . dirname( $comp );
+				$dest =  $target_dir . '/components/' . $comp;
+				$this->ensure_directory( dirname( $dest ) );
 				$this->copy_files( $path, $files, $dest );
 			}
 		}
