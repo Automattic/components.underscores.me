@@ -154,22 +154,6 @@ class Components_Generator_Plugin {
 	}
 	
 	/**
-	 * Copies files to a given directory
-	 */
-	public function copy_files( $src_dir, $files, $target_dir ) {
-		// Do nothing if no files to copy
-		if ( empty( $files ) ) return;
-		
-		// Make sure target directory exists.
-		$this->ensure_directory( $target_dir );
-		
-		// Copy over the files
-		foreach( $files as $file ) {
-			copy( $src_dir . '/' . $file, $target_dir . '/' . $file );
-		}
-	}
-
-	/**
 	 * Removes component insertion comments from source.
 	 */
 	public function add_javascript( $files, $target_dir ) {
@@ -192,6 +176,22 @@ class Components_Generator_Plugin {
 	}
 
 	// Utility functions: These help the generator do its work.
+
+	/**
+	 * Copies files to a given directory
+	 */
+	public function copy_files( $src_dir, $files, $target_dir ) {
+		// Do nothing if no files to copy
+		if ( empty( $files ) ) return;
+		
+		// Make sure target directory exists.
+		$this->ensure_directory( $target_dir );
+		
+		// Copy over the files
+		foreach( $files as $file ) {
+			copy( $src_dir . '/' . $file, $target_dir . '/' . $file );
+		}
+	}
 
 	/**
 	 * Copy files to temporary build directory.
