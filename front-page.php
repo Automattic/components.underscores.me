@@ -74,7 +74,7 @@ get_header(); ?>
 
 			</section><!-- #types -->
 
-			<?php do_action( 'components_generator_print_form' ); ?>
+			<?php do_action( 'render_types_form' ); ?>
 
 			<section id="extra-info">
 				<div class="wrap">
