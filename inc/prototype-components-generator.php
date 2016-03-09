@@ -10,9 +10,11 @@ class Components_Generator_Plugin {
 	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
 	var $repo_file_name = 'theme-components-master.zip';
 	var $components_dir;
+	var $bypass_cache = false;
 
 	function __construct() {
 		// Initialize class properties.
+		$this->bypass_cache = apply_filters( 'components_bypass_cache', false );
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
 		$this->components_dir = $this->build_dir . str_replace( '.zip', '', $this->repo_file_name );
@@ -370,7 +372,7 @@ class Components_Generator_Plugin {
 			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
 			$expired = 1800; // Expire cache after 30 minutes.
-			if ( apply_filters( 'components_bypass_cache', false ) ) {
+			if ( $this->bypass_cache ) {
 				$expired = 0; // Bypass the cache if debug filter is true
 			}
 			$hook_init = $expired <= ( $time - $file_time_stamp ) ? true : false;
