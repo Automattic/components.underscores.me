@@ -358,7 +358,9 @@ class Components_Generator_Plugin {
 			RecursiveIteratorIterator::CHILD_FIRST );
 		foreach ( $files as $fileinfo ) {
 			$fname = $fileinfo->isDir() ? 'rmdir' : 'unlink';
-			call_user_func( $fname, $fileinfo->getRealPath() );
+			if ( ! call_user_func( $fname, $fileinfo->getRealPath() ) ) {
+				// TODO: add logging for failed function call
+			}
 		}
 		return rmdir( $directory );
 	}
