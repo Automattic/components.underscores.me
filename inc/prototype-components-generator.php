@@ -155,6 +155,9 @@ class Components_Generator_Plugin {
 	 * Copies files to a given directory
 	 */
 	public function copy_files( $src_dir, $files, $target_dir ) {
+		// Do nothing if no files to copy
+		if ( empty( $files ) ) return;
+		
 		// Make sure target directory exists.
 		$this->ensure_directory( $target_dir );
 		
@@ -168,7 +171,12 @@ class Components_Generator_Plugin {
 	 * Removes component insertion comments from source.
 	 */
 	public function add_javascript( $files, $target_dir ) {
-
+		// Ensure the assets/js directory exists
+		$this->ensure_directory( $target_dir . '/assets'  );
+		$this->ensure_directory( $target_dir . '/assets/js'  );
+		
+		// Copy over the files
+		$this->copy_files( $this->components_dir . '/assets/js', $files, $target_dir . '/assets/js' );
 	}
 
 	/**
