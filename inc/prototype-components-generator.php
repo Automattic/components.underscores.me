@@ -133,7 +133,9 @@ class Components_Generator_Plugin {
 	 * Replaces files in the build from those specified by type.
 	 */
 	public function add_replacement_files( $type, $files, $target_dir ) {
-		
+		// Copy files to the target directory.
+		$src_dir = sprintf( '%s/types/%s', $this->components_dir, $type );
+		$this->copy_files( $src_dir, $files, $target_dir );
 	}
 
 	/**
