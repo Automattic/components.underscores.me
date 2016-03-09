@@ -171,10 +171,6 @@ class Components_Generator_Plugin {
 	 * Removes component insertion comments from source.
 	 */
 	public function add_javascript( $files, $target_dir ) {
-		// Ensure the assets/js directory exists
-		$this->ensure_directory( $target_dir . '/assets'  );
-		$this->ensure_directory( $target_dir . '/assets/js'  );
-		
 		// Copy over the files
 		$this->copy_files( $this->components_dir . '/assets/js', $files, $target_dir . '/assets/js' );
 	}
@@ -264,7 +260,7 @@ class Components_Generator_Plugin {
 	 */
 	public function ensure_directory( $directory, $delete_if_exists=false ) {
 		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
-			mkdir( $directory, 0755 );
+			mkdir( $directory, 0755, true );
 		} else if ( $delete_if_exists && is_dir( $directory ) ) {
 			$this->delete_directory( $directory );
 			$this->ensure_directory( $directory );
