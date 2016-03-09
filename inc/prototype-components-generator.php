@@ -155,7 +155,41 @@ class Components_Generator_Plugin {
 	 * Adds component files needed for the build.
 	 */
 	public function add_component_files( $files, $target_dir ) {
-
+		 // Ensure components directory exists.
+		 $this->ensure_directory( $target_dir . '/components' );
+		
+		// Iterate over each component.
+		foreach ( $components as $comp ) {
+			// Check if PHP extension has been specified.
+			$is_phpfile = preg_match( '/\\.php$/', $comp );
+			
+			// Get the component path.
+			$path = sprintf( '%s/components/%s', $this->components_dir, $comp );
+			
+			// If extension is not specified, check if file exists with extension.
+			if ( ! $is_phpfile && file_exists( $path . '.php' ) ) {
+				$phpfile_exists = true;
+				$is_phpfile = true;
+				$path .= '.php';
+			} else {
+				$phpfile_exists = false;
+			}
+			
+			// If it's a file, copy it over to the target directory.
+			if ( $is_phpfile && ( $phpfile_exists || file_exists( $path ) ) ) {
+				$file = array_pop( ( explode( '/components/', $path ) ) ); // Enclose in parens to allow passing by reference.
+				$dest = $target_dir . '/components/' . $file;
+				$this->ensure_directory( dirname( $dest ) );
+				copy( $path, $dest );
+			
+			// If it's a directory, copy all files contained within.
+			} else if ( is_dir( $path ) ) {
+				$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
+				sort( $files ); // Ensure indexes start from zero.
+				$dest = $target_dir . '/components/' . dirname( $comp );
+				$this->copy_files( $path, $files, $dest );
+			}
+		}
 	}
 
 	/**
