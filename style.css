@@ -909,6 +909,9 @@ section {
     margin-top: 180px;
     margin-left: 50px; } }
 @media (min-width: 768px) {
+  #masthead {
+    overflow: hidden; }
+
   #masthead .wrap {
     max-width: 840px;
     padding-top: 0;
@@ -965,15 +968,14 @@ section {
 
   /* Move content block to right */
   #masthead .content-wrapper {
-    float: left;
     position: relative;
-    width: calc(100% - 300px);
     z-index: 1; }
 
   #masthead .intro-content {
-    margin: 260px auto 0;
-    max-width: 650px;
-    padding-left: 50px; } }
+    margin-left: 100px;
+    max-width: 100%;
+    width: 550px;
+    padding: 260px 0 0; } }
 /* Rotation animation */
 @keyframes spin {
   0%, 40% {
