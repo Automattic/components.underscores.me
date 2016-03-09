@@ -45,6 +45,7 @@
 				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-main-left.svg' ); ?>
 				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-main-right.svg' ); ?>
 				<?php echo file_get_contents( get_template_directory() . '/assets/img/tap.svg' ); ?>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/tap-2.svg' ); ?>
 				<div class="content-wrapper">
 					<div class="intro-content">
 						<div class="site-branding">
