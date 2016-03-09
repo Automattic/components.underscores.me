@@ -1,7 +1,10 @@
+#theme-types-panel {
+	display: none;
+}
+
 #base {
 	background-color: $color__navy-light;
 	color: $color__offwhite;
-	display: none;
 
 	.wrap {
 		max-width: 795px;
@@ -50,7 +53,6 @@
 #types {
 	background-color: $color__navy;
 	color: $color__offwhite;
-	display: none;
 	overflow: hidden;
 	padding-top: 40px;
 

@@ -19,7 +19,7 @@ get_header(); ?>
 				<div class="types">
 					<h2>Theme Types</h2>
 					<p>Crafting an elegant online portfolio, an information-filled magazine theme or business site? We've got you covered with our pre-made starter themes. Just choose the type that fits the bill and you'll be on your way lickety split!</p>
-					<a href="#generator" class="download button" data-type="base">Choose a Type</a>
+					<a href="#theme-types-panel" class="download button" data-type="base">Choose a Type</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-crate.svg' ); ?>
 					</div>
@@ -27,72 +27,79 @@ get_header(); ?>
 				<div class="custom">
 					<h2>Roll Your Own</h2>
 					<p>If you like to have control over every element of your starter theme, take the reins and pick-and-choose only the precise components you need to create the perfect custom starter theme. No cruft, no muss.</p>
-					<a href="#generator" class="download button" data-type="base">Configure</a>
+					<a href="#custom-build-panel" class="download button" data-type="base">Configure</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/toolbox.svg' ); ?>
 					</div>
 				</div>
 			</section>
-			<section id="base">
-				<div class="theme-type wrap" data-type="base">
-					<div class="theme-image">
-						<div class="standard-robot">
-							<?php echo file_get_contents( get_template_directory() . '/assets/img/layout-base.svg' ); ?>
-							<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-base.svg' ); ?>
-						</div>
-						<div class="mobile-robot">
-							<?php echo file_get_contents( get_template_directory() . '/assets/img/mobile-robot-base.svg' ); ?>
-						</div>
-					</div>
-					<div class="theme-text">
-						<h2 class="theme-type-title">Just the basics, please</h2>
-						<p>Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
-						<a href="#generator" class="download button" data-type="base">Build Theme!</a>
-					</div>
-				</div><!-- .theme-type -->
-
-			</section><!-- #base -->
-
-			<section id="types">
-				<?php
-					require get_template_directory() . '/components/theme-types.php';
-					// Randomise order of types so as not to favour any in particular
-					shuffle( $types );
-					// Prepend the Base type
-					// Iterate through each theme type and output formatted text
-					$i = 0;
-					foreach ( $types as $type ) :
-						if ( 0 == $i % 2 ) {
-							echo $i > 0 ? '</div>' : ''; // close div if it's not the first
-							echo '<div class="wrap types-row">';
-						}
-						?>
-						<div class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
-							<h2 class="theme-type-title"><?php echo $type['title']; ?></h2>
-							<div class="theme-image">
-								<div class="standard-robot">
-									<?php echo file_get_contents( get_template_directory() . '/assets/img/layout-' . $type['filename'] . '.svg' ); ?>
-
-									<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-' . $type['filename'] . '.svg' ); ?>
-								</div>
-								<div class="mobile-robot">
-									<?php echo file_get_contents( get_template_directory() . '/assets/img/mobile-robot-' . $type['filename'] . '.svg' ); ?>
-								</div>
+			<section id="theme-types-panel">
+				<section id="base">
+					<div class="theme-type wrap" data-type="base">
+						<div class="theme-image">
+							<div class="standard-robot">
+								<?php echo file_get_contents( get_template_directory() . '/assets/img/layout-base.svg' ); ?>
+								<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-base.svg' ); ?>
 							</div>
-							<div class="theme-text">
-								<p><?php echo $type['text']; ?></p>
-								<a href="#generator" class="download button" data-type="<?php echo esc_attr( $type['filename'] ); ?>">Build Theme!</a>
+							<div class="mobile-robot">
+								<?php echo file_get_contents( get_template_directory() . '/assets/img/mobile-robot-base.svg' ); ?>
 							</div>
-						</div><!-- .theme-type -->
+						</div>
+						<div class="theme-text">
+							<h2 class="theme-type-title">Just the basics, please</h2>
+							<p>Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
+							<a href="#generator" class="download button" data-type="base">Build Theme!</a>
+						</div>
+					</div><!-- .theme-type -->
 
-						<?php $i++; ?>
-					<?php endforeach; ?>
+				</section><!-- #base -->
 
-					</div> <!-- .types-row -->
+				<section id="types">
+					<?php
+						require get_template_directory() . '/components/theme-types.php';
+						// Randomise order of types so as not to favour any in particular
+						shuffle( $types );
+						// Prepend the Base type
+						// Iterate through each theme type and output formatted text
+						$i = 0;
+						foreach ( $types as $type ) :
+							if ( 0 == $i % 2 ) {
+								echo $i > 0 ? '</div>' : ''; // close div if it's not the first
+								echo '<div class="wrap types-row">';
+							}
+							?>
+							<div class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
+								<h2 class="theme-type-title"><?php echo $type['title']; ?></h2>
+								<div class="theme-image">
+									<div class="standard-robot">
+										<?php echo file_get_contents( get_template_directory() . '/assets/img/layout-' . $type['filename'] . '.svg' ); ?>
 
-			</section><!-- #types -->
+										<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-' . $type['filename'] . '.svg' ); ?>
+									</div>
+									<div class="mobile-robot">
+										<?php echo file_get_contents( get_template_directory() . '/assets/img/mobile-robot-' . $type['filename'] . '.svg' ); ?>
+									</div>
+								</div>
+								<div class="theme-text">
+									<p><?php echo $type['text']; ?></p>
+									<a href="#generator" class="download button" data-type="<?php echo esc_attr( $type['filename'] ); ?>">Build Theme!</a>
+								</div>
+							</div><!-- .theme-type -->
 
-			<?php do_action( 'components_generator_print_form' ); ?>
+							<?php $i++; ?>
+						<?php endforeach; ?>
+
+						</div> <!-- .types-row -->
+
+				</section><!-- #types -->
+
+				<?php do_action( 'components_generator_print_form' ); ?>
+
+			</section><!-- #theme-types-panel -->
+
+			<section id="custom-build-panel">
+				Placeholder
+			</section>
 
 			<section id="extra-info">
 				<div class="wrap">

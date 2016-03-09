@@ -1183,10 +1183,12 @@ section {
   #selection h2 {
     color: #A0C3C6; }
 
+#theme-types-panel {
+  display: none; }
+
 #base {
   background-color: #1c2a42;
-  color: #f3f2ed;
-  display: none; }
+  color: #f3f2ed; }
   #base .wrap {
     max-width: 795px;
     position: relative; }
@@ -1215,7 +1217,6 @@ section {
 #types {
   background-color: #141f32;
   color: #f3f2ed;
-  display: none;
   overflow: hidden;
   padding-top: 40px; }
   #types a {
@@ -1617,6 +1618,11 @@ section {
     #types #generator .wrap {
       padding-left: 20px;
       padding-right: 20px; } }
+#custom-build-panel {
+  background-color: #1c2a42;
+  color: #f3f2ed;
+  display: none; }
+
 #contributors {
   background-color: #141f32;
   color: #f3f2ed; }
