@@ -2,11 +2,12 @@
 	background-color: $color__navy;
 	color: $color__offwhite;
 	overflow: hidden;
+	position: relative;
 	text-align: center;
 
 	.types,
 	.custom {
-		padding: 40px 3em 3em;
+		padding: 40px 6em 3em;
 		width: 50%;
 	}
 
@@ -18,6 +19,25 @@
 	.types {
 		background-color: $color__navy-light;
 		float: left;
+
+		&:after {
+			background-image: url(assets/img/gear-or.png);
+			background-position: center;
+			background-size: cover;
+			content: "OR";
+			display: table;
+			font-family: "factoria", "Roboto Slab", serif;
+			font-size: 1.6rem;
+			font-weight: 700;
+			line-height: 100px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			vertical-align: middle;
+			width: 100px;
+			height: 100px;
+		}
 	}
 
 	#crate {
@@ -30,7 +50,7 @@
 		float: right;
 
 		.svg-container {
-			margin-top: 69px;
+			margin-top: 40px;
 		}
 	}
 

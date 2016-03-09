@@ -18,7 +18,7 @@ get_header(); ?>
 			<section id="selection">
 				<div class="types">
 					<h2>Theme Types</h2>
-					<p>Crafting an elegant online portfolio for a visual artist? An information-filled magazine theme or business site? We've got you covered with our pre-made starter themes. Just choose the type that fits the bill and you'll be on your way lickety split!</p>
+					<p>Crafting an elegant online portfolio, an information-filled magazine theme or business site? We've got you covered with our pre-made starter themes. Just choose the type that fits the bill and you'll be on your way lickety split!</p>
 					<a href="#generator" class="download button" data-type="base">Choose a Type</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-crate.svg' ); ?>

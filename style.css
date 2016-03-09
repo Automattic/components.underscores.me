@@ -1133,10 +1133,11 @@ section {
   background-color: #141f32;
   color: #f3f2ed;
   overflow: hidden;
+  position: relative;
   text-align: center; }
   #selection .types,
   #selection .custom {
-    padding: 40px 3em 3em;
+    padding: 40px 6em 3em;
     width: 50%; }
   #selection .svg-container {
     display: block;
@@ -1144,6 +1145,23 @@ section {
   #selection .types {
     background-color: #1c2a42;
     float: left; }
+    #selection .types:after {
+      background-image: url(assets/img/gear-or.png);
+      background-position: center;
+      background-size: cover;
+      content: "OR";
+      display: table;
+      font-family: "factoria", "Roboto Slab", serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 100px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      vertical-align: middle;
+      width: 100px;
+      height: 100px; }
   #selection #crate {
     width: 150px;
     height: 150px; }
@@ -1151,7 +1169,7 @@ section {
     background-color: #141f32;
     float: right; }
     #selection .custom .svg-container {
-      margin-top: 69px; }
+      margin-top: 40px; }
   #selection #toolbox {
     width: 236px;
     height: 150px; }
