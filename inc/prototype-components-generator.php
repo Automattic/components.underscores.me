@@ -344,7 +344,9 @@ class Components_Generator_Plugin {
 	 * This deletes a file.
 	 */
 	public function delete_file( $URI ) {
-		unlink( $URI );
+		if ( ! unlink( $URI ) ) {
+			// TODO: add logging for failed file deletion
+		}
 	}
 
 	/**
