@@ -331,7 +331,9 @@ class Components_Generator_Plugin {
 	 */
 	public function ensure_directory( $directory, $delete_if_exists=false ) {
 		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
-			mkdir( $directory, 0755, true );
+			if ( ! mkdir( $directory, 0755, true ) ) {
+				// TODO: add logging for failed directory creation
+			}
 		} else if ( $delete_if_exists && is_dir( $directory ) ) {
 			$this->delete_directory( $directory );
 			$this->ensure_directory( $directory );
