@@ -72,7 +72,7 @@ class Components_Generator_Plugin {
 	/**
 	 * Places data in JSON files in an array for later use.
 	 */
-	public function parse_config( $file ) {
+	public function read_json( $file ) {
 		$json = file_get_contents( $file );
 		return json_decode( $json, TRUE );
 	}
@@ -86,7 +86,7 @@ class Components_Generator_Plugin {
 
 		// Get type config.
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
-		$config = $this->parse_config( $config_path );
+		$config = $this->read_json( $config_path );
 
 		// Copy just build files we need to start with so we can work with them.
 		$exclude_from_build = array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' );
