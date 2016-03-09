@@ -39,18 +39,13 @@
 			?>
 
 			<div class="wrap">
-				<div class="chute-wrapper">
-					<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-chute.svg' ); ?>
-					<?php echo file_get_contents( get_template_directory() . '/assets/img/tap.svg' ); ?>
-				</div>
-
+				<div class="stretchy-pipe stretchy-pipe-left"></div>
+				<div class="stretchy-pipe stretchy-pipe-center"></div>
+				<div class="stretchy-pipe stretchy-pipe-right"></div>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-main-left.svg' ); ?>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-main-right.svg' ); ?>
+				<?php echo file_get_contents( get_template_directory() . '/assets/img/tap.svg' ); ?>
 				<div class="content-wrapper">
-					<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-left.svg' ); ?>
-
-					<div id="stretchy-pipe">&nbsp;</div>
-
-					<?php echo file_get_contents( get_template_directory() . '/assets/img/pipe-rightcrook.svg' ); ?>
-
 					<div class="intro-content">
 						<div class="site-branding">
 							<!-- Logo acts as an image -->

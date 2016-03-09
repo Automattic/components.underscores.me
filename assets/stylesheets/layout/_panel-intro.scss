@@ -1,10 +1,10 @@
 @include mobile {
 
 	/* Don't display pipes! */
-	#pipe-left,
-	#pipe-chute,
-	#pipe-rightcrook,
-	.chute-wrapper {
+	#pipe-main-left,
+	#pipe-main-right,
+	.stretchy-pipe,
+	#pipe-tap {
 		display: none;
 	}
 
@@ -31,21 +31,9 @@
 
 @include tablet {
 	#masthead .wrap {
+		max-width: 840px;
 		padding-top: 0;
 		position: relative;
-	}
-
-	.chute-wrapper {
-		float: left;
-		margin: 40px 0 -60px 70px;
-		position: relative;
-		z-index: 1;
-	}
-
-	#pipe-chute {
-		position: absolute;
-		top: 0;
-		left: 0;
 	}
 
 	#pipe-tap {
@@ -58,35 +46,52 @@
 		animation-play-state: running;
 		animation-iteration-count: infinite;
 		position: absolute;
-			top: 245px;
-			left: 34px;
+		top: 325px;
+		left: -77px;
 		width: 80px;
 		height: 80px
 	}
 
-	#pipe-left {
-		margin-left: -40px;
-		margin-top: 36px;
+	#pipe-main-left,
+	#pipe-main-right {
+		position: absolute;
 	}
 
-	#stretchy-pipe {
-		position: absolute;
-		left: 175px;
-		right: 98px;
-		background: $color__teal-light;
-		height: 30px;
+	#pipe-main-left {
+		left: -100px;
+		top: 180px;
+	}
+
+	#pipe-main-right {
+		right: 0;
 		top: 40px;
 	}
 
-	#pipe-rightcrook {
-		float: right;
+	.stretchy-pipe {
+		background: $color__teal-light;
+		height: 30px;
 		position: absolute;
-		top: 0;
-		right: 20px;
-		margin-top: -14px;
-		vertical-align: top;
-		margin-left: -5px;
 	}
+
+	.stretchy-pipe-left {
+		left: -100%;
+		margin-right: 70px;
+		right: 100%;
+		top: 604px;
+	}
+
+	.stretchy-pipe-center {
+		left: 0;
+		right: 258px;
+		top: 184px;
+	}
+
+	.stretchy-pipe-right {
+		margin-left: -6px;
+		left: 100%;
+		right: -100%;
+		top: 313px;
+    }
 
 	/* Move content block to right */
 	#masthead .content-wrapper {
@@ -97,8 +102,9 @@
 	}
 
 	#masthead .intro-content {
-		margin: 40px auto 0;
+		margin: 260px auto 0;
 		max-width: 650px;
+		padding-left: 50px;
 	}
 }
 
