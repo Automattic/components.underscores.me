@@ -889,7 +889,8 @@ section {
   #pipe-main-left,
   #pipe-main-right,
   .stretchy-pipe,
-  #pipe-tap {
+  #pipe-tap,
+  #pipe-tap-2 {
     display: none; }
 
   /* Flip logo */
@@ -928,16 +929,21 @@ section {
     animation-iteration-count: infinite;
     position: absolute;
     top: 325px;
-    left: -77px;
+    left: -17px;
     width: 80px;
     height: 80px; }
+
+  #pipe-tap-2 {
+    position: absolute;
+    right: 280px;
+    top: 165px; }
 
   #pipe-main-left,
   #pipe-main-right {
     position: absolute; }
 
   #pipe-main-left {
-    left: -100px;
+    left: -40px;
     top: 180px; }
 
   #pipe-main-right {
@@ -951,12 +957,11 @@ section {
 
   .stretchy-pipe-left {
     left: -100%;
-    margin-right: 70px;
     right: 100%;
     top: 604px; }
 
   .stretchy-pipe-center {
-    left: 0;
+    left: 65px;
     right: 258px;
     top: 184px; }
 
@@ -974,7 +979,7 @@ section {
   #masthead .intro-content {
     margin-left: 100px;
     max-width: 100%;
-    width: 550px;
+    width: 630px;
     padding: 260px 0 0; } }
 /* Rotation animation */
 @keyframes spin {
