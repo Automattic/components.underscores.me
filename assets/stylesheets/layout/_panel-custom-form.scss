@@ -2,4 +2,109 @@
 	background-color: $color__navy-light;
 	color: $color__offwhite;
 	display: none;
+
+	h3 {
+		color: $color__teal-light;
+		display: block;
+		font-family: $font__serif;
+		@include font-size(1.5);
+		font-weight: 500;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+
+	h4 {
+		color: $color__teal;
+		@include font-size(1.4);
+		margin: 0;
+		padding-top: 30px;
+
+		&:first-of-type {
+			padding-top: 15px;
+		}
+
+	}
+
+	fieldset {
+		border-bottom: 1px solid lighten( #141f32, 10% );
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+
+		&:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	label {
+		display: inline-block;
+		@include font-size(1.5);
+	}
+
+	.components-form-fields {
+		margin: auto;
+		max-width: 60%;
+	}
+}
+
+@include tablet {
+	.components-radio-group,
+	.components-checkbox-group {
+		float: left;
+		width: 33.3333%;
+
+		&:nth-of-type(3n+1) {
+			clear: left;
+		}
+	}
+}
+
+@include desktop {
+	.components-radio-group,
+	.components-checkbox-group {
+		float: left;
+		width: 25%;
+
+		&:nth-of-type(2n+1),
+		&:nth-of-type(3n+1) {
+			clear: none;
+		}
+
+		&:nth-of-type(4n+1) {
+			clear: left;
+		}
+	}
+}
+
+@include mobile {
+	.components-radio-group,
+	.components-checkbox-group {
+		float: left;
+		width: 50%;
+
+		&:nth-of-type(2n+1) {
+			clear: left;
+		}
+	}
+}
+
+@include mobile {
+	.components-radio-group,
+	.components-checkbox-group {
+		float: left;
+		width: 50%;
+
+		&:nth-of-type(2n+1) {
+			clear: left;
+		}
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.components-radio-group,
+	.components-checkbox-group {
+		float: none;
+		width: 100%;
+	}
 }
