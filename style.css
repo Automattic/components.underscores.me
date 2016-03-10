@@ -1058,7 +1058,7 @@ section {
 /* Rotation animation */
 @keyframes spin {
   0%, 40% {
-    transform: rotate(36deg); }
+    transform: rotate(0); }
   45% {
     transform: rotate(-360deg); }
   50% {
@@ -1066,7 +1066,7 @@ section {
   55% {
     transform: rotate(-360deg); }
   60%, 100% {
-    transform: rotate(36deg); } }
+    transform: rotate(0); } }
 .site-header {
   position: relative; }
 
