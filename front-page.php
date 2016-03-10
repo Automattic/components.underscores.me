@@ -19,7 +19,7 @@ get_header(); ?>
 				<div class="types">
 					<h2>Theme Types</h2>
 					<p>Crafting an elegant online portfolio, an information-filled magazine theme or business site? We've got you covered with our pre-made starter themes. Just choose the type that fits the bill and you'll be on your way lickety split!</p>
-					<a href="#theme-types-panel" class="download button" data-type="base">Choose a Type</a>
+					<a href="#theme-types-panel" class="toggle button">Choose a Type</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-crate.svg' ); ?>
 					</div>
@@ -27,13 +27,13 @@ get_header(); ?>
 				<div class="custom">
 					<h2>Roll Your Own</h2>
 					<p>If you like to have control over every element of your starter theme, take the reins and pick-and-choose only the precise components you need to create the perfect custom starter theme. No cruft, no muss.</p>
-					<a href="#custom-build-panel" class="download button" data-type="base">Configure</a>
+					<a href="#custom-build-panel" class="toggle button">Configure</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/toolbox.svg' ); ?>
 					</div>
 				</div>
 			</section>
-			<section id="theme-types-panel">
+			<section id="theme-types-panel" class="panel">
 				<section id="base">
 					<div class="theme-type wrap" data-type="base">
 						<div class="theme-image">
@@ -97,7 +97,7 @@ get_header(); ?>
 
 			</section><!-- #theme-types-panel -->
 
-			<section id="custom-build-panel">
+			<section id="custom-build-panel" class="panel">
 				Placeholder
 			</section>
 

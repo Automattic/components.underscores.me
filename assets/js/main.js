@@ -51,4 +51,32 @@
 		*/
 	} );
 
+	// Hide/Show panels
+	$('a.toggle').click(function( e ){
+		e.preventDefault();
+
+		var toggled = $(this).attr('href');
+
+		if ( ( '#' + $('.panel:visible').attr('id') ) === toggled ) {
+			$(toggled).slideUp(600);
+			return false;
+		}
+
+		if ( $('.panel:visible').length === 0 ) {
+			$(toggled).slideDown(600);
+
+			$('html, body').stop().animate({
+				'scrollTop': $( toggled ).offset().top
+			}, 900, 'swing' );
+		} else {
+			$('.panel:visible').slideUp(600, function(){
+				$(toggled).slideDown(600);
+			});
+
+			$('html, body').stop().animate({
+				'scrollTop': $( toggled ).offset().top
+			}, 900, 'swing' );
+		}
+	});
+
 } )( jQuery );
