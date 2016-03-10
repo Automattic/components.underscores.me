@@ -1,10 +1,11 @@
 /** Robot **/
 
 .top-robot {
+	bottom: 0;
 	position: absolute;
-	left: 5%;
-	-ms-transform: translate( 0, -193px ) rotate(195deg); /* make sure robot is visible in IE9, since keyframes are not supported */
-	transform: translate( 0, -400px ) rotate(195deg);
+	right: 150px;
+	-ms-transform: translate( 0, 150px ) rotate(-10deg); /* make sure robot is visible in IE9, since keyframes are not supported */
+	transform: translate( 0, 350px ) rotate(-10deg);
 	-webkit-animation: .2s 1.5s 1 forwards TopRobotDrop;
 	-moz-animation: .2s 1.5s 1 forwards TopRobotDrop;
 	-o-animation: .2s 1.5s 1 forwards TopRobotDrop;
@@ -145,42 +146,56 @@
 /* Robot dropping from the top */
 @-webkit-keyframes TopRobotDrop{
 	0% {
-		transform: translate( 0, -400px ) rotate(195deg);
+		transform: translate( 0, 350px ) rotate(-10deg);
 	}
 	100% {
-		transform: translate( 0, -193px ) rotate(195deg);
+		transform: translate( 0, 150px ) rotate(-10deg);
 	}
 }
 
 @-moz-keyframes TopRobotDrop{
 	0% {
-		transform: translate( 0, -400px ) rotate(195deg);
+		transform: translate( 0, 350px ) rotate(-10deg);
 	}
 	100% {
-		transform: translate( 0, -193px ) rotate(195deg);
+		transform: translate( 0, 150px ) rotate(-10deg);
 	}
 }
 @-o-keyframes TopRobotDrop{
 	0% {
-		transform: translate( 0, -400px ) rotate(195deg);
+		transform: translate( 0, 350px ) rotate(-10deg);
 	}
 	100% {
-		transform: translate( 0, -193px ) rotate(195deg);
+		transform: translate( 0, 150px ) rotate(-10deg);
 	}
 }
 
 @keyframes TopRobotDrop{
 	0%, 10% {
-		transform: translate( 0, -400px ) rotate(195deg);
+		transform: translate( 0, 350px ) rotate(-10deg);
 	}
 	90%, 100% {
-		transform: translate( 0, -193px ) rotate(195deg);
+		transform: translate( 0, 150px ) rotate(-10deg);
 	}
 }
 
+@media only screen and (max-width: 1200px) {
+	.top-robot {
+		right: 20px;
+	}
+}
+
+
+@media only screen and (max-width: 940px) {
+	.top-robot {
+		right: -50px;
+	}
+}
+
+
 @include mobile {
 	.top-robot {
-		left: auto;
+		right: auto;
 		position: relative;
 		transform: translate( 0, 0 ) rotate( 9deg );
 		-webkit-animation: none;

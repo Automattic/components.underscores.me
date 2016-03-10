@@ -1000,7 +1000,7 @@ section {
     animation-play-state: running;
     animation-iteration-count: infinite;
     position: absolute;
-    top: 305px;
+    top: 205px;
     left: -17px;
     width: 80px;
     height: 80px; }
@@ -1008,7 +1008,7 @@ section {
   #pipe-tap-2 {
     position: absolute;
     right: 280px;
-    top: 145px; }
+    top: 55px; }
 
   #pipe-main-left,
   #pipe-main-right {
@@ -1016,11 +1016,11 @@ section {
 
   #pipe-main-left {
     left: -40px;
-    top: 160px; }
+    top: 70px; }
 
   #pipe-main-right {
     right: 0;
-    top: 20px; }
+    top: -70px; }
 
   .stretchy-pipe {
     background: #A0C3C6;
@@ -1030,18 +1030,18 @@ section {
   .stretchy-pipe-left {
     left: -100%;
     right: 100%;
-    top: 584px; }
+    top: 495px; }
 
   .stretchy-pipe-center {
     left: 65px;
     right: 258px;
-    top: 164px; }
+    top: 73px; }
 
   .stretchy-pipe-right {
     margin-left: -6px;
     left: 100%;
     right: -100%;
-    top: 293px; }
+    top: 203px; }
 
   /* Move content block to right */
   #masthead .content-wrapper {
@@ -1051,8 +1051,9 @@ section {
   #masthead .intro-content {
     margin-left: 100px;
     max-width: 100%;
+    min-height: 480px;
     width: 630px;
-    padding: 260px 0 0; } }
+    padding: 160px 0 0; } }
 /* Rotation animation */
 @keyframes spin {
   0%, 40% {
@@ -1065,6 +1066,9 @@ section {
     transform: rotate(-360deg); }
   60%, 100% {
     transform: rotate(36deg); } }
+.site-header {
+  position: relative; }
+
 .site-title {
   font-family: "fatfrank", "factoria", "Roboto Slab", serif;
   font-size: 6em;
@@ -1076,11 +1080,12 @@ section {
 
 /** Robot **/
 .top-robot {
+  bottom: 0;
   position: absolute;
-  left: 5%;
-  -ms-transform: translate(0, -193px) rotate(195deg);
+  right: 150px;
+  -ms-transform: translate(0, 150px) rotate(-10deg);
   /* make sure robot is visible in IE9, since keyframes are not supported */
-  transform: translate(0, -400px) rotate(195deg);
+  transform: translate(0, 350px) rotate(-10deg);
   -webkit-animation: .2s 1.5s 1 forwards TopRobotDrop;
   -moz-animation: .2s 1.5s 1 forwards TopRobotDrop;
   -o-animation: .2s 1.5s 1 forwards TopRobotDrop;
@@ -1173,27 +1178,33 @@ section {
 /* Robot dropping from the top */
 @-webkit-keyframes TopRobotDrop {
   0% {
-    transform: translate(0, -400px) rotate(195deg); }
+    transform: translate(0, 350px) rotate(-10deg); }
   100% {
-    transform: translate(0, -193px) rotate(195deg); } }
+    transform: translate(0, 150px) rotate(-10deg); } }
 @-moz-keyframes TopRobotDrop {
   0% {
-    transform: translate(0, -400px) rotate(195deg); }
+    transform: translate(0, 350px) rotate(-10deg); }
   100% {
-    transform: translate(0, -193px) rotate(195deg); } }
+    transform: translate(0, 150px) rotate(-10deg); } }
 @-o-keyframes TopRobotDrop {
   0% {
-    transform: translate(0, -400px) rotate(195deg); }
+    transform: translate(0, 350px) rotate(-10deg); }
   100% {
-    transform: translate(0, -193px) rotate(195deg); } }
+    transform: translate(0, 150px) rotate(-10deg); } }
 @keyframes TopRobotDrop {
   0%, 10% {
-    transform: translate(0, -400px) rotate(195deg); }
+    transform: translate(0, 350px) rotate(-10deg); }
   90%, 100% {
-    transform: translate(0, -193px) rotate(195deg); } }
+    transform: translate(0, 150px) rotate(-10deg); } }
+@media only screen and (max-width: 1200px) {
+  .top-robot {
+    right: 20px; } }
+@media only screen and (max-width: 940px) {
+  .top-robot {
+    right: -50px; } }
 @media (max-width: 767px) {
   .top-robot {
-    left: auto;
+    right: auto;
     position: relative;
     transform: translate(0, 0) rotate(9deg);
     -webkit-animation: none;

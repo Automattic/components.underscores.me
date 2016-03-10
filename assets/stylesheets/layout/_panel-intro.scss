@@ -51,7 +51,7 @@
 		animation-play-state: running;
 		animation-iteration-count: infinite;
 		position: absolute;
-		top: 305px;
+		top: 205px;
 		left: -17px;
 		width: 80px;
 		height: 80px
@@ -60,7 +60,7 @@
 	#pipe-tap-2 {
 		position: absolute;
 		right: 280px;
-		top: 145px;
+		top: 55px;
 	}
 
 	#pipe-main-left,
@@ -70,12 +70,12 @@
 
 	#pipe-main-left {
 		left: -40px;
-		top: 160px;
+		top: 70px;
 	}
 
 	#pipe-main-right {
 		right: 0;
-		top: 20px;
+		top: -70px;
 	}
 
 	.stretchy-pipe {
@@ -87,20 +87,20 @@
 	.stretchy-pipe-left {
 		left: -100%;
 		right: 100%;
-		top: 584px;
+		top: 495px;
 	}
 
 	.stretchy-pipe-center {
 		left: 65px;
 		right: 258px;
-		top: 164px;
+		top: 73px;
 	}
 
 	.stretchy-pipe-right {
 		margin-left: -6px;
 		left: 100%;
 		right: -100%;
-		top: 293px;
+		top: 203px;
     }
 
 	/* Move content block to right */
@@ -112,8 +112,9 @@
 	#masthead .intro-content {
 		margin-left: 100px;
 		max-width: 100%;
+		min-height: 480px;
 		width: 630px;
-		padding: 260px 0 0;
+		padding: 160px 0 0;
 	}
 }
 
@@ -138,6 +139,10 @@
 	60%, 100% {
 		transform: rotate(36deg);
 	}
+}
+
+.site-header {
+	position: relative;
 }
 
 .site-title {
