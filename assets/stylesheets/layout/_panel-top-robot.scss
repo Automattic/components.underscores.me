@@ -6,12 +6,12 @@
 	right: 150px;
 	-ms-transform: translate( 0, 150px ) rotate(-10deg); /* make sure robot is visible in IE9, since keyframes are not supported */
 	transform: translate( 0, 350px ) rotate(-10deg);
-	-webkit-animation: .3s 3s 1 forwards TopRobotDrop;
-	-moz-animation: .3s 3s 1 forwards TopRobotDrop;
-	-o-animation: .3s 3s 1 forwards TopRobotDrop;
-	animation: .3s 3s 1 forwards TopRobotDrop;
-	width: 230px;
-	height: 350px;
+	-webkit-animation: .3s 1.5s 1 forwards TopRobotDrop;
+	-moz-animation: .3s 1.5s 1 forwards TopRobotDrop;
+	-o-animation: .3s 1.5s 1 forwards TopRobotDrop;
+	animation: .3s 1.5s 1 forwards TopRobotDrop;
+	width: 250px;
+	height: 330px;
 	z-index: 5;
 }
 
@@ -28,7 +28,22 @@
 	-moz-animation: 20s 3s infinite forwards HeadShake;
 	-o-animation: 20s 3s infinite forwards HeadShake;
 	animation: 20s 3s infinite forwards HeadShake;
-	transform-origin: 65px center;
+	transform-origin: 43px center;
+}
+
+.robot-arm {
+	-webkit-animation: 2s 2.25s 1 forwards LiftArm;
+	transform-origin: 0 100px;
+	transform: rotate(2deg);
+}
+
+.robot-hand {
+	-webkit-animation: 1.125s 2.6s 1 SpinHand;
+	-moz-animation: 1.125s 2.6s 1 SpinHand;
+	-o-animation: 1.125s 2.6s 1 SpinHand;
+	animation: 1.125s 2.6s 1 SpinHand;
+	transform-origin: center center;
+
 }
 
 /* Keyframes */
@@ -143,6 +158,7 @@
 	}
 }
 
+
 /* Robot dropping from the top */
 @-webkit-keyframes TopRobotDrop{
 	0% {
@@ -192,6 +208,177 @@
 	}
 }
 
+/* Robot lifting arm */
+
+@-webkit-keyframes LiftArm {
+	0% {
+		transform: rotate(2deg);
+	}
+	10%, 95% {
+		transform: rotate(-8deg);
+	}
+	100% {
+		transform: rotate(2deg);
+	}
+}
+
+@-moz-keyframes LiftArm {
+	0% {
+		transform: rotate(2deg);
+	}
+	10%, 95% {
+		transform: rotate(-8deg);
+	}
+	100% {
+		transform: rotate(2deg);
+	}
+}
+
+@-o-keyframes LiftArm {
+	0% {
+		transform: rotate(2deg);
+	}
+	10%, 95% {
+		transform: rotate(-8deg);
+	}
+	100% {
+		transform: rotate(2deg);
+	}
+}
+
+@keyframes LiftArm {
+	0% {
+		transform: rotate(2deg);
+	}
+	10%, 95% {
+		transform: rotate(-8deg);
+	}
+	100% {
+		transform: rotate(2deg);
+	}
+}
+
+/* Spin hand (wave) */
+
+@-webkit-keyframes SpinHand {
+	0% {
+		transform: rotateY(0deg);
+	}
+	12.5% {
+		transform: rotateY(180deg);
+	}
+	25% {
+		transform: rotateY(0);
+	}
+	37.5% {
+		transform: rotateY(180deg);
+	}
+	50% {
+		transform: rotateY(0);
+	}
+	62.5% {
+		transform: rotateY(180deg);
+	}
+	75% {
+		transform: rotateY(0);
+	}
+	87.5% {
+		transform: rotateY(180deg);
+	}
+	100% {
+		transform: rotateY(0);
+	}
+}
+
+@-moz-keyframes SpinHand {
+	0% {
+		transform: rotateY(0deg);
+	}
+	12.5% {
+		transform: rotateY(180deg);
+	}
+	25% {
+		transform: rotateY(0);
+	}
+	37.5% {
+		transform: rotateY(180deg);
+	}
+	50% {
+		transform: rotateY(0);
+	}
+	62.5% {
+		transform: rotateY(180deg);
+	}
+	75% {
+		transform: rotateY(0);
+	}
+	87.5% {
+		transform: rotateY(180deg);
+	}
+	100% {
+		transform: rotateY(0);
+	}
+}
+
+@-o-keyframes SpinHand {
+	0% {
+		transform: rotateY(0deg);
+	}
+	12.5% {
+		transform: rotateY(180deg);
+	}
+	25% {
+		transform: rotateY(0);
+	}
+	37.5% {
+		transform: rotateY(180deg);
+	}
+	50% {
+		transform: rotateY(0);
+	}
+	62.5% {
+		transform: rotateY(180deg);
+	}
+	75% {
+		transform: rotateY(0);
+	}
+	87.5% {
+		transform: rotateY(180deg);
+	}
+	100% {
+		transform: rotateY(0);
+	}
+}
+
+@keyframes SpinHand {
+	0% {
+		transform: rotateY(0deg);
+	}
+	12.5% {
+		transform: rotateY(180deg);
+	}
+	25% {
+		transform: rotateY(0);
+	}
+	37.5% {
+		transform: rotateY(180deg);
+	}
+	50% {
+		transform: rotateY(0);
+	}
+	62.5% {
+		transform: rotateY(180deg);
+	}
+	75% {
+		transform: rotateY(0);
+	}
+	87.5% {
+		transform: rotateY(180deg);
+	}
+	100% {
+		transform: rotateY(0);
+	}
+}
 
 @include mobile {
 	.top-robot {
