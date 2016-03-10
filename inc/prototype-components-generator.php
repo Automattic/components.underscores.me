@@ -130,7 +130,7 @@ class Components_Generator_Plugin {
 		$filelist = array();
 		$exclude = array( '.travis.yml', 'codesniffer.ruleset.xml', 'README.md', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
 		foreach( $files as $file ) {
-			if ( ! in_array( basename( $file ), $exclude )  ) {
+			if ( ! in_array( basename( $file ), $exclude )	) {
 				$filelist[] = $file;
 			}
 		}
@@ -215,7 +215,7 @@ class Components_Generator_Plugin {
 				}
 
 				// Copy files to build.
-				$dest =  $target_dir . '/components/' . $comp;
+				$dest =	 $target_dir . '/components/' . $comp;
 				$this->ensure_directory( dirname( $dest ) );
 				$this->copy_files( $path, $files, $dest );
 			}
@@ -510,7 +510,7 @@ class Components_Generator_Plugin {
 		$path = pathinfo( realpath( $zip_file ), PATHINFO_DIRNAME );
 		$zip = new ZipArchive;
 		$res = $zip->open( $zip_file );
-		if ( true === $res  ) {
+		if ( true === $res	) {
 			$zip->extractTo( $path ); // Extract it to the path we determined above.
 			$zip->close();
 		} else {
@@ -589,39 +589,39 @@ class Components_Generator_Plugin {
 	/**
 	 * Logs messages to debug.log in wp-content folder
 	 */
-    public function log_message ( $data )  {
-        if ( $this->logging ) {
-            if ( is_array( $data ) || is_object( $data ) ) {
-                error_log( print_r( $data, true ) );
-            } else {
-                error_log( $data );
-            }
-        }
-    }
+	public function log_message ( $data )  {
+		if ( $this->logging ) {
+			if ( is_array( $data ) || is_object( $data ) ) {
+				error_log( print_r( $data, true ) );
+			} else {
+				error_log( $data );
+			}
+		}
+	}
 
-    /**
-     * Gets list of stylesheets to include
-     */
-    public function get_stylesheet_paths( $filename ) {
-    	$final_matches = array();
-    	$stylesheet_contents = file_get_contents( $filename );
-    	preg_match_all( '/@import\s+"([^"]+)"\s*;/i', $stylesheet_contents, $matches );
-    	if ( isset( $matches[1] ) && is_array( $matches[1] ) && ! empty( $matches[1] ) ) {
-	    	foreach ( $matches[1] as $key => $value ) {
-	    		$file_parts = explode( '/', $value );
-	    		if ( is_array( $file_parts) && 1 < count( $file_parts) ) {
-	    			array_push( $final_matches, sprintf( '%s/_%s.scss', array_shift( $file_parts ), array_pop( $file_parts ) ) );
-	    		} else {
-	    			array_push( $final_matches, sprintf( '_%s.scss', array_pop( $file_parts ) ) );
-	    		}
+	/**
+	 * Gets list of stylesheets to include
+	 */
+	public function get_stylesheet_paths( $filename ) {
+		$final_matches = array();
+		$stylesheet_contents = file_get_contents( $filename );
+		preg_match_all( '/@import\s+"([^"]+)"\s*;/i', $stylesheet_contents, $matches );
+		if ( isset( $matches[1] ) && is_array( $matches[1] ) && ! empty( $matches[1] ) ) {
+			foreach ( $matches[1] as $key => $value ) {
+				$file_parts = explode( '/', $value );
+				if ( is_array( $file_parts) && 1 < count( $file_parts) ) {
+					array_push( $final_matches, sprintf( '%s/_%s.scss', array_shift( $file_parts ), array_pop( $file_parts ) ) );
+				} else {
+					array_push( $final_matches, sprintf( '_%s.scss', array_pop( $file_parts ) ) );
+				}
 
-	    	}
-	    } else {
-	    	$this->log_message( __( 'Error: stylesheet file was unable to be parsed and/or find SASS imports.' ) );
-	    	$this->log_message( $matches );
-	    }
-	    return $final_matches;
-    }
+			}
+		} else {
+			$this->log_message( __( 'Error: stylesheet file was unable to be parsed and/or find SASS imports.' ) );
+			$this->log_message( $matches );
+		}
+		return $final_matches;
+	}
 
 }
 
