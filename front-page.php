@@ -18,7 +18,7 @@ get_header(); ?>
 			<section id="selection">
 				<div class="types">
 					<div class="svg-container">
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-crate.svg' ); ?>
+						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-cart.svg' ); ?>
 					</div>
 					<h2>Types</h2>
 					<p>Lay the groundwork for your WordPress theme with our ready-made Types. Crafting an elegant artist's portfolio? An information-filled magazine theme or business site? How about a modern or classic blog? Choose the type that fits the bill and you'll be on your way in no time.

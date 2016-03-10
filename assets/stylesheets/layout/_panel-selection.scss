@@ -45,6 +45,11 @@
 		height: 150px;
 	}
 
+	#cart {
+		height: 150px;
+		transform: rotate(-15deg);
+	}
+
 	.custom {
 		background-color: $color__navy;
 		float: right;

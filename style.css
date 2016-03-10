@@ -1256,6 +1256,9 @@ section {
   #selection #crate {
     width: 150px;
     height: 150px; }
+  #selection #cart {
+    height: 150px;
+    transform: rotate(-15deg); }
   #selection .custom {
     background-color: #141f32;
     float: right; }
