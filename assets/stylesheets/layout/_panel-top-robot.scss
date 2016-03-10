@@ -28,7 +28,7 @@
 	-moz-animation: 20s 3s infinite forwards HeadShake;
 	-o-animation: 20s 3s infinite forwards HeadShake;
 	animation: 20s 3s infinite forwards HeadShake;
-	transform-origin: center center;
+	transform-origin: 65px center;
 }
 
 /* Keyframes */
@@ -51,7 +51,7 @@
 
 @-moz-keyframes HeadShake {
 	0%, 28% {
-		transform: rotate(0deg);
+		transform: rotateY(0deg);
 	}
 	30% {
 		transform: rotateY(180deg);
@@ -60,7 +60,7 @@
 		transform: rotateY(180deg);
 	}
 	72%, 100% {
-		transform: rotate(0deg);
+		transform: rotateY(0deg);
 	}
 }
 
