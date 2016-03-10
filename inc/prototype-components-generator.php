@@ -150,7 +150,12 @@ class Components_Generator_Plugin {
 					$this->add_sass_includes( $type, $args, $target_dir );
 					break;
 				case 'components';
-					$this->add_component_files( $args, $target_dir );
+					if ( isset( $config['replacement_files'] ) ) {
+						$replacements = (array) $config['replacement_files'];
+					} else {
+						$replacements = array();
+					}
+					$this->add_component_files( $args, $target_dir, $replacements );
 					break;
 				case 'templates';
 					$this->add_templates( $args, $target_dir );
@@ -165,9 +170,12 @@ class Components_Generator_Plugin {
 	/**
 	 * Adds component files needed for the build.
 	 */
-	public function add_component_files( $components, $target_dir ) {
+	public function add_component_files( $components, $target_dir, $replacements ) {
 		 // Ensure components directory exists.
 		 $this->ensure_directory( $target_dir . '/components' );
+
+		 // Insert array, used to insert components.
+		 $insert = array();
 
 		// Iterate over each component.
 		foreach ( $components as $comp ) {
@@ -188,20 +196,124 @@ class Components_Generator_Plugin {
 
 			// If it's a file, copy it over to the target directory.
 			if ( $is_phpfile && ( $phpfile_exists || file_exists( $path ) ) ) {
-				$file = array_pop( ( explode( '/components/', $path ) ) ); // Enclose in parens to allow passing by reference.
+				$file = array_pop( ( explode( '/components/', $path ) ) ); // Enclose in parens to pass by reference.
 				$dest = $target_dir . '/components/' . $file;
 				$this->ensure_directory( dirname( $dest ) );
+				$insert[] = preg_replace( '%/+%', '/', $path );
 				copy( $path, $dest );
 
 			// If it's a directory, copy all files contained within.
 			} else if ( is_dir( $path ) ) {
+				
+				// Get files in component directory, excluding unwanted paths.
 				$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
 				sort( $files ); // Ensure indexes start from zero.
+				
+				// Add files into insertion array for later.
+				foreach ( $files as $file ) {
+					$insert[] = preg_replace( '%/+%', '/', $path . '/' . $file );
+				}
+				
+				// Copy files to build.
 				$dest =  $target_dir . '/components/' . $comp;
 				$this->ensure_directory( dirname( $dest ) );
 				$this->copy_files( $path, $files, $dest );
 			}
 		}
+		
+		// Get build sources.
+		$sources = $this->get_build_sources( $target_dir );
+		
+		// Replace components in sources.
+		foreach ( $sources as $file ) {
+			$src = $file['source'];
+			$filename = str_replace( $target_dir . '/', '', $file['path'] );
+			
+			// Boolean variable, which determines if we must copy over the components included
+			// in any of the files that are overridden by the type. If a type overrides a template,
+			// then it is assumed that the insertion comments in that file must be in the build.
+			$copy_over = in_array( $filename, $replacements );
+			
+			// Get all of the insertion comments in source.
+			preg_match_all( '%<!-- components/([^\s]+)\s+-->%', $src, $matches );
+			
+			// If we have matches, then proceed
+			if ( is_array( $matches ) && ! empty( $matches ) ) {
+				$comments = $matches[0];
+				
+				// Iterate over each of the insertion comments.
+				foreach ( $comments as $comment ) {
+					
+					// Generate the `get_teplate_part()` cals needed to insert components.
+					$comp = preg_replace( '%(<!--\s+|\s+-->)%', '', $comment );
+					$template = preg_replace( '/\\.php$/', '', basename( $comp ) );
+					$parts = explode( '-', $template );
+					
+					// Depending on the number of words in the template filename, we generate the PHP code.
+					if ( 1 === count( $parts ) ) {
+						$code = sprintf( "<?php get_template_part( '%s', '%s' ); ?>", dirname( $comp ), $parts[0] );
+						pre( $code );
+					} else {
+						$tpl = array_shift( $parts );
+						$code = sprintf( "<?php get_template_part( '%s/%s', '%s' ); ?>", dirname( $comp ), $tpl, implode( '-', $parts ) );
+					}
+					
+					// The component file we're working with.
+					$compfile = preg_replace( '%/+%', '/', $this->components_dir . '/' . $comp );
+					
+					// If the component file is included in the `components` config -OR- we're copying over, proceed.
+					if ( in_array( $compfile, $insert ) || $copy_over ) {
+						
+						// Replace the insertion comment with the actual `get_template_part()` call.
+						$src = str_replace( $comment, $code, $src );
+						
+						// If we're copying over, make sure the component is copied in the build.
+						if ( $copy_over ) {
+							$comp_path = $this->components_dir . '/' . $comp;
+							$comp_target = $target_dir . '/' . $comp;
+							$this->ensure_directory( dirname( $comp_target ) );
+							copy( $comp_path, $comp_target );
+						}
+					}
+				}
+				
+				// Remove any insertion comments that are not needed.
+				$src = preg_replace( '/\s*<!--\s+[^\s]+\s+-->\s*\n/', "\n", $src );
+				
+				// If the original source has been modified, then write the file. Otherwise don't.
+				if ( $src !== $file['source'] ) {
+					file_put_contents( $file['path'], $src );
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Gets the build sources and associated file data.
+	 */
+	public function get_build_sources( $dir ) {
+		// Get all files recursively in build dir.
+		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
+		$files = array();
+		foreach( $iterator as $file ) {
+			$files[] = (string) $file->getPathName();
+		}
+		
+		// Filter only PHP files.
+		$files = preg_grep( '/\\.php$/', $files );
+
+		// Process file data.
+		$data = array();
+		foreach ( $files as $path ) {
+			$data[] = array(
+				'path' => $path,
+				'source' => file_get_contents( $path ),
+				
+			);
+		}
+		
+		// Return processed data.
+		return $data;
 	}
 
 	/**
@@ -234,20 +346,6 @@ class Components_Generator_Plugin {
 	public function add_javascript( $files, $target_dir ) {
 		// Copy over the files
 		$this->copy_files( $this->components_dir . '/assets/js', $files, $target_dir . '/assets/js' );
-	}
-
-	/**
-	 * Replaces component insertion comments with the actual component code.
-	 */
-	public function insert_components( $components, $source ) {
-
-	}
-
-	/**
-	 * Removes component insertion comments from source.
-	 */
-	public function cleanup_template_source( $source ) {
-
 	}
 
 	/**
