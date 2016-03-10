@@ -674,7 +674,7 @@ class Components_Generator_Plugin {
 	 
 	public function get_types() {
 		static $types;
-		if ( ! isset( $types )  ) {
+		if ( ! isset( $types ) ) {
 			$types = $this->read_json( $this->build_dir . '/types.json' );
 		}
 		return $types;
