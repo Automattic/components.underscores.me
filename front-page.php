@@ -376,49 +376,12 @@ get_header(); ?>
 			</section><!-- #custom-build-panel -->
 
 
-			<section id="extra-info">
-				<div class="wrap">
-					<div class="col">
-						<h2>What&rsquo;s in the box?</h2>
-						<p>Every Components package comes with:</p>
-						<ul>
-							<li>Design-agnostic layout patterns</li>
-							<li>Well-organized SCSS</li>
-							<li>Mobile-first layouts</li>
-							<li>Mobile and desktop menus</li>
-							<li>A simple base</li>
-						</ul>
-					</div>
-
-					<div class="octocat-robot">
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-octocat.svg' ); ?>
-					</div>
-
-					<div class="col">
-						<h2>Want to contribute?</h2>
-						<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-components">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
-
-					</div>
-				</div><!-- .wrap -->
-			</section><!-- #extra-info -->
-
-			<section id="contributors">
-				<div class="wrap">
-					<h2>Made with <?php echo file_get_contents( get_template_directory() . '/assets/img/love-and-labour.svg' ); ?> by</h2>
-					<ul id="github-contributors">
-						<?php foreach ( components_get_contributors() as $contributor ) : ?>
-							<?php
-								$name = '@' . $contributor->login;
-								$contributions = sprintf( '%d %s', $contributor->contributions, _n( 'contribution', 'contributions', $contributor->contributions ) );
-								$url = sprintf( 'http://github.com/%s', $contributor->login );
-								$avatar_url = add_query_arg( 's', 280, $contributor->avatar_url );
-								$avatar_url = add_query_arg( 'd', esc_url_raw( 'https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=280' ), $avatar_url );
-							?>
-							<li><a href="<?php echo esc_url( $url ); ?>"><img class="avatar" src="<?php echo esc_url( $avatar_url ); ?>" alt="" /><div class="contributor"><?php echo esc_html( $name ); ?><span><?php echo esc_html( $contributions ); ?></span></div></a></li>
-						<?php endforeach; ?>
-					</ul><!-- #team -->
-				</div><!-- .wrap -->
-			</section><!-- #contribute -->
+			<?php
+			$sections = array( 'extra-info', 'contributors' );
+			foreach ( $sections as $section ) {
+				get_template_part( 'section', $section );
+			}
+			?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
