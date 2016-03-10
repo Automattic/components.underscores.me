@@ -11,10 +11,12 @@ class Components_Generator_Plugin {
 	var $repo_file_name = 'theme-components-master.zip';
 	var $components_dir;
 	var $bypass_cache = false;
+	var $logging = true;
 
 	function __construct() {
 		// Initialize class properties.
 		$this->bypass_cache = apply_filters( 'components_bypass_cache', false );
+		$this->logging = apply_filters( 'components_logging', true );
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
 		$this->components_dir = $this->build_dir . str_replace( '.zip', '', $this->repo_file_name );
@@ -56,7 +58,6 @@ class Components_Generator_Plugin {
 		$files = glob( $configs );
 
 		// Check for valid config files, pull out the type names, capitalize them, and use them for data.
-		// TODO: add error logging to show when the types.json file is not getting built
 		if ( is_array( $files ) && ! empty( $files ) ) {
 			foreach( $files as $file ) {
 				preg_match( '%/type-([^\.]+)\.json$%', $file, $matches );
@@ -68,6 +69,8 @@ class Components_Generator_Plugin {
 			}
 			// Create a JSON file from our $types array so that we can use it for as a cache for rendering the generator form.
 			file_put_contents( $this->build_dir . 'types.json', json_encode( $types, JSON_PRETTY_PRINT ) );
+		} else {
+			$this->log_message( __( 'Error: type.json was not rebuilt successfully because configs were not able to be read.' ) );
 		}
 
 	}
@@ -423,7 +426,7 @@ class Components_Generator_Plugin {
 	public function ensure_directory( $directory, $delete_if_exists=false ) {
 		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
 			if ( ! mkdir( $directory, 0755, true ) ) {
-				// TODO: add logging for failed directory creation
+				$this->log_message( sprintf( __( 'Error: %s directory was not able to be created.' ), $directory ) );
 			}
 		} else if ( $delete_if_exists && is_dir( $directory ) ) {
 			$this->delete_directory( $directory );
@@ -436,7 +439,7 @@ class Components_Generator_Plugin {
 	 */
 	public function delete_file( $URI ) {
 		if ( ! unlink( $URI ) ) {
-			// TODO: add logging for failed file deletion
+			$this->log_message( sprintf( __( 'Error: %s file was not able to be deleted.' ), $URI ) );
 		}
 	}
 
@@ -450,7 +453,7 @@ class Components_Generator_Plugin {
 		foreach ( $files as $fileinfo ) {
 			$fname = $fileinfo->isDir() ? 'rmdir' : 'unlink';
 			if ( ! call_user_func( $fname, $fileinfo->getRealPath() ) ) {
-				// TODO: add logging for failed function call
+				$this->log_message( sprintf( __( 'Error: %1$s function was not able to be executed. Arguments were: %2$s.' ), $fname, $fileinfo->getRealPath() ) );
 			}
 		}
 		return rmdir( $directory );
@@ -483,6 +486,20 @@ class Components_Generator_Plugin {
 			add_action( 'wp_footer', array( $this, 'get_theme_components_init' ), 99 );
 		}
 	}
+
+	/**
+	 * Logs messages to debug.log in wp-content folder
+	 */
+    public function log_message ( $data )  {
+        if ( $this->logging ) {
+            if ( is_array( $data ) || is_object( $data ) ) {
+                error_log( print_r( $data, true ) );
+            } else {
+                error_log( $data );
+            }
+        }
+    }
+
 }
 
 if ( ! is_admin() ) {
