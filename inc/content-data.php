@@ -23,8 +23,7 @@ function components_get_contributors() {
 function get_content_intro() {
 	$intro_data = array();
 	$intro_data['title'] = get_bloginfo( 'description', 'display' );
-	$intro_data['content'] = '<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
-							<p>If you&rsquo;re just starting out, it&rsquo;ll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you&rsquo;re an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart&rsquo;s delight!</p>';
+	$intro_data['content'] = "<p>The choice is yours: jump-start a blog, portfolio, business, or magazine site – or concoct something completely custom. No matter which route you take, you'll save tons of time and <strong>turbo-charge</strong> your theme's development.</p>";
 	return $intro_data;
 }
 
@@ -97,4 +96,26 @@ function get_content_extra_info() {
 										)
 								);
 	return $extra_info_data;
+}
+
+/**
+ * Outputs the default content data for the extra info section
+ */
+function get_content_selection( $selection_choice = 'all' ) {
+	$selection_data = array(	'types' => array( 	'title' 	=> 	'Types',
+													'content' 	=> 	"<p>Lay the groundwork for your WordPress theme with our <strong>ready-made Types</strong>. Crafting an elegant artist's <strong>portfolio</strong>? An information-filled <strong>magazine</strong> theme or <strong>business</strong> site? How about a modern or classic <strong>blog</strong>? Choose the type that fits the bill and you'll be on your way in no time.
+</p>"
+										),
+								'custom' => array( 	'title' 	=> 'Build Your Own',
+													'content' 	=> "<p>Go the custom route and <strong>keep control</strong> over every element of your starter theme, picking-and-choosing only the components you need to create your <strong>perfect custom starter theme</strong>. You'll get solid, reliable code, with only the pieces your project needs.
+</p>"
+										)
+								);
+
+	if ( isset( $selection_data[$selection_choice] ) ) {
+		return $selection_data[$selection_choice];
+	} else {
+		return $selection_data;
+	}
+
 }
