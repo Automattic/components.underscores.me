@@ -141,6 +141,13 @@ class Components_Generator_Plugin {
 	 * Handles the configuration and coordinates everything.
 	 */
 	public function handle_config( $type, $config, $target_dir ) {
+		// If the type does not specify sass files, make sure the option
+		// is specified, since the styles need to be included.
+		if ( ! isset( $config['sass_replace'] ) ) {
+			$config['sass_replace'] = array();
+		}
+		
+		// Iterate over each config section and process individually.
 		foreach ( $config as $section => $args ) {
 			switch ( $section ) {
 				case 'replacement_files';
@@ -244,7 +251,7 @@ class Components_Generator_Plugin {
 				// Iterate over each of the insertion comments.
 				foreach ( $comments as $comment ) {
 
-					// Generate the `get_teplate_part()` cals needed to insert components.
+					// Generate the `get_teplate_part()` calls needed to insert components.
 					$comp = preg_replace( '%(<!--\s+|\s+-->)%', '', $comment );
 					$template = preg_replace( '/\\.php$/', '', basename( $comp ) );
 					$parts = explode( '-', $template );
@@ -329,7 +336,69 @@ class Components_Generator_Plugin {
 	 * Adds sass includes to the build and takes care of file overrides.
 	 */
 	public function add_sass_includes( $type, $files, $target_dir ) {
+		// Get stylesheets directory from type.
+		$style_dir = sprintf( '%s/types/%s/assets/stylesheets', $this->components_dir, $type );
+		$dest = $target_dir . '/assets/stylesheets';
+		
+		// Ensure stylesheets directory exists.
+		$this->ensure_directory( $dest );
+		
+		// Check if style.scss is being overridden.
+		if ( file_exists( $style_dir . '/style.scss' ) ) {
+			$this->copy_files( $style_dir, $files, $dest );
 
+		// If we're not overriding, then we need to append.
+		} else if ( ! file_exists( $style_dir ) ) {
+			
+			// Generate the SASS import codes for the stylesheets.
+			$imports = array();
+			foreach( $files as $item ) {
+				$parts = explode( '/', $item );
+				$file = array_pop( $parts );
+				$path = implode( '/', $parts );
+				$title = explode( '-', preg_replace( '/(^_|\.scss$)/', '', $file ) );
+				$title = join( ' ', array_map( 'ucwords', $title ) );
+				$css = array();
+				$css[] = '/*--------------------------------------------------------------';
+				$css[] = sprintf( '# %s', $title );
+				$css[] = '--------------------------------------------------------------*/';
+				$css[] = sprintf( '@import "%s/%s";', $path, $file );
+				$imports[] = implode( "\n", $css );
+				
+				// Copy the included file.
+				$src_file = $this->components_dir . '/assets/stylesheets/' . $item;
+				if ( file_exists( $src_file ) ) {
+					$dest_file = $dest . '/' . $item;
+					$this->ensure_directory( dirname( $dest_file ) );
+					copy( $src_file, $dest_file );
+				}
+			}
+
+			// Read style.scss source.
+			copy( $this->components_dir . '/assets/stylesheets/style.scss', $dest . '/style.scss' );
+			$src = file_get_contents( $target_dir . '/assets/stylesheets/style.scss' );
+
+			// Add import calls.
+			foreach ( $imports as $item ) {
+				$src .= "\n" . $item;
+			}
+			
+			// Update style.scss with the new source.
+			file_put_contents( $dest . '/style.scss', $src );
+		}
+		
+		// Get the stylesheets paths included in the sass file.
+		$paths = $this->get_stylesheet_paths( $dest . '/style.scss' );
+		
+		// Copy the paths to the build directory.
+		foreach ( $paths as $path ) {
+			$src_file = $this->components_dir . '/assets/stylesheets/' . $path;
+			$target_file = $dest . '/' . $path;
+			$this->ensure_directory( dirname( $target_file ) );
+			if ( file_exists( $src_file ) ) {
+				copy( $src_file, $target_file );
+			}
+		}
 	}
 
 	/**
