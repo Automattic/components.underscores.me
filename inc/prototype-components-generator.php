@@ -6,7 +6,7 @@
 
 class Components_Generator_Plugin {
 
-	var $build_dir = 'build/';
+	var $build_dir = 'build';
 	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
 	var $repo_file_name = 'theme-components-master.zip';
 	var $components_dir;
@@ -20,7 +20,7 @@ class Components_Generator_Plugin {
 		$this->logging = apply_filters( 'components_logging', true );
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
-		$this->components_dir = $this->build_dir . str_replace( '.zip', '', $this->repo_file_name );
+		$this->components_dir = $this->build_dir . '/' . str_replace( '.zip', '', $this->repo_file_name );
 
 		// Patch repo url and filename to work with `branchless-merge` branch
 		// TODO: remove this code after the branch is merged.
@@ -52,7 +52,7 @@ class Components_Generator_Plugin {
 		$this->gen_types_cache();
 
 		// Grab our type data.
-		$types = $this->read_json( $this->build_dir . 'types.json' );
+		$types = $this->read_json( $this->build_dir . '/types.json' );
 
 		// Build each type directory, so we can work with it.
 		foreach ( $types as $type => $title ) {
@@ -83,7 +83,7 @@ class Components_Generator_Plugin {
 				}
 			}
 			// Create a JSON file from our $types array so that we can use it for as a cache for rendering the generator form.
-			file_put_contents( $this->build_dir . 'types.json', json_encode( $types, JSON_PRETTY_PRINT ) );
+			file_put_contents( $this->build_dir . '/types.json', json_encode( $types, JSON_PRETTY_PRINT ) );
 		} else {
 			$this->log_message( __( 'Error: type.json was not rebuilt successfully because configs were not able to be read.' ) );
 		}
@@ -103,7 +103,7 @@ class Components_Generator_Plugin {
 	 */
 	public function build_type( $type ) {
 		// The target directory where we will be working on.
-		$target_dir = $this->build_dir . $type;
+		$target_dir = $this->build_dir . '/' . $type;
 
 		// Get type config.
 		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
@@ -437,7 +437,7 @@ class Components_Generator_Plugin {
 	 */
 	function render_types_form() {
 		// Parse the types.json file so we can use the data.
-		$types = $this->read_json( $this->build_dir . 'types.json' ); ?>
+		$types = $this->read_json( $this->build_dir . '/types.json' ); ?>
 		<section id="generator">
 
 			<div class="gear-set-one">
@@ -575,9 +575,9 @@ class Components_Generator_Plugin {
 	 */
 	function create_zippity_zip() {
 		// Grab our type data.
-		$types = $this->read_json( $this->build_dir . 'types.json' );
+		$types = $this->read_json( $this->build_dir . '/types.json' );
 
-		$tmp = $this->build_dir . 'tmp/';
+		$tmp = $this->build_dir . '/tmp';
 
 		$this->ensure_directory( $tmp );
 
@@ -606,7 +606,7 @@ class Components_Generator_Plugin {
 					case $title:
 						$hash = md5( print_r( $this->theme, true ) );
 						$this->prototype_dir = $tmp . '/' . $type . '-' . $hash;
-						$this->copy_build_files( $this->build_dir . $type, $this->prototype_dir );
+						$this->copy_build_files( $this->build_dir . '/' . $type, $this->prototype_dir );
 						break;
 				}
 			}
@@ -794,7 +794,7 @@ class Components_Generator_Plugin {
 	 */
 	function set_expiration_and_go() {
 		// We only need to grab the file info of one type zip file since all files are created at once.
-		$file_name = $this->build_dir . $this->repo_file_name;
+		$file_name = $this->build_dir . '/' . $this->repo_file_name;
 
 		// Determine if we need to hook the init method
 		$hook_init = false;
