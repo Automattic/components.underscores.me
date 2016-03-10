@@ -54,13 +54,13 @@
 							<?php echo file_get_contents( get_template_directory() . '/assets/img/components.svg' ); ?>
 							<!-- Hidden h1 for screen readers -->
 							<h1 class="site-title screen-reader-text"><?php bloginfo( 'name' ); ?></h1>
-							<?php $description = get_bloginfo( 'description', 'display' );
-							if ( $description || is_customize_preview() ) : ?>
-								<h2 class="site-description"><?php echo $description; ?></h2>
+							<?php $intro_data = get_content_intro();
+							if ( $intro_data['title'] || is_customize_preview() ) : ?>
+								<h2 class="site-description"><?php echo $intro_data['title']; ?></h2>
 							<?php endif; ?>
 						</div><!-- .site-branding -->
 						<div id="intro">
-							<p>The choice is yours: jump-start a blog, portfolio, business, or magazine site – or concoct something completely custom. No matter which route you take, you'll save tons of time and <strong>turbo-charge</strong> your theme's development.</p>
+							<?php echo $intro_data['content']; ?>
 						</div><!-- #intro -->
 					</div><!-- .intro-content -->
 				</div><!-- .content-wrapper -->
