@@ -21,7 +21,7 @@ get_header(); ?>
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-cart.svg' ); ?>
 					</div>
 					<h2>Types</h2>
-					<p>Lay the groundwork for your WordPress theme with our ready-made Types. Crafting an elegant artist's portfolio? An information-filled magazine theme or business site? How about a modern or classic blog? Choose the type that fits the bill and you'll be on your way in no time.
+					<p>Lay the groundwork for your WordPress theme with our <strong>ready-made Types</strong>. Crafting an elegant artist's <strong>portfolio</strong>? An information-filled <strong>magazine</strong> theme or <strong>business</strong> site? How about a modern or classic <strong>blog</strong>? Choose the type that fits the bill and you'll be on your way in no time.
 </p>
 					<a href="#theme-types-panel" class="toggle button">Choose a Type</a>
 				</div>
@@ -30,7 +30,7 @@ get_header(); ?>
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/toolbox.svg' ); ?>
 					</div>
 					<h2>Build Your Own</h2>
-					<p>Go the custom route and keep control over every element of your starter theme, picking-and-choosing only the components you need to create your perfect custom starter theme. You'll get solid, reliable code, with only the pieces your project needs.
+					<p>Go the custom route and <strong>keep control</strong> over every element of your starter theme, picking-and-choosing only the components you need to create your <strong>perfect custom starter theme</strong>. You'll get solid, reliable code, with only the pieces your project needs.
 </p>
 					<a href="#custom-build-panel" class="toggle button">Configure</a>
 				</div>

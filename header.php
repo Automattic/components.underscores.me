@@ -60,7 +60,7 @@
 							<?php endif; ?>
 						</div><!-- .site-branding -->
 						<div id="intro">
-							<p>The choice is yours: jump-start a blog, portfolio, business, or magazine site – or concoct something completely custom. No matter which route you take, you'll save tons of time and turbo-charge your theme's development.</p>
+							<p>The choice is yours: jump-start a blog, portfolio, business, or magazine site – or concoct something completely custom. No matter which route you take, you'll save tons of time and <strong>turbo-charge</strong> your theme's development.</p>
 						</div><!-- #intro -->
 					</div><!-- .intro-content -->
 				</div><!-- .content-wrapper -->
