@@ -52,7 +52,7 @@ class Components_Generator_Plugin {
 		$this->gen_types_cache();
 
 		// Grab our type data.
-		$types = $this->read_json( $this->build_dir . '/types.json' );
+		$types = $this->get_types();
 
 		// Build each type directory, so we can work with it.
 		foreach ( $types as $type => $title ) {
@@ -436,8 +436,8 @@ class Components_Generator_Plugin {
 	 * Renders the generator type form.
 	 */
 	function render_types_form() {
-		// Parse the types.json file so we can use the data.
-		$types = $this->read_json( $this->build_dir . '/types.json' ); ?>
+		// Get the types available.
+		$types = $this->get_types(); ?>
 		<section id="generator">
 
 			<div class="gear-set-one">
@@ -575,7 +575,7 @@ class Components_Generator_Plugin {
 	 */
 	function create_zippity_zip() {
 		// Grab our type data.
-		$types = $this->read_json( $this->build_dir . '/types.json' );
+		$types = $this->get_types();
 
 		$tmp = $this->build_dir . '/tmp';
 
@@ -666,6 +666,18 @@ class Components_Generator_Plugin {
 		unlink( $zip_filename );
 		$this->delete_directory( $this->prototype_dir );
 		exit();
+	}
+	
+	/**
+	 * Returns an array with the available types.
+	 */
+	 
+	public function get_types() {
+		static $types;
+		if ( ! isset( $types )  ) {
+			$types = $this->read_json( $this->build_dir . '/types.json' );
+		}
+		return $types;
 	}
 
 	// Utility functions: These help the generator do its work.
