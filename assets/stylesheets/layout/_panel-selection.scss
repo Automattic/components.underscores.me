@@ -70,3 +70,9 @@
 		color: $color__teal-light;
 	}
 }
+
+@include mobile {
+	#selection .button {
+		display: none;
+	}
+}
