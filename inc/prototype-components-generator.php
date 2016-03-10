@@ -10,6 +10,7 @@ class Components_Generator_Plugin {
 	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
 	var $repo_file_name = 'theme-components-master.zip';
 	var $components_dir;
+	var $prototype_dir;
 	var $bypass_cache = false;
 	var $logging = true;
 
@@ -30,6 +31,12 @@ class Components_Generator_Plugin {
 		// Let's run a few init functions to set things up.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
 
+		// Create zips when we need them.
+		add_action( 'init', array( $this, 'create_zippity_zip' ) );
+
+		// A filter to run replacements on.
+		add_filter( 'components_generator_file_contents', array( $this, 'replace_theme_fields' ), 10, 2 );
+
 		// Use do_action( 'render_types_form' ); in your theme to render the form.
 		add_action( 'render_types_form', array( $this, 'render_types_form' ) );
 	}
@@ -43,6 +50,14 @@ class Components_Generator_Plugin {
 
 		// Generate our types cache.
 		$this->gen_types_cache();
+
+		// Grab our type data.
+		$types = $this->read_json( $this->build_dir . 'types.json' );
+
+		// Build each type directory, so we can work with it.
+		foreach ( $types as $type => $title ) {
+			$this->build_type( $type );
+		}
 	}
 
 	/**
@@ -146,7 +161,7 @@ class Components_Generator_Plugin {
 		if ( ! isset( $config['sass_replace'] ) ) {
 			$config['sass_replace'] = array();
 		}
-		
+
 		// Iterate over each config section and process individually.
 		foreach ( $config as $section => $args ) {
 			switch ( $section ) {
@@ -339,17 +354,17 @@ class Components_Generator_Plugin {
 		// Get stylesheets directory from type.
 		$style_dir = sprintf( '%s/types/%s/assets/stylesheets', $this->components_dir, $type );
 		$dest = $target_dir . '/assets/stylesheets';
-		
+
 		// Ensure stylesheets directory exists.
 		$this->ensure_directory( $dest );
-		
+
 		// Check if style.scss is being overridden.
 		if ( file_exists( $style_dir . '/style.scss' ) ) {
 			$this->copy_files( $style_dir, $files, $dest );
 
 		// If we're not overriding, then we need to append.
 		} else if ( ! file_exists( $style_dir ) ) {
-			
+
 			// Generate the SASS import codes for the stylesheets.
 			$imports = array();
 			foreach( $files as $item ) {
@@ -364,7 +379,7 @@ class Components_Generator_Plugin {
 				$css[] = '--------------------------------------------------------------*/';
 				$css[] = sprintf( '@import "%s/%s";', $path, $file );
 				$imports[] = implode( "\n", $css );
-				
+
 				// Copy the included file.
 				$src_file = $this->components_dir . '/assets/stylesheets/' . $item;
 				if ( file_exists( $src_file ) ) {
@@ -382,14 +397,14 @@ class Components_Generator_Plugin {
 			foreach ( $imports as $item ) {
 				$src .= "\n" . $item;
 			}
-			
+
 			// Update style.scss with the new source.
 			file_put_contents( $dest . '/style.scss', $src );
 		}
-		
+
 		// Get the stylesheets paths included in the sass file.
 		$paths = $this->get_stylesheet_paths( $dest . '/style.scss' );
-		
+
 		// Copy the paths to the build directory.
 		foreach ( $paths as $path ) {
 			$src_file = $this->components_dir . '/assets/stylesheets/' . $path;
@@ -438,7 +453,7 @@ class Components_Generator_Plugin {
 				<p>Pick a type, fill out the information about your new theme, and download it.</p>
 				<div id="generator-form" class="generator-form">
 					<form method="POST">
-						<input type="hidden" name="components_generate" value="1" />
+						<input type="hidden" name="components_types_generate" value="1" />
 
 						<div class="theme-input clear">
 							<div class="generator-form-primary">
@@ -447,7 +462,7 @@ class Components_Generator_Plugin {
 									<div class="components-radio-block">
 										<?php
 											$i = 0;
-											foreach ( $types as $key => $value ) :
+											foreach ( $types as $type => $title ) :
 												// Check our first radio as a default and add a required to it.
 												if ( 0 == $i ) {
 													$checked = 'checked="checked"';
@@ -459,8 +474,8 @@ class Components_Generator_Plugin {
 												$i++;
 										?>
 											<div class="components-radio-group">
-												<input id="<?php echo $key; ?>" class="components-input" type="radio" name="theme-type" value="<?php echo $value; ?>" <?php echo $checked; echo $required; ?>>
-												<label class="components-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
+												<input id="<?php echo 'type-' . $type; ?>" class="components-input" type="radio" name="components_theme_type" value="<?php echo $title; ?>" <?php echo $checked; echo $required; ?>>
+												<label class="components-label" for="<?php echo 'type-' . $type; ?>"><?php echo $title; ?></label>
 											</div>
 										<?php endforeach; ?>
 									</div>
@@ -504,6 +519,154 @@ class Components_Generator_Plugin {
 			</div><!-- .wrap -->
 		</section><!-- #generator -->
 	<?php }
+
+	/**
+	 * Runs when looping through files contents, does the replacements fun stuff.
+	 */
+	function replace_theme_fields( $contents, $filename ) {
+		// Replace only text files, skip png's and other stuff.
+		$valid_extensions = array( 'php', 'css', 'scss', 'js', 'txt' );
+		$valid_extensions_regex = implode( '|', $valid_extensions );
+		if ( ! preg_match( "/\.({$valid_extensions_regex})$/", $filename ) ) {
+			return $contents;
+		}
+
+		// Special treatment for style.css
+		if ( in_array( $filename, array( 'style.css', 'assets/stylesheets/style.scss' ), true ) ) {
+			$theme_headers = array(
+				'Theme Name'  => $this->theme['name'],
+				'Theme URI'	=> esc_url_raw( $this->theme['uri'] ),
+				'Author'		=> $this->theme['author'],
+				'Author URI'  => esc_url_raw( $this->theme['author_uri'] ),
+				'Description' => $this->theme['description'],
+				'Text Domain' => $this->theme['slug'],
+			);
+			foreach ( $theme_headers as $key => $value ) {
+				$contents = preg_replace( '/(' . preg_quote( $key ) . ':)\s?(.+)/', '\\1 ' . $value, $contents );
+			}
+			$contents = preg_replace( '/\bComponents\b/', $this->theme['name'], $contents );
+			return $contents;
+		}
+		// Special treatment for footer.php
+		if ( 'footer.php' == $filename ) {
+			// <?php printf( __( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="http://automattic.com/" rel="designer">Automattic</a>' );
+			$contents = str_replace( 'http://automattic.com/', esc_url( $this->theme['author_uri'] ), $contents );
+			$contents = str_replace( 'Automattic', $this->theme['author'], $contents );
+			$contents = preg_replace( "#printf\\((\\s?__\\(\\s?'Theme:[^,]+,[^,]+,)([^,]+),#", sprintf( "printf(\\1 '%s',", esc_attr( $this->theme['name'] ) ), $contents );
+		}
+		// Function names can not contain hyphens.
+		$slug = str_replace( '-', '_', $this->theme['slug'] );
+		// Regular treatment for all other files.
+		$contents = str_replace( "@package Components", sprintf( "@package %s", str_replace( ' ', '_', $this->theme['name'] ) ), $contents ); // Package declaration.
+		$contents = str_replace( "components-", sprintf( "%s-",  $this->theme['slug'] ), $contents ); // Script/style handles.
+		$contents = str_replace( "'components'", sprintf( "'%s'",  $this->theme['slug'] ), $contents ); // Textdomains.
+		$contents = str_replace( "components_", $slug . '_', $contents ); // Function names.
+		$contents = preg_replace( '/\bComponents\b/', $this->theme['name'], $contents );
+		// Special treatment for readme.txt
+		if ( 'readme.txt' == $filename ) {
+			$contents = preg_replace('/(?<=Description ==) *.*?(.*(?=(== Installation)))/s', "\n\n" . $this->theme['description'] . "\n\n", $contents );
+			$contents = str_replace( 'Components, or components', $this->theme['name'], $contents );
+		}
+		return $contents;
+	}
+
+	/**
+	 * Let's take the form input, generate and zip of the theme.
+	 */
+	function create_zippity_zip() {
+		// Grab our type data.
+		$types = $this->read_json( $this->build_dir . 'types.json' );
+
+		$tmp = $this->build_dir . 'tmp/';
+
+		$this->ensure_directory( $tmp );
+
+		if ( ! isset( $_REQUEST['components_types_generate'], $_REQUEST['components_types_name'] ) ) {
+			return;
+		}
+
+		if ( empty( $_REQUEST['components_types_name'] ) ) {
+			wp_die( 'Please enter a theme name. Go back and try again.' );
+		}
+
+		$this->theme = array(
+			'name'		  => 'Theme Name',
+			'slug'		  => 'theme-name',
+			'uri'		  => 'http://components.underscores.me/',
+			'author'	  => 'Components.Underscores.me',
+			'author_uri'  => 'http://components.underscores.me/',
+			'description' => 'Description',
+		);
+
+		if ( empty( $_REQUEST['components_theme_type'] ) ) {
+			wp_die( 'Please select a theme type. Go back and try again.' );
+		} elseif ( ! empty( $_REQUEST['components_theme_type'] ) ) {
+			foreach ( $types as $type => $title ) {
+				switch ( $_REQUEST['components_theme_type'] ) {
+					case $title:
+						$hash = md5( print_r( $this->theme, true ) );
+						$this->prototype_dir = $tmp . '/' . $type . '-' . $hash;
+						$this->copy_build_files( $this->build_dir . $type, $this->prototype_dir );
+						break;
+				}
+			}
+		}
+
+		$this->theme['name']  = trim( $_REQUEST['components_types_name'] );
+		$this->theme['slug']  = sanitize_title_with_dashes( $this->theme['name'] );
+		if ( ! empty( $_REQUEST['components_types_slug'] ) ) {
+			$this->theme['slug'] = sanitize_title_with_dashes( $_REQUEST['components_types_slug'] );
+		}
+
+		// Let's check if the slug can be a valid function name.
+		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) ) {
+			wp_die( 'Theme slug could not be used to generate valid function names. Please go back and try again.' );
+		}
+		// Let's check if the name can be a valid theme name.
+		if ( preg_match( '/[\'^£$%&*()}{@#~?><>,|=+¬"]/', $this->theme['name'] ) ) {
+			wp_die( 'Theme slug could not be used to generate valid theme name. Please go back and try again.' );
+		}
+		if ( ! empty( $_REQUEST['components_types_description'] ) ) {
+			$this->theme['description'] = trim( $_REQUEST['components_types_description'] );
+		}
+		if ( ! empty( $_REQUEST['components_author'] ) ) {
+			$this->theme['author'] = trim( $_REQUEST['components_types_author'] );
+		}
+		if ( ! empty( $_REQUEST['components_author_uri'] ) ) {
+			$this->theme['author_uri'] = trim( $_REQUEST['components_types_author_uri'] );
+		}
+
+		$zip = new ZipArchive;
+		$zip_filename = $this->prototype_dir . sprintf( 'components-%s.zip', md5( print_r( $this->theme, true ) ) );
+		$res = $zip->open( $zip_filename, ZipArchive::CREATE && ZipArchive::OVERWRITE );
+		$exclude_files = array( '.travis.yml', 'codesniffer.ruleset.xml', 'README.md', 'CONTRIBUTING.md', '.git', '.svn', '.DS_Store', '.gitignore', '.', '..' );
+		$exclude_directories = array( '.git', '.svn', '.', '..' );
+
+		$iterator = new RecursiveDirectoryIterator( $this->prototype_dir );
+		foreach ( new RecursiveIteratorIterator( $iterator ) as $filename ) {
+			if ( in_array( basename( $filename ), $exclude_files ) ) {
+				continue;
+			}
+			foreach ( $exclude_directories as $directory )
+				if ( strstr( $filename, "/{$directory}/" ) ) {
+					continue 2; // continue the parent foreach loop
+				}
+			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
+			if ( 'languages/component_s.pot' == $local_filename ) {
+				$local_filename = sprintf( 'languages/%s.pot', $this->theme['slug'] );
+			}
+			$contents = file_get_contents( $filename );
+			$contents = apply_filters( 'components_generator_file_contents', $contents, $local_filename );
+			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
+		}
+		$zip->close();
+		header( 'Content-type: application/zip' );
+		header( sprintf( 'Content-Disposition: attachment; filename="%s.zip"', $this->theme['slug'] ) );
+		readfile( $zip_filename );
+		unlink( $zip_filename );
+		$this->delete_directory( $this->prototype_dir );
+		exit();
+	}
 
 	// Utility functions: These help the generator do its work.
 
