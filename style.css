@@ -988,7 +988,8 @@ section {
   #masthead .wrap {
     max-width: 840px;
     padding-top: 0;
-    position: relative; }
+    position: relative;
+    z-index: 10; }
 
   #pipe-tap {
     animation-name: spin;
@@ -1092,7 +1093,7 @@ section {
   animation: .3s 3s 1 forwards TopRobotDrop;
   width: 230px;
   height: 350px;
-  z-index: 10; }
+  z-index: 5; }
 
 .eyes {
   -webkit-animation: 3s 5s infinite forwards EyeBlink;
@@ -1259,7 +1260,6 @@ section {
     background-color: #141f32;
     float: right; }
   #selection #toolbox {
-    margin-left: -11px;
     width: 236px;
     height: 150px; }
   #selection h2 {
