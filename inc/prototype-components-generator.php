@@ -473,9 +473,10 @@ class Components_Generator_Plugin {
 			$time = time();
 			$expired = 1800; // Expire cache after 30 minutes.
 			if ( $this->bypass_cache ) {
-				$expired = 0; // Bypass the cache if debug filter is true
+				$hook_init = true; // Bypass the cache if debug filter is true
+			} else {
+				$hook_init = $expired <= ( $time - $file_time_stamp ) ? true : false;
 			}
-			$hook_init = $expired <= ( $time - $file_time_stamp ) ? true : false;
 		} else {
 			// If no file exists run the init function anyway.
 			$hook_init = true;
