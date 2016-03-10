@@ -17,7 +17,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php
-			$sections = array( 'selection', 'types', 'types-form', 'extra-info', 'contributors' );
+			$sections = array( 'selection', 'types-panel', 'types-form', 'extra-info', 'contributors' );
 			foreach ( $sections as $section ) {
 				get_template_part( 'section', $section );
 			}
