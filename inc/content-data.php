@@ -82,18 +82,18 @@ function get_content_types( $types_category = 'all' ) {
  * Outputs the default content data for the extra info section
  */
 function get_content_extra_info() {
-	$extra_info_data = array(	array( 	'title' => 'What&rsquo;s in the box?',
-										'content' => '<p>Every Components package comes with:</p>
-						<ul>
-							<li>Design-agnostic layout patterns</li>
-							<li>Well-organized SCSS</li>
-							<li>Mobile-first layouts</li>
-							<li>Mobile and desktop menus</li>
-							<li>A simple base</li>
-						</ul>'
+	$extra_info_data = array(	array( 	'title' 	=> 	'What&rsquo;s in the box?',
+										'content' 	=> 	'<p>Every Components package comes with:</p>
+														<ul>
+															<li>Design-agnostic layout patterns</li>
+															<li>Well-organized SCSS</li>
+															<li>Mobile-first layouts</li>
+															<li>Mobile and desktop menus</li>
+															<li>A simple base</li>
+														</ul>'
 										),
-								array( 	'title' => 'Want to contribute?',
-										'content' => '<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-components">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>'
+								array( 	'title' 	=> 'Want to contribute?',
+										'content' 	=> '<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-components">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>'
 										)
 								);
 	return $extra_info_data;

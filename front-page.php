@@ -376,34 +376,8 @@ get_header(); ?>
 			</section><!-- #custom-build-panel -->
 
 
-			<section id="extra-info">
-				<div class="wrap">
-					<div class="col">
-						<h2>What&rsquo;s in the box?</h2>
-						<p>Every Components package comes with:</p>
-						<ul>
-							<li>Design-agnostic layout patterns</li>
-							<li>Well-organized SCSS</li>
-							<li>Mobile-first layouts</li>
-							<li>Mobile and desktop menus</li>
-							<li>A simple base</li>
-						</ul>
-					</div>
-
-					<div class="octocat-robot">
-						<?php echo file_get_contents( get_template_directory() . '/assets/img/robot-octocat.svg' ); ?>
-					</div>
-
-					<div class="col">
-						<h2>Want to contribute?</h2>
-						<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-components">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
-
-					</div>
-				</div><!-- .wrap -->
-			</section><!-- #extra-info -->
-
 			<?php
-			$sections = array( 'contributors' );
+			$sections = array( 'extra-info', 'contributors' );
 			foreach ( $sections as $section ) {
 				get_template_part( 'section', $section );
 			}
