@@ -13,7 +13,7 @@
 
 	.svg-container {
 		display: block;
-		margin: 40px auto 0;
+		margin: 0 auto;
 	}
 
 	.types {
@@ -48,13 +48,10 @@
 	.custom {
 		background-color: $color__navy;
 		float: right;
-
-		.svg-container {
-			margin-top: 40px;
-		}
 	}
 
 	#toolbox {
+		margin-left: -11px;
 		width: 236px;
 		height: 150px;
 	}

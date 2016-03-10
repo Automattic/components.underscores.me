@@ -17,20 +17,20 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 			<section id="selection">
 				<div class="types">
-					<h2>Theme Types</h2>
-					<p>Crafting an elegant online portfolio, an information-filled magazine theme or business site? We've got you covered with our pre-made starter themes. Just choose the type that fits the bill and you'll be on your way lickety split!</p>
-					<a href="#theme-types-panel" class="toggle button">Choose a Type</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/type-crate.svg' ); ?>
 					</div>
+					<h2>Theme Types</h2>
+					<p>Crafting an elegant online portfolio, an information-filled magazine theme or business site? We've got you covered with our pre-made starter themes. Just choose the type that fits the bill and you'll be on your way lickety split!</p>
+					<a href="#theme-types-panel" class="toggle button">Choose a Type</a>
 				</div>
 				<div class="custom">
-					<h2>Roll Your Own</h2>
-					<p>If you like to have control over every element of your starter theme, take the reins and pick-and-choose only the precise components you need to create the perfect custom starter theme. No cruft, no muss.</p>
-					<a href="#custom-build-panel" class="toggle button">Configure</a>
 					<div class="svg-container">
 						<?php echo file_get_contents( get_template_directory() . '/assets/img/toolbox.svg' ); ?>
 					</div>
+					<h2>Roll Your Own</h2>
+					<p>If you like to have control over every element of your starter theme, take the reins and pick-and-choose only the precise components you need to create the perfect custom starter theme. No cruft, no muss.</p>
+					<a href="#custom-build-panel" class="toggle button">Configure</a>
 				</div>
 			</section>
 			<section id="theme-types-panel" class="panel">
