@@ -204,51 +204,51 @@ class Components_Generator_Plugin {
 
 			// If it's a directory, copy all files contained within.
 			} else if ( is_dir( $path ) ) {
-				
+
 				// Get files in component directory, excluding unwanted paths.
 				$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
 				sort( $files ); // Ensure indexes start from zero.
-				
+
 				// Add files into insertion array for later.
 				foreach ( $files as $file ) {
 					$insert[] = preg_replace( '%/+%', '/', $path . '/' . $file );
 				}
-				
+
 				// Copy files to build.
 				$dest =  $target_dir . '/components/' . $comp;
 				$this->ensure_directory( dirname( $dest ) );
 				$this->copy_files( $path, $files, $dest );
 			}
 		}
-		
+
 		// Get build sources.
 		$sources = $this->get_build_sources( $target_dir );
-		
+
 		// Replace components in sources.
 		foreach ( $sources as $file ) {
 			$src = $file['source'];
 			$filename = str_replace( $target_dir . '/', '', $file['path'] );
-			
+
 			// Boolean variable, which determines if we must copy over the components included
 			// in any of the files that are overridden by the type. If a type overrides a template,
 			// then it is assumed that the insertion comments in that file must be in the build.
 			$copy_over = in_array( $filename, $replacements );
-			
+
 			// Get all of the insertion comments in source.
 			preg_match_all( '%<!-- components/([^\s]+)\s+-->%', $src, $matches );
-			
+
 			// If we have matches, then proceed
 			if ( is_array( $matches ) && ! empty( $matches ) ) {
 				$comments = $matches[0];
-				
+
 				// Iterate over each of the insertion comments.
 				foreach ( $comments as $comment ) {
-					
+
 					// Generate the `get_teplate_part()` cals needed to insert components.
 					$comp = preg_replace( '%(<!--\s+|\s+-->)%', '', $comment );
 					$template = preg_replace( '/\\.php$/', '', basename( $comp ) );
 					$parts = explode( '-', $template );
-					
+
 					// Depending on the number of words in the template filename, we generate the PHP code.
 					if ( 1 === count( $parts ) ) {
 						$code = sprintf( "<?php get_template_part( '%s', '%s' ); ?>", dirname( $comp ), $parts[0] );
@@ -257,16 +257,16 @@ class Components_Generator_Plugin {
 						$tpl = array_shift( $parts );
 						$code = sprintf( "<?php get_template_part( '%s/%s', '%s' ); ?>", dirname( $comp ), $tpl, implode( '-', $parts ) );
 					}
-					
+
 					// The component file we're working with.
 					$compfile = preg_replace( '%/+%', '/', $this->components_dir . '/' . $comp );
-					
+
 					// If the component file is included in the `components` config -OR- we're copying over, proceed.
 					if ( in_array( $compfile, $insert ) || $copy_over ) {
-						
+
 						// Replace the insertion comment with the actual `get_template_part()` call.
 						$src = str_replace( $comment, $code, $src );
-						
+
 						// If we're copying over, make sure the component is copied in the build.
 						if ( $copy_over ) {
 							$comp_path = $this->components_dir . '/' . $comp;
@@ -276,10 +276,10 @@ class Components_Generator_Plugin {
 						}
 					}
 				}
-				
+
 				// Remove any insertion comments that are not needed.
 				$src = preg_replace( '/\s*<!--\s+[^\s]+\s+-->\s*\n/', "\n", $src );
-				
+
 				// If the original source has been modified, then write the file. Otherwise don't.
 				if ( $src !== $file['source'] ) {
 					file_put_contents( $file['path'], $src );
@@ -287,7 +287,7 @@ class Components_Generator_Plugin {
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets the build sources and associated file data.
 	 */
@@ -298,7 +298,7 @@ class Components_Generator_Plugin {
 		foreach( $iterator as $file ) {
 			$files[] = (string) $file->getPathName();
 		}
-		
+
 		// Filter only PHP files.
 		$files = preg_grep( '/\\.php$/', $files );
 
@@ -308,10 +308,10 @@ class Components_Generator_Plugin {
 			$data[] = array(
 				'path' => $path,
 				'source' => file_get_contents( $path ),
-				
+
 			);
 		}
-		
+
 		// Return processed data.
 		return $data;
 	}
@@ -597,6 +597,30 @@ class Components_Generator_Plugin {
                 error_log( $data );
             }
         }
+    }
+
+    /**
+     * Gets list of stylesheets to include
+     */
+    public function get_stylesheet_paths( $filename ) {
+    	$final_matches = array();
+    	$stylesheet_contents = file_get_contents( $filename );
+    	preg_match_all( '/@import\s+"([^"]+)"\s*;/i', $stylesheet_contents, $matches );
+    	if ( isset( $matches[1] ) && is_array( $matches[1] ) && ! empty( $matches[1] ) ) {
+	    	foreach ( $matches[1] as $key => $value ) {
+	    		$file_parts = explode( '/', $value );
+	    		if ( is_array( $file_parts) && 1 < count( $file_parts) ) {
+	    			array_push( $final_matches, sprintf( '%s/_%s.scss', array_shift( $file_parts ), array_pop( $file_parts ) ) );
+	    		} else {
+	    			array_push( $final_matches, sprintf( '_%s.scss', array_pop( $file_parts ) ) );
+	    		}
+
+	    	}
+	    } else {
+	    	$this->log_message( __( 'Error: stylesheet file was unable to be parsed and/or find SASS imports.' ) );
+	    	$this->log_message( $matches );
+	    }
+	    return $final_matches;
     }
 
 }
