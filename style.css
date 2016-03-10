@@ -1231,7 +1231,7 @@ section {
     width: 50%; }
   #selection .svg-container {
     display: block;
-    margin: 40px auto 0; }
+    margin: 0 auto; }
   #selection .types {
     background-color: #1c2a42;
     float: left; }
@@ -1258,9 +1258,8 @@ section {
   #selection .custom {
     background-color: #141f32;
     float: right; }
-    #selection .custom .svg-container {
-      margin-top: 40px; }
   #selection #toolbox {
+    margin-left: -11px;
     width: 236px;
     height: 150px; }
   #selection h2 {
