@@ -1694,44 +1694,44 @@ section {
     max-width: 60%; }
 
 @media (min-width: 768px) {
-  .components-radio-group,
-  .components-checkbox-group {
+  #custom-build-panel .components-radio-group,
+  #custom-build-panel .components-checkbox-group {
     float: left;
     width: 33.3333%; }
-    .components-radio-group:nth-of-type(3n+1),
-    .components-checkbox-group:nth-of-type(3n+1) {
+    #custom-build-panel .components-radio-group:nth-of-type(3n+1),
+    #custom-build-panel .components-checkbox-group:nth-of-type(3n+1) {
       clear: left; } }
 @media (min-width: 1024px) {
-  .components-radio-group,
-  .components-checkbox-group {
+  #custom-build-panel .components-radio-group,
+  #custom-build-panel .components-checkbox-group {
     float: left;
     width: 25%; }
-    .components-radio-group:nth-of-type(2n+1), .components-radio-group:nth-of-type(3n+1),
-    .components-checkbox-group:nth-of-type(2n+1),
-    .components-checkbox-group:nth-of-type(3n+1) {
+    #custom-build-panel .components-radio-group:nth-of-type(2n+1), #custom-build-panel .components-radio-group:nth-of-type(3n+1),
+    #custom-build-panel .components-checkbox-group:nth-of-type(2n+1),
+    #custom-build-panel .components-checkbox-group:nth-of-type(3n+1) {
       clear: none; }
-    .components-radio-group:nth-of-type(4n+1),
-    .components-checkbox-group:nth-of-type(4n+1) {
+    #custom-build-panel .components-radio-group:nth-of-type(4n+1),
+    #custom-build-panel .components-checkbox-group:nth-of-type(4n+1) {
       clear: left; } }
 @media (max-width: 767px) {
-  .components-radio-group,
-  .components-checkbox-group {
+  #custom-build-panel .components-radio-group,
+  #custom-build-panel .components-checkbox-group {
     float: left;
     width: 50%; }
-    .components-radio-group:nth-of-type(2n+1),
-    .components-checkbox-group:nth-of-type(2n+1) {
+    #custom-build-panel .components-radio-group:nth-of-type(2n+1),
+    #custom-build-panel .components-checkbox-group:nth-of-type(2n+1) {
       clear: left; } }
 @media (max-width: 767px) {
-  .components-radio-group,
-  .components-checkbox-group {
+  #custom-build-panel .components-radio-group,
+  #custom-build-panel .components-checkbox-group {
     float: left;
     width: 50%; }
-    .components-radio-group:nth-of-type(2n+1),
-    .components-checkbox-group:nth-of-type(2n+1) {
+    #custom-build-panel .components-radio-group:nth-of-type(2n+1),
+    #custom-build-panel .components-checkbox-group:nth-of-type(2n+1) {
       clear: left; } }
 @media only screen and (max-width: 400px) {
-  .components-radio-group,
-  .components-checkbox-group {
+  #custom-build-panel .components-radio-group,
+  #custom-build-panel .components-checkbox-group {
     float: none;
     width: 100%; } }
 #contributors {
