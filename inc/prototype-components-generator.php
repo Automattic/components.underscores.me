@@ -228,8 +228,7 @@ class Components_Generator_Plugin {
 			} else if ( is_dir( $path ) ) {
 
 				// Get files in component directory, excluding unwanted paths.
-				$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
-				sort( $files ); // Ensure indexes start from zero.
+				$files = $this->read_dir( $path );
 
 				// Add files into insertion array for later.
 				foreach ( $files as $file ) {
@@ -308,30 +307,87 @@ class Components_Generator_Plugin {
 				}
 			}
 		}
+		
+		// Make sure all template files included via `get_template_part()` are in the build.
+		foreach ( $sources as $file ) {
+			
+			// Get the file source we'll be working with.
+			$src = $file['source'];
+			preg_match_all( '/get_template_part([^;]+);/', $src, $matches );
+			
+			// If we have calls to `get_template_parts()`, proceed.
+			if ( is_array( $matches ) && ! empty( $matches[1] ) ) {
+
+				// Process each call individually.
+				foreach ( $matches[1] as $line ) {
+					$line = preg_replace( '/(^\(\s*|\s*\)$)/', '', $line );
+					$parts = preg_split( '/\s*,\s*/', $line );
+					$first = trim( preg_replace( '/(\'|")/', '', $parts[0] ) );
+					$second = $parts[1];
+					
+					// If the second parameter is a string, then we only need one file.
+					if ( preg_match( '/^(\'|")/', $second ) ) {
+						$second = trim( preg_replace( '/(\'|")/', '', $second ) );
+						$src_file = sprintf( '%s/%s-%s.php', $this->components_dir, $first, $second );
+						$target_file = sprintf( '%s/%s-%s.php', $target_dir, $first, $second );
+						$this->ensure_directory( dirname( $target_file ) );
+						if ( file_exists( $src_file ) ) {
+							copy( $src_file, $target_file );
+						}
+						
+					// If the second parameter is a function call, then we need to copy all files,
+					// since there is no way to accurately determine which file will be included.
+					// .e.g `get_template_part( 'components/post/content', get_post_type() );`
+					} else {
+						$parts = preg_split( '%/+%', $first );
+						$prefix = trim( array_pop( $parts ) );
+						$src_dir = sprintf( '%s/%s', $this->components_dir, implode( '/', $parts ) );
+						$files = $this->read_dir( $src_dir );
+						$regex = sprintf( '/^%s/', $prefix );
+						$matches = preg_grep( $regex, $files );
+						$dest = $target_dir . '/' . dirname( $first );
+						$this->copy_files( $src_dir, $matches, $dest );
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Reads a directory excluding wildcards.
+	 */
+	public function read_dir( $path ) {
+		$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
+		sort( $files ); // Ensure indexes start from zero.
+		return $files;
 	}
 
 	/**
 	 * Gets the build sources and associated file data.
 	 */
 	public function get_build_sources( $dir ) {
-		// Get all files recursively in build dir.
-		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
-		$files = array();
-		foreach( $iterator as $file ) {
-			$files[] = (string) $file->getPathName();
-		}
+		static $data;
+		
+		if ( ! isset( $data ) ) {
+			// Get all files recursively in build dir.
+			$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
+			$files = array();
+			foreach( $iterator as $file ) {
+				$files[] = (string) $file->getPathName();
+			}
 
-		// Filter only PHP files.
-		$files = preg_grep( '/\\.php$/', $files );
+			// Filter only PHP files.
+			$files = preg_grep( '/\\.php$/', $files );
 
-		// Process file data.
-		$data = array();
-		foreach ( $files as $path ) {
-			$data[] = array(
-				'path' => $path,
-				'source' => file_get_contents( $path ),
+			// Process file data.
+			$data = array();
+			foreach ( $files as $path ) {
+				$data[] = array(
+					'path' => $path,
+					'source' => file_get_contents( $path ),
 
-			);
+				);
+			}
 		}
 
 		// Return processed data.
