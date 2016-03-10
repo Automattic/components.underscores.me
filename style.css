@@ -1031,7 +1031,7 @@ section {
   .stretchy-pipe-left {
     left: -100%;
     right: 100%;
-    top: 495px; }
+    top: 424px; }
 
   .stretchy-pipe-center {
     left: 65px;
@@ -1243,6 +1243,7 @@ section {
       background-image: url(assets/img/gear-or.png);
       background-position: center;
       background-size: cover;
+      color: #fff;
       content: "OR";
       display: table;
       font-family: "factoria", "Roboto Slab", serif;
