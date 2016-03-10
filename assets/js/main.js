@@ -30,7 +30,7 @@
 		}
 
 		// Scroll to form
-		$('html, body').stop().animate({
+		$( 'html, body' ).stop().animate( {
 			'scrollTop': $( '#generator' ).offset().top
 		}, 900, 'swing', function () {
 			window.location.hash = 'generator';
@@ -52,30 +52,30 @@
 	} );
 
 	// Hide/Show panels
-	$('a.toggle').click(function( e ){
+	$( 'a.toggle' ).click(function( e ) {
 		e.preventDefault();
 
-		var toggled = $(this).attr('href');
+		var toggled = $( this ).attr( 'href' );
 
-		if ( ( '#' + $('.panel:visible').attr('id') ) === toggled ) {
-			$(toggled).slideUp(600);
+		if ( ( '#' + $( '.panel:visible' ).attr( 'id' ) ) === toggled ) {
+			$( toggled ).slideUp( 300 );
 			return false;
 		}
 
-		if ( $('.panel:visible').length === 0 ) {
-			$(toggled).slideDown(600);
+		if ( $( '.panel:visible' ).length === 0 ) {
+			$( toggled ).slideDown( 600 );
 
-			$('html, body').stop().animate({
+			$( 'html, body' ).stop().animate( {
 				'scrollTop': $( toggled ).offset().top
 			}, 900, 'swing' );
 		} else {
-			$('.panel:visible').slideUp(600, function(){
-				$(toggled).slideDown(600);
-			});
+			$( '.panel:visible' ).slideUp( 600, function() {
+				$( toggled ).slideDown( 900 );
 
-			$('html, body').stop().animate({
-				'scrollTop': $( toggled ).offset().top
-			}, 900, 'swing' );
+				$( 'html, body' ).stop().animate( {
+					'scrollTop': $( toggled ).offset().top
+				}, 900, 'swing' );
+			});
 		}
 	});
 
