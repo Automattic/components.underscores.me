@@ -1222,7 +1222,7 @@ section {
     width: 100%; } }
 #selection {
   background-color: #141f32;
-  color: #f3f2ed;
+  color: rgba(255, 255, 255, 0.7);
   overflow: hidden;
   position: relative;
   text-align: center; }
@@ -1230,6 +1230,9 @@ section {
   #selection .custom {
     padding: 40px 6em 3em;
     width: 50%; }
+  #selection strong {
+    background: transparent;
+    color: #f3f2ed; }
   #selection .svg-container {
     display: block;
     margin: 0 auto; }

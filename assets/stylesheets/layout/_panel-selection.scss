@@ -1,6 +1,6 @@
 #selection {
 	background-color: $color__navy;
-	color: $color__offwhite;
+	color: rgba( 255, 255, 255, 0.7 );
 	overflow: hidden;
 	position: relative;
 	text-align: center;
@@ -9,6 +9,11 @@
 	.custom {
 		padding: 40px 6em 3em;
 		width: 50%;
+	}
+
+	strong {
+		background: transparent;
+		color: $color__offwhite;
 	}
 
 	.svg-container {
