@@ -78,6 +78,17 @@
 			float: none;
 			width: 100%;
 		}
+
+		.types {
+			padding-bottom: 6em;
+			position: relative;
+
+			&:after {
+				top: auto;
+				bottom: 50px;
+				transform: translate( -50%, 100%);
+			}
+		}
 	}
 }
 

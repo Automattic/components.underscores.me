@@ -1407,7 +1407,14 @@ section {
   #selection .types,
   #selection .custom {
     float: none;
-    width: 100%; } }
+    width: 100%; }
+  #selection .types {
+    padding-bottom: 6em;
+    position: relative; }
+    #selection .types:after {
+      top: auto;
+      bottom: 50px;
+      transform: translate(-50%, 100%); } }
 @media (max-width: 767px) {
   #selection .button {
     display: none; }
