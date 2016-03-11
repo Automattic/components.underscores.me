@@ -10,6 +10,7 @@ class Components_Generator_Plugin {
 	var $repo_url = 'https://codeload.github.com/Automattic/theme-components/zip/master';
 	var $repo_file_name = 'theme-components-master.zip';
 	var $components_dir;
+	var $selected_theme;
 	var $prototype_dir;
 	var $bypass_cache = false;
 	var $logging = true;
@@ -307,14 +308,14 @@ class Components_Generator_Plugin {
 				}
 			}
 		}
-		
+
 		// Make sure all template files included via `get_template_part()` are in the build.
 		foreach ( $sources as $file ) {
-			
+
 			// Get the file source we'll be working with.
 			$src = $file['source'];
 			preg_match_all( '/get_template_part([^;]+);/', $src, $matches );
-			
+
 			// If we have calls to `get_template_parts()`, proceed.
 			if ( is_array( $matches ) && ! empty( $matches[1] ) ) {
 
@@ -324,7 +325,7 @@ class Components_Generator_Plugin {
 					$parts = preg_split( '/\s*,\s*/', $line );
 					$first = trim( preg_replace( '/(\'|")/', '', $parts[0] ) );
 					$second = $parts[1];
-					
+
 					// If the second parameter is a string, then we only need one file.
 					if ( preg_match( '/^(\'|")/', $second ) ) {
 						$second = trim( preg_replace( '/(\'|")/', '', $second ) );
@@ -334,7 +335,7 @@ class Components_Generator_Plugin {
 						if ( file_exists( $src_file ) ) {
 							copy( $src_file, $target_file );
 						}
-						
+
 					// If the second parameter is a function call, then we need to copy all files,
 					// since there is no way to accurately determine which file will be included.
 					// .e.g `get_template_part( 'components/post/content', get_post_type() );`
@@ -352,7 +353,7 @@ class Components_Generator_Plugin {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reads a directory excluding wildcards.
 	 */
@@ -367,7 +368,7 @@ class Components_Generator_Plugin {
 	 */
 	public function get_build_sources( $dir ) {
 		static $data;
-		
+
 		if ( ! isset( $data ) ) {
 			// Get all files recursively in build dir.
 			$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
@@ -723,11 +724,11 @@ class Components_Generator_Plugin {
 		$this->delete_directory( $this->prototype_dir );
 		exit();
 	}
-	
+
 	/**
 	 * Returns an array with the available types.
 	 */
-	 
+
 	public function get_types() {
 		static $types;
 		if ( ! isset( $types ) ) {
@@ -855,6 +856,41 @@ class Components_Generator_Plugin {
 			}
 		}
 		return rmdir( $directory );
+	}
+
+	/**
+	 * Track total downloads and type downloads.
+	 */
+	function generator_do_tracking() {
+		// Let's not fire stats on localhost.
+		if ( 'components.underscores.me' !== $_SERVER['HTTP_HOST'] ) {
+			return;
+		}
+
+		$types = $this->get_types();
+
+		// Track total downloads.
+		$user_agent = 'regular';
+		if ( '_sh' == $_SERVER['HTTP_USER_AGENT'] ) {
+			$user_agent = '_sh';
+		}
+
+		// Track downloads of certain types.
+		foreach ( $types as $type => $title ) {
+			if ( $title == $this->selected_theme ) {
+				$track_type = $this->selected_theme;
+				break;
+			}
+		}
+
+		if ( isset( $track_type ) ) {
+			wp_remote_get( add_query_arg( array(
+				'v'									=> 'wpcom-no-pv',
+				'x_component_total_downloads' => $user_agent,
+				'x_component_downloads'		  => $track_type,
+			), 'http://stats.wordpress.com/g.gif' ),
+			array( 'blocking' => false ) );
+		}
 	}
 
 	/**
