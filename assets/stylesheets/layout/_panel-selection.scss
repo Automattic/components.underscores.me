@@ -71,8 +71,26 @@
 	}
 }
 
+@include desktop-max {
+	#selection{
+		.types,
+		.custom {
+			float: none;
+			width: 100%;
+		}
+	}
+}
+
 @include mobile {
-	#selection .button {
-		display: none;
+	#selection {
+		.button {
+			display: none;
+		}
+
+		.types,
+		.custom {
+			padding-left: 3em;
+			padding-right: 3em;
+		}
 	}
 }

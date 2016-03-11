@@ -1403,9 +1403,18 @@ section {
   #selection h2 {
     color: #A0C3C6; }
 
+@media (max-width: 1023px) {
+  #selection .types,
+  #selection .custom {
+    float: none;
+    width: 100%; } }
 @media (max-width: 767px) {
   #selection .button {
-    display: none; } }
+    display: none; }
+  #selection .types,
+  #selection .custom {
+    padding-left: 3em;
+    padding-right: 3em; } }
 #theme-types-panel {
   display: none; }
 
