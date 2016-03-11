@@ -30,16 +30,17 @@ class Components_Generator_Plugin {
 		$this->components_dir = preg_replace( '%-master$%', '-branchless-merge', $this->components_dir );
 
 		// Let's run a few init functions to set things up.
-		add_action( 'init', array( $this, 'set_expiration_and_go' ) );
+		// Using a low priority to make sure it runs before other actions.
+		add_action( 'init', array( $this, 'set_expiration_and_go' ), 1 );
 
 		// Create zips when we need them.
-		add_action( 'init', array( $this, 'create_zippity_zip' ) );
+		add_action( 'init', array( $this, 'create_zippity_zip' ), 2 );
 
 		// A filter to run replacements on.
 		add_filter( 'components_generator_file_contents', array( $this, 'replace_theme_fields' ), 10, 2 );
 
 		// Use do_action( 'render_types_form' ); in your theme to render the form.
-		add_action( 'render_types_form', array( $this, 'render_types_form' ) );
+		add_action( 'render_types_form', array( $this, 'render_types_form' ), 3 );
 	}
 
 	/**
@@ -59,6 +60,9 @@ class Components_Generator_Plugin {
 		foreach ( $types as $type => $title ) {
 			$this->build_type( $type );
 		}
+		
+		// Build the base theme.
+		$this->build_type( 'base' );
 	}
 
 	/**
@@ -107,8 +111,12 @@ class Components_Generator_Plugin {
 		$target_dir = $this->build_dir . '/' . $type;
 
 		// Get type config.
-		$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
-		$config = $this->read_json( $config_path );
+		if ( 'base' === $type ) {
+			$config = array();
+		} else {
+			$config_path = sprintf( '%s/configs/type-%s.json', $this->components_dir, $type );
+			$config = $this->read_json( $config_path );
+		}
 
 		// Copy just build files we need to start with so we can work with them.
 		$exclude_from_build = array( 'assets', 'components', 'configs', 'CONTRIBUTING.md', 'README.md', 'templates', 'types' );
@@ -161,6 +169,11 @@ class Components_Generator_Plugin {
 		// is specified, since the styles need to be included.
 		if ( ! isset( $config['sass_replace'] ) ) {
 			$config['sass_replace'] = array();
+		}
+		
+		// Make sure components are added if there's no config to include them.
+		if ( ! isset( $config['components'] ) ) {
+			$config['components'] = array();
 		}
 
 		// Iterate over each config section and process individually.
@@ -246,6 +259,53 @@ class Components_Generator_Plugin {
 		// Get build sources.
 		$sources = $this->get_build_sources( $target_dir );
 
+		// Make sure all template files included via `get_template_part()` are in the build.
+		foreach ( $sources as $file ) {
+			
+			// Get the file source we'll be working with.
+			$src = $file['source'];
+			preg_match_all( '/get_template_part([^;]+);/', $src, $matches );
+			
+			// If we have calls to `get_template_parts()`, proceed.
+			if ( is_array( $matches ) && ! empty( $matches[1] ) ) {
+
+				// Process each call individually.
+				foreach ( $matches[1] as $line ) {
+					$line = preg_replace( '/(^\(\s*|\s*\)$)/', '', $line );
+					$parts = preg_split( '/\s*,\s*/', $line );
+					$first = trim( preg_replace( '/(\'|")/', '', $parts[0] ) );
+					$second = $parts[1];
+					
+					// If the second parameter is a string, then we only need one file.
+					if ( preg_match( '/^(\'|")/', $second ) ) {
+						$second = trim( preg_replace( '/(\'|")/', '', $second ) );
+						$src_file = sprintf( '%s/%s-%s.php', $this->components_dir, $first, $second );
+						$target_file = sprintf( '%s/%s-%s.php', $target_dir, $first, $second );
+						$this->ensure_directory( dirname( $target_file ) );
+						if ( file_exists( $src_file ) ) {
+							copy( $src_file, $target_file );
+						}
+						
+					// If the second parameter is a function call, then we need to copy all files,
+					// since there is no way to accurately determine which file will be included.
+					// .e.g `get_template_part( 'components/post/content', get_post_type() );`
+					} else {
+						$parts = preg_split( '%/+%', $first );
+						$prefix = trim( array_pop( $parts ) );
+						$src_dir = sprintf( '%s/%s', $this->components_dir, implode( '/', $parts ) );
+						$files = $this->read_dir( $src_dir );
+						$regex = sprintf( '/^%s/', $prefix );
+						$matches = preg_grep( $regex, $files );
+						$dest = $target_dir . '/' . dirname( $first );
+						$this->copy_files( $src_dir, $matches, $dest );
+					}
+				}
+			}
+		}
+		
+		// Get updated build sources.
+		$sources = $this->get_build_sources( $target_dir );
+
 		// Replace components in sources.
 		foreach ( $sources as $file ) {
 			$src = $file['source'];
@@ -308,50 +368,6 @@ class Components_Generator_Plugin {
 				}
 			}
 		}
-
-		// Make sure all template files included via `get_template_part()` are in the build.
-		foreach ( $sources as $file ) {
-
-			// Get the file source we'll be working with.
-			$src = $file['source'];
-			preg_match_all( '/get_template_part([^;]+);/', $src, $matches );
-
-			// If we have calls to `get_template_parts()`, proceed.
-			if ( is_array( $matches ) && ! empty( $matches[1] ) ) {
-
-				// Process each call individually.
-				foreach ( $matches[1] as $line ) {
-					$line = preg_replace( '/(^\(\s*|\s*\)$)/', '', $line );
-					$parts = preg_split( '/\s*,\s*/', $line );
-					$first = trim( preg_replace( '/(\'|")/', '', $parts[0] ) );
-					$second = $parts[1];
-
-					// If the second parameter is a string, then we only need one file.
-					if ( preg_match( '/^(\'|")/', $second ) ) {
-						$second = trim( preg_replace( '/(\'|")/', '', $second ) );
-						$src_file = sprintf( '%s/%s-%s.php', $this->components_dir, $first, $second );
-						$target_file = sprintf( '%s/%s-%s.php', $target_dir, $first, $second );
-						$this->ensure_directory( dirname( $target_file ) );
-						if ( file_exists( $src_file ) ) {
-							copy( $src_file, $target_file );
-						}
-
-					// If the second parameter is a function call, then we need to copy all files,
-					// since there is no way to accurately determine which file will be included.
-					// .e.g `get_template_part( 'components/post/content', get_post_type() );`
-					} else {
-						$parts = preg_split( '%/+%', $first );
-						$prefix = trim( array_pop( $parts ) );
-						$src_dir = sprintf( '%s/%s', $this->components_dir, implode( '/', $parts ) );
-						$files = $this->read_dir( $src_dir );
-						$regex = sprintf( '/^%s/', $prefix );
-						$matches = preg_grep( $regex, $files );
-						$dest = $target_dir . '/' . dirname( $first );
-						$this->copy_files( $src_dir, $matches, $dest );
-					}
-				}
-			}
-		}
 	}
 
 	/**
@@ -367,28 +383,24 @@ class Components_Generator_Plugin {
 	 * Gets the build sources and associated file data.
 	 */
 	public function get_build_sources( $dir ) {
-		static $data;
+		// Get all files recursively in build dir.
+		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
+		$files = array();
+		foreach( $iterator as $file ) {
+			$files[] = (string) $file->getPathName();
+		}
 
-		if ( ! isset( $data ) ) {
-			// Get all files recursively in build dir.
-			$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
-			$files = array();
-			foreach( $iterator as $file ) {
-				$files[] = (string) $file->getPathName();
-			}
+		// Filter only PHP files.
+		$files = preg_grep( '/\\.php$/', $files );
 
-			// Filter only PHP files.
-			$files = preg_grep( '/\\.php$/', $files );
+		// Process file data.
+		$data = array();
+		foreach ( $files as $path ) {
+			$data[] = array(
+				'path' => $path,
+				'source' => file_get_contents( $path ),
 
-			// Process file data.
-			$data = array();
-			foreach ( $files as $path ) {
-				$data[] = array(
-					'path' => $path,
-					'source' => file_get_contents( $path ),
-
-				);
-			}
+			);
 		}
 
 		// Return processed data.
@@ -631,16 +643,16 @@ class Components_Generator_Plugin {
 	 * Let's take the form input, generate and zip of the theme.
 	 */
 	function create_zippity_zip() {
+		if ( ! isset( $_REQUEST['components_types_generate'], $_REQUEST['components_types_name'] ) ) {
+			return;
+		}
+		
 		// Grab our type data.
 		$types = $this->get_types();
 
 		$tmp = $this->build_dir . '/tmp';
 
 		$this->ensure_directory( $tmp );
-
-		if ( ! isset( $_REQUEST['components_types_generate'], $_REQUEST['components_types_name'] ) ) {
-			return;
-		}
 
 		if ( empty( $_REQUEST['components_types_name'] ) ) {
 			wp_die( 'Please enter a theme name. Go back and try again.' );
@@ -901,24 +913,23 @@ class Components_Generator_Plugin {
 		$file_name = $this->build_dir . '/' . $this->repo_file_name;
 
 		// Determine if we need to hook the init method
-		$hook_init = false;
+		$init = ! is_dir( $this->build_dir );
 		if ( file_exists( $file_name ) ) {
 			$file_time_stamp = date( filemtime( $file_name ) );
 			$time = time();
 			$expired = 1800; // Expire cache after 30 minutes.
 			if ( $this->bypass_cache ) {
-				$hook_init = true; // Bypass the cache if debug filter is true
+				$init = true; // Bypass the cache if debug filter is true
 			} else {
-				$hook_init = $expired <= ( $time - $file_time_stamp ) ? true : false;
+				$init = $expired <= ( $time - $file_time_stamp ) ? true : false;
 			}
 		} else {
 			// If no file exists run the init function anyway.
-			$hook_init = true;
+			$init = true;
 		}
-
-		// Only fetch theme components if it's really necessary.
-		if ( $hook_init ) {
-			add_action( 'wp_footer', array( $this, 'get_theme_components_init' ), 99 );
+		
+		if ( $init ) {
+			$this->get_theme_components_init();
 		}
 	}
 
