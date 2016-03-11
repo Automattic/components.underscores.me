@@ -33,6 +33,9 @@
 
 .robot-arm {
 	-webkit-animation: 2s 2.25s 1 forwards LiftArm;
+	-moz-animation: 2s 2.25s 1 forwards LiftArm;
+	-o-animation: 2s 2.25s 1 forwards LiftArm;
+	animation: 2s 2.25s 1 forwards LiftArm;
 	transform-origin: 0 100px;
 	transform: rotate(2deg);
 }
@@ -42,7 +45,7 @@
 	-moz-animation: 1.125s 2.6s 1 SpinHand;
 	-o-animation: 1.125s 2.6s 1 SpinHand;
 	animation: 1.125s 2.6s 1 SpinHand;
-	transform-origin: center center;
+	transform-origin: 115px 0;
 
 }
 
