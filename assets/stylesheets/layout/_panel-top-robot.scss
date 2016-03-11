@@ -395,11 +395,22 @@
 	}
 
 	.top-robot-container {
-		height: 200px;
+		height: 196px;
+		padding-top: 4px;
 		position: absolute;
 		overflow: hidden;
 		text-align: center;
 		top: 10px;
 		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+	.top-robot-container {
+		text-align: right;
+	}
+
+	.top-robot {
+		height: 300px;
 	}
 }
