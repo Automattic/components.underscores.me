@@ -60,9 +60,6 @@ class Components_Generator_Plugin {
 		foreach ( $types as $type => $title ) {
 			$this->build_type( $type );
 		}
-		
-		// Build the base theme.
-		$this->build_type( 'base' );
 	}
 
 	/**
@@ -170,7 +167,7 @@ class Components_Generator_Plugin {
 		if ( ! isset( $config['sass_replace'] ) ) {
 			$config['sass_replace'] = array();
 		}
-		
+
 		// Make sure components are added if there's no config to include them.
 		if ( ! isset( $config['components'] ) ) {
 			$config['components'] = array();
@@ -261,11 +258,11 @@ class Components_Generator_Plugin {
 
 		// Make sure all template files included via `get_template_part()` are in the build.
 		foreach ( $sources as $file ) {
-			
+
 			// Get the file source we'll be working with.
 			$src = $file['source'];
 			preg_match_all( '/get_template_part([^;]+);/', $src, $matches );
-			
+
 			// If we have calls to `get_template_parts()`, proceed.
 			if ( is_array( $matches ) && ! empty( $matches[1] ) ) {
 
@@ -275,7 +272,7 @@ class Components_Generator_Plugin {
 					$parts = preg_split( '/\s*,\s*/', $line );
 					$first = trim( preg_replace( '/(\'|")/', '', $parts[0] ) );
 					$second = $parts[1];
-					
+
 					// If the second parameter is a string, then we only need one file.
 					if ( preg_match( '/^(\'|")/', $second ) ) {
 						$second = trim( preg_replace( '/(\'|")/', '', $second ) );
@@ -285,7 +282,7 @@ class Components_Generator_Plugin {
 						if ( file_exists( $src_file ) ) {
 							copy( $src_file, $target_file );
 						}
-						
+
 					// If the second parameter is a function call, then we need to copy all files,
 					// since there is no way to accurately determine which file will be included.
 					// .e.g `get_template_part( 'components/post/content', get_post_type() );`
@@ -302,7 +299,7 @@ class Components_Generator_Plugin {
 				}
 			}
 		}
-		
+
 		// Get updated build sources.
 		$sources = $this->get_build_sources( $target_dir );
 
@@ -646,7 +643,7 @@ class Components_Generator_Plugin {
 		if ( ! isset( $_REQUEST['components_types_generate'], $_REQUEST['components_types_name'] ) ) {
 			return;
 		}
-		
+
 		// Grab our type data.
 		$types = $this->get_types();
 
@@ -745,6 +742,9 @@ class Components_Generator_Plugin {
 		static $types;
 		if ( ! isset( $types ) ) {
 			$types = $this->read_json( $this->build_dir . '/types.json' );
+			// Prepend Base theme data to the $types array.
+			// It isn't a type, but should still be included in the generator processes.
+			$types = array( 'base' => 'Base' ) + $types;
 		}
 		return $types;
 	}
@@ -927,7 +927,7 @@ class Components_Generator_Plugin {
 			// If no file exists run the init function anyway.
 			$init = true;
 		}
-		
+
 		if ( $init ) {
 			$this->get_theme_components_init();
 		}
