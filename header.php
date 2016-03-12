@@ -63,8 +63,7 @@
 							<?php endif; ?>
 						</div><!-- .site-branding -->
 						<div id="intro">
-							<p>Components is a library of <strong>shareable, reusable patterns</strong> for WordPress themes. Instead of starting from scratch, mix and match from a collection of pre-made components to build your own <strong>custom starter theme</strong>.</p>
-							<p>If you&rsquo;re just starting out, it&rsquo;ll get you <strong>booted up</strong> without needing to reinvent the wheel or write a lot of custom code. If you&rsquo;re an experienced theme developer, you&rsquo;ll find <strong>well-organized, easy-to use code</strong> that you can remix to your heart&rsquo;s delight!</p>
+							<p>The choice is yours: jump-start a blog, portfolio, business, or magazine site – or concoct something completely custom. No matter which route you take, you&rsquo;ll save tons of time and <strong>turbo-charge</strong> your theme&rsquo;s development.
 						</div><!-- #intro -->
 					</div><!-- .intro-content -->
 				</div><!-- .content-wrapper -->
