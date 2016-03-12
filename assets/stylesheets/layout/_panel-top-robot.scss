@@ -5,10 +5,10 @@
 	left: 5%;
 	-ms-transform: translate( 0, -193px ) rotate(195deg); /* make sure robot is visible in IE9, since keyframes are not supported */
 	transform: translate( 0, -400px ) rotate(195deg);
-	-webkit-animation: .2s 1.5s 1 forwards TopRobotDrop;
-	-moz-animation: .2s 1.5s 1 forwards TopRobotDrop;
-	-o-animation: .2s 1.5s 1 forwards TopRobotDrop;
-	animation: .2s 1.5s 1 forwards TopRobotDrop;
+	-webkit-animation: .2s 1s 1 forwards TopRobotDrop;
+	-moz-animation: .2s 1s 1 forwards TopRobotDrop;
+	-o-animation: .2s 1s 1 forwards TopRobotDrop;
+	animation: .2s 1s 1 forwards TopRobotDrop;
 	width: 230px;
 	height: 350px;
 	z-index: 10;
