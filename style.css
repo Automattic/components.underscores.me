@@ -909,85 +909,67 @@ section {
     margin-top: 180px;
     margin-left: 50px; } }
 @media (min-width: 768px) {
-	#masthead .wrap {
-		padding-top: 0;
-		position: relative;
-	}
+  #masthead .wrap {
+    padding-top: 0;
+    position: relative; }
 
-	.chute-wrapper {
-		float: left;
-		margin: 40px 0 -60px 70px;
-		position: relative;
-		z-index: 1;
-	}
+  .chute-wrapper {
+    float: left;
+    margin: 40px 0 -60px 70px;
+    position: relative;
+    z-index: 1; }
 
-	#pipe-chute {
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
+  #pipe-chute {
+    position: absolute;
+    top: 0;
+    left: 0; }
 
-	#pipe-tap {
-		-webkit-animation-name: spin;
-		animation-name: spin;
-		-webkit-animation-duration: 3s;
-		animation-duration: 3s;
-		-webkit-animation-direction: alternate;
-		animation-direction: alternate;
-		-webkit-animation-delay: 5s;
-		animation-delay: 5s;
-		-webkit-animation-fill-mode: forwards;
-		animation-fill-mode: forwards;
-		-webkit-animation-timing-function: cubic-bezier(0.96, -0.08, 0.49, 1.58);
-		animation-timing-function: cubic-bezier(0.96, -0.08, 0.49, 1.58);
-		-webkit-animation-play-state: running;
-		animation-play-state: running;
-		-webkit-animation-iteration-count: infinite;
-		animation-iteration-count: infinite;
-		position: absolute;
-		top: 245px;
-		left: 34px;
-		width: 80px;
-		height: 80px;
-	}
+  #pipe-tap {
+    animation-name: spin;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-delay: 5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.96, -0.08, 0.49, 1.58);
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 245px;
+    left: 34px;
+    width: 80px;
+    height: 80px; }
 
-	#pipe-left {
-		margin-left: -40px;
-		margin-top: 36px;
-	}
+  #pipe-left {
+    margin-left: -40px;
+    margin-top: 36px; }
 
-	#stretchy-pipe {
-		position: absolute;
-		left: 175px;
-		right: 98px;
-		background: #A0C3C6;
-		height: 30px;
-		top: 40px;
-	}
+  #stretchy-pipe {
+    position: absolute;
+    left: 175px;
+    right: 98px;
+    background: #A0C3C6;
+    height: 30px;
+    top: 40px; }
 
-	#pipe-rightcrook {
-		float: right;
-		position: absolute;
-		top: 0;
-		right: 20px;
-		margin-top: -14px;
-		vertical-align: top;
-		margin-left: -5px;
-	}
+  #pipe-rightcrook {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    margin-top: -14px;
+    vertical-align: top;
+    margin-left: -5px; }
 
   /* Move content block to right */
-	#masthead .content-wrapper {
-		float: left;
-		position: relative;
-		width: calc(100% - 300px);
-		z-index: 1;
-	}
+  #masthead .content-wrapper {
+    float: left;
+    position: relative;
+    width: calc(100% - 300px);
+    z-index: 1; }
 
-	#masthead .intro-content {
-		margin: 40px auto 0;
-		max-width: 650px;
-	}
-}
+  #masthead .intro-content {
+    margin: 40px auto 0;
+    max-width: 650px; } }
 /* Rotation animation */
 @keyframes spin {
   0%, 40% {
@@ -1350,7 +1332,15 @@ section {
         left: 0;
         margin: 0;
         max-height: 100%;
-        width: 150px; } }
+        width: 150px; }
+
+  #types .theme-type {
+    padding-bottom: 2em; }
+  #types .types-row:last-of-type {
+    padding-bottom: 0; }
+
+  .download.button {
+    display: none; } }
 #download-base {
   background-color: #A0C3C6; }
   #download-base ::after {
@@ -1426,25 +1416,18 @@ section {
   #extra-info .col:nth-of-type(even) {
     float: right; } }
 #generator {
-	background-color: #1c2a42;
-	color: #f3f2ed;
-	max-height: 100%;
-	overflow: hidden;
-	position: relative;
-	text-align: center;
-}
-
-#generator[tabindex="-1"]:focus {
-	outline: 0;
-}
-
-#generator .wrap {
-	max-width: 700px;
-}
-
-#generator h2 {
-	color: #A0C3C6;
-}
+  background-color: #1c2a42;
+  color: #f3f2ed;
+  max-height: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: center; }
+  #generator[tabindex="-1"]:focus {
+    outline: 0; }
+  #generator .wrap {
+    max-width: 700px; }
+  #generator h2 {
+    color: #A0C3C6; }
 
 .generator-form {
   padding-bottom: 1.5em;
@@ -1557,13 +1540,8 @@ section {
  * Media queries
  */
 @media (max-width: 767px) {
-  .generator-form-primary,
-  .generator-form-secondary {
-    margin-bottom: 20px;
-    width: 100%; }
-
-  .generator-form-submit {
-    text-align: center; } }
+  #generator {
+    display: none; } }
 @media (min-width: 768px) {
   .generator-form-primary {
     display: inline-block;
