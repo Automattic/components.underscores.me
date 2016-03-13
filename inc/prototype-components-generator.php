@@ -499,6 +499,30 @@ class Components_Generator_Plugin {
 	}
 
 	/**
+	 * Gets list of stylesheets to include
+	 */
+	public function get_stylesheet_paths( $filename ) {
+		$final_matches = array();
+		$stylesheet_contents = file_get_contents( $filename );
+		preg_match_all( '/@import\s+"([^"]+)"\s*;/i', $stylesheet_contents, $matches );
+		if ( isset( $matches[1] ) && is_array( $matches[1] ) && ! empty( $matches[1] ) ) {
+			foreach ( $matches[1] as $key => $value ) {
+				$file_parts = explode( '/', $value );
+				if ( is_array( $file_parts) && 1 < count( $file_parts) ) {
+					array_push( $final_matches, sprintf( '%s/_%s.scss', array_shift( $file_parts ), array_pop( $file_parts ) ) );
+				} else {
+					array_push( $final_matches, sprintf( '_%s.scss', array_pop( $file_parts ) ) );
+				}
+
+			}
+		} else {
+			$this->log_message( __( 'Error: stylesheet file was unable to be parsed and/or find SASS imports.' ) );
+			$this->log_message( $matches );
+		}
+		return $final_matches;
+	}
+
+	/**
 	 * Renders the generator type form.
 	 */
 	function render_types_form() {
@@ -945,31 +969,6 @@ class Components_Generator_Plugin {
 			}
 		}
 	}
-
-	/**
-	 * Gets list of stylesheets to include
-	 */
-	public function get_stylesheet_paths( $filename ) {
-		$final_matches = array();
-		$stylesheet_contents = file_get_contents( $filename );
-		preg_match_all( '/@import\s+"([^"]+)"\s*;/i', $stylesheet_contents, $matches );
-		if ( isset( $matches[1] ) && is_array( $matches[1] ) && ! empty( $matches[1] ) ) {
-			foreach ( $matches[1] as $key => $value ) {
-				$file_parts = explode( '/', $value );
-				if ( is_array( $file_parts) && 1 < count( $file_parts) ) {
-					array_push( $final_matches, sprintf( '%s/_%s.scss', array_shift( $file_parts ), array_pop( $file_parts ) ) );
-				} else {
-					array_push( $final_matches, sprintf( '_%s.scss', array_pop( $file_parts ) ) );
-				}
-
-			}
-		} else {
-			$this->log_message( __( 'Error: stylesheet file was unable to be parsed and/or find SASS imports.' ) );
-			$this->log_message( $matches );
-		}
-		return $final_matches;
-	}
-
 }
 
 if ( ! is_admin() ) {
