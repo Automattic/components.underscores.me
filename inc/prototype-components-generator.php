@@ -683,8 +683,8 @@ class Components_Generator_Plugin {
 			'name'		  => 'Theme Name',
 			'slug'		  => 'theme-name',
 			'uri'		  => 'http://components.underscores.me/',
-			'author'	  => 'Components.Underscores.me',
-			'author_uri'  => 'http://components.underscores.me/',
+			'author'	  => 'Automattic',
+			'author_uri'  => 'http://automattic.com/',
 			'description' => 'Description',
 		);
 
