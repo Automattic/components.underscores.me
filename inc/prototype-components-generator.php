@@ -743,9 +743,6 @@ class Components_Generator_Plugin {
 					continue 2; // continue the parent foreach loop
 				}
 			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
-			if ( 'languages/component_s.pot' == $local_filename ) {
-				$local_filename = sprintf( 'languages/%s.pot', $this->theme['slug'] );
-			}
 			$contents = file_get_contents( $filename );
 			$contents = apply_filters( 'components_generator_file_contents', $contents, $local_filename );
 			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
