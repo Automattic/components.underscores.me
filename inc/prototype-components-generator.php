@@ -697,6 +697,7 @@ class Components_Generator_Plugin {
 						$hash = md5( print_r( $this->theme, true ) );
 						$this->prototype_dir = $tmp . '/' . $type . '-' . $hash;
 						$this->copy_build_files( $this->build_dir . '/' . $type, $this->prototype_dir );
+						$this->selected_theme = $title;
 						break;
 				}
 			}
@@ -750,6 +751,7 @@ class Components_Generator_Plugin {
 			$zip->addFromString( trailingslashit( $this->theme['slug'] ) . $local_filename, $contents );
 		}
 		$zip->close();
+		$this->do_tracking();
 		header( 'Content-type: application/zip' );
 		header( sprintf( 'Content-Disposition: attachment; filename="%s.zip"', $this->theme['slug'] ) );
 		readfile( $zip_filename );
@@ -897,13 +899,14 @@ class Components_Generator_Plugin {
 	/**
 	 * Track total downloads and type downloads.
 	 */
-	function generator_do_tracking() {
+	function do_tracking() {
 		// Let's not fire stats on localhost.
 		if ( 'components.underscores.me' !== $_SERVER['HTTP_HOST'] ) {
 			return;
 		}
 
 		$types = $this->get_types();
+		$output = null;
 
 		// Track total downloads.
 		$user_agent = 'regular';
@@ -915,6 +918,9 @@ class Components_Generator_Plugin {
 		foreach ( $types as $type => $title ) {
 			if ( $title == $this->selected_theme ) {
 				$track_type = $this->selected_theme;
+				// Remove the first word of types so we keep stats consistent with previous versions of generator.
+				$output = preg_replace( '%^[a-z]+\s+(.+)$%i', '$1', $track_type );
+				$track_type = $output;
 				break;
 			}
 		}
