@@ -720,10 +720,10 @@ class Components_Generator_Plugin {
 		if ( ! empty( $_REQUEST['components_types_description'] ) ) {
 			$this->theme['description'] = trim( $_REQUEST['components_types_description'] );
 		}
-		if ( ! empty( $_REQUEST['components_author'] ) ) {
+		if ( ! empty( $_REQUEST['components_types_author'] ) ) {
 			$this->theme['author'] = trim( $_REQUEST['components_types_author'] );
 		}
-		if ( ! empty( $_REQUEST['components_author_uri'] ) ) {
+		if ( ! empty( $_REQUEST['components_types_author_uri'] ) ) {
 			$this->theme['author_uri'] = trim( $_REQUEST['components_types_author_uri'] );
 		}
 
