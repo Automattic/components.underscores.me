@@ -770,7 +770,7 @@ class Components_Generator_Plugin {
 			$types = $this->read_json( $this->build_dir . '/types.json' );
 			// Prepend Base theme data to the $types array.
 			// It isn't a type, but should still be included in the generator processes.
-			$types = array( 'base' => 'Base' ) + $types;
+			$types = array_merge( array( 'base' => 'Base' ), $types );
 		}
 		return $types;
 	}
