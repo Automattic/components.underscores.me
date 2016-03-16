@@ -16,6 +16,6 @@
 		<?php $selection_data = get_content_selection('custom'); ?>
 		<h2><?php echo $selection_data['title']; ?></h2>
 		<?php echo $selection_data['content']; ?>
-		<a href="#custom-build-panel" class="toggle button">Configure</a>
+		<a href="#custom-build-panel" class="toggle button">Build Your Own</a>
 	</div>
 </section><!-- #selection -->
