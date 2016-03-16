@@ -1813,7 +1813,7 @@ section {
       padding-left: 20px;
       padding-right: 20px; } }
 #custom-build-panel {
-  background-color: #1c2a42;
+  background-color: #141f32;
   color: #f3f2ed;
   display: none; }
   #custom-build-panel h3 {
@@ -1848,6 +1848,13 @@ section {
   #custom-build-panel .components-form-fields {
     margin: auto;
     max-width: 60%; }
+  #custom-build-panel .components-radio-group label:before, #custom-build-panel .components-radio-group legend.components-label:before,
+  #custom-build-panel .components-checkbox-group label:before,
+  #custom-build-panel .components-checkbox-group legend.components-label:before {
+    background-color: #141f32;
+    border: 4px solid #141f32; }
+  #custom-build-panel .components-radio-group input[type="radio"]:checked + label:before, #custom-build-panel .components-radio-group input[type="radio"]:checked + legend.components-label:before {
+    background-color: #EB6361; }
 
 @media (min-width: 768px) {
   #custom-build-panel .components-radio-group,

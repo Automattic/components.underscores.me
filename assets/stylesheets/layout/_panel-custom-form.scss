@@ -1,5 +1,5 @@
 #custom-build-panel {
-	background-color: $color__navy-light;
+	background-color: $color__navy;
 	color: $color__offwhite;
 	display: none;
 
@@ -45,6 +45,23 @@
 	.components-form-fields {
 		margin: auto;
 		max-width: 60%;
+	}
+
+	.components-radio-group,
+	.components-checkbox-group {
+
+		label:before {
+			background-color: $color__navy;
+			border: 4px solid $color__navy;
+		}
+	}
+
+	.components-radio-group {
+
+		input[type="radio"]:checked + label:before {
+			background-color: $color__pink;
+		}
+
 	}
 }
 
