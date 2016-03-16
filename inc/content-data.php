@@ -106,7 +106,7 @@ function get_content_selection( $selection_choice = 'all' ) {
 													'content' 	=> 	"<p>Lay the groundwork for your WordPress theme with our <strong>ready-made Types</strong>. Crafting an elegant artist's <strong>portfolio</strong>? An information-filled <strong>magazine</strong> theme or <strong>business</strong> site? How about a modern or classic <strong>blog</strong>? Choose the type that fits the bill and you'll be on your way in no time.
 </p>"
 										),
-								'custom' => array( 	'title' 	=> 'Build Your Own',
+								'custom' => array( 	'title' 	=> 'Custom',
 													'content' 	=> "<p>Go the custom route and <strong>keep control</strong> over every element of your starter theme, picking-and-choosing only the components you need to create your <strong>perfect custom starter theme</strong>. You'll get solid, reliable code, with only the pieces your project needs.
 </p>"
 										)
