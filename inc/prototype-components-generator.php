@@ -47,6 +47,9 @@ class Components_Generator_Plugin {
 	 * This is an init function to grab theme components so we can control when it's called by the generator.
 	 */
 	public function get_theme_components_init() {
+		// Ensure build directory exists.
+		$this->ensure_directory( $this->build_dir );
+		
 		// Grab theme components from its Github repo.
 		$this->get_theme_components( $this->build_dir );
 
@@ -127,20 +130,14 @@ class Components_Generator_Plugin {
 	 * This gets our zip from the Github repo.
 	 */
 	public function get_theme_components( $destination ) {
-		// Make sure the build dir exists.
-		$this->ensure_directory( $this->build_dir );
+		// The zip file path.
+		$zipfile = $destination . '/' . $this->repo_file_name;
 
 		// Get our download.
-		$this->download_file( $this->repo_url, $this->repo_file_name );
-
-		// Copy the file to its new directory.
-		copy( ABSPATH . $this->repo_file_name, sprintf( '%s/%s', $destination, $this->repo_file_name ) );
+		$this->download_file( $this->repo_url, $zipfile );
 
 		// Unzip the file.
-		$this->unzip_file( sprintf( '%s/%s', $destination, $this->repo_file_name ) );
-
-		// Delete the unneeded files. Original download in root.
-		$this->delete_file( ABSPATH . $this->repo_file_name );
+		$this->unzip_file( $zipfile );
 	}
 
 	/**
