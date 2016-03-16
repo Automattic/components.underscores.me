@@ -25,12 +25,12 @@ $types = array(
   'portfolio' => array (
     'title'    => esc_html__( 'Portfolio', 'components' ),
     'filename' => 'portfolio',
-    'text'     => esc_html__( 'If you&rsquo;re the creative type, this is the theme package for you. Image-focused, the portfolio layout uses a portfolio custom post type to easily keep your portfolio items separate from regular posts. It features a gridded portfolio layout, a simple one-column blog template, and a large featured image header.', 'components' ),
+    'text'     => esc_html__( 'Shine a spotlight on creative work with this image-focused starter theme. A gridded layout keeps portfolio items separate from regular posts via a custom post type, while the blog template features a simple one-column look and a large featured-image header.', 'components' ),
   ),
 
   'business' => array (
     'title'    => esc_html__( 'Business', 'components' ),
     'filename' => 'business',
-    'text'     => esc_html__( 'You&rsquo;ve got a million things to worry about; don&rsquo;t let your theme be another. A business starter theme comes with a front page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to add authenticity to your business.', 'components' ),
+    'text'     => esc_html__( 'This starter theme gets right down to business with its front-page template featuring a custom header, prominent testimonials, and a custom content area. Testimonials can be displayed throughout the theme to lend extra credibility and instill customer confidence.', 'components' ),
   ),
 );

@@ -321,4 +321,17 @@
 			}
 		}
 	}
+
+	#types {
+		.theme-type {
+			padding-bottom: 2em;
+		}
+		.types-row:last-of-type {
+			padding-bottom: 0;
+		}
+	}
+
+	.download.button {
+		display: none;
+	}
 }

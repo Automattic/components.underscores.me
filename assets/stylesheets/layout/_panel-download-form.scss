@@ -173,16 +173,10 @@
 /**
  * Media queries
  */
-// Stack form on mobile and make sure there's a margin between the two elements
 @include mobile {
-	.generator-form-primary,
-	.generator-form-secondary {
-		margin-bottom: $size__gutter/2;
-		width: 100%;
-	}
-
-	.generator-form-submit {
-		text-align: center;
+	// Hide the form on mobile
+	#generator {
+		display: none;
 	}
 }
 
