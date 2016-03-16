@@ -51,7 +51,7 @@
 }
 
 #types {
-	background-color: $color__navy;
+	background-color: $color__navy-light;
 	color: $color__offwhite;
 	overflow: hidden;
 	padding-top: 40px;
@@ -154,6 +154,11 @@
 
 			&:nth-of-type(2) {
 				float: right;
+			}
+
+			&:first-child:last-child {
+				float: none;
+				margin: auto;
 			}
 		}
 	}

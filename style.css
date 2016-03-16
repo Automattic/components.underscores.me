@@ -1454,7 +1454,7 @@ section {
       width: auto; }
 
 #types {
-  background-color: #141f32;
+  background-color: #1c2a42;
   color: #f3f2ed;
   overflow: hidden;
   padding-top: 40px; }
@@ -1520,6 +1520,9 @@ section {
         float: left; }
       #types .types-row .theme-type:nth-of-type(2) {
         float: right; }
+      #types .types-row .theme-type:first-child:last-child {
+        float: none;
+        margin: auto; }
 
   .types-row:nth-of-type(even) .theme-image {
     float: right; }
@@ -1759,7 +1762,7 @@ section {
 
 .gear-set-one {
   left: -225px;
-  top: -80px; }
+  top: 0; }
   .gear-set-one svg {
     height: 552px;
     width: 800px; }
