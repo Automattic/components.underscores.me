@@ -159,16 +159,14 @@ class Components_Generator_Plugin {
 	 * Handles the configuration and coordinates everything.
 	 */
 	public function handle_config( $type, $config, $target_dir ) {
-		// If the type does not specify sass files, make sure the option
-		// is specified, since the styles need to be included.
-		if ( ! isset( $config['sass_replace'] ) ) {
-			$config['sass_replace'] = array();
-		}
-
-		// Make sure components are added if there's no config to include them.
-		if ( ! isset( $config['components'] ) ) {
-			$config['components'] = array();
-		}
+		// Set default configuration options.
+		$config = wp_parse_args( $config, array(
+			'replacement_files' => array(),
+			'sass_replace' => array(),
+			'components' => array(),
+			'templates' => array(),
+			'js' => array(),
+		) );
 
 		// Iterate over each config section and process individually.
 		foreach ( $config as $section => $args ) {
