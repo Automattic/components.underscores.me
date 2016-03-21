@@ -49,7 +49,7 @@ class Components_Generator_Plugin {
 	public function get_theme_components_init() {
 		// Ensure build directory exists.
 		$this->ensure_directory( $this->build_dir );
-		
+
 		// Grab theme components from its Github repo.
 		$this->get_theme_components( $this->build_dir );
 
@@ -189,7 +189,7 @@ class Components_Generator_Plugin {
 					$this->add_templates( $args, $target_dir );
 					break;
 				case 'js';
-					$this->add_javascript( $args, $target_dir );
+					$this->add_javascript( $type, $args, $target_dir );
 					break;
 			}
 		}
@@ -488,9 +488,20 @@ class Components_Generator_Plugin {
 	/**
 	 * Removes component insertion comments from source.
 	 */
-	public function add_javascript( $files, $target_dir ) {
-		// Copy over the files
-		$this->copy_files( $this->components_dir . '/assets/js', $files, $target_dir . '/assets/js' );
+	public function add_javascript( $type, $files, $target_dir ) {
+		// The type's assets/js directory.
+		$src_dir = sprintf( '%s/types/%s/assets/js', $this->components_dir, $type );
+
+		// Update target dir to point to JavaScript assets directory.
+		$target_dir .= '/assets/js';
+
+		// Copy the base JavaScript files.
+		$js_path = $this->components_dir . '/assets/js';
+		$js_files = preg_grep( '/\\.js$/',  $this->read_dir( $js_path ) );
+		$this->copy_files( $js_path, $js_files, $target_dir );
+
+		// Copy over the type files (overriding base files).
+		$this->copy_files( $src_dir, $files, $target_dir );
 	}
 
 	/**
