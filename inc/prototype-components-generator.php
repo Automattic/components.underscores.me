@@ -360,30 +360,64 @@ class Components_Generator_Plugin {
 				}
 			}
 		}
+
+		// Move templates to theme's root where applicable.
+		$components_dir = $target_dir . '/components';
+		$component_files = $this->read_dir_recursive( $components_dir );
+		$component_directories = array();
+		foreach( $component_files as $file ) {
+			$filename = basename( $file );
+			if ( preg_match( '/^(archive|single|taxonomy|category|tag|page|author|embed)-/', $filename ) ) {
+				rename( $file, $target_dir . '/' . $filename );
+				$component_directories[] = dirname( $file );
+			}
+		}
+
+		// After moving, delete any empty directories inside components/.
+		$component_directories = array_unique( array_merge( $component_directories, $this->read_dir( $components_dir, true ) ) );
+		foreach ( $component_directories as $dir ) {
+			if ( is_dir( $dir ) && 0 === count( $this->read_dir( $dir ) ) ) {
+				rmdir( $dir );
+			}
+		}
 	}
 
 	/**
 	 * Reads a directory excluding wildcards.
 	 */
-	public function read_dir( $path ) {
+	public function read_dir( $path, $fullpath=false ) {
 		$files = preg_grep( '/^[\\.]{1,2}$/', scandir( $path ), PREG_GREP_INVERT );
 		sort( $files ); // Ensure indexes start from zero.
+		if ( $fullpath ) {
+			foreach ( $files as $i => $file ) {
+				$files[$i] = $path . '/' . $file;
+			}
+		}
+		return $files;
+	}
+
+	/**
+	 * Recursively reads a directory.
+	 */
+	public function read_dir_recursive( $path, $regex_filter=null ) {
+		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $path ) );
+		$files = array();
+		foreach( $iterator as $file ) {
+			$files[] = (string) $file->getPathName();
+		}
+		$files = preg_grep( '%/[\\.]{1,2}$%', $files, PREG_GREP_INVERT );
+		if ( $regex_filter ) {
+			$files = preg_grep( $regex_filter, $files );
+		}
 		return $files;
 	}
 
 	/**
 	 * Gets the build sources and associated file data.
 	 */
-	public function get_build_sources( $dir ) {
-		// Get all files recursively in build dir.
-		$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
-		$files = array();
-		foreach( $iterator as $file ) {
-			$files[] = (string) $file->getPathName();
-		}
-
-		// Filter only PHP files.
-		$files = preg_grep( '/\\.php$/', $files );
+	public function get_build_sources( $dir) {
+		// Get all files recursively in build dir, filtering only PHP files.
+		$files = $this->read_dir_recursive( $dir, '/\\.php$/' );
 
 		// Process file data.
 		$data = array();
