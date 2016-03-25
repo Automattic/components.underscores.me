@@ -431,6 +431,7 @@ class Components_Generator_Plugin {
 			foreach( $files as $item ) {
 				$parts = explode( '/', $item );
 				$file = array_pop( $parts );
+				$file = preg_replace( '/(^_|\.scss$)/', '', $file );
 				$path = implode( '/', $parts );
 				$title = explode( '-', preg_replace( '/(^_|\.scss$)/', '', $file ) );
 				$title = join( ' ', array_map( 'ucwords', $title ) );
@@ -447,6 +448,8 @@ class Components_Generator_Plugin {
 					$dest_file = $dest . '/' . $item;
 					$this->ensure_directory( dirname( $dest_file ) );
 					copy( $src_file, $dest_file );
+				} else {
+					$this->log_message( sprintf( 'Stylesheet not found: %s', $src_file ) );
 				}
 			}
 
@@ -464,7 +467,7 @@ class Components_Generator_Plugin {
 		}
 
 		// Get the stylesheets paths included in the sass file.
-		$paths = $this->get_stylesheet_paths( $dest . '/style.scss' );
+		$paths = $this->get_stylesheet_paths( $target_dir, $dest . '/style.scss' );
 
 		// Copy the paths to the build directory.
 		foreach ( $paths as $path ) {
@@ -475,6 +478,72 @@ class Components_Generator_Plugin {
 				copy( $src_file, $target_file );
 			}
 		}
+	}
+
+	/**
+	 * Gets list of stylesheets to include
+	 */
+	public function get_stylesheet_paths( $target_dir, $stylesheet, $basedir=null ) {
+		// Initialize variables.
+		$paths = array();
+		$assets_dir = $this->components_dir . '/assets/stylesheets';
+		$src = file_get_contents( $stylesheet );
+
+		// Match all import statements using regex.
+		preg_match_all( '%^(\s*//\s*)?@import\s*"([^"]+)"%m', $src, $matches );
+		if ( is_array( $matches ) && isset( $matches[2] ) ) {
+
+			// Array containing matching comments of import statements.
+			$comments = $matches[1];
+
+			// Iterate over each of the matches, getting the index of the match,
+			// used to determine if the import statement is commented out.
+			foreach ( $matches[2] as $idx => $file ) {
+
+				// Ignore commented imports.
+				if ( ! empty( $comments[$idx] ) ) {
+					continue;
+				}
+
+				// If we have a base directory (calling recursively, prepend it to the filename)
+				if ( isset( $basedir ) ) {
+					$file = $basedir . '/' . $file;
+				}
+
+				// Build the path based on the parts we created above.
+				$parts = explode( '/', $file );
+				if ( 1 === count( $parts ) ) {
+					$file = sprintf( '_%s.scss', $parts[0] );
+				} else {
+					$filename = array_pop( $parts );
+					$file = sprintf( '%s/_%s.scss', implode( '/', $parts ), $filename );
+				}
+
+				// Append the detected file to our paths array.
+				$paths[] = $file;
+
+				// Now we need to get the basedir to pass to recursive calls.
+				$dirname = dirname( $file );
+				$path = $assets_dir . '/' . $file;
+
+				// If the file doesn't exist in the components directory, then this means
+				// the type is providing the file, so use the type's path instead.
+				if ( ! file_exists( $path ) ) {
+					$path = $target_dir . '/assets/stylesheets/' . $file;
+				}
+
+				// Get inner paths of file, calling the method recursively.
+				if ( '.' === $dirname ) {
+					$inner_paths = $this->get_stylesheet_paths( $target_dir, $path, null );
+				} else {
+					$inner_paths = $this->get_stylesheet_paths( $target_dir, $path, $dirname );
+				}
+
+				// Add the paths we detected above with our paths array.
+				$paths = array_merge( $paths, $inner_paths );
+			}
+		}
+		return $paths;
 	}
 
 	/**
@@ -502,30 +571,6 @@ class Components_Generator_Plugin {
 
 		// Copy over the type files (overriding base files).
 		$this->copy_files( $src_dir, $files, $target_dir );
-	}
-
-	/**
-	 * Gets list of stylesheets to include
-	 */
-	public function get_stylesheet_paths( $filename ) {
-		$final_matches = array();
-		$stylesheet_contents = file_get_contents( $filename );
-		preg_match_all( '/@import\s+"([^"]+)"\s*;/i', $stylesheet_contents, $matches );
-		if ( isset( $matches[1] ) && is_array( $matches[1] ) && ! empty( $matches[1] ) ) {
-			foreach ( $matches[1] as $key => $value ) {
-				$file_parts = explode( '/', $value );
-				if ( is_array( $file_parts) && 1 < count( $file_parts) ) {
-					array_push( $final_matches, sprintf( '%s/_%s.scss', array_shift( $file_parts ), array_pop( $file_parts ) ) );
-				} else {
-					array_push( $final_matches, sprintf( '_%s.scss', array_pop( $file_parts ) ) );
-				}
-
-			}
-		} else {
-			$this->log_message( __( 'Error: stylesheet file was unable to be parsed and/or find SASS imports.' ) );
-			$this->log_message( $matches );
-		}
-		return $final_matches;
 	}
 
 	/**
