@@ -168,6 +168,15 @@ class Components_Generator_Plugin {
 			'js' => array(),
 		) );
 
+		// Add default components to base.
+		if ( 'base' === $type ) {
+			$config['components'] = array(
+				'header/site-branding',
+				'navigation/navigation-top',
+				'footer/site-info',
+			);
+		}
+
 		// Iterate over each config section and process individually.
 		foreach ( $config as $section => $args ) {
 			switch ( $section ) {
