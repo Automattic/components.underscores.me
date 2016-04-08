@@ -1,5 +1,4 @@
 style.css.map
 .sass-cache/*
 assets/.sass-cache/*
-downloads/
-prototype/
+build/

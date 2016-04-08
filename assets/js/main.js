@@ -14,7 +14,7 @@
 		}
 
 		if ( $( this ).is( '[data-type="blog-classic"]' ) ) {
-			$( '#type-classic' ).attr( 'checked', true );
+			$( '#type-blog-classic' ).attr( 'checked', true );
 		}
 
 		if ( $( this ).is( '[data-type="magazine"]' ) ) {
@@ -38,17 +38,6 @@
 				'tabindex': '-1'
 			} ).focus();
 		});
-
-		/**
-		 *Load the g.gif image in order to track downloads
-		 */
-		// Generate the URL for our tracking image, with proper parameters
-		/*
-		var imageURL = document.location.protocol + '//pixel.wp.com/b.gif?v=wpcom-no-pv&amp;x_component_downloads=' + type + '&amp;baba=' + Math.random();
-
-		// Finally, append the image to our body
-		$( 'body' ).append( '<img src="' + imageURL + '">' );
-		*/
 	} );
 
 } )( jQuery );
