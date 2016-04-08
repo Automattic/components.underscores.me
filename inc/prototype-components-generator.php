@@ -23,12 +23,6 @@ class Components_Generator_Plugin {
 		$this->repo_url = esc_url_raw( $this->repo_url );
 		$this->components_dir = $this->build_dir . '/' . str_replace( '.zip', '', $this->repo_file_name );
 
-		// Patch repo url and filename to work with `branchless-merge` branch
-		// TODO: remove this code after the branch is merged.
-		$this->repo_url = preg_replace( '%/master$%', '/branchless-merge', $this->repo_url );
-		$this->repo_file_name = preg_replace( '%-master.zip$%', '-branchless-merge.zip', $this->repo_file_name );
-		$this->components_dir = preg_replace( '%-master$%', '-branchless-merge', $this->components_dir );
-
 		// Let's run a few init functions to set things up.
 		// Using a low priority to make sure it runs before other actions.
 		add_action( 'init', array( $this, 'set_expiration_and_go' ), 1 );
