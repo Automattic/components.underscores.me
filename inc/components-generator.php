@@ -168,6 +168,8 @@ class Components_Generator_Plugin {
 				'header/site-branding',
 				'navigation/navigation-top',
 				'footer/site-info',
+				'post/content-footer',
+				'post/content-meta',
 			);
 		}
 
