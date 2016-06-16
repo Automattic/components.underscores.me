@@ -638,7 +638,7 @@ class Components_Generator_Plugin {
 						<div class="theme-input clear">
 							<div class="generator-form-primary">
 								<fieldset>
-									<legend class="components-label">Theme type<span class="required"><span class="screen-reader-text">Required</span></span></legend>
+									<legend class="components-label">Theme type <span class="required">Required</span></legend>
 									<div class="components-radio-block">
 										<?php
 											$i = 0;
@@ -664,7 +664,7 @@ class Components_Generator_Plugin {
 
 							<div class="generator-form-secondary">
 								<div class="components-form-field">
-									<label class="components-label" for="components-types-name">Theme Name<span class="required"><span class="screen-reader-text">Required</span></span></label>
+									<label class="components-label" for="components-types-name">Theme Name <span class="required">Required</span></label>
 									<input type="text" id="components-types-name" class="components-input" name="components_types_name" placeholder="Awesome Theme" required>
 								</div>
 
