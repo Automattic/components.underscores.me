@@ -1507,12 +1507,15 @@ section {
 
 /* Errors */
 .error ul {
-  background-color: #df9d56;
+  background-color: #CD7C3A;
   border-radius: 4px;
   padding: 0; }
   .error ul li {
     font-size: 90%;
     padding: 0.2em 1.0em; }
+    .error ul li a {
+      color: #fff;
+      text-decoration: underline; }
     .error ul li:first-child {
       padding-top: 0.75em; }
     .error ul li:last-child {
@@ -1523,7 +1526,7 @@ section {
       width: 16px; }
 
 input[aria-invalid=true] {
-  border: 4px solid #df9d56; }
+  border: 4px solid #CD7C3A; }
 
 .gear-set-one,
 .gear-set-two {
