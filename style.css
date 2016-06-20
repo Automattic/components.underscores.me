@@ -754,6 +754,11 @@ a:hover, a:active {
     width: auto;
     z-index: 100000;
     /* Above WP toolbar. */ }
+/* Do not show the outline on the skip link targets. */
+div[tabindex="-1"]:focus,
+span[tabindex="-1"]:focus {
+  outline: 0;
+}
 
 /*--------------------------------------------------------------
 # Alignments

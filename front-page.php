@@ -49,7 +49,7 @@ get_header(); ?>
 							echo '<div class="wrap types-row">';
 						}
 						?>
-						<div class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
+						<div id="<?php echo esc_attr( $type['filename'] ); ?>" class="theme-type" data-type="<?php echo esc_attr( $type['filename'] ); ?>">
 							<h2 class="theme-type-title"><?php echo $type['title']; ?></h2>
 							<div class="theme-image">
 								<div class="standard-robot">

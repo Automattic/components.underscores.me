@@ -28,16 +28,20 @@
 		if ( $( this ).is( '[data-type="business"]' ) ) {
 			$( '#type-business' ).attr( 'checked', true );
 		}
-
-		// Scroll to form
-		$('html, body').stop().animate({
-			'scrollTop': $( '#generator' ).offset().top
-		}, 900, 'swing', function () {
-			window.location.hash = 'generator';
-			$( '.js #generator' ).attr( {
-				'tabindex': '-1'
-			} ).focus();
-		});
 	} );
 
+	// Smooth scrolling for anchor links.
+	$( 'a[href^="#"]' ).on( 'click', function ( e ) {
+		e.preventDefault();
+		var target = this.hash;
+		var $target = $( target );
+
+		$( 'html, body' ).stop().animate({
+			'scrollTop': $target.offset().top
+		}, 900, 'swing', function () {
+			window.location.hash = target;
+			$( $target ).focus();
+		} );
+		return false;
+	} );
 } )( jQuery );
