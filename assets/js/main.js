@@ -65,7 +65,7 @@
 		// Supply our error messages.
 		// If theme type is empty.
 		if ( ! type || 0 === type.length ) {
-			errors += '<li>Please specify a theme type.</li>\n';
+			errors += '<li><a href="#components-types-type">Please specify a theme type</a>.</li>\n';
 			typeInput.attr( 'aria-invalid', 'true' );
 		} else {
 			// Reset aria-invalid attribue from any previous attempts.
@@ -73,7 +73,7 @@
 		}
 		// If theme name is empty.
 		if ( ! name || 0 === name.length ) {
-			errors += '<li>Please specify a theme name.</li>\n';
+			errors += '<li><a href="#components-types-name">Please specify a theme name</a>.</li>\n';
 			nameInput.attr( 'aria-invalid', 'true' );
 		} else {
 			// Reset aria-invalid attribue from any previous attempts.
@@ -82,7 +82,7 @@
 		// If the theme name is not empty, make sure it has no special characters.
 		if ( name || 0 < name.length ) {
 			if ( /[\'^£$%&*()}{@#~?><>,|=+¬"]/.test( name.trim() ) === true ) {
-				errors += '<li>Theme name could not be used to generate valid theme name. Please go back and try again.</li>\n';
+				errors += '<li>Theme name could not be used to generate valid theme name. Special characters are not allowed. <a href="#components-types-name">Please go back and try again</a>.</li>\n';
 				nameInput.attr( 'aria-invalid', 'true' );
 			} else {
 				// Reset aria-invalid attribue from any previous attempts.
@@ -92,7 +92,7 @@
 		// If the theme slug is not empty, make sure it has no special characters.
 		if ( slug || 0 < slug.length ) {
 			if ( /^[a-z_]\w+$/i.test( slug.trim() ) === false ) {
-				errors += '<li>Theme slug could not be used to generate valid function names. Please go back and try again.</li>\n';
+				errors += '<li>Theme slug could not be used to generate valid function names. Special characters are not allowed. <a href="#components-types-slug">Please go back and try again</a>.</li>\n';
 				slugInput.attr( 'aria-invalid', 'true' );
 			} else {
 				// Reset aria-invalid attribue from any previous attempts.
@@ -102,7 +102,7 @@
 		// If the author uri is not empty, make sure it is a valid uri.
 		if ( uri || 0 < uri.length ) {
 			if ( /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test( uri.trim() ) === false ) {
-				errors += '<li>Author URI is not valid. Please go back and try again.</li>\n';
+				errors += '<li>Author URI is not valid. Be sure to include <code>http://</code> in the URI. <a href="#components-types-author-uri">Please go back and try again</a>.</li>\n';
 				uriInput.attr( 'aria-invalid', 'true' );
 			} else {
 				// Reset aria-invalid attribue from any previous attempts.
