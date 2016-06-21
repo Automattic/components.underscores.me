@@ -725,6 +725,8 @@ class Components_Generator_Plugin {
 				$contents = preg_replace( '/(' . preg_quote( $key ) . ':)\s?(.+)/', '\\1 ' . $value, $contents );
 			}
 			$contents = preg_replace( '/\bComponents\b/', $this->theme['name'], $contents );
+			// Grab the GPL statement in stylesheets and re-replace with Components
+			$contents = preg_replace( '/\b' . preg_quote( $this->theme['name'] ) . ' is distributed\b/', 'Components is distributed', $contents );
 			return $contents;
 		}
 		// Special treatment for footer.php
