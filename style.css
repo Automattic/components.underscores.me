@@ -754,11 +754,11 @@ a:hover, a:active {
     width: auto;
     z-index: 100000;
     /* Above WP toolbar. */ }
+
 /* Do not show the outline on the skip link targets. */
 div[tabindex="-1"]:focus,
 span[tabindex="-1"]:focus {
-  outline: 0;
-}
+  outline: 0; }
 
 /*--------------------------------------------------------------
 # Alignments
@@ -1241,10 +1241,10 @@ section {
     transform: scaleX(-1); } }
 @media only screen and (max-width: 1460px) {
   .theme-image .large-robot {
-    left: -15%; }
+    left: -10%; }
 
   .types-row:nth-of-type(even) .large-robot {
-    right: -15%; } }
+    right: -10%; } }
 @media (max-width: 1350px) {
   .theme-image {
     width: 40%; }
