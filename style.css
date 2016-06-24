@@ -1429,12 +1429,18 @@ section {
   #generator[tabindex="-1"]:focus {
     outline: 0; }
   #generator .wrap {
-    max-width: 700px; }
+    max-width: 700px;
+    position: relative; }
   #generator h2 {
     color: #A0C3C6; }
 
 .hide-overflow {
-  overflow: hidden; }
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
 
 .generator-form {
   padding-bottom: 1.5em;

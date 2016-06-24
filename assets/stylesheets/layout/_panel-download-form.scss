@@ -11,6 +11,7 @@
 
 	.wrap {
 		max-width: 700px;
+		position: relative;
 	}
 
 	h2 {
@@ -20,6 +21,11 @@
 
 .hide-overflow {
 	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .generator-form {
