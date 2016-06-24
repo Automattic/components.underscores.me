@@ -1424,7 +1424,6 @@ section {
   background-color: #1c2a42;
   color: #f3f2ed;
   max-height: 100%;
-  overflow: hidden;
   position: relative;
   text-align: center; }
   #generator[tabindex="-1"]:focus {
@@ -1433,6 +1432,9 @@ section {
     max-width: 700px; }
   #generator h2 {
     color: #A0C3C6; }
+
+.hide-overflow {
+  overflow: hidden; }
 
 .generator-form {
   padding-bottom: 1.5em;

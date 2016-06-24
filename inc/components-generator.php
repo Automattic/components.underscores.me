@@ -619,84 +619,86 @@ class Components_Generator_Plugin {
 		// Get the types available.
 		$types = $this->get_types(); ?>
 		<section id="generator">
+			<div class="hide-overflow">
 
-			<div class="gear-set-one">
-				<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
-			</div><!-- .gear-set-one -->
+				<div class="gear-set-one">
+					<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
+				</div><!-- .gear-set-one -->
 
-			<div class="gear-set-two">
-				<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
-			</div><!-- .gear-set-two -->
+				<div class="gear-set-two">
+					<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
+				</div><!-- .gear-set-two -->
 
-			<div class="wrap">
-				<h2>Build your own Components theme</h2>
-				<p>Pick a type, fill out the information about your new theme, and download it.</p>
-				<div id="generator-form" class="generator-form">
-					<form method="POST" novalidate>
-						<input type="hidden" name="components_types_generate" value="1" />
+				<div class="wrap">
+					<h2>Build your own Components theme</h2>
+					<p>Pick a type, fill out the information about your new theme, and download it.</p>
+					<div id="generator-form" class="generator-form">
+						<form method="POST" novalidate>
+							<input type="hidden" name="components_types_generate" value="1" />
 
-						<div class="theme-input clear">
-							<div class="generator-form-primary">
-								<fieldset>
-									<legend class="components-label">Theme type <span class="required">(Required)</span></legend>
-									<div class="components-radio-block">
-										<?php
-											$i = 0;
-											foreach ( $types as $type => $title ) :
-												// Check our first radio as a default and add a required to it.
-												if ( 0 == $i ) {
-													$checked = 'checked="checked"';
-													$required = ' required';
-												} else {
-													$checked = null;
-													$required = null;
-												}
-												$i++;
-										?>
-											<div class="components-radio-group">
-												<input id="<?php echo 'type-' . $type; ?>" class="components-input" type="radio" name="components_theme_type" value="<?php echo $title; ?>" <?php echo $checked; echo $required; ?>>
-												<label class="components-label" for="<?php echo 'type-' . $type; ?>"><?php echo $title; ?></label>
-											</div>
-										<?php endforeach; ?>
+							<div class="theme-input clear">
+								<div class="generator-form-primary">
+									<fieldset>
+										<legend class="components-label">Theme type <span class="required">(Required)</span></legend>
+										<div class="components-radio-block">
+											<?php
+												$i = 0;
+												foreach ( $types as $type => $title ) :
+													// Check our first radio as a default and add a required to it.
+													if ( 0 == $i ) {
+														$checked = 'checked="checked"';
+														$required = ' required';
+													} else {
+														$checked = null;
+														$required = null;
+													}
+													$i++;
+											?>
+												<div class="components-radio-group">
+													<input id="<?php echo 'type-' . $type; ?>" class="components-input" type="radio" name="components_theme_type" value="<?php echo $title; ?>" <?php echo $checked; echo $required; ?>>
+													<label class="components-label" for="<?php echo 'type-' . $type; ?>"><?php echo $title; ?></label>
+												</div>
+											<?php endforeach; ?>
+										</div>
+									</fieldset>
+								</div><!-- .generator-form-primary -->
+
+								<div class="generator-form-secondary">
+									<div class="components-form-field">
+										<label class="components-label" for="components-types-name">Theme Name <span class="required">(Required)</span></label>
+										<input type="text" id="components-types-name" class="components-input" name="components_types_name" placeholder="Awesome Theme" required>
 									</div>
-								</fieldset>
-							</div><!-- .generator-form-primary -->
 
-							<div class="generator-form-secondary">
-								<div class="components-form-field">
-									<label class="components-label" for="components-types-name">Theme Name <span class="required">(Required)</span></label>
-									<input type="text" id="components-types-name" class="components-input" name="components_types_name" placeholder="Awesome Theme" required>
-								</div>
+									<div class="components-form-field">
+										<label class="components-label" for="components-types-slug">Theme Slug</label>
+										<input type="text" id="components-types-slug" class="components-input" name="components_types_slug" placeholder="awesome-theme">
+									</div>
 
-								<div class="components-form-field">
-									<label class="components-label" for="components-types-slug">Theme Slug</label>
-									<input type="text" id="components-types-slug" class="components-input" name="components_types_slug" placeholder="awesome-theme">
-								</div>
+									<div class="components-form-field">
+										<label class="components-label" for="components-types-author">Author Name</label>
+										<input type="text" id="components-types-author" class="components-input" name="components_types_author" placeholder="Your Name">
+									</div>
 
-								<div class="components-form-field">
-									<label class="components-label" for="components-types-author">Author Name</label>
-									<input type="text" id="components-types-author" class="components-input" name="components_types_author" placeholder="Your Name">
-								</div>
+									<div class="components-form-field">
+										<label class="components-label" for="components-types-author-uri">Author URI</label>
+										<input type="url" id="components-types-author-uri" class="components-input" name="components_types_author_uri" placeholder="http://themeshaper.com/">
+									</div>
 
-								<div class="components-form-field">
-									<label class="components-label" for="components-types-author-uri">Author URI</label>
-									<input type="url" id="components-types-author-uri" class="components-input" name="components_types_author_uri" placeholder="http://themeshaper.com/">
-								</div>
+									<div class="components-form-field">
+										<label class="components-label" for="components-types-description">Theme description</label>
+										<input type="text" id="components-types-description" class="components-input" name="components_types_description" placeholder="A brief description of your awesome theme">
+									</div>
 
-								<div class="components-form-field">
-									<label class="components-label" for="components-types-description">Theme description</label>
-									<input type="text" id="components-types-description" class="components-input" name="components_types_description" placeholder="A brief description of your awesome theme">
-								</div>
-
-								<div class="generator-form-submit">
-									<input type="submit" name="components_types_generate_submit" value="Download Theme">
-									<button type="button" class="components-form-cancel">Cancel</button>
-								</div><!-- .generator-form-submit -->
-							</div><!-- .generator-form-secondary -->
-						</div><!-- .generator-form-inputs -->
-					</form>
-				</div><!-- .generator-form -->
-			</div><!-- .wrap -->
+									<div class="generator-form-submit">
+										<input type="submit" name="components_types_generate_submit" value="Download Theme">
+										<button type="button" class="components-form-cancel">Cancel</button>
+									</div><!-- .generator-form-submit -->
+								</div><!-- .generator-form-secondary -->
+							</div><!-- .generator-form-inputs -->
+						</form>
+					</div><!-- .generator-form -->
+				</div><!-- .wrap -->
+			</div><!-- .hide-overflow -->
 		</section><!-- #generator -->
 	<?php }
 

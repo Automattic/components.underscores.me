@@ -2,7 +2,6 @@
 	background-color: $color__navy-light;
 	color: $color__offwhite;
 	max-height: 100%;
-	overflow: hidden;
 	position: relative;
 	text-align: center;
 
@@ -17,6 +16,10 @@
 	h2 {
 		color: $color__teal-light;
 	}
+}
+
+.hide-overflow {
+	overflow: hidden;
 }
 
 .generator-form {
