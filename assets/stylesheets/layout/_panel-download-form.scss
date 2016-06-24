@@ -128,6 +128,41 @@
 	}
 }
 
+/* Errors */
+.error ul {
+	background-color: #CD7C3A;
+	border-radius: 4px;
+	padding: 0;
+
+	li {
+		font-size: 90%;
+		padding: 0.2em 1.0em;
+
+		a {
+			color: #fff;
+			text-decoration: underline;
+		}
+
+		&:first-child {
+			padding-top: 0.75em;
+		}
+
+		&:last-child {
+			padding-bottom: 0.75em;
+		}
+
+		&::before {
+			background: url("assets/img/error.svg") no-repeat;
+			height: 16px;
+			width: 16px;
+		}
+	}
+}
+
+input[aria-invalid=true] {
+	border: 4px solid #CD7C3A;
+}
+
 // Gear styles
 .gear-set-one,
 .gear-set-two {

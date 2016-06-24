@@ -632,7 +632,7 @@ class Components_Generator_Plugin {
 				<h2>Build your own Components theme</h2>
 				<p>Pick a type, fill out the information about your new theme, and download it.</p>
 				<div id="generator-form" class="generator-form">
-					<form method="POST">
+					<form method="POST" novalidate>
 						<input type="hidden" name="components_types_generate" value="1" />
 
 						<div class="theme-input clear">
@@ -803,11 +803,11 @@ class Components_Generator_Plugin {
 
 		// Let's check if the slug can be a valid function name.
 		if ( ! preg_match( '/^[a-z_]\w+$/i', str_replace( '-', '_', $this->theme['slug'] ) ) ) {
-			wp_die( 'Theme slug could not be used to generate valid function names. Please go back and try again.' );
+			wp_die( 'Theme slug could not be used to generate valid function names. Special characters are not allowed. Please go back and try again.' );
 		}
 		// Let's check if the name can be a valid theme name.
 		if ( preg_match( '/[\'^£$%&*()}{@#~?><>,|=+¬"]/', $this->theme['name'] ) ) {
-			wp_die( 'Theme slug could not be used to generate valid theme name. Please go back and try again.' );
+			wp_die( 'Theme name could not be used to generate valid theme name. Special characters are not allowed. Please go back and try again.' );
 		}
 		if ( ! empty( $_REQUEST['components_types_description'] ) ) {
 			$this->theme['description'] = trim( $_REQUEST['components_types_description'] );
@@ -817,6 +817,10 @@ class Components_Generator_Plugin {
 		}
 		if ( ! empty( $_REQUEST['components_types_author_uri'] ) ) {
 			$this->theme['author_uri'] = trim( $_REQUEST['components_types_author_uri'] );
+			// Let's check if the uri is valid.
+			if ( ! preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $this->theme['author_uri'] ) ) {
+				wp_die( 'Author URI is not valid. Be sure to include <code>http://</code>. Please go back and try again.' );
+			}
 		}
 
 		$zip = new ZipArchive;
