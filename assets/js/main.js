@@ -31,7 +31,7 @@
 	} );
 
 	// Smooth scrolling for anchor links.
-	$( 'a[href^="#"]' ).on( 'click', function ( e ) {
+	$( '#page' ).on( 'click', 'a[href^="#"]', function ( e ) {
 		e.preventDefault();
 		var target = this.hash;
 		var $target = $( target );
