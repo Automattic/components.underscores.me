@@ -619,14 +619,16 @@ class Components_Generator_Plugin {
 		// Get the types available.
 		$types = $this->get_types(); ?>
 		<section id="generator">
+			<div class="hide-overflow">
 
-			<div class="gear-set-one">
-				<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
-			</div><!-- .gear-set-one -->
+				<div class="gear-set-one">
+					<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
+				</div><!-- .gear-set-one -->
 
-			<div class="gear-set-two">
-				<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
-			</div><!-- .gear-set-two -->
+				<div class="gear-set-two">
+					<?php echo file_get_contents( get_template_directory() . '/assets/img/gear-set.svg' ); ?>
+				</div><!-- .gear-set-two -->
+			</div><!-- .hide-overflow -->
 
 			<div class="wrap">
 				<h2>Build your own Components theme</h2>
