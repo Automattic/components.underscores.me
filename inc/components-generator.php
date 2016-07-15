@@ -124,11 +124,24 @@ class Components_Generator_Plugin {
 	 * This gets our zip from the Github repo.
 	 */
 	public function get_theme_components( $destination ) {
-		// The zip file path.
-		$zipfile = $destination . '/' . $this->repo_file_name;
+		if ( has_filter( 'components_local_dev' ) && has_filter( 'components_bypass_cache' ) ) {
+			// Components Local Dev plugin is running, so let the generator use a local copy of Components.
+			// The zip file path in the root of WordPress install, created by Components Local Dev plugin.
+			$zipfile = $this->repo_file_name;
 
-		// Get our download.
-		$this->download_file( $this->repo_url, $zipfile );
+			// Copy the local copy of Components to build directory.
+			copy( $zipfile, $destination . '/' . $zipfile );
+
+			// Rename the variable to the file in the build directory so the generator can work with it.
+			$zipfile = $destination . '/' . $this->repo_file_name;
+		} else {
+			// Let's use the latest copy of Components from Github.
+			// The zip file path.
+			$zipfile = $destination . '/' . $this->repo_file_name;
+
+			// Get our download from Github.
+			$this->download_file( $this->repo_url, $zipfile );
+		}
 
 		// Unzip the file.
 		$this->unzip_file( $zipfile );
