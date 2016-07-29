@@ -475,8 +475,17 @@ class Components_Generator_Plugin {
 		if ( file_exists( $style_dir . '/style.scss' ) ) {
 			$this->copy_files( $style_dir, $files, $dest );
 
-		// If we're not overriding, then we need to append.
-		} else if ( ! file_exists( $style_dir ) ) {
+		// Check if we have a stylesheets directory.
+		} else if ( is_dir( $style_dir ) ) {
+
+			// Copy files to target directory.
+			$this->copy_files( $style_dir, $files, $dest );
+
+			// Copy stylesheet to target directory.
+			copy( $this->components_dir . '/assets/stylesheets/style.scss', $dest . '/style.scss' );
+
+		// Otherwise, we need to append.
+		} else {
 
 			// Generate the SASS import codes for the stylesheets.
 			$imports = array();
@@ -523,9 +532,20 @@ class Components_Generator_Plugin {
 
 		// Copy the paths to the build directory.
 		foreach ( $paths as $path ) {
+
+			// To avoid overriding the type's original stylesheets, we check if the file to be copied
+			// is not in the files array. This means we will keep the one the type overrides.
+			if ( in_array( $path, $files ) ) {
+				continue;
+			}
+
 			$src_file = $this->components_dir . '/assets/stylesheets/' . $path;
 			$target_file = $dest . '/' . $path;
+
+			// Make sure the directory of the file we're copying exists.
 			$this->ensure_directory( dirname( $target_file ) );
+
+			// Only copy the file if it exists.
 			if ( file_exists( $src_file ) ) {
 				copy( $src_file, $target_file );
 			}
@@ -897,6 +917,13 @@ class Components_Generator_Plugin {
 
 		// Copy over the files
 		foreach( $files as $file ) {
+
+			// If the files specified are inside a directory, we need to make sure these
+			// directories exist before copying the files, otherwise we get a warning.
+			if ( preg_match( '%/%', $file ) ) {
+				$this->ensure_directory( $target_dir . '/' . dirname( $file ) );
+			}
+
 			copy( $src_dir . '/' . $file, $target_dir . '/' . $file );
 		}
 	}
@@ -967,12 +994,17 @@ class Components_Generator_Plugin {
 
 	/**
 	 * Checks if a directory exists, creates it otherwise.
+	 *
+	 * @see http://php.net/mkdir
 	 */
 	public function ensure_directory( $directory, $delete_if_exists=false ) {
 		if ( ! file_exists( $directory ) && ! is_dir( $directory ) ) {
+
+			// Create the directory recursively
 			if ( ! mkdir( $directory, 0755, true ) ) {
 				$this->log_message( sprintf( __( 'Error: %s directory was not able to be created.' ), $directory ) );
 			}
+
 		} else if ( $delete_if_exists && is_dir( $directory ) ) {
 			$this->delete_directory( $directory );
 			$this->ensure_directory( $directory );
