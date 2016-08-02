@@ -124,7 +124,7 @@ class Components_Generator_Plugin {
 	 * This gets our zip from the Github repo.
 	 */
 	public function get_theme_components( $destination ) {
-		if ( has_filter( 'components_local_dev' ) && has_filter( 'components_bypass_cache' ) ) {
+		if ( has_filter( 'components_local_dev' ) && true === apply_filters( 'components_local_dev', true ) ) {
 			// Components Local Dev plugin is running, so let the generator use a local copy of Components.
 			// The zip file path in the root of WordPress install, created by Components Local Dev plugin.
 			$zipfile = $this->repo_file_name;
