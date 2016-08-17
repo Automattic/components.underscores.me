@@ -284,7 +284,7 @@ class Components_Generator_Plugin {
 					$line = preg_replace( '/(^\(\s*|\s*\)$)/', '', $line );
 					$parts = preg_split( '/\s*,\s*/', $line );
 					$first = trim( preg_replace( '/(\'|")/', '', $parts[0] ) );
-					$second = $parts[1];
+					$second = isset( $parts[1] ) ? $parts[1] : null;
 
 					// If the second parameter is a string, then we only need one file.
 					if ( preg_match( '/^(\'|")/', $second ) ) {
