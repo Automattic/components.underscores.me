@@ -34,7 +34,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Clearings
 # Widgets
 # Content
-    ## Posts and pages
+	## Posts and pages
 	## Asides
 	## Comments
 # Infinite scroll
@@ -2228,16 +2228,3 @@ object {
 .gallery-caption {
 	display: block;
 }
-
-/*--------------------------------------------------------------
-# Media queries
---------------------------------------------------------------*/
-/* Define mobile styles */
-/* max-width 640px, mobile-only styles, use when QAing mobile issues */
-/* min-width 641px, medium screens */
-/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
-/* min-width 1025px, large screens */
-/* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
-/* min-width 1441px, xlarge screens */
-/* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
-/* min-width 1921px, xxlarge screens */
