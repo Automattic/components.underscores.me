@@ -122,11 +122,14 @@ function components_get_contributors() {
  * @return $types Array
  */
 function components_theme_types() {
+	// Get the theme types
 	require get_template_directory() . '/components/theme-types.php';
-	if ( isset( $types ) ) {
+	if ( isset( $types ) && is_array( $types ) ) {
+		// Randomise order of types so as not to favour any in particular
+		shuffle( $types );
 		return $types;
 	} else {
-		return false;
+		return array();
 	}
 }
 
