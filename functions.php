@@ -118,6 +118,19 @@ function components_get_contributors() {
 }
 
 /**
+ * components_theme_types Returns an array of types
+ * @return $types Array
+ */
+function components_theme_types() {
+	require get_template_directory() . '/components/theme-types.php';
+	if ( isset( $types ) ) {
+		return $types;
+	} else {
+		return false;
+	}
+}
+
+/**
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
