@@ -29,7 +29,7 @@ get_header(); ?>
 					<div class="theme-text">
 						<h2 class="theme-type-title">Just the basics, please</h2>
 						<p>Want to concoct your own starter theme? Don&rsquo;t need any bells or whistles? Our base package is for you.</p>
-						<a href="#generator" class="download button" data-type="base">Build <span class="screen-reader-text">Base</span> Theme!</a>
+						<a href="<?php echo esc_url( __( '#generator', 'components' ) ); ?>" class="download button" data-type="base">Build <span class="screen-reader-text">Base</span> Theme!</a>
 					</div>
 				</div><!-- .theme-type -->
 
@@ -60,7 +60,7 @@ get_header(); ?>
 							</div>
 							<div class="theme-text">
 								<p><?php echo $type['text']; ?></p>
-								<a href="#generator" class="download button" data-type="<?php echo esc_attr( $type['filename'] ); ?>">Build <span class="screen-reader-text"><?php echo $type['title']; ?></span> Theme!</a>
+								<a href="<?php echo esc_url( __( '#generator', 'components' ) ); ?>" class="download button" data-type="<?php echo esc_attr( $type['filename'] ); ?>">Build <span class="screen-reader-text"><?php echo $type['title']; ?></span> Theme!</a>
 							</div>
 						</div><!-- .theme-type -->
 
@@ -92,7 +92,7 @@ get_header(); ?>
 
 					<div class="col">
 						<h2>Want to contribute?</h2>
-						<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="https://github.com/Automattic/theme-components">GitHub repo</a>, check out the <a href="https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md">contributor guidelines</a>, and get involved!</p>
+						<p>Components is a new project, and we&rsquo;re looking for your input! Have a pattern to share? Want to add a new feature? Found a bug in the code? Head over to the <a href="<?php echo esc_url( __( 'https://github.com/Automattic/theme-components', 'components' ) ); ?>">GitHub repo</a>, check out the <a href="<?php echo esc_url( __( 'https://github.com/Automattic/theme-components/blob/master/CONTRIBUTING.md', 'components' ) ); ?>">contributor guidelines</a>, and get involved!</p>
 
 					</div>
 				</div><!-- .wrap -->
