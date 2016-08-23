@@ -869,10 +869,11 @@ class Components_Generator_Plugin {
 			if ( in_array( basename( $filename ), $exclude_files ) ) {
 				continue;
 			}
-			foreach ( $exclude_directories as $directory )
+			foreach ( $exclude_directories as $directory ) {
 				if ( strstr( $filename, "/{$directory}/" ) ) {
 					continue 2; // continue the parent foreach loop
 				}
+			}
 			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
 			$contents = file_get_contents( $filename );
 			$contents = apply_filters( 'components_generator_file_contents', $contents, $local_filename );

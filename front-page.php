@@ -105,7 +105,7 @@ get_header(); ?>
 						<?php foreach ( components_get_contributors() as $contributor ) : ?>
 							<?php
 								$name = '@' . $contributor->login;
-								$contributions = sprintf( '%d %s', $contributor->contributions, _n( 'contribution', 'contributions', $contributor->contributions ) );
+								$contributions = sprintf( '%d %s', $contributor->contributions, _n( 'contribution', 'contributions', $contributor->contributions, 'components' ) );
 								$url = sprintf( 'http://github.com/%s', $contributor->login );
 								$avatar_url = add_query_arg( 's', 280, $contributor->avatar_url );
 								$avatar_url = add_query_arg( 'd', esc_url_raw( 'https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=280' ), $avatar_url );
