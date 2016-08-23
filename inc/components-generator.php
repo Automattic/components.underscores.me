@@ -84,7 +84,7 @@ class Components_Generator_Plugin {
 			// Create a JSON file from our $types array so that we can use it for as a cache for rendering the generator form.
 			file_put_contents( $this->build_dir . '/types.json', json_encode( $types, JSON_PRETTY_PRINT ) );
 		} else {
-			$this->log_message( __( 'Error: type.json was not rebuilt successfully because configs were not able to be read.' ) );
+			$this->log_message( __( 'Error: type.json was not rebuilt successfully because configs were not able to be read.', 'components' ) );
 		}
 
 	}
@@ -869,10 +869,11 @@ class Components_Generator_Plugin {
 			if ( in_array( basename( $filename ), $exclude_files ) ) {
 				continue;
 			}
-			foreach ( $exclude_directories as $directory )
+			foreach ( $exclude_directories as $directory ) {
 				if ( strstr( $filename, "/{$directory}/" ) ) {
 					continue 2; // continue the parent foreach loop
 				}
+			}
 			$local_filename = str_replace( trailingslashit( $this->prototype_dir ), '', $filename );
 			$contents = file_get_contents( $filename );
 			$contents = apply_filters( 'components_generator_file_contents', $contents, $local_filename );
@@ -1002,7 +1003,7 @@ class Components_Generator_Plugin {
 
 			// Create the directory recursively
 			if ( ! mkdir( $directory, 0755, true ) ) {
-				$this->log_message( sprintf( __( 'Error: %s directory was not able to be created.' ), $directory ) );
+				$this->log_message( sprintf( __( 'Error: %s directory was not able to be created.', 'components' ), $directory ) );
 			}
 
 		} else if ( $delete_if_exists && is_dir( $directory ) ) {
@@ -1016,7 +1017,7 @@ class Components_Generator_Plugin {
 	 */
 	public function delete_file( $URI ) {
 		if ( ! unlink( $URI ) ) {
-			$this->log_message( sprintf( __( 'Error: %s file was not able to be deleted.' ), $URI ) );
+			$this->log_message( sprintf( __( 'Error: %s file was not able to be deleted.', 'components' ), $URI ) );
 		}
 	}
 
@@ -1030,7 +1031,7 @@ class Components_Generator_Plugin {
 		foreach ( $files as $fileinfo ) {
 			$fname = $fileinfo->isDir() ? 'rmdir' : 'unlink';
 			if ( ! call_user_func( $fname, $fileinfo->getRealPath() ) ) {
-				$this->log_message( sprintf( __( 'Error: %1$s function was not able to be executed. Arguments were: %2$s.' ), $fname, $fileinfo->getRealPath() ) );
+				$this->log_message( sprintf( __( 'Error: %1$s function was not able to be executed. Arguments were: %2$s.', 'components' ), $fname, $fileinfo->getRealPath() ) );
 			}
 		}
 		return rmdir( $directory );

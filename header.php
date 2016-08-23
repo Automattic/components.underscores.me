@@ -19,7 +19,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'components' ); ?></a>
+	<a class="skip-link screen-reader-text" href="<?php echo esc_url( __( '#content', 'components' ) ); ?>"><?php esc_html_e( 'Skip to content', 'components' ); ?></a>
 
 
 	<?php if ( is_front_page() ) { ?>
@@ -63,7 +63,7 @@
 							<?php endif; ?>
 						</div><!-- .site-branding -->
 						<div id="intro">
-							<p>The choice is yours: jump-start a <a href="#blog-classic">blog</a>, <a href="#portfolio">portfolio</a>, <a href="#business">business</a>, or <a href="#magazine">magazine site</a> – or concoct something completely custom. No matter which route you take, you&rsquo;ll save tons of time and turbo-charge your theme&rsquo;s development.
+							<p>The choice is yours: jump-start a <a href="<?php echo esc_url( __( '#blog-classic', 'components' ) ); ?>">blog</a>, <a href="<?php echo esc_url( __( '#portfolio', 'components' ) ); ?>">portfolio</a>, <a href="<?php echo esc_url( __( '#business', 'components' ) ); ?>">business</a>, or <a href="<?php echo esc_url( __( '#magazine', 'components' ) ); ?>">magazine site</a> – or concoct something completely custom. No matter which route you take, you&rsquo;ll save tons of time and turbo-charge your theme&rsquo;s development.
 						</div><!-- #intro -->
 					</div><!-- .intro-content -->
 				</div><!-- .content-wrapper -->
