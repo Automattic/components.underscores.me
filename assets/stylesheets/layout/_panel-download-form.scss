@@ -2,7 +2,6 @@
 	background-color: $color__navy-light;
 	color: $color__offwhite;
 	max-height: 100%;
-	overflow: hidden;
 	position: relative;
 	text-align: center;
 
@@ -12,11 +11,21 @@
 
 	.wrap {
 		max-width: 700px;
+		position: relative;
 	}
 
 	h2 {
 		color: $color__teal-light;
 	}
+}
+
+.hide-overflow {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .generator-form {
@@ -59,6 +68,41 @@
 		color: #fff;
 		outline: 0;
 	}
+}
+
+/* Errors */
+.error ul {
+	background-color: #CD7C3A;
+	border-radius: 4px;
+	padding: 0;
+
+	li {
+		font-size: 90%;
+		padding: 0.2em 1.0em;
+
+		a {
+			color: #fff;
+			text-decoration: underline;
+		}
+
+		&:first-child {
+			padding-top: 0.75em;
+		}
+
+		&:last-child {
+			padding-bottom: 0.75em;
+		}
+
+		&::before {
+			background: url("assets/img/error.svg") no-repeat;
+			height: 16px;
+			width: 16px;
+		}
+	}
+}
+
+input[aria-invalid=true] {
+	border: 4px solid #CD7C3A;
 }
 
 // Gear styles
@@ -106,16 +150,10 @@
 /**
  * Media queries
  */
-// Stack form on mobile and make sure there's a margin between the two elements
 @include mobile {
-	.generator-form-primary,
-	.generator-form-secondary {
-		margin-bottom: $size__gutter/2;
-		width: 100%;
-	}
-
-	.generator-form-submit {
-		text-align: center;
+	// Hide the form on mobile
+	#generator {
+		display: none;
 	}
 }
 

@@ -34,7 +34,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Clearings
 # Widgets
 # Content
-    ## Posts and pages
+	## Posts and pages
 	## Asides
 	## Comments
 # Infinite scroll
@@ -827,6 +827,11 @@ a:hover, a:active {
     z-index: 100000;
     /* Above WP toolbar. */ }
 
+/* Do not show the outline on the skip link targets. */
+div[tabindex="-1"]:focus,
+span[tabindex="-1"]:focus {
+  outline: 0; }
+
 /*--------------------------------------------------------------
 # Alignments
 --------------------------------------------------------------*/
@@ -1539,10 +1544,10 @@ section {
     transform: scaleX(-1); } }
 @media only screen and (max-width: 1460px) {
   .theme-image .large-robot {
-    left: -15%; }
+    left: -10%; }
 
   .types-row:nth-of-type(even) .large-robot {
-    right: -15%; } }
+    right: -10%; } }
 @media (max-width: 1350px) {
   .theme-image {
     width: 40%; }
@@ -1636,55 +1641,6 @@ section {
         margin: 0;
         max-height: 100%;
         width: 150px; } }
-#download-base {
-  background-color: #A0C3C6; }
-  #download-base ::after {
-    clear: both;
-    display: block;
-    width: 100%;
-    content: ''; }
-  #download-base .gears {
-    width: calc(100% - 500px);
-    position: relative; }
-    @media (min-width: 1024px) {
-      #download-base .gears {
-        margin-left: 100px; } }
-  #download-base #gear-double {
-    height: 337px;
-    position: absolute;
-    left: -218px;
-    top: -30px;
-    transform: rotate(102deg);
-    width: 337px; }
-  #download-base #gear-holey {
-    height: 140px;
-    position: absolute;
-    left: 104px;
-    top: -10px;
-    transform: rotate(-16deg);
-    width: 140px; }
-  #download-base #gear-wheelie {
-    height: 180px;
-    position: absolute;
-    left: 109px;
-    top: 129px;
-    transform: rotate(-17deg);
-    width: 180px; }
-  #download-base .content-wrapper {
-    float: right;
-    padding: 20px 0;
-    max-width: 500px; }
-  #download-base h2 {
-    color: #233656;
-    position: relative;
-    z-index: 4; }
-  #download-base p {
-    margin-top: 0;
-    position: relative;
-    z-index: 4; }
-  #download-base .button {
-    display: inline-block; }
-
 #extra-info .wrap::before,
 #extra-info .wrap::after {
   content: "";
@@ -1714,15 +1670,23 @@ section {
   background-color: #1c2a42;
   color: #f3f2ed;
   max-height: 100%;
-  overflow: hidden;
   position: relative;
   text-align: center; }
   #generator[tabindex="-1"]:focus {
     outline: 0; }
   #generator .wrap {
-    max-width: 700px; }
+    max-width: 700px;
+    position: relative; }
   #generator h2 {
     color: #A0C3C6; }
+
+.hide-overflow {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
 
 .generator-form {
   padding-bottom: 1.5em;
@@ -1754,6 +1718,29 @@ section {
   .components-form-cancel:active, .components-form-cancel:focus {
     color: #fff;
     outline: 0; }
+
+/* Errors */
+.error ul {
+  background-color: #CD7C3A;
+  border-radius: 4px;
+  padding: 0; }
+  .error ul li {
+    font-size: 90%;
+    padding: 0.2em 1.0em; }
+    .error ul li a {
+      color: #fff;
+      text-decoration: underline; }
+    .error ul li:first-child {
+      padding-top: 0.75em; }
+    .error ul li:last-child {
+      padding-bottom: 0.75em; }
+    .error ul li::before {
+      background: url("assets/img/error.svg") no-repeat;
+      height: 16px;
+      width: 16px; }
+
+input[aria-invalid=true] {
+  border: 4px solid #CD7C3A; }
 
 .gear-set-one,
 .gear-set-two {
@@ -1790,13 +1777,8 @@ section {
  * Media queries
  */
 @media (max-width: 767px) {
-  .generator-form-primary,
-  .generator-form-secondary {
-    margin-bottom: 20px;
-    width: 100%; }
-
-  .generator-form-submit {
-    text-align: center; } }
+  #generator {
+    display: none; } }
 @media (min-width: 768px) {
   .generator-form-primary {
     display: inline-block;
@@ -2078,18 +2060,5 @@ object {
 
 .gallery-caption {
   display: block; }
-
-/*--------------------------------------------------------------
-# Media queries
---------------------------------------------------------------*/
-/* Define mobile styles */
-/* max-width 640px, mobile-only styles, use when QAing mobile issues */
-/* min-width 641px, medium screens */
-/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
-/* min-width 1025px, large screens */
-/* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
-/* min-width 1441px, xlarge screens */
-/* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
-/* min-width 1921px, xxlarge screens */
 
 /*# sourceMappingURL=style.css.map */

@@ -19,7 +19,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'components' ); ?></a>
+	<a class="skip-link screen-reader-text" href="<?php echo esc_url( __( '#content', 'components' ) ); ?>"><?php esc_html_e( 'Skip to content', 'components' ); ?></a>
 
 
 	<?php if ( is_front_page() ) { ?>

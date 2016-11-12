@@ -34,7 +34,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Clearings
 # Widgets
 # Content
-    ## Posts and pages
+	## Posts and pages
 	## Asides
 	## Comments
 # Infinite scroll
@@ -103,7 +103,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "layout/panel-top-robot";
 @import "layout/panel-selection";
 @import "layout/panel-types";
-@import "layout/panel-base";
 @import "layout/panel-details";
 @import "layout/panel-download-form";
 @import "layout/panel-custom-form";
@@ -123,8 +122,3 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Media
 --------------------------------------------------------------*/
 @import "shared/media";
-
-/*--------------------------------------------------------------
-# Media queries
---------------------------------------------------------------*/
-@import "shared/queries";
