@@ -35,6 +35,9 @@ class Components_Generator_Plugin {
 
 		// Use do_action( 'render_types_form' ); in your theme to render the form.
 		add_action( 'render_types_form', array( $this, 'render_types_form' ), 3 );
+
+		$this->run_v2();
+		exit();
 	}
 
 	/**
@@ -95,6 +98,87 @@ class Components_Generator_Plugin {
 	public function read_json( $file ) {
 		$json = file_get_contents( $file );
 		return json_decode( $json, TRUE );
+	}
+
+	public function run_v2() {
+		$config = array(
+			'components' => array(
+				'custom-header'
+			)
+		);
+
+		foreach( $config[ 'components' ] as $component ) {
+			$this->parse_component( $component );
+		}
+
+	}
+
+	function parse_component( $component ) {
+		$component_dir = $this->components_dir . '/components_v2/components/' . $component;
+		$files = $this->read_dir( $component_dir, true );
+		$files = array_filter( $files, 'is_file' );
+
+		$fragments = array();
+		foreach( $files as $filepath ) {
+			$fragments = $this->parse_component_file( $filepath, $fragments );
+		}
+		print_r( $fragments );
+		exit();
+	}
+
+	function parse_component_file( $component_filename, $result ) {
+		$contents = file_get_contents( $component_filename );
+		$lines = explode( "\n", $contents );
+
+		$file = array();
+		foreach ( $lines as $line ) {
+			$matches = array();
+
+			if ( preg_match( '@^//\s*components_theme\s+file:([\w.]+)\s+location:([\w]+)\s*$@', $line, $matches ) ) {
+				// add last fragment to result
+				if ( $file ) {
+					$result[ $file ][ $location ][] = $this->concat_fragment_array( $fragment );
+				}
+
+				// start new fragment
+				$fragment = array();
+				$file = $matches[1];
+				$location = $matches[2];
+			} else {
+				$fragment[] = $line;
+			}
+		}
+		// add final fragment
+		if ( $file ) {
+			$result[ $file ][ $location ][] = $this->concat_fragment_array( $fragment );
+		}
+
+		return $result;
+	}
+
+	function concat_fragment_array( $fragment_array ) {
+		$tags_to_strip = array(
+			"<?php",
+			"?>",
+			"<script>",
+			"</script>",
+		);
+
+		$scalar = implode( "\n", $fragment_array );
+		$trimmed_array = explode( "\n", trim( $scalar ) );
+
+		$first_line = sizeof( $trimmed_array ) > 0 ? $trimmed_array[0] : "";
+		if ( in_array( trim( $first_line ), $tags_to_strip ) ) {
+			array_shift( $trimmed_array );
+		}
+
+		$array_size = sizeof( $trimmed_array );
+		$last_line = $array_size > 0 ? $trimmed_array[ $array_size - 1 ] : "";
+		if ( in_array( trim( $last_line ), $tags_to_strip ) ) {
+			array_pop( $trimmed_array );
+		}
+
+		return implode( "\n", $trimmed_array );
 	}
 
 	/**
@@ -242,7 +326,8 @@ class Components_Generator_Plugin {
 
 			// If it's a file, copy it over to the target directory.
 			if ( $is_phpfile && ( $phpfile_exists || file_exists( $path ) ) ) {
-				$file = array_pop( ( explode( '/components/', $path ) ) ); // Enclose in parens to pass by reference.
+				$parts = explode( '/components/', $path );
+				$file = array_pop( $parts );
 				$dest = $target_dir . '/components/' . $file;
 				$this->ensure_directory( dirname( $dest ) );
 				$insert[] = preg_replace( '%/+%', '/', $path );
