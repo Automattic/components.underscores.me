@@ -138,10 +138,9 @@ class Components_Generator_Plugin {
 						$file_contents = preg_replace( $regex, $indented_snippet, $file_contents );
 					}
 				}
-
-				// overwrite file with new contents
-				file_put_contents( $filepath, $file_contents );
 			}
+			// overwrite file with new contents
+			file_put_contents( $filepath, $file_contents );
 		}
 	}
 
