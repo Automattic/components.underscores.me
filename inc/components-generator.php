@@ -107,10 +107,23 @@ class Components_Generator_Plugin {
 			)
 		);
 
+		$target_dir = $this->build_dir . '/v2-build';
+		$this->copy_v2_base_files( $target_dir );
+
 		foreach( $config[ 'components' ] as $component ) {
 			$this->parse_component( $component );
 		}
 
+	}
+
+	function copy_v2_base_files( $target_dir ) {
+		$this->ensure_directory( $target_dir, true );
+
+		$base_file_dir = $this->components_dir . '/components_v2/src';
+		$base_files = $this->read_dir_recursive( $base_file_dir );
+		$base_files = str_replace( $base_file_dir . '/', '', $base_files );
+
+		$this->copy_files( $base_file_dir, $base_files, $target_dir );
 	}
 
 	function parse_component( $component ) {
