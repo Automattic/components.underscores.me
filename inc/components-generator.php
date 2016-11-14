@@ -110,10 +110,35 @@ class Components_Generator_Plugin {
 		$target_dir = $this->build_dir . '/v2-build';
 		$this->copy_v2_base_files( $target_dir );
 
+		$fragments = array();
 		foreach( $config[ 'components' ] as $component ) {
-			$this->parse_component( $component );
+			$fragments = $this->parse_component( $component, $fragments );
 		}
 
+		foreach ( $fragments as $file => $locations ) {
+			$filepath = $target_dir . '/' . $file;
+			$file_contents = file_get_contents( $filepath );
+			echo "filepath $filepath\n";
+
+			foreach ( $locations as $location => $snippets ) {
+				echo "location $location\n";
+				print_r( $snippets );
+				// replace comment with snippet + comment (maintaining indent)
+				$matches = array();
+				$regex = '@^(\s*)//\s*components_theme\s+location:\s*' . $location . '\s*$@m';
+				if ( preg_match( $regex, $file_contents, $matches ) ) {
+					$comment = $matches[0];
+					$indent = $matches[1];
+					foreach ( $snippets as $snippet ) {
+						$indented_snippet = $indent . implode( $indent, $snippet ) . $comment . "\n";
+						$file_contents = preg_replace( $regex, $indented_snippet, $file_contents );
+					}
+				}
+
+				// overwrite file with new contents
+				file_put_contents( $filepath, $file_contents );
+			}
+		}
 	}
 
 	function copy_v2_base_files( $target_dir ) {
@@ -126,17 +151,15 @@ class Components_Generator_Plugin {
 		$this->copy_files( $base_file_dir, $base_files, $target_dir );
 	}
 
-	function parse_component( $component ) {
+	function parse_component( $component, $result ) {
 		$component_dir = $this->components_dir . '/components_v2/components/' . $component;
 		$files = $this->read_dir( $component_dir, true );
 		$files = array_filter( $files, 'is_file' );
 
-		$fragments = array();
 		foreach( $files as $filepath ) {
-			$fragments = $this->parse_component_file( $filepath, $fragments );
+			$result = $this->parse_component_file( $filepath, $result );
 		}
-		print_r( $fragments );
-		exit();
+		return $result;
 	}
 
 	function parse_component_file( $component_filename, $result ) {
@@ -147,10 +170,10 @@ class Components_Generator_Plugin {
 		foreach ( $lines as $line ) {
 			$matches = array();
 
-			if ( preg_match( '@^//\s*components_theme\s+file:([\w.]+)\s+location:([\w]+)\s*$@', $line, $matches ) ) {
+			if ( preg_match( '@^//\s*components_theme\s+file:\s*([\w.]+)\s+location:\s*([\w]+)\s*$@', $line, $matches ) ) {
 				// add last fragment to result
 				if ( $file ) {
-					$result[ $file ][ $location ][] = $this->concat_fragment_array( $fragment );
+					$result[ $file ][ $location ][] = $this->process_fragment_array( $fragment );
 				}
 
 				// start new fragment
@@ -163,13 +186,13 @@ class Components_Generator_Plugin {
 		}
 		// add final fragment
 		if ( $file ) {
-			$result[ $file ][ $location ][] = $this->concat_fragment_array( $fragment );
+			$result[ $file ][ $location ][] = $this->process_fragment_array( $fragment );
 		}
 
 		return $result;
 	}
 
-	function concat_fragment_array( $fragment_array ) {
+	function process_fragment_array( $fragment_array ) {
 		$tags_to_strip = array(
 			"<?php",
 			"?>",
@@ -191,7 +214,7 @@ class Components_Generator_Plugin {
 			array_pop( $trimmed_array );
 		}
 
-		return implode( "\n", $trimmed_array );
+		return $trimmed_array;
 	}
 
 	/**
