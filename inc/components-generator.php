@@ -115,6 +115,10 @@ class Components_Generator_Plugin {
 			$fragments = $this->parse_component( $component, $fragments );
 		}
 
+		$this->inject_code( $target_dir, $fragments );
+	}
+
+	function inject_code( $target_dir, $fragments) {
 		foreach ( $fragments as $file => $locations ) {
 			$filepath = $target_dir . '/' . $file;
 			$file_contents = file_get_contents( $filepath );
