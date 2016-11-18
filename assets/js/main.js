@@ -96,7 +96,7 @@
 		}
 		// If the theme slug is not empty, make sure it has no special characters.
 		if ( slug || 0 < slug.length ) {
-			if ( /^[a-z_]\w+$/i.test( slug.trim() ) === false ) {
+			if ( /^[a-z0-9-]+$/i.test( slug.trim() ) === false ) {
 				errors += '<li>Theme slug could not be used to generate valid function names. Special characters are not allowed. <a href="#components-types-slug">Please go back and try again</a>.</li>\n';
 				slugInput.attr( 'aria-invalid', 'true' );
 			} else {
