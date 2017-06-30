@@ -17,8 +17,8 @@ class Components_Generator_Plugin {
 
 	function __construct() {
 		// Initialize class properties.
-		$this->bypass_cache = apply_filters( 'components_bypass_cache', false );
-		$this->logging = apply_filters( 'components_logging', true );
+		$this->bypass_cache = apply_filters( 'components_bypass_cache', $this->bypass_cache );
+		$this->logging = apply_filters( 'components_logging', $this->logging );
 		$this->build_dir = sprintf( '%s/%s', get_stylesheet_directory(), $this->build_dir );
 		$this->repo_url = esc_url_raw( $this->repo_url );
 		$this->components_dir = $this->build_dir . '/' . str_replace( '.zip', '', $this->repo_file_name );
